@@ -1,4 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
+import { Typography } from '@mui/material';
+import { styled, keyframes } from '@mui/material/styles'
 
 const neon = keyframes`
        0% {
@@ -30,11 +31,11 @@ const neon = keyframes`
             }
  `;
 
-export const BrandText = styled.p`
+export const BrandText = styled(Typography)`
   font-size: 10rem;
     text-align: center;
     font-family: CODAC;
-    color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.palette.primary.main};
     animation: ${neon} 2s linear infinite alternate-reverse;
     text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191,
           1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191,

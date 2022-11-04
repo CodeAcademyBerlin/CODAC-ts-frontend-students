@@ -11,26 +11,40 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.5",
+    "@mui/lab": "^5.0.0-alpha.106",
+    "@mui/material": "^5.10.12",
     "@types/node": "18.11.9",
     "@types/react": "^18.0.24",
     "@types/react-dom": "18.0.8",
+    "apexcharts-clevision": "^3.28.5",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.1",
     "graphql": "^16.6.0",
     "js-cookie": "^3.0.1",
+    "mdi-material-ui": "^7.6.0",
     "next": "13.0.1",
     "next-with-apollo": "^5.3.0",
+    "nprogress": "^0.2.0",
     "react": "18.2.0",
+    "react-apexcharts": "^1.4.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.6",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-popper": "^2.3.0",
     "typescript": "4.8.4"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.10.5",
     "@graphql-codegen/add": "^3.2.1",
     "@graphql-codegen/cli": "^2.13.11",
     "@graphql-codegen/typescript-operations": "^2.5.6",
     "@graphql-codegen/typescript-react-apollo": "^3.3.6",
     "@types/lodash": "^4.14.187",
-    "@types/styled-components": "^5.1.26"
+    "@types/nprogress": "^0.2.0",
+    "@types/react-datepicker": "^4.8.0"
   }
 }
