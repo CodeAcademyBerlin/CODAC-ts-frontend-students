@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Router } from 'next/router'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import favicon from "../public/favicon.ico";
 
 // ** Loader Import
 import NProgress from 'nprogress'
@@ -88,6 +89,8 @@ const CodacApp = (props: ExtendedAppProps) => {
               name='Code Academy Berlin Community App'
               content={`${themeConfig.templateName} – Code Academy Berlin Community App`}
             />
+            <link rel="shortcut icon" href={favicon.src} />
+
             <meta name='viewport' content='initial-scale=1, width=device-width' />
           </Head>
           <SettingsProvider>
