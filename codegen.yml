@@ -1,9 +1,9 @@
 overwrite: true
-schema: "http://localhost:1338/graphql"
+schema: "https://codac-364707.ey.r.appspot.com/graphql"
 documents: "graphql/*.ts"
 
 generates:
-  generated/index.tsx:
+  graphql/_generated_/index.tsx:
 
     config:
       reactApolloVersion: 3

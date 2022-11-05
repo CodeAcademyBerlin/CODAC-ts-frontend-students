@@ -1,7 +1,7 @@
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
-import TypographyHeadings from '../../views/typography/TypographyHeadings'
-import TypographyTexts from '../../views/typography/TypographyTexts'
+import TypographyHeadings from '../../componentsDemo/typography/TypographyHeadings'
+import TypographyTexts from '../../componentsDemo/typography/TypographyTexts'
 
 
 

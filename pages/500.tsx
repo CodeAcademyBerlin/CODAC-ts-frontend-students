@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
 import BlankLayout from '../@core/layouts/BlankLayout'
-import FooterIllustrations from '../views/pages/misc/FooterIllustrations'
+import FooterIllustrations from '../componentsDemo/pages/misc/FooterIllustrations'
 
 
 

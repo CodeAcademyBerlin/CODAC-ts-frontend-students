@@ -30,7 +30,7 @@ import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import BlankLayout from '../../../@core/layouts/BlankLayout'
 import themeConfig from '../../../configs/themeConfig'
-import FooterIllustrationsV1 from '../../../views/pages/auth/FooterIllustration'
+import FooterIllustrationsV1 from '../../../componentsDemo/pages/auth/FooterIllustration'
 
 
 

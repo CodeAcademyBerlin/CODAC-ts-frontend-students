@@ -20,9 +20,9 @@ import InformationOutline from 'mdi-material-ui/InformationOutline'
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
-import TabAccount from '../../views/account-settings/TabAccount'
-import TabInfo from '../../views/account-settings/TabInfo'
-import TabSecurity from '../../views/account-settings/TabSecurity'
+import TabAccount from '../../componentsDemo/account-settings/TabAccount'
+import TabInfo from '../../componentsDemo/account-settings/TabInfo'
+import TabSecurity from '../../componentsDemo/account-settings/TabSecurity'
 
 const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({
   [theme.breakpoints.down('md')]: {

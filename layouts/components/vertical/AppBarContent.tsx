@@ -6,6 +6,8 @@ import IconButton from '@mui/material/IconButton'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import InputAdornment from '@mui/material/InputAdornment'
 
+import { useContext } from 'react'
+
 // ** Icons Imports
 import Menu from 'mdi-material-ui/Menu'
 import Magnify from 'mdi-material-ui/Magnify'
@@ -13,6 +15,7 @@ import { Settings } from '../../../@core/context/settingsContext'
 import ModeToggler from '../../../@core/layouts/components/shared-components/ModeToggler'
 import NotificationDropdown from '../../../@core/layouts/components/shared-components/NotificationDropdown'
 import UserDropdown from '../../../@core/layouts/components/shared-components/UserDropdown'
+import { AuthContext } from '../../../contexts/authContext'
 
 
 
@@ -29,7 +32,7 @@ const AppBarContent = (props: Props) => {
 
   // ** Hook
   const hiddenSm = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
-
+  const { user } = useContext(AuthContext)
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
@@ -58,7 +61,7 @@ const AppBarContent = (props: Props) => {
 
         <ModeToggler settings={settings} saveSettings={saveSettings} />
         <NotificationDropdown />
-        <UserDropdown />
+        {user && <UserDropdown user={user} />}
       </Box>
     </Box>
   )

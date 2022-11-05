@@ -1,35 +1,69 @@
 // ** React Imports
-import { createContext, useState, ReactNode, useContext } from 'react'
-import { UsersPermissionsMe } from '../generated';
+import { createContext, useState, ReactNode, useContext, useEffect } from 'react'
+import { UsersPermissionsLoginPayload, UsersPermissionsMe } from '../graphql/_generated_';
+
 
 type User = UsersPermissionsMe | null;
 
 export type AuthContextValue = {
   user: User
-  updateUser: (user: User) => void
+  onLoginSucces: (login: UsersPermissionsLoginPayload) => void
 }
 
 const initialAuth: AuthContextValue = {
   user: null,
-  updateUser: () => null
+  onLoginSucces: () => { throw new Error('onLoginSucces not implemented.'); }
 }
 
 // ** Create Context
 export const AuthContext = createContext<AuthContextValue>(initialAuth)
 
+
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // ** State
   const [user, setUser] = useState<User>(initialAuth.user)
 
+  useEffect(() => {
+    getSession()
+  }, [])
 
-  const updateUser = (updatedUser: User) => {
-    setUser(updatedUser)
+
+  const setSession = async (jwt: string) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ jwt })
+    }
+    await fetch("/api/login", options);
   }
-  console.log('users', user)
+  const getSession = async () => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }
+    const res = await fetch("/api/user", options);
+    const { user } = await res.json()
+    if (user) {
+      setUser(user)
+    }
 
-  return <AuthContext.Provider value={{ user, updateUser }}>{children}</AuthContext.Provider>
+  }
+
+  const onLoginSucces = async ({ jwt, user }: UsersPermissionsLoginPayload) => {
+    console.log('login', user)
+    setUser(user)
+    jwt && setSession(jwt)
+  }
+  console.log('user', user)
+  return <AuthContext.Provider value={{ user, onLoginSucces }}>{children}</AuthContext.Provider>
 }
-
 
 export const useAuth = () => useContext(AuthContext);
 export const AuthConsumer = AuthContext.Consumer;
+
+
