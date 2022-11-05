@@ -31,8 +31,8 @@ import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import BlankLayout from '../../../@core/layouts/BlankLayout'
 import themeConfig from '../../../configs/themeConfig'
-import FooterIllustrationsV1 from '../../../views/pages/auth/FooterIllustration'
-import { useLoginMutation } from '../../../generated'
+import FooterIllustrationsV1 from '../../../componentsDemo/pages/auth/FooterIllustration'
+import { useLoginMutation } from '../../../graphql/_generated_'
 import { BrandText } from '../../../components/BrandStyle'
 import CircularProgress from '@mui/material/CircularProgress'
 import { AuthContext } from '../../../contexts/authContext'
@@ -71,13 +71,14 @@ const LoginPage = () => {
     error: '',
     showPassword: false
   })
-  const [loginMutation, { data, loading }] = useLoginMutation({
+  const [loginMutation, { data, loading, error }] = useLoginMutation({
     variables: {
       email: values.email,
       password: values.password
     },
   });
-  const { updateUser } = useContext(AuthContext)
+
+  const { onLoginSucces } = useContext(AuthContext)
   // ** Hook
   const router = useRouter()
 
@@ -92,19 +93,20 @@ const LoginPage = () => {
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
   }
-  const handleLogin = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    loginMutation().then(({ data }) => {
-      // you can do something with the response here
+    try {
+      const { data } = await loginMutation()
       if (data) {
-        updateUser(data.login.user)
+        const { login } = data
+        console.log('login', login)
+        onLoginSucces(login)
         router.push('/dashboard')
       }
+    } catch (e) {
+      setValues({ ...values, error: "e.message" })
+    }
 
-    })
-      .catch(e => {
-        setValues({ ...values, error: e.message })
-      })
   }
 
 
@@ -120,7 +122,7 @@ const LoginPage = () => {
             </Typography>
             <Typography variant='body2'>Please sign-in to your account and start the adventure</Typography>
           </Box>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
+          <form noValidate autoComplete='off' >
             <TextField
               autoFocus
               fullWidth
@@ -158,8 +160,8 @@ const LoginPage = () => {
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
 
-              {values.error && <Typography color="red" variant='body2' sx={{ marginRight: 2 }}>
-                {values.error}
+              {error && <Typography color="red" variant='body2' sx={{ marginRight: 2 }}>
+                {error.message}
               </Typography>}
             </Box>
             {loading ?
@@ -169,7 +171,7 @@ const LoginPage = () => {
                 size='large'
                 variant='contained'
                 sx={{ marginBottom: 7 }}
-                onClick={handleLogin}
+                onClick={handleSubmit}
               >
                 Login
               </Button>}

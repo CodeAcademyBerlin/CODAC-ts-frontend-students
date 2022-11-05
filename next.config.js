@@ -9,6 +9,9 @@ const nextConfig = {
   images: {
     domains: ["codac-364707.appspot.com"],
   },
+  env: {
+    ssrSessionKey: process.env.SSR_SESSION_KEY,
+  },
 }
 
 module.exports = nextConfig

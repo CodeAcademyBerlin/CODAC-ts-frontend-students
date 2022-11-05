@@ -4,12 +4,12 @@ import Link from '@mui/material/Link'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
-import TableBasic from '../../views/tables/TableBasic'
-import TableCollapsible from '../../views/tables/TableCollapsible'
-import TableCustomized from '../../views/tables/TableCustomized'
-import TableDense from '../../views/tables/TableDense'
-import TableSpanning from '../../views/tables/TableSpanning'
-import TableStickyHeader from '../../views/tables/TableStickyHeader'
+import TableBasic from '../../componentsDemo/tables/TableBasic'
+import TableCollapsible from '../../componentsDemo/tables/TableCollapsible'
+import TableCustomized from '../../componentsDemo/tables/TableCustomized'
+import TableDense from '../../componentsDemo/tables/TableDense'
+import TableSpanning from '../../componentsDemo/tables/TableSpanning'
+import TableStickyHeader from '../../componentsDemo/tables/TableStickyHeader'
 
 
 

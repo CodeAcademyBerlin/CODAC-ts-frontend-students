@@ -30,8 +30,11 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 import '../styles/globals.css'
 import ThemeComponent from '../@core/theme/ThemeComponent'
 import { ApolloProvider } from '@apollo/client'
-import client from '../lib/apollo-client'
+import client from '../configs/apollo-client'
 import { AuthProvider } from "../contexts/authContext"
+import { withSessionSsr } from '../lib/withSession'
+import { useEffect } from 'react'
+
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -57,9 +60,23 @@ if (themeConfig.routingLoader) {
 // ** Configure JSS & ClassName
 const CodacApp = (props: ExtendedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-
   // Variables
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
+  // useEffect(() => {
+  //   const getSession = async () => {
+  //     const options = {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //     }
+  //     const res = await fetch("/api/user", options);
+  //     const data = await res.json()
+  //     console.log('data', data)
+  //     return data.jwt
+  //   }
+  //   getSession()
+  // }, [])
 
   return (
     <ApolloProvider client={client}>
@@ -73,7 +90,6 @@ const CodacApp = (props: ExtendedAppProps) => {
             />
             <meta name='viewport' content='initial-scale=1, width=device-width' />
           </Head>
-
           <SettingsProvider>
             <SettingsConsumer>
               {({ settings }) => {
@@ -87,10 +103,4 @@ const CodacApp = (props: ExtendedAppProps) => {
   )
 }
 
-
-// CodacApp.getInitialProps = async (appContext) => {
-//   const appProps = await App.getInitialProps(appContext)
-//   const auth = await getUser(appContext.ctx)
-//   return { ...appProps, auth: auth }
-// }
 export default CodacApp

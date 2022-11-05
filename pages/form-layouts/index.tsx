@@ -6,10 +6,10 @@ import Grid from '@mui/material/Grid'
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
 import DatePickerWrapper from '../../@core/styles/libs/react-datepicker'
-import FormLayoutsAlignment from '../../views/form-layouts/FormLayoutsAlignment'
-import FormLayoutsBasic from '../../views/form-layouts/FormLayoutsBasic'
-import FormLayoutsIcons from '../../views/form-layouts/FormLayoutsIcons'
-import FormLayoutsSeparator from '../../views/form-layouts/FormLayoutsSeparator'
+import FormLayoutsAlignment from '../../componentsDemo/form-layouts/FormLayoutsAlignment'
+import FormLayoutsBasic from '../../componentsDemo/form-layouts/FormLayoutsBasic'
+import FormLayoutsIcons from '../../componentsDemo/form-layouts/FormLayoutsIcons'
+import FormLayoutsSeparator from '../../componentsDemo/form-layouts/FormLayoutsSeparator'
 
 const FormLayouts = () => {
   return (
