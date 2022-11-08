@@ -30,3 +30,14 @@ export const GET_ME_QUERY = gql`
       }
     }
 `;
+export const GET_STUDENTS = gql`
+query getStudents {
+  students {
+    data {
+      attributes {
+        email
+      }
+    }
+  }
+}
+`;
