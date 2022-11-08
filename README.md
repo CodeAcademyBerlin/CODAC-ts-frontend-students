@@ -61,6 +61,8 @@ https://www.apollographql.com/blog/getting-started-with-typescript-and-apollo-a9
 https://graphql.org/learn/queries/       
 https://www.apollographql.com/blog/the-concepts-of-graphql-bc68bd819be3/     
 
+#### jwt token & GraphQL
+https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/
 #### Apollo + SSR
 https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/
 https://dev.to/angad777/setting-up-apollo-graphql-in-next-js-with-server-side-rendering-45l5         
