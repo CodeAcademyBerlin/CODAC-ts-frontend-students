@@ -6,16 +6,33 @@ import html from 'remark-html';
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
-export async function getPage(page) {
-  console.log(page);
-  
-  //need to replace commas with slash for params
-  for (let i = 0; i < page.length; i++) {
-    if (page[i] === ',') {
-      page[i] = '/'
+//trying to automate the paths.... it doesn't work yet.
+export function getPages() {
+  const fileNames = fs.readdirSync(contentDirectory);
+
+  return fileNames.map((fileName) => {
+    if (fileName.includes('.md')) {
+      const array:string[] = [];
+      const indexes:number[] = [];
+      for (let i:number = 0; i < fileName.length; i++) {
+        if (fileName[i] === "/") {
+          indexes.push(i);
+          console.log(indexes);
+        }
+      }
+      if (indexes.length = 0) {
+        array.push(fileName.replace(/\.md$/, ''));
+        return {
+          params: {
+            page: array
+          },
+        };
+      }
     }
-    return page
-  }
+  });
+}
+
+export async function getPage(page:string) {
   const fullPath = path.join(contentDirectory, `${page}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
