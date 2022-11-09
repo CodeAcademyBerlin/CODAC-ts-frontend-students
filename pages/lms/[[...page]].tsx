@@ -1,5 +1,6 @@
 // ** React Imports
 import { ReactNode } from 'react'
+import Head from 'next/head';
 
 // ** Next Import
 import Link from 'next/link'
@@ -7,9 +8,8 @@ import Link from 'next/link'
 // ** MUI Components
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
-import { getPage, getPages } from '../../lib/content'
+import { getPage, getPaths } from '../../lib/content'
 
 
 // ** Styled Components
@@ -26,24 +26,44 @@ const StyledLink = styled(Link)({
 })
 
 const lms = ({ pageData }) => {
-  return (
-    
-    <Box>
-      <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
 
-        <StyledLink href='/dashboard'>
-          Back to Home
-        </StyledLink>
-        <div dangerouslySetInnerHTML={{ __html: pageData.contentHtml }} />
+  return (
+    <>
+      <Head>
+        <title>{pageData.title}</title>
+      </Head>
+      
+      <Box>
+        <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+
+          <StyledLink href='/dashboard'>
+            Back to Home
+          </StyledLink>
+
+          <h1>{pageData.title}</h1>
+
+          <div className='testing' style={{textAlign: "left"}} dangerouslySetInnerHTML={{ __html: pageData.contentHtml }} />
+
+          {pageData.prev && <Link href={pageData.prev}>Previous</Link>}
+          {pageData.next && <Link href={pageData.next}>Next</Link>}
+          {console.log(pageData)}
+
+        </Box>
       </Box>
-    </Box>
+    </>
 
   )
 }
 
+export async function getStaticProps({ params }) {
+  const pageData = await getPage(params.page.join("/"));
+  return { props: { pageData } };
+}
+
 export async function getStaticPaths() {
   //trying to automate the paths instead of hard coding them
-  // const paths = getPages();
+  
+  // const paths = getPaths();
   // return {
   //   paths,
   //   fallback: false,
@@ -135,12 +155,6 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   }
-}
-
-export async function getStaticProps({ params }) {
-  const pageData = await getPage(params.page.join("/"));
-
-  return { props: { pageData } };
 }
 
 export default lms

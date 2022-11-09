@@ -7,27 +7,16 @@ import html from 'remark-html';
 const contentDirectory = path.join(process.cwd(), 'content');
 
 //trying to automate the paths.... it doesn't work yet.
-export function getPages() {
+export function getPaths() {
   const fileNames = fs.readdirSync(contentDirectory);
 
   return fileNames.map((fileName) => {
     if (fileName.includes('.md')) {
-      const array:string[] = [];
-      const indexes:number[] = [];
-      for (let i:number = 0; i < fileName.length; i++) {
-        if (fileName[i] === "/") {
-          indexes.push(i);
-          console.log(indexes);
-        }
-      }
-      if (indexes.length = 0) {
-        array.push(fileName.replace(/\.md$/, ''));
-        return {
-          params: {
-            page: array
-          },
-        };
-      }
+      return {
+        params: {
+          path: fileName.split("/")
+        },
+      };
     }
   });
 }
