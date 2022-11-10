@@ -9,7 +9,7 @@ import Link from 'next/link'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
-import { getPage, getPaths } from '../../lib/content'
+import { callListFiles, getPage, getPaths, listFiles } from '../../lib/content'
 
 
 // ** Styled Components
@@ -46,7 +46,7 @@ const lms = ({ pageData }) => {
 
           {pageData.prev && <Link href={pageData.prev}>Previous</Link>}
           {pageData.next && <Link href={pageData.next}>Next</Link>}
-          {console.log(pageData)}
+          {/* {console.log(pageData)} */}
 
         </Box>
       </Box>
@@ -68,7 +68,7 @@ export async function getStaticPaths() {
   //   paths,
   //   fallback: false,
   // };
-
+  console.log(getPaths());
   const paths = [
     { params: { page: ['welcome'] } },
 
