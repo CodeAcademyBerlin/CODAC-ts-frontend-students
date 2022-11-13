@@ -23,23 +23,29 @@
   background-color: white;
   right: 4em;
   margin-top: -0.6em;
-  padding: 1em;;
+  padding: 0.5em;
   opacity: 0.3;
   border: none;
-  border-radius: 50%;
+  border-radius: 8px;
   transition: 0.2s;
 }
 
-.copyButton:hover, .copyButton:active {
+.copyButton:active {
   opacity: 1;
   transition: 0.2s;
 }
 
-.copyButton:hover {
-  cursor: pointer;
-}
-
 .content img {
   max-width: 100%;
+}
+
+@media (hover:hover) {
+
+  .copyButton:hover {
+    opacity: 1;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
 }
 
