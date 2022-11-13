@@ -1,32 +1,13 @@
 // ** React Imports
-import { ReactNode } from 'react'
 import Head from 'next/head';
 
-// ** Next Import
-import Link from 'next/link'
-
 // ** MUI Components
-import Button from '@mui/material/Button'
-import { styled } from '@mui/material/styles'
-import Box, { BoxProps } from '@mui/material/Box'
-// import  '../styles/lms-styles.css';
+import Box from '@mui/material/Box'
+
 import { getPage, getPaths } from '../../lib/content'
+import LmsContentContainer from '../../components/LmsContentContainer';
 
-
-// ** Styled Components
-const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    width: '90vw'
-  }
-}))
-
-const StyledLink = styled(Link)({
-  display: 'flex',
-  alignItems: 'center',
-  textDecoration: 'none'
-})
-
-interface PageData {
+export interface PageData {
   access: string,
   contentHtml: string,
   navTitle: string,
@@ -46,26 +27,13 @@ const lms = ({ pageData }: { pageData: PageData }) => {
         <title>{pageData.title}</title>
       </Head>
       
-      <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+      <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <>
           <h1>{pageData.title}</h1>
 
-          <div dangerouslySetInnerHTML={{ __html: pageData.contentHtml }} />
-
-          <div>
-            {pageData.prev && <Link passHref href={pageData.prev}>
-              <Button component='a' variant='contained' sx={{ px: 5.5 }}>
-                Previous
-              </Button>
-            </Link>}
-            {pageData.next && <Link passHref href={pageData.next}>
-              <Button component='a' variant='contained' sx={{ px: 5.5 }}>
-                Next
-              </Button>
-            </Link>}
-          </div>
+          <LmsContentContainer content={pageData.contentHtml} next={pageData.next} prev={pageData.prev} />
         
-        {console.log(pageData)}
+          {/* {console.log(pageData)} */}
 
         </>
       </Box>

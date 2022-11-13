@@ -15,7 +15,8 @@ export async function getPage(page:string) {
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  let contentHtml = processedContent.toString();
+  contentHtml = buildImgUrl(contentHtml, contentDirectory);
   return {
     page,
     contentHtml,
@@ -23,8 +24,10 @@ export async function getPage(page:string) {
   };
 }
 
-
-
+// Include server in img url
+const buildImgUrl = (markdownBody: string, serverUrl: string) => {
+  return markdownBody.replace(/staticAsset\//ig, serverUrl + "\\assets\\")
+};
 
 export async function getPaths () {
   interface Paths { params: { page: string[] } };
@@ -34,7 +37,7 @@ export async function getPaths () {
     const files = fs.readdirSync(dir);
     files.map((file) => {
       const fullDir = path.join(dir, file);
-      if (path.extname(file) === ".md" && !file.includes("guidelines")) {
+      if (path.extname(file) === ".md") {
         paths.push({
           params: {
             page: fullDir.slice(fullDir.indexOf("content") + 8).replace(".md", '').split("\\")
