@@ -20,18 +20,18 @@ const navigation = (): VerticalNavItemsType => {
       icon: HomeOutline,
       path: '/dashboard'
     },
-    // {
-    //   title: 'Account Settings',
-    //   icon: AccountCogOutline,
-    //   path: '/account-settings'
-    // },
-    // {
-    //   sectionTitle: 'Pages'
-    // },
+    {
+      title: 'Account Settings',
+      icon: AccountCogOutline,
+      path: '/profile'
+    },
+    {
+      sectionTitle: 'Pages'
+    },
     {
       title: 'Login',
       icon: Login,
-      path: '/auth/login',
+      path: '/login',
       openInNewTab: true
     },
     // {

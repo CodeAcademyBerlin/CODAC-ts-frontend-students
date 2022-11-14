@@ -20,9 +20,12 @@ import InformationOutline from 'mdi-material-ui/InformationOutline'
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
-import TabAccount from '../../componentsDemo/account-settings/TabAccount'
-import TabInfo from '../../componentsDemo/account-settings/TabInfo'
-import TabSecurity from '../../componentsDemo/account-settings/TabSecurity'
+import TabAccount from '../components/account-settings/TabAccount'
+import TabInfo from '../components/account-settings/TabInfo'
+import TabSecurity from '../components/account-settings/TabSecurity'
+import { initializeApollo } from '../configs/apollo'
+import { GetMeDocument, UsersPermissionsMe } from '../graphql/_generated_'
+import { GetServerSideProps } from 'next'
 
 const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -42,7 +45,8 @@ const TabName = styled('span')(({ theme }) => ({
   }
 }))
 
-const AccountSettings = () => {
+const AccountSettings = (user: UsersPermissionsMe) => {
+  console.log('user', user)
   // ** State
   const [value, setValue] = useState<string>('account')
 
@@ -88,7 +92,7 @@ const AccountSettings = () => {
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value='account'>
-          <TabAccount />
+          <TabAccount user={user} />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value='security'>
           <TabSecurity />
@@ -102,3 +106,21 @@ const AccountSettings = () => {
 }
 
 export default AccountSettings
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  try {
+    const client = initializeApollo(null, ctx.req)
+    const { data, error } = await client.query({ query: GetMeDocument })
+
+    const user = data.me
+    console.log('user', user)
+    console.log('error', error)
+    return {
+      props: user
+    }
+  } catch (error) {
+    return {
+      props: { user: null }
+    }
+  }
+
+}

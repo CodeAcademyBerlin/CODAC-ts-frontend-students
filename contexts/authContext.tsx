@@ -1,4 +1,5 @@
 // ** React Imports
+import { setCookie } from 'nookies';
 import { createContext, useState, ReactNode, useContext, useEffect } from 'react'
 import { UsersPermissionsLoginPayload, UsersPermissionsMe } from '../graphql/_generated_';
 
@@ -57,7 +58,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const onLoginSucces = async ({ jwt, user }: UsersPermissionsLoginPayload) => {
     console.log('login', user)
     setUser(user)
-    jwt && setSession(jwt)
+    jwt &&
+
+      setCookie(null, 'token', jwt
+        // , {
+        // maxAge: 30 * 24 * 60 * 60,
+        // path: '/',
+        // }
+      )
   }
   console.log('user', user)
   return <AuthContext.Provider value={{ user, onLoginSucces }}>{children}</AuthContext.Provider>

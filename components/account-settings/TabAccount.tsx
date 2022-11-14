@@ -20,6 +20,7 @@ import Button, { ButtonProps } from '@mui/material/Button'
 
 // ** Icons Imports
 import Close from 'mdi-material-ui/Close'
+import { UsersPermissionsMe } from '../../graphql/_generated_'
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
@@ -45,10 +46,11 @@ const ResetButtonStyled = styled(Button)<ButtonProps>(({ theme }) => ({
   }
 }))
 
-const TabAccount = () => {
+const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
   // ** State
   const [openAlert, setOpenAlert] = useState<boolean>(true)
   const [imgSrc, setImgSrc] = useState<string>('/images/avatars/1.png')
+  const [userState, setUserState] = useState<UsersPermissionsMe>(user)
 
   const onChange = (file: ChangeEvent) => {
     const reader = new FileReader()
@@ -89,7 +91,7 @@ const TabAccount = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label='Username' placeholder='johnDoe' defaultValue='johnDoe' />
+            <TextField fullWidth label='Username' value={userState.username} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField fullWidth label='Name' placeholder='John Doe' defaultValue='John Doe' />
@@ -99,8 +101,7 @@ const TabAccount = () => {
               fullWidth
               type='email'
               label='Email'
-              placeholder='johnDoe@example.com'
-              defaultValue='johnDoe@example.com'
+              value={userState.email}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
