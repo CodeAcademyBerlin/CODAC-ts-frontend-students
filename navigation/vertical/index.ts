@@ -10,7 +10,7 @@ import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
 import { VerticalNavItemsType } from '../../@core/layouts/types'
-import { Book, BookAccount, Library, LibraryShelves, TestTube } from 'mdi-material-ui'
+import { Briefcase, DatabaseEye, LibraryShelves, Web } from 'mdi-material-ui'
 
 // ** Type import
 
@@ -20,11 +20,6 @@ const navigation = (): VerticalNavItemsType => {
       title: 'Dashboard',
       icon: HomeOutline,
       path: '/dashboard'
-    },
-    {
-      title: 'LMS',
-      icon: LibraryShelves,
-      path: '/lms/welcome'
     },
     // {
     //   title: 'Account Settings',
@@ -51,6 +46,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: AlertCircleOutline,
       path: '/pages/error',
       openInNewTab: true
+    },
+    {
+      title: 'LMS',
+      icon: LibraryShelves,
+      path: '/lms/welcome'
     },
     // {
     //   sectionTitle: 'User Interface'

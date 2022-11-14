@@ -6,6 +6,7 @@ import Box from '@mui/material/Box'
 
 import { getPage, getPaths } from '../../lib/content'
 import LmsContentContainer from '../../components/LmsContentContainer';
+import { redirect } from 'next/dist/server/api-utils';
 
 export interface PageData {
   access: string,

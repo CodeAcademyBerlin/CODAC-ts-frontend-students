@@ -16,7 +16,7 @@ export async function getPage(page:string) {
     .use(html)
     .process(matterResult.content);
   let contentHtml = processedContent.toString();
-  contentHtml = buildImgUrl(contentHtml, contentDirectory);
+  contentHtml = buildImgUrl(contentHtml, "https://caberlin-lms-v3.herokuapp.com");
   return {
     page,
     contentHtml,
@@ -26,7 +26,7 @@ export async function getPage(page:string) {
 
 // Include server in img url
 const buildImgUrl = (markdownBody: string, serverUrl: string) => {
-  return markdownBody.replace(/staticAsset\//ig, serverUrl + "\\assets\\")
+  return markdownBody.replace(/staticAsset\//ig, serverUrl + "/assets/")
 };
 
 export async function getPaths () {

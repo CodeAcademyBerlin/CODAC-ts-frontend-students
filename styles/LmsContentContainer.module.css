@@ -1,12 +1,14 @@
 .content {
   max-width: 100%;
   word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
 }
 
 .content code {
   background: #f4f4f4;
   border: 1px solid #ddd;
-  border-left: 3px solid #f36d33;
+  border-left: 3px solid #C6A7FE;
   color: #666;
   font-family: monospace;
   font-size: 15px;
@@ -16,6 +18,14 @@
   overflow: auto;
   padding: 1em 1.5em;
   display: block;
+}
+
+.content code::before {
+  display: none;
+}
+
+.content code::after {
+  display: none;
 }
 
 .copyButton {
@@ -33,10 +43,16 @@
 .copyButton:active {
   opacity: 1;
   transition: 0.2s;
+  background-color: #6ACDFF;
 }
 
-.content img {
+.content p > img {
   max-width: 100%;
+  align-self: center;
+}
+
+.content a {
+  color: #6ACDFF;
 }
 
 @media (hover:hover) {
