@@ -26,7 +26,12 @@ code[class*='language-'] {
 }
 .boldText{
   font-weight: bold;
- 
+
+}
+
+.noDeco{
+  text-decoration: none;
+  color: white;
 }
 
 @font-face {
