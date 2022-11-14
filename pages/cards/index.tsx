@@ -33,6 +33,9 @@ const CardBasic = () => {
       <Grid item xs={12} sm={6} md={4}>
         <CardWithCollapse />
       </Grid>
+       <Grid item xs={12} sm={6} md={4}>
+        <CardWithCollapse />
+      </Grid>
       <Grid item xs={12} sm={6}>
         <CardMobile />
       </Grid>

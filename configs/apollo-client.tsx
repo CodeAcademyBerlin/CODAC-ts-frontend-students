@@ -1,8 +1,9 @@
 import { ApolloClient, createHttpLink, InMemoryCache, from } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from "@apollo/client/link/error";
+import { useMemo } from 'react';
 
-
+export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -17,9 +18,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const httpLink = createHttpLink({
   uri: `${process.env.NEXT_PUBLIC_STRAPI_API_URL_PROD}/graphql`,
 })
-
-
-
 
 
 const authLink = setContext((_, { headers }) => {
@@ -42,6 +40,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 
 });
+
+
+
+
 
 export default client;
 

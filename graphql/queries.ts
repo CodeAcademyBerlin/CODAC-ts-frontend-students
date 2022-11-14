@@ -41,3 +41,19 @@ query getStudents {
   }
 }
 `;
+export const GET_JOBS = gql`
+query getJobs {
+    jobPosts{
+        data{
+            attributes{
+                position
+                company
+                fileld
+                createdAt
+                updatedAt
+                description  
+            }
+        }
+    }
+  }
+`;

@@ -10,6 +10,7 @@ import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
 import { VerticalNavItemsType } from '../../@core/layouts/types'
+import BriefcaseOutline from 'mdi-material-ui/BriefcaseOutline'
 
 // ** Type import
 
@@ -19,6 +20,11 @@ const navigation = (): VerticalNavItemsType => {
       title: 'Dashboard',
       icon: HomeOutline,
       path: '/dashboard'
+    },
+       {
+      title: 'Jobs',
+      icon: BriefcaseOutline,
+      path: '/jobs'
     },
     // {
     //   title: 'Account Settings',

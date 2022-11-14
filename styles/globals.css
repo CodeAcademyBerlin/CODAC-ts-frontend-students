@@ -24,6 +24,10 @@ code:not([class*='language-']):after {
 code[class*='language-'] {
   padding: 0;
 }
+.boldText{
+  font-weight: bold;
+ 
+}
 
 @font-face {
   font-family: 'CODAC';
