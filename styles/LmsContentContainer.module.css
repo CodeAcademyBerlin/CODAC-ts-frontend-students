@@ -6,10 +6,9 @@
 }
 
 .content code {
-  background: #f4f4f4;
-  border: 1px solid #ddd;
+  background: darkslategrey;
   border-left: 3px solid #C6A7FE;
-  color: #666;
+  color: #f4f4f4;
   font-family: monospace;
   font-size: 15px;
   line-height: 1.6;
@@ -34,7 +33,7 @@
   right: 4em;
   margin-top: -0.6em;
   padding: 0.5em;
-  opacity: 0.3;
+  opacity: 0.5;
   border: none;
   border-radius: 8px;
   transition: 0.2s;

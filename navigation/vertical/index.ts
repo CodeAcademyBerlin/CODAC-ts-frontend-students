@@ -10,7 +10,7 @@ import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
 import { VerticalNavItemsType } from '../../@core/layouts/types'
-import { Briefcase, DatabaseEye, LibraryShelves, Web } from 'mdi-material-ui'
+import { LibraryShelves, TestTube } from 'mdi-material-ui'
 
 // ** Type import
 
@@ -47,11 +47,13 @@ const navigation = (): VerticalNavItemsType => {
       path: '/pages/error',
       openInNewTab: true
     },
+    { sectionTitle: "Learning Management System" },
     {
       title: 'LMS',
       icon: LibraryShelves,
       path: '/lms/welcome'
     },
+
     // {
     //   sectionTitle: 'User Interface'
     // },

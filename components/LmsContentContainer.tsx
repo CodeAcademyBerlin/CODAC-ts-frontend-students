@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
 import styles from '../styles/LmsContentContainer.module.css';
-import { ContentCopy } from 'mdi-material-ui';
 
 function LmsContentContainer({ content, next, prev }: { content: string, next?: string, prev?: string }) {
 
@@ -21,17 +20,15 @@ function LmsContentContainer({ content, next, prev }: { content: string, next?: 
         copyButton.classList.add(styles.copyButton);
         copyButton.innerHTML = "Copy";
         copyButton.setAttribute('title', "Copy snippet");
-        copyButton.addEventListener("click", () => copyToClipboard(codeTags[i].firstChild?.textContent));
+        copyButton.addEventListener("click", () => copyToClipboard(codeTags[i].lastChild?.textContent));
         codeTags[i].insertBefore(copyButton, codeTags[i].childNodes[0]);
       }
     }
-    const buttons = document.getElementsByTagName("button");
-    console.log(buttons);
   }
 
   useEffect(() => {
     addCopyButtons();
-  }, [])
+  }, [content])
 
   async function copyToClipboard (toCopy: string | null | undefined) {
     if (toCopy && toCopy !== undefined) {
@@ -59,6 +56,7 @@ function LmsContentContainer({ content, next, prev }: { content: string, next?: 
           </Button>
         }
       </div>
+      {/* {addCopyButtons()} */}
     </>
     
   )
