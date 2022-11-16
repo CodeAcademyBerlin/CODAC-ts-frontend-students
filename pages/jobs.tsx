@@ -33,24 +33,30 @@ const jobs = ({
   result,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [data, setData] = useState(result.data.jobPosts.data);
-  const [check, setCheck] = useState("true");
+  const [check, setCheck] = useState(true);
   const allJobs = result.data.jobPosts.data;
 
-  const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputs = document.getElementById("All");
-    inputs?.setAttribute("checked", "checked");
-    //   const handleClick = (e: Event) => {
-    // const target = e.target as EventTarget;
-    // const value2 = e.target.value as HTMLInputElement;
-    const value = e.target.value;
+  const handleClick = (e: React.MouseEvent<Element, MouseEvent>) => {
+    // const radios = document.querySelectorAll("Radio");
+    // console.log(radios);
+    const inputs = document.getElementById("All").defaultChecked;
+    const inputForm = document.getElementById("AllForm");
+    console.log("FIRST", inputs);
+    console.log("FIRSTFORM", inputForm);
+    // inputs.setAttribute("checked", "true");
+    // inputs?.removeAttribute("checked");
+    // inputForm?.removeAttribute("checked");
+    console.log("SECOND", inputs);
+    console.log("SECONDFORM", inputForm);
+    const target = e.target as HTMLButtonElement;
+    const value = target.value;
     const result: Data = [];
     allJobs.map((jobEntity: JobPostEntity, i: index) => {
       if (jobEntity.attributes?.fileld?.includes(value) === true) {
         result.push(jobEntity);
       }
     });
-    setCheck("false");
-    console.log("SECOND CHECK", check);
+    setCheck(false);
     setData(result);
     return data;
   };
@@ -65,18 +71,20 @@ const jobs = ({
             name="row-radio-buttons-group"
           >
             <FormControlLabel
-              onChange={(e) => {
+              onClick={(e) => {
                 handleClick(e);
               }}
               value=""
-              control={<Radio />}
+              control={<Radio id="All" />}
               label="All"
-              id="All"
               className="All"
-
+              id="AllForm"
               // checked
-              // {...{check ? "checked" : ""}}
+              // {check ? "checked" : ""}
+              // defaultChecked
             />
+            {/* {check ? "checked" : ""} */}
+
             <FormControlLabel
               onClick={(e) => {
                 handleClick(e);
@@ -84,7 +92,7 @@ const jobs = ({
               value="Web_Development"
               control={<Radio />}
               label="Web Development"
-              id="Web Development"
+              id="radio"
             />
             <FormControlLabel
               onClick={(e) => {
@@ -93,7 +101,7 @@ const jobs = ({
               value="Data_Science"
               control={<Radio />}
               label="Data Science"
-              id="Data Science"
+              id="radio"
             />
             <FormControlLabel
               onClick={(e) => {
@@ -102,7 +110,7 @@ const jobs = ({
               value="Other"
               control={<Radio />}
               label="Other"
-              id="Other"
+              id="radio"
             />
           </RadioGroup>
         </FormControl>

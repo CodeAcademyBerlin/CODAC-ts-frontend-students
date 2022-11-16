@@ -14,8 +14,6 @@ import { JobPost } from "../graphql/_generated_";
 import Link from "next/link";
 import { useTheme } from "@mui/system";
 
-type Href = Object;
-
 function JobsCard({ job }: { job: JobPost }) {
   const theme = useTheme();
   const [collapse, setCollapse] = useState<boolean>(false);
