@@ -8,6 +8,7 @@
 .content code {
   background: darkslategrey;
   border-left: 3px solid #C6A7FE;
+  border-radius: 0.5em;
   color: #f4f4f4;
   font-family: monospace;
   font-size: 15px;
@@ -31,7 +32,7 @@
   position: absolute;
   background-color: white;
   right: 4em;
-  margin-top: -0.6em;
+  margin-top: -0.2em;
   padding: 0.5em;
   opacity: 0.5;
   border: none;

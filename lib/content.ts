@@ -31,21 +31,29 @@ const buildImgUrl = (markdownBody: string, serverUrl: string) => {
 
 export async function getPaths () {
   interface Paths { params: { page: string[] } };
+  interface Links { path: string, title: string, page: string[], children: Array<Links> };
   const paths: Array<Paths> = [];
+  const links: Array<Links> = [];
 
   const getPathsList = (dir: string) => {
     const files = fs.readdirSync(dir);
     files.map((file) => {
       const fullDir = path.join(dir, file);
-      if (path.extname(file) === ".md") {
+      const dirArray = fullDir.slice(fullDir.indexOf("content") + 8).replace(".md", '').split("\\")
+      if ((path.extname(file) === ".md") && (!file.includes("guidelines"))) {
         paths.push({
           params: {
-            page: fullDir.slice(fullDir.indexOf("content") + 8).replace(".md", '').split("\\")
+            page: dirArray
           },
         });
+        links.push({
+          path: dirArray.join("/"),
+          page: dirArray,
+          title: dirArray[dirArray.length - 1],
+          children: []
+        })
       } else {
-        const filePath = path.join(dir, file);
-        const isDir = (fs.statSync(filePath)).isDirectory();
+        const isDir = (fs.statSync(fullDir)).isDirectory();
         if (isDir) {
           getPathsList(fullDir);
         }
@@ -54,5 +62,26 @@ export async function getPaths () {
   }
 
   getPathsList(contentDirectory);
-  return paths
+  return { paths: paths, links: links }
+}
+
+const findByPath = (pages, page) => {
+  return pages.find(p => {
+    return p.path === page.page.slice(0, -1).join("/");
+  })
+}
+
+export const buildNestedPages = (flatLinks) => {
+  const result = [];
+  let i = flatLinks.length;
+
+  while (i--) {
+    if (flatLinks[i].page.length > 1) {
+      const parent = findByPath(flatLinks[i]);
+      parent.children.unshift(flatLinks[i]);
+    } else {
+      result.unshift(flatLinks[i])
+    }
+  }
+  return result
 }

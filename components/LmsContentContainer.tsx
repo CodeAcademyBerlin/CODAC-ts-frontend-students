@@ -8,21 +8,12 @@ function LmsContentContainer({ content, next, prev }: { content: string, next?: 
   function addCopyButtons() {
     const codeTags = document.getElementsByTagName("code");
     for (let i = 0; i < codeTags.length; i++) {
-      let buttonExists = false;
-      for (let j = 0; j < codeTags[i].childNodes.length; j++) {
-        if (codeTags[i].childNodes[j].nodeName === "BUTTON") {
-          buttonExists = true;
-          break;
-        }
-      }
-      if (!buttonExists) {
-        const copyButton = document.createElement("button");
-        copyButton.classList.add(styles.copyButton);
-        copyButton.innerHTML = "Copy";
-        copyButton.setAttribute('title', "Copy snippet");
-        copyButton.addEventListener("click", () => copyToClipboard(codeTags[i].lastChild?.textContent));
-        codeTags[i].insertBefore(copyButton, codeTags[i].childNodes[0]);
-      }
+      const copyButton = document.createElement("button");
+      copyButton.classList.add(styles.copyButton);
+      copyButton.innerHTML = "Copy";
+      copyButton.setAttribute('title', "Copy snippet");
+      copyButton.addEventListener("click", () => copyToClipboard(codeTags[i].lastChild?.textContent));
+      codeTags[i].insertBefore(copyButton, codeTags[i].childNodes[0]);
     }
   }
 
