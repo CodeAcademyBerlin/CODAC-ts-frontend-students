@@ -12,9 +12,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { DatabaseSettingsOutline } from "mdi-material-ui";
 
 // ** types
-
 interface Data {
   data?: Object;
   push?: any;
@@ -24,33 +24,36 @@ type index = number;
 
 // export interface Event {
 //   e: Object;
+//   target: {
+//     value: string;
+//   };
 // }
 
 const jobs = ({
   result,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  // ** State
-  const [data, setData] = useState(result);
+  const [data, setData] = useState(result.data.jobPosts.data);
+  const [check, setCheck] = useState("true");
+  const allJobs = result.data.jobPosts.data;
 
-  const handleClick = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
+  const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputs = document.getElementById("All");
+    inputs?.setAttribute("checked", "checked");
+    //   const handleClick = (e: Event) => {
+    // const target = e.target as EventTarget;
+    // const value2 = e.target.value as HTMLInputElement;
     const value = e.target.value;
     const result: Data = [];
-    jobs.map((jobEntity: JobPostEntity, i: index) => {
+    allJobs.map((jobEntity: JobPostEntity, i: index) => {
       if (jobEntity.attributes?.fileld?.includes(value) === true) {
         result.push(jobEntity);
       }
     });
+    setCheck("false");
+    console.log("SECOND CHECK", check);
     setData(result);
-    console.log(data);
     return data;
-    // const filtered = jobs.includes(e.target.value);
-    // console.log(filtered);
   };
-
-  console.log(data);
-  const jobs = result.data.jobPosts.data;
 
   return (
     <div>
@@ -62,12 +65,17 @@ const jobs = ({
             name="row-radio-buttons-group"
           >
             <FormControlLabel
-              onClick={(e) => {
+              onChange={(e) => {
                 handleClick(e);
               }}
-              value="All"
+              value=""
               control={<Radio />}
               label="All"
+              id="All"
+              className="All"
+
+              // checked
+              // {...{check ? "checked" : ""}}
             />
             <FormControlLabel
               onClick={(e) => {
@@ -76,6 +84,7 @@ const jobs = ({
               value="Web_Development"
               control={<Radio />}
               label="Web Development"
+              id="Web Development"
             />
             <FormControlLabel
               onClick={(e) => {
@@ -84,6 +93,7 @@ const jobs = ({
               value="Data_Science"
               control={<Radio />}
               label="Data Science"
+              id="Data Science"
             />
             <FormControlLabel
               onClick={(e) => {
@@ -92,6 +102,7 @@ const jobs = ({
               value="Other"
               control={<Radio />}
               label="Other"
+              id="Other"
             />
           </RadioGroup>
         </FormControl>
@@ -99,15 +110,11 @@ const jobs = ({
       <br />
       <Grid container spacing={6}>
         {data &&
-          result.data.jobPosts.data.map(
-            (jobEntity: JobPostEntity, i: index) => (
-              <Grid item xs={12} sm={6} md={4} key={i}>
-                {jobEntity.attributes && (
-                  <JobsCard job={jobEntity.attributes} />
-                )}
-              </Grid>
-            )
-          )}
+          data.map((jobEntity: JobPostEntity, i: index) => (
+            <Grid item xs={12} sm={6} md={4} key={i}>
+              {jobEntity.attributes && <JobsCard job={jobEntity.attributes} />}
+            </Grid>
+          ))}
       </Grid>
     </div>
   );
