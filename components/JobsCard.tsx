@@ -55,14 +55,14 @@ function JobsCard({ job }: { job: JobPost }) {
             </Box>
             <Button sx={{ color: theme.palette.mode }} variant="contained">
               {" "}
-              <Link
+              {job.url && <Link
                 href={job.url}
                 target="_blank"
                 rel="noopener"
                 className="noDeco"
               >
                 Apply
-              </Link>
+              </Link>}
             </Button>
           </Box>
           <Box

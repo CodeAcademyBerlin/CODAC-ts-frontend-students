@@ -49,6 +49,7 @@ query getJobs {
                 position
                 company
                 fileld
+                url
                 createdAt
                 updatedAt
                 description  
