@@ -1,32 +1,43 @@
-// ** MUI Imports
-import Grid from '@mui/material/Grid'
+import Grid from "@mui/material/Grid";
+import ApexChartWrapper from "../@core/styles/libs/react-apexcharts";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { initializeApollo } from "../configs/apollo";
+import { GET_ME_QUERY, GET_STUDENTS } from "../graphql/queries";
+import { ReactNode } from "react";
 
-// ** Icons Imports
-import Poll from 'mdi-material-ui/Poll'
-import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
-import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
-import BriefcaseVariantOutline from 'mdi-material-ui/BriefcaseVariantOutline'
-import { Trophy, Table } from 'mdi-material-ui'
-import ApexChartWrapper from '../@core/styles/libs/react-apexcharts'
-import DepositWithdraw from '../componentsDemo/dashboard/DepositWithdraw'
-import SalesByCountries from '../componentsDemo/dashboard/SalesByCountries'
-import StatisticsCard from '../componentsDemo/dashboard/StatisticsCard'
-import TotalEarning from '../componentsDemo/dashboard/TotalEarning'
-import WeeklyOverview from '../componentsDemo/dashboard/WeeklyOverview'
-import CardStatisticsVerticalComponent from '../@core/components/card-statistics/card-stats-vertical'
-
-
-
-const Dashboard = () => {
+interface Props {
+  children: ReactNode;
+}
+// TBD: useFetch correctly, passing props down to ProgressBar component
+const Dashboard = ({ children }: Props) => {
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
         {/* <Grid item xs={12} md={8}>
           <StatisticsCard />
         </Grid> */}
+        <p>{children}</p>
       </Grid>
     </ApexChartWrapper>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  try {
+    const client = initializeApollo(null, ctx.req);
+    const { data, error } = await client.query({ query: GET_STUDENTS });
+
+    const student = data.students;
+    console.log("student in dashboard", student);
+    console.log("error in dashboard", error);
+    return {
+      props: { student },
+    };
+  } catch (error) {
+    return {
+      props: { student: null },
+    };
+  }
+};
