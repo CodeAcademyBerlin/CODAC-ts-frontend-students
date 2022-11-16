@@ -37,17 +37,6 @@ const jobs = ({
   const allJobs = result.data.jobPosts.data;
 
   const handleClick = (e: React.MouseEvent<Element, MouseEvent>) => {
-    // const radios = document.querySelectorAll("Radio");
-    // console.log(radios);
-    const inputs = document.getElementById("All").defaultChecked;
-    const inputForm = document.getElementById("AllForm");
-    console.log("FIRST", inputs);
-    console.log("FIRSTFORM", inputForm);
-    // inputs.setAttribute("checked", "true");
-    // inputs?.removeAttribute("checked");
-    // inputForm?.removeAttribute("checked");
-    console.log("SECOND", inputs);
-    console.log("SECONDFORM", inputForm);
     const target = e.target as HTMLButtonElement;
     const value = target.value;
     const result: Data = [];
@@ -56,7 +45,12 @@ const jobs = ({
         result.push(jobEntity);
       }
     });
-    setCheck(false);
+    if (target.value === "") {
+      setCheck(true);
+    } else {
+      setCheck(false);
+    }
+
     setData(result);
     return data;
   };
@@ -79,11 +73,8 @@ const jobs = ({
               label="All"
               className="All"
               id="AllForm"
-              // checked
-              // {check ? "checked" : ""}
-              // defaultChecked
+              checked={check}
             />
-            {/* {check ? "checked" : ""} */}
 
             <FormControlLabel
               onClick={(e) => {
