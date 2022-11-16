@@ -21,7 +21,7 @@ const navigation = (): VerticalNavItemsType => {
       icon: HomeOutline,
       path: '/dashboard'
     },
-       {
+    {
       title: 'Jobs',
       icon: BriefcaseOutline,
       path: '/jobs'
@@ -37,7 +37,7 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'Login',
       icon: Login,
-      path: '/auth/login',
+      path: '/login',
       openInNewTab: true
     },
     // {

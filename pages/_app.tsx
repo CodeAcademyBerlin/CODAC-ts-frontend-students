@@ -31,9 +31,9 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 import '../styles/globals.css'
 import ThemeComponent from '../@core/theme/ThemeComponent'
 import { ApolloProvider } from '@apollo/client'
-import client from '../configs/apollo-client'
 import { AuthProvider } from "../contexts/authContext"
-import { useEffect } from 'react'
+
+import { useApollo } from '../configs/apollo';
 
 
 // ** Extend App Props with Emotion
@@ -58,8 +58,9 @@ if (themeConfig.routingLoader) {
 }
 
 // ** Configure JSS & ClassName
-const CodacApp = (props: ExtendedAppProps) => {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+const CodacApp: NextPage<ExtendedAppProps> = ({ Component, emotionCache = clientSideEmotionCache, pageProps }) => {
+  const apolloClient = useApollo(pageProps);
+
   // Variables
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
   // useEffect(() => {
@@ -79,7 +80,7 @@ const CodacApp = (props: ExtendedAppProps) => {
   // }, [])
 
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <AuthProvider>
         <CacheProvider value={emotionCache}>
           <Head>
