@@ -33,7 +33,6 @@ import ThemeComponent from '../@core/theme/ThemeComponent'
 import { ApolloProvider } from '@apollo/client'
 import client from '../configs/apollo-client'
 import { AuthProvider } from "../contexts/authContext"
-import { withSessionSsr } from '../lib/withSession'
 import { useEffect } from 'react'
 
 
