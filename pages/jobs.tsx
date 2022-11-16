@@ -1,4 +1,3 @@
-import client from "../configs/apollo-client";
 import { ApolloClient, ApolloLink, useQuery } from "@apollo/client";
 import { GET_JOBS } from "../graphql/queries";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
