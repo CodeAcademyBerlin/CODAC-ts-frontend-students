@@ -67,7 +67,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         // }
       )
   }
-  console.log('user', user)
   return <AuthContext.Provider value={{ user, onLoginSucces }}>{children}</AuthContext.Provider>
 }
 

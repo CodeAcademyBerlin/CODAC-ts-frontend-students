@@ -20,8 +20,6 @@ export const COOKIES_TOKEN_NAME = 'token';
 
 const getToken = (req?: NextApiRequest | IncomingMessage | null) => {
   const parsedCookies = parseCookies({ req })
-
-  console.log(parsedCookies)
   // return localStorage.getItem("token")
   return parsedCookies[COOKIES_TOKEN_NAME];
 };

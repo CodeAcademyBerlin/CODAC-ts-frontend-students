@@ -9,7 +9,6 @@ if [ "$GITHUB_ACCESS_TOKEN" == "" ]; then
   echo "Error: GITHUB_ACCESS_TOKEN is empty"
   exit 1
 fi
-echo "Error: GITHUB_ACCESS_TOKEN is empty"
 # stop execution on error - don't let it build if something goes wrong
 set -e
 

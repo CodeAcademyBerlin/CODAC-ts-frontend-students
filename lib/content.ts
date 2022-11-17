@@ -3,11 +3,15 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import { LMSPage, LMSPages } from '../pages/lms/lms';
+
+
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
-export async function getPage(page:string) {
-  const fullPath = path.join(contentDirectory, `${page}.md`);
+
+export async function getPage(pagePath: string) {
+  const fullPath = path.join(contentDirectory, `${pagePath}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
@@ -18,7 +22,7 @@ export async function getPage(page:string) {
   let contentHtml = processedContent.toString();
   contentHtml = buildImgUrl(contentHtml, "https://caberlin-lms-v3.herokuapp.com");
   return {
-    page,
+    pagePath,
     contentHtml,
     ...matterResult.data,
   };
@@ -29,7 +33,7 @@ const buildImgUrl = (markdownBody: string, serverUrl: string) => {
   return markdownBody.replace(/staticAsset\//ig, serverUrl + "/assets/")
 };
 
-export async function getPaths () {
+export async function getPaths() {
   interface Paths { params: { page: string[] } };
   interface Links { path: string, title: string, page: string[], children: Array<Links> };
   const paths: Array<Paths> = [];
@@ -65,23 +69,40 @@ export async function getPaths () {
   return { paths: paths, links: links }
 }
 
-const findByPath = (pages, page) => {
+const findByPath = (pages: LMSPages, page: LMSPage) => {
+  console.log('pages', pages)
   return pages.find(p => {
     return p.path === page.page.slice(0, -1).join("/");
   })
 }
 
-export const buildNestedPages = (flatLinks) => {
-  const result = [];
+export const buildNestedPages = (flatLinks: LMSPages) => {
+  const result: LMSPages = [];
   let i = flatLinks.length;
 
   while (i--) {
     if (flatLinks[i].page.length > 1) {
-      const parent = findByPath(flatLinks[i]);
-      parent.children.unshift(flatLinks[i]);
+      const parent = findByPath(flatLinks, flatLinks[i]);
+      // parent.children.unshift(flatLinks[i]);
+      parent && [flatLinks[i], ...parent.children];
     } else {
       result.unshift(flatLinks[i])
     }
   }
   return result
 }
+// const buildNestedPages = () => {
+//   const result: LMSPages = [];
+//   let i = links.length;
+
+//   while (i--) {
+//     if (links[i].page.length > 1) {
+//       const parent = findByPath(links[i]);
+//       // parent && parent.children.unshift(links[i]);
+//       parent && [links[i], ...parent.children];
+//     } else {
+//       result.unshift(links[i])
+//     }
+//   }
+//   return result
+// }

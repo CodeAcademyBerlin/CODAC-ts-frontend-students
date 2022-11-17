@@ -4,40 +4,35 @@ import Head from 'next/head';
 // ** MUI Components
 import Box from '@mui/material/Box'
 
-import { getLinks, getPage, getPaths } from '../../lib/content'
+import { getPage, getPaths } from '../../lib/content'
 import LmsContentContainer from '../../components/LmsContentContainer';
 import { useEffect } from 'react';
+import { LMSPage, LMSPages, PageData } from './lms';
 
-export interface PageData {
-  access: string,
-  contentHtml: string,
-  navTitle: string,
-  order: number,
-  page: string,
-  title: string,
-  metaTitle?: string,
-  next?: string,
-  prev?: string
+interface LMSProps {
+  pageData: PageData,
+  links: LMSPages
 }
 
-const lms = ({ pageData, links }) => {
+const lms = ({ pageData, links }: LMSProps) => {
 
   console.log("links: ", links);
 
-  const findByPath = (page) => {
+  const findByPath = (page: LMSPage) => {
     return links.find(link => {
       return link.path === page.page.slice(0, -1).join("/");
     })
   }
 
   const buildNestedPages = () => {
-    const result = [];
+    const result: LMSPages = [];
     let i = links.length;
 
     while (i--) {
       if (links[i].page.length > 1) {
         const parent = findByPath(links[i]);
-        parent.children.unshift(links[i]);
+        // parent && parent.children.unshift(links[i]);
+        parent && [links[i], ...parent.children];
       } else {
         result.unshift(links[i])
       }
@@ -56,7 +51,7 @@ const lms = ({ pageData, links }) => {
       <Head>
         <title>{pageData.title}</title>
       </Head>
-      
+
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <>
           <h1>{pageData.title}</h1>
@@ -71,6 +66,7 @@ const lms = ({ pageData, links }) => {
 }
 
 export async function getStaticProps({ params }: { params: { page: string[] } }) {
+  console.log('pagePaths', getPaths)
   const pageData = await getPage(params.page.join("/"));
   const result = await getPaths();
   const links = result.links
