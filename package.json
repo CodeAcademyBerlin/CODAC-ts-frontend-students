@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "codegen": "graphql-codegen --config codegen.yml",
-    "vercel-install": "./test.sh && yarn --ignore-scripts --production=false"
+    "vercel-install": "vercel-submodules --all && yarn install"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
