@@ -16,6 +16,7 @@ set -e
 # get submodule commit
 output=`git submodule status --recursive` # get submodule info
 no_prefix=${output#*-} # get rid of the prefix
+no_prefix=${output#*-} # get rid of the prefix
 COMMIT=${no_prefix% *} # get rid of the suffix
 
 # set up an empty temporary work directory
