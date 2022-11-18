@@ -3,11 +3,12 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { LMSPage, LMSPages } from '../pages/lms/lms';
+import { Link, Links } from '../pages/lms/lms';
 
 
 
 const contentDirectory = path.join(process.cwd(), 'content');
+interface Paths { params: { page: string[] } };
 
 
 export async function getPage(pagePath: string) {
@@ -34,10 +35,8 @@ const buildImgUrl = (markdownBody: string, serverUrl: string) => {
 };
 
 export async function getPaths() {
-  interface Paths { params: { page: string[] } };
-  interface Links { path: string, title: string, page: string[], children: Array<Links> };
   const paths: Array<Paths> = [];
-  const links: Array<Links> = [];
+  const links: Links = [];
 
   const getPathsList = (dir: string) => {
     const files = fs.readdirSync(dir);
@@ -69,40 +68,26 @@ export async function getPaths() {
   return { paths: paths, links: links }
 }
 
-const findByPath = (pages: LMSPages, page: LMSPage) => {
+export const buildNestedPages = async() => {
+  const { links } = await getPaths();
+  const result = [];
+  let i = links.length;
+
+  while (i--) {
+    if (links[i].page.length > 1) {
+      const parent = findByPath(links, links[i]);
+      // parent && parent.children.unshift(links[i]);
+      parent && [links[i], ...parent.children];
+    } else {
+      result.unshift(links[i])
+    }
+  }
+  return result
+}
+
+const findByPath = (pages: Links, page: Link) => {
   console.log('pages', pages)
   return pages.find(p => {
     return p.path === page.page.slice(0, -1).join("/");
   })
 }
-
-export const buildNestedPages = (flatLinks: LMSPages) => {
-  const result: LMSPages = [];
-  let i = flatLinks.length;
-
-  while (i--) {
-    if (flatLinks[i].page.length > 1) {
-      const parent = findByPath(flatLinks, flatLinks[i]);
-      // parent.children.unshift(flatLinks[i]);
-      parent && [flatLinks[i], ...parent.children];
-    } else {
-      result.unshift(flatLinks[i])
-    }
-  }
-  return result
-}
-// const buildNestedPages = () => {
-//   const result: LMSPages = [];
-//   let i = links.length;
-
-//   while (i--) {
-//     if (links[i].page.length > 1) {
-//       const parent = findByPath(links[i]);
-//       // parent && parent.children.unshift(links[i]);
-//       parent && [links[i], ...parent.children];
-//     } else {
-//       result.unshift(links[i])
-//     }
-//   }
-//   return result
-// }
