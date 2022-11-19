@@ -7,7 +7,7 @@ import { LMSPage, LMSPages } from '../pages/lms/lms';
 
 
 
-const contentDirectory = path.join(process.cwd(), 'content/web');
+const contentDirectory = path.join(process.cwd(), 'content');
 
 
 export async function getPage(pagePath: string) {
@@ -43,7 +43,7 @@ export async function getPaths() {
     const files = fs.readdirSync(dir);
     files.map((file) => {
       const fullDir = path.join(dir, file);
-      const dirArray = fullDir.slice(fullDir.indexOf("content") + 8).replace(".md", '').split("\\")
+      const dirArray = fullDir.slice(fullDir.indexOf("content/web") + 8).replace(".md", '').split("\\")
       if ((path.extname(file) === ".md") && (!file.includes("guidelines"))) {
         paths.push({
           params: {
