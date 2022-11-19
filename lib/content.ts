@@ -7,7 +7,7 @@ import { LMSPage, LMSPages } from '../pages/lms/lms';
 
 
 
-const contentDirectory = path.join(process.cwd(), 'content');
+const contentDirectory = path.join(process.cwd(), 'content/web');
 
 
 export async function getPage(pagePath: string) {
