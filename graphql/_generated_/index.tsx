@@ -2676,11 +2676,11 @@ export type GetStudentsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetStudentsQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', email?: string | null } | null }> } | null };
 
 export type FilterStudentByUserIdQueryVariables = Exact<{
-  filter?: InputMaybe<StudentFiltersInput>;
+  filter?: InputMaybe<Scalars['ID']>;
 }>;
 
 
-export type FilterStudentByUserIdQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', email?: string | null, start_date?: any | null, end_date?: any | null, cohort?: { __typename?: 'CohortEntityResponse', data?: { __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null } | null } | null } | null, courses?: { __typename?: 'CourseRelationResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null }> } | null, main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null } | null }> } | null };
+export type FilterStudentByUserIdQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', firstname?: string | null, lastname?: string | null, start_date?: any | null, end_date?: any | null, cohort?: { __typename?: 'CohortEntityResponse', data?: { __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null } | null } | null } | null, courses?: { __typename?: 'CourseRelationResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null }> } | null } | null }> } | null };
 
 export type GetJobsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2811,11 +2811,12 @@ export type GetStudentsQueryHookResult = ReturnType<typeof useGetStudentsQuery>;
 export type GetStudentsLazyQueryHookResult = ReturnType<typeof useGetStudentsLazyQuery>;
 export type GetStudentsQueryResult = Apollo.QueryResult<GetStudentsQuery, GetStudentsQueryVariables>;
 export const FilterStudentByUserIdDocument = gql`
-    query filterStudentByUserId($filter: StudentFiltersInput) {
-  students(filters: $filter) {
+    query filterStudentByUserId($filter: ID) {
+  students(filters: {user: {id: {eq: $filter}}}) {
     data {
       attributes {
-        email
+        firstname
+        lastname
         start_date
         end_date
         cohort {
@@ -2826,13 +2827,6 @@ export const FilterStudentByUserIdDocument = gql`
           }
         }
         courses {
-          data {
-            attributes {
-              name
-            }
-          }
-        }
-        main_course {
           data {
             attributes {
               name

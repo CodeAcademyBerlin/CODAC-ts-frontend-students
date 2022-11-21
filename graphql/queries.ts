@@ -41,41 +41,40 @@ query getStudents {
   }
 }
 `;
-export const FIND_STUDENT_BY_USERID = gql`
-query filterStudentByUserId($filter: StudentFiltersInput) {
-    students(filters: $filter) {
-        data {
-            attributes {
-                firstname
-                lastname
-                email
-                start_date
-                end_date
-                cohort {
-                    data {
-                        attributes {
-                            name
+export const FIND_STUDENT_BY_USER_ID = gql`
+query filterStudentByUserId($userId: ID) {
+    students(filters: {
+                user: {
+                    id: {eq: $userId}
+                }
+        })
+        {
+            data {
+                attributes {
+                    firstname
+                    lastname
+                    start_date
+                    end_date
+                    cohort {
+                        data {
+                            attributes {
+                                name
+                            }
                         }
                     }
-                }
-                courses {
-                    data {
-                        attributes {
-                            name
-                        }
-                    }
-                }
-                main_course {
-                    data {
-                        attributes {
-                            name
+                    courses {
+                        data {
+                            attributes
+                            {
+                                name
+                            }
                         }
                     }
                 }
             }
-        }
-    }
-}`
+        }   
+}
+`;
   
 export const GET_JOBS = gql`
 query getJobs {
