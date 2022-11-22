@@ -14,19 +14,24 @@ import StatisticsCard from '../componentsDemo/dashboard/StatisticsCard'
 import TotalEarning from '../componentsDemo/dashboard/TotalEarning'
 import WeeklyOverview from '../componentsDemo/dashboard/WeeklyOverview'
 import CardStatisticsVerticalComponent from '../@core/components/card-statistics/card-stats-vertical'
+import { ReactNode } from 'react'
+import MainLayout from '../layouts/MainLayout'
 
 
 
 const Dashboard = () => {
   return (
-    <ApexChartWrapper>
-      <Grid container spacing={6}>
-        {/* <Grid item xs={12} md={8}>
-          <StatisticsCard />
-        </Grid> */}
-      </Grid>
-    </ApexChartWrapper>
+    <p>content content content</p>
+    // <ApexChartWrapper>
+    //   <Grid container spacing={6}>
+    //     {/* <Grid item xs={12} md={8}>
+    //       <StatisticsCard />
+    //     </Grid> */}
+    //   </Grid>
+    // </ApexChartWrapper>
   )
 }
+
+// Dashboard.getLayout = (page: ReactNode) => <MainLayout>{page}</MainLayout>
 
 export default Dashboard

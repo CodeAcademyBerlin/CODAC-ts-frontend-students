@@ -3,7 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { Link, Links } from '../pages/lms/lms';
+import { LinkSingle, Links } from '../pages/lms/lms';
 
 
 
@@ -76,8 +76,8 @@ export const buildNestedPages = async() => {
   while (i--) {
     if (links[i].page.length > 1) {
       const parent = findByPath(links, links[i]);
-      // parent && parent.children.unshift(links[i]);
-      parent && [links[i], ...parent.children];
+      parent && parent.children.unshift(links[i]);
+      // parent && [links[i], ...parent.children];
     } else {
       result.unshift(links[i])
     }
@@ -85,8 +85,7 @@ export const buildNestedPages = async() => {
   return result
 }
 
-const findByPath = (pages: Links, page: Link) => {
-  console.log('pages', pages)
+const findByPath = (pages: Links, page: LinkSingle) => {
   return pages.find(p => {
     return p.path === page.page.slice(0, -1).join("/");
   })

@@ -1,10 +1,10 @@
-export interface Link {
+export interface LinkSingle {
     path: string,
     page: string[],
     title: string,
     children: Links
 }
-export type Links = Link[]
+export type Links = LinkSingle[]
 
 export interface PageData {
     access: string,
