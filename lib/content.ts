@@ -49,12 +49,15 @@ export async function getPaths() {
             page: dirArray
           },
         });
-        links.push({
-          path: dirArray.join("/"),
-          page: dirArray,
-          title: dirArray[dirArray.length - 1],
-          children: []
-        })
+        if (!file.includes("welcome")) {
+          links.push({
+            path: dirArray.join("/"),
+            page: dirArray,
+            title: displayNicely(dirArray[dirArray.length - 1]),
+            children: []
+          })
+        }
+        
       } else {
         const isDir = (fs.statSync(fullDir)).isDirectory();
         if (isDir) {
@@ -66,6 +69,19 @@ export async function getPaths() {
 
   getPathsList(contentDirectory);
   return { paths: paths, links: links }
+}
+
+const displayNicely = (string:string) => {
+  let noHyphens = string.replaceAll("-", " ");
+  let result = "";
+  for (let i = 0; i < noHyphens.length; i++) {
+    if (i === 0 || noHyphens.charAt(i - 1) === " ") {
+      result += noHyphens.charAt(i).toUpperCase();
+    } else {
+      result += noHyphens.charAt(i);
+    }
+  }
+  return result;
 }
 
 export const buildNestedPages = async() => {

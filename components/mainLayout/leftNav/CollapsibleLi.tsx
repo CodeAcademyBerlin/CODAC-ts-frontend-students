@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import useCollapse from 'react-collapsed'
-import { LinkSingle } from '../pages/lms/lms'
+import { LinkSingle } from '../../../pages/lms/lms'
 
 function CollapsibleLi({ child }:{ child: LinkSingle }) {
 

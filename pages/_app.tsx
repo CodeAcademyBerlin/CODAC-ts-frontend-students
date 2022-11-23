@@ -1,6 +1,7 @@
+import React, { ReactElement, ReactNode, useState } from 'react';
+
 // ** Next Imports
 import Head from 'next/head'
-import { Router } from 'next/router'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import favicon from "../public/favicon.ico";
@@ -8,46 +9,26 @@ import favicon from "../public/favicon.ico";
 // // ** Loader Import
 // import NProgress from 'nprogress'
 
-// // ** Emotion Imports
-// import { CacheProvider } from '@emotion/react'
-// import type { EmotionCache } from '@emotion/cache'
-
-// // ** Config Imports
-import themeConfig from '../configs/themeConfig'
-
-// // ** Component Imports
-// import UserLayout from '../layouts/UserLayout'
-
-// // ** Contexts
-// import { SettingsConsumer, SettingsProvider } from '../@core/context/settingsContext'
-
-// // ** Utils Imports
-// import { createEmotionCache } from '../@core/utils/create-emotion-cache'
+// ** Utils Imports
+import { CacheProvider } from '@emotion/react';
+import type { EmotionCache } from '@emotion/cache'
+import createEmotionCache from '../lib/createEmotionCache';
 
 // // ** React Perfect Scrollbar Style
 // import 'react-perfect-scrollbar/dist/css/styles.css'
 
 // ** Global css styles
 import '../styles/globals.css'
-// import ThemeComponent from '../@core/theme/ThemeComponent'
 
 import { ApolloProvider } from '@apollo/client'
 import { AuthProvider } from "../contexts/authContext"
 import { useApollo } from '../configs/apollo';
-import { ReactElement, ReactNode, useContext } from 'react';
+
 import MainLayout from '../layouts/MainLayout';
-import { ThemeProvider } from "styled-components"
-import { lightTheme, darkTheme, GlobalStyles } from '../configs/themeConfig'
-import { ThemeContext } from '../contexts/themeContext';
-
-
-// // ** Extend App Props with Emotion
-// type ExtendedAppProps = AppProps & {
-//   Component: NextPage
-//   emotionCache: EmotionCache
-// }
-
-// const clientSideEmotionCache = createEmotionCache()
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { lightTheme, darkTheme } from '../configs/theme';
+import { styled } from '@mui/material/styles'
+import { ThemeLightDark } from 'mdi-material-ui';
 
 // // ** Pace Loader
 // if (themeConfig.routingLoader) {
@@ -67,18 +48,41 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 }
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
+  Component: NextPageWithLayout,
+  emotionCache: EmotionCache
 }
 
+const clientSideEmotionCache = createEmotionCache();
+
 // ** Configure JSS & ClassName
-const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps }) => {
-  const { theme } = useContext(ThemeContext)
+const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) => {
 
   const apolloClient = useApollo(pageProps);
 
-  // Variables
-  // const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
   const getLayout = Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>)
+
+  const [theme, setTheme] = useState(lightTheme);
+
+  const toggleTheme = () => {
+    theme === lightTheme ? setTheme(darkTheme) : setTheme(lightTheme);
+  }
+
+  const ThemeButton = styled('span')`
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.5em;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @media only screen and (min-width: 600px) {
+      margin: 1em;
+    }
+  `
+
+
   // useEffect(() => {
   //   const getSession = async () => {
   //     const options = {
@@ -98,29 +102,25 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
-        <ThemeProvider theme={ theme === 'light' ? lightTheme : darkTheme }>
-          <GlobalStyles />
-        {/* <CacheProvider value={emotionCache}> */}
-          <Head>
-            <title>{`${themeConfig.templateName}`}</title>
-            <meta
-              name='Code Academy Berlin Community App'
-              content={`${themeConfig.templateName} – Code Academy Berlin Community App`}
-            />
-            <link rel="shortcut icon" href={favicon.src} />
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Head>
+              <title>CODAC</title>
+              <meta
+                name='Code Academy Berlin Community App'
+                content={`CODAC – Code Academy Berlin Community App`}
+              />
+              <link rel="shortcut icon" href={favicon.src} />
 
-            <meta name='viewport' content='initial-scale=1, width=device-width' />
-          </Head>
-          {/* <SettingsProvider>
-            <SettingsConsumer> */}
-              {/* {({ settings }) => { */}
-                {/* return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent> */}
-                { getLayout(<Component { ...pageProps } />) }
-              {/* }} */}
-            {/* </SettingsConsumer>
-          </SettingsProvider>
-        </CacheProvider> */}
-        </ThemeProvider>
+              <meta name='viewport' content='initial-scale=1, width=device-width' />
+            </Head>
+            { getLayout(<Component { ...pageProps } />) }
+            <ThemeButton onClick={toggleTheme}>
+              <ThemeLightDark />
+            </ThemeButton>
+          </ThemeProvider>
+        </CacheProvider>
       </AuthProvider>
     </ApolloProvider>
   )

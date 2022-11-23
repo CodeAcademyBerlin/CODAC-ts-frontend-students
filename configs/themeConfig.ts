@@ -4,7 +4,7 @@ import { PaletteMode } from '@mui/material'
 // ** Types
 import { ContentWidth } from '../@core/layouts/types'
 
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+// import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { ReactNode } from 'react'
 
 type ThemeConfig = {
@@ -51,14 +51,14 @@ export const darkTheme = {
 }
 
 //?what is DefaultTheme and how do I include my own properties on it?
-export const GlobalStyles = createGlobalStyle`
-  body {
-    background: ${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.text};
-    font-family: Tahoma, Helvetica, Arial, Roboto, sans-serif;
-    transition: all 0.50s linear;
-  }
-`
+// export const GlobalStyles = createGlobalStyle`
+//   body {
+//     background: ${({ theme }) => theme.body};
+//     color: ${({ theme }) => theme.text};
+//     font-family: Tahoma, Helvetica, Arial, Roboto, sans-serif;
+//     transition: all 0.50s linear;
+//   }
+// `
 
 // export const Theme = ({ children }:{ children: ReactNode }) => {
 //   return (

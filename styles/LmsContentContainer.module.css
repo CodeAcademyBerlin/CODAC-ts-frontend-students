@@ -32,7 +32,8 @@
   position: absolute;
   background-color: white;
   right: 4em;
-  margin-top: -0.2em;
+  margin-top: -0.5em;
+  margin-right: 0.8em;
   padding: 0.5em;
   opacity: 0.5;
   border: none;
@@ -43,7 +44,7 @@
 .copyButton:active {
   opacity: 1;
   transition: 0.2s;
-  background-color: #6ACDFF;
+  background-color: #ffc4c5;
 }
 
 .content p > img {
@@ -52,7 +53,7 @@
 }
 
 .content a {
-  color: #6ACDFF;
+  color: #26a69a;
 }
 
 @media (hover:hover) {

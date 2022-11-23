@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react'
-import { ThemeContext } from '../contexts/themeContext'
-import AppBar from '@mui/material/AppBar';
+import React from 'react'
 import Drawer from '@mui/material/Drawer';
 import NavContent from './NavContent';
-import CloseButton from './CloseButton';
+import { styled } from '@mui/material/styles'
+import { ArrowLeftThick } from 'mdi-material-ui';
 
 type Props = {
   handleDrawerToggle: () => void
@@ -13,6 +12,13 @@ type Props = {
 function LeftNavBar({ handleDrawerToggle, open }: Props) {
 
   const drawerWidth = 240;
+
+  const CloseDrawer = styled('span')`
+    position: absolute;
+    right: 0; 
+    margin: 0.5em; 
+    fontSize: large;
+  `
 
   return (
     <>
@@ -28,7 +34,10 @@ function LeftNavBar({ handleDrawerToggle, open }: Props) {
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
         }}
       >
-        <CloseButton onClick={handleDrawerToggle} />
+        <CloseDrawer onClick={handleDrawerToggle}>
+          <ArrowLeftThick />
+        </CloseDrawer>
+        <br/>
         <NavContent />
       </Drawer>
       <Drawer
