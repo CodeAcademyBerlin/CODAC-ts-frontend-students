@@ -2,58 +2,58 @@ import Grid from "@mui/material/Grid";
 import ApexChartWrapper from "../@core/styles/libs/react-apexcharts";
 import { Typography, useTheme } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { initializeApollo } from "../configs/apollo";
+import { getToken, initializeApollo } from "../configs/apollo";
 import { FIND_STUDENT_BY_USER_ID } from "../graphql/queries";
 import { Student } from "../graphql/_generated_";
-import { ReactNode, useContext } from "react";
+import jwt_decode, { JwtPayload } from "jwt-decode";
 import ProgressBar from "../components/ProgressBar";
-import { userAgent } from "next/server";
-interface Props {
-  children: ReactNode;
-}
 // TBD: useFetch correctly + populate user and student
 
-const Dashboard = (
-  data: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
+const Dashboard = ({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  console.log(data);
   const theme = useTheme();
-  const myStudent: Student = data.data.students?.data[0].attributes;
-  console.log("myStudent", myStudent);
-  return (
+  const myStudent: Student = data.students.data[0].attributes;
+  console.log("Data received in Dashboard:", myStudent);
+  return myStudent ? (
     <ApexChartWrapper>
       <Grid container spacing={6}>
         <Grid item xs={12} md={8}>
-          {data && (
-            <>
-              <Typography sx={{ fontStyle: theme.typography.h5 }}>
-                Welcome {myStudent.firstname}
-              </Typography>
-              <ProgressBar student={myStudent} />
-            </>
-          )}
+          <Typography sx={{ fontStyle: theme.typography.h5 }}>
+            Welcome {myStudent.firstname}, Member of{" "}
+            {myStudent.cohort?.data?.attributes?.name}
+          </Typography>
+          <ProgressBar student={myStudent} />
           {/* {user.role.name === "Student" && <ProgressBar />} */}
         </Grid>
       </Grid>
     </ApexChartWrapper>
-  );
+  ) : null;
 };
 
 export default Dashboard;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  //console.log("Query?", ctx.query);
   try {
     const client = initializeApollo(null, ctx.req);
-    const { loading, error, data } = await client.query({
+    const token = getToken(ctx.req);
+    const decodedToken: JwtPayload = await jwt_decode(token);
+    console.log("token in getServerSideProps:", decodedToken);
+    const { data } = await client.query({
       query: FIND_STUDENT_BY_USER_ID,
-      variables: { userId: 4 },
+      variables: { userId: decodedToken.id },
     });
+    console.log("data in getServerSideProps:", data);
     return {
       props: { data },
     };
   } catch (error) {
+    console.log(error);
     return {
-      props: { data: null },
+      props: {
+        data: null,
+      },
     };
   }
 };

@@ -1,5 +1,6 @@
 import { Box, LinearProgress, Typography, useTheme } from "@mui/material";
 import { Stack } from "@mui/system";
+import RotateRight from "mdi-material-ui/RotateRight";
 import { Student } from "../graphql/_generated_";
 
 const ProgressBar = ({ student }: { student: Student }) => {
@@ -27,7 +28,11 @@ const ProgressBar = ({ student }: { student: Student }) => {
         boxShadow: theme.shadows[1],
       }}
     >
-      <Typography variant="h6">Your Progress</Typography>
+      <Stack direction="row" alignItems="center" spacing={2}>
+        <Typography variant="h6">Course Progress</Typography>
+        <RotateRight />
+      </Stack>
+
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Box
           sx={{
