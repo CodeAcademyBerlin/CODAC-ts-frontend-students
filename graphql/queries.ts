@@ -59,6 +59,15 @@ query filterStudentByUserId($userId: ID) {
                         data {
                             attributes {
                                 name
+                                start_date
+                                students {
+                                    data {
+                                        attributes {
+                                            firstname
+                                            lastname
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

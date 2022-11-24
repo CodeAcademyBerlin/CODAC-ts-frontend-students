@@ -7,6 +7,7 @@ import { FIND_STUDENT_BY_USER_ID } from "../graphql/queries";
 import { Student } from "../graphql/_generated_";
 import jwt_decode, { JwtPayload } from "jwt-decode";
 import ProgressBar from "../components/ProgressBar";
+import CohortCard from "../components/CohortCard";
 // TBD: useFetch correctly + populate user and student
 
 const Dashboard = ({
@@ -25,6 +26,7 @@ const Dashboard = ({
             {myStudent.cohort?.data?.attributes?.name}
           </Typography>
           <ProgressBar student={myStudent} />
+          <CohortCard cohort={myStudent.cohort?.data?.attributes} />
           {/* {user.role.name === "Student" && <ProgressBar />} */}
         </Grid>
       </Grid>

@@ -1,6 +1,7 @@
-import { Box, LinearProgress, Typography, useTheme } from "@mui/material";
+import { Box, Chip, LinearProgress, Typography, useTheme } from "@mui/material";
 import { Stack } from "@mui/system";
-import RotateRight from "mdi-material-ui/RotateRight";
+import AccountClock from "mdi-material-ui/AccountClock";
+
 import { Student } from "../graphql/_generated_";
 
 const ProgressBar = ({ student }: { student: Student }) => {
@@ -29,8 +30,8 @@ const ProgressBar = ({ student }: { student: Student }) => {
       }}
     >
       <Stack direction="row" alignItems="center" spacing={2}>
+        <AccountClock sx={{ color: theme.palette.primary.main }} />
         <Typography variant="h6">Course Progress</Typography>
-        <RotateRight />
       </Stack>
 
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -85,8 +86,12 @@ const ProgressBar = ({ student }: { student: Student }) => {
       </Box>
 
       <Stack direction="row" spacing={4} alignItems="center">
-        <Typography fontSize={theme.typography.fontSize}>
-          Graduation in {daysLeft} days
+        <Typography
+          fontSize={theme.typography.fontSize}
+          fontWeight={theme.typography.fontWeightMedium}
+        >
+          Graduation in{" "}
+          <Chip variant="outlined" size="small" label={daysLeft} /> days
         </Typography>
       </Stack>
     </Box>
