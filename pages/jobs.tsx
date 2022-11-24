@@ -1,116 +1,125 @@
-import { ApolloClient, ApolloLink, useQuery } from "@apollo/client";
 import { GET_JOBS } from "../graphql/queries";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import JobsCard from "../components/JobsCard";
-import { JobPost, JobPostEntity } from "../graphql/_generated_";
+import { JobPostEntity } from "../graphql/_generated_";
 import * as React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import { DatabaseSettingsOutline } from "mdi-material-ui";
+import { initializeApollo } from "../configs/apollo";
+import { constants } from "buffer";
 
 // ** types
 interface Data {
+  map(arg0: (jobField: any, i: any) => JSX.Element): React.ReactNode;
   data?: Object;
   push?: any;
+  includes: Array | undefined;
 }
 
 type index = number;
 
-// export interface Event {
-//   e: Object;
-//   target: {
-//     value: string;
-//   };
-// }
-
 const jobs = ({
-  result,
+  data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [data, setData] = useState(result.data.jobPosts.data);
+  const [result, setResult] = useState(data.jobPosts.data);
   const [check, setCheck] = useState(true);
-  const allJobs = result.data.jobPosts.data;
+  const allJobs = data.jobPosts.data;
+  const uniqueFields: Data = [];
 
   const handleClick = (e: React.MouseEvent<Element, MouseEvent>) => {
     const target = e.target as HTMLButtonElement;
     const value = target.value;
     const result: Data = [];
     allJobs.map((jobEntity: JobPostEntity, i: index) => {
-      if (jobEntity.attributes?.fileld?.includes(value) === true) {
+      if (jobEntity.attributes?.fileld?.includes(value)) {
         result.push(jobEntity);
       }
     });
     if (target.value === "") {
-      setCheck(true);
+      setCheck(!check);
     } else {
       setCheck(false);
     }
 
-    setData(result);
+    setResult(result);
     return data;
   };
 
   return (
     <div>
       <div>
+        {" "}
         <FormControl>
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
           >
-            <FormControlLabel
-              onClick={(e) => {
-                handleClick(e);
-              }}
-              value=""
-              control={<Radio id="All" />}
-              label="All"
-              className="All"
-              id="AllForm"
-              checked={check}
-            />
+            {allJobs.length >= 1 ? (
+              <div>
+                {" "}
+                <FormControlLabel
+                  onClick={(e) => {
+                    handleClick(e);
+                  }}
+                  value=""
+                  control={<Radio id="All" />}
+                  label="All"
+                  className="All"
+                  id="AllForm"
+                  checked={check}
+                />
+              </div>
+            ) : (
+              <div>No jobs posted</div>
+            )}
 
-            <FormControlLabel
-              onClick={(e) => {
-                handleClick(e);
-              }}
-              value="Web_Development"
-              control={<Radio />}
-              label="Web Development"
-              id="radio"
-            />
-            <FormControlLabel
-              onClick={(e) => {
-                handleClick(e);
-              }}
-              value="Data_Science"
-              control={<Radio />}
-              label="Data Science"
-              id="radio"
-            />
-            <FormControlLabel
-              onClick={(e) => {
-                handleClick(e);
-              }}
-              value="Other"
-              control={<Radio />}
-              label="Other"
-              id="radio"
-            />
+            {allJobs &&
+              allJobs.map((jobEntity: JobPostEntity, i: index) => {
+                if (!uniqueFields.includes(jobEntity.attributes?.fileld)) {
+                  uniqueFields.push(jobEntity.attributes?.fileld);
+                }
+              })}
+            {uniqueFields &&
+              uniqueFields.map((job, i) => {
+                return (
+                  <div>
+                    <Grid item xs={12} sm={6} md={4} key={i}>
+                      {job && (
+                        <FormControlLabel
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                          value={job}
+                          control={<Radio id="All" />}
+                          label={job.replace("_", " ")}
+                          className="All"
+                          id="AllForm"
+                        />
+                      )}
+                    </Grid>
+                  </div>
+                );
+              })}
           </RadioGroup>
         </FormControl>
       </div>{" "}
       <br />
       <Grid container spacing={6}>
         {data &&
-          data.map((jobEntity: JobPostEntity, i: index) => (
+          result.map((jobEntity: JobPostEntity, i: index) => (
             <Grid item xs={12} sm={6} md={4} key={i}>
-              {jobEntity.attributes && <JobsCard job={jobEntity.attributes} />}
+              {jobEntity.attributes && (
+                <JobsCard
+                  job={jobEntity.attributes}
+                  jobEntity={jobEntity}
+                  data={data}
+                />
+              )}
             </Grid>
           ))}
       </Grid>
@@ -120,36 +129,16 @@ const jobs = ({
 
 export default jobs;
 
-// export async function getServerSideProps() {
-//     const data = await client.query({
-//         query: GET_JOBS
-//     });
-//     return {
-//       props: { data },
-//     }
-//     console.log("data", data)
-// }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  let myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  let graphql = JSON.stringify({
-    query:
-      "query filterJobs ($filter: JobPostFiltersInput) {\n    jobPosts (filters: $filter) {\n        data {\n            attributes{\n                url\n                position\n                company\n                fileld \n                createdAt\n                updatedAt\n                description \n                \n            }\n        }\n    }\n  }",
-    //   variables: {"filter":{"fileld":{"eq":`IT`}}}
-  });
-  let requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: graphql,
-  };
-  const response = await fetch(
-    "https://codac-364707.ey.r.appspot.com/graphql",
-    requestOptions
-  );
-  const result: Data = await response.json();
-  return {
-    props: { result },
-  };
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  try {
+    const client = initializeApollo(null, ctx.req);
+    const { data, error } = await client.query({ query: GET_JOBS });
+    return {
+      props: { data },
+    };
+  } catch (error) {
+    return {
+      props: { data: null },
+    };
+  }
 };
