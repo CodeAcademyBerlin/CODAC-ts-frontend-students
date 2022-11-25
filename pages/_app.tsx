@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState, useEffect, useMemo } from 'react';
+import React, { ReactElement, ReactNode, useState, useMemo } from 'react';
 
 // ** Next Imports
 import Head from 'next/head'
@@ -27,8 +27,6 @@ import { useApollo } from '../configs/apollo';
 import MainLayout from '../layouts/MainLayout';
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { lightTheme, darkTheme, gagTheme } from '../configs/theme';
-import { styled } from '@mui/material/styles'
-import { ThemeLightDark } from 'mdi-material-ui';
 import { ThemeContext } from '../contexts/themeContext';
 
 // // ** Pace Loader
@@ -64,9 +62,8 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
   const getLayout = Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>)
 
   const [theme, setTheme] = useState(lightTheme);
-  const toggleTheme = useMemo(() => ({
+  const changeTheme = useMemo(() => ({
       toggleThemes: () => {
-        console.log("function running")
         if (theme === lightTheme) {
           setTheme(darkTheme);
         } 
@@ -76,23 +73,17 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
         if (theme === gagTheme) {
           setTheme(lightTheme)
         }
+      },
+      setLight: () => {
+        setTheme(lightTheme);
+      },
+      setDark: () => {
+        setTheme(darkTheme);
+      },
+      setGag: () => {
+        setTheme(gagTheme);
       }
     }), [theme])
-
-  const ThemeButton = styled('span')`
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0.5em;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    @media only screen and (min-width: 600px) {
-      margin: 1em;
-    }
-  `
 
   // useEffect(() => {
   //   const getSession = async () => {
@@ -113,7 +104,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
-        <ThemeContext.Provider value={toggleTheme}>
+        <ThemeContext.Provider value={changeTheme}>
           <CacheProvider value={emotionCache}>
             <ThemeProvider theme={theme}>
               <CssBaseline />

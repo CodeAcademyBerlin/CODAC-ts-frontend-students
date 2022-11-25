@@ -3,7 +3,10 @@ import { createContext, useState, ReactNode } from 'react'
 // type Theme = 'light' | 'dark';
 
 export type ThemeContextType = {
-  toggleThemes: () => void;
+  toggleThemes?: () => void;
+  setLight?: () => void;
+  setDark?: () => void;
+  setGag?: () => void;
 }
 
 // const initialContext = {

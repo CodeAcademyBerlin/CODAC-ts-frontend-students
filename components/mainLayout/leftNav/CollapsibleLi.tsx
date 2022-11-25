@@ -2,12 +2,18 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import useCollapse from 'react-collapsed'
+import { isNavLinkActive } from '../../../lib/IsLinkActive'
 import { LinkSingle } from '../../../pages/lms/lms'
+import { NavList, NavLiItem } from './NavContent'
+
 
 function CollapsibleLi({ child }:{ child: LinkSingle }) {
-
   const { getCollapseProps, getToggleProps, isExpanded, setExpanded } = useCollapse();
   const router = useRouter();
+
+  const lmsRoute = (path:string) => {
+    return router.asPath.includes("/lms/") ? path : `lms/${path}` 
+  }
 
   useEffect(() => {
     if ((router.asPath.includes(child.path)) || (child.path === 'welcome' && router.asPath.includes('/lms'))) {
@@ -17,37 +23,33 @@ function CollapsibleLi({ child }:{ child: LinkSingle }) {
     }
   }, [router.asPath])
 
-  const handleClick = () => {
-    setExpanded(true);
-  }
-
-  if (child.children.length > 0) {
-    return (
+    return child.children.length > 0 ? (
         <>
-          <li { ...getToggleProps() }>
-            <Link href={ router.asPath.includes("/lms/") ? child.path : "lms/" + child.path }>
-              { child.title }
-              { isExpanded ? '^' : '+' }
+          <NavLiItem { ...getToggleProps() }>
+            <Link 
+              href={ lmsRoute(child.path) }
+              className={isNavLinkActive(child.path, router.asPath) ? 'active' : ''}>
+                {/* { isExpanded ? '+' : '' } */}
+                { child.title }
             </Link>
-          </li>
-          <li { ...getCollapseProps() }>
-            <ul>
+          </NavLiItem>
+          <NavLiItem { ...getCollapseProps() }>
+            <NavList>
               {child.children.map((ch) => {
                 return <CollapsibleLi key={ch.path} child={ch} />
               })}
-            </ul>
-          </li>
+            </NavList>
+          </NavLiItem>
         </>
-      )
-  } else {
-    return (
-      <li>
-        <Link href={ router.asPath.includes("/lms/") ? child.path : "lms/" + child.path }>{ child.title }</Link>
-      </li>
-      
+      ) : (
+      <NavLiItem>
+        <Link 
+          href={ lmsRoute(child.path) }
+          className={isNavLinkActive(child.path, router.asPath) ? 'active' : ''}>
+            { child.title }
+        </Link>
+      </NavLiItem>
     )
   }
-
-}
 
 export default CollapsibleLi

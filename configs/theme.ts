@@ -200,7 +200,7 @@ export const gagTheme = createTheme({
   },
   typography: {
     fontFamily: '"VT323", monospace',
-    fontSize: 18
+    // fontSize: 18
   },
   shape: {
     borderRadius: 0
