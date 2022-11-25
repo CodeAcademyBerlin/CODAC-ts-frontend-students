@@ -2675,10 +2675,12 @@ export type GetStudentsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetStudentsQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', email?: string | null } | null }> } | null };
 
-export type GetJobsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetJobsQueryVariables = Exact<{
+  date?: InputMaybe<Scalars['DateTime']>;
+}>;
 
 
-export type GetJobsQuery = { __typename?: 'Query', jobPosts?: { __typename?: 'JobPostEntityResponseCollection', data: Array<{ __typename?: 'JobPostEntity', id?: string | null, attributes?: { __typename?: 'JobPost', position?: string | null, company?: string | null, fileld?: Enum_Jobpost_Fileld | null, url?: string | null, createdAt?: any | null, updatedAt?: any | null, description?: string | null } | null }> } | null };
+export type GetJobsQuery = { __typename?: 'Query', jobPosts?: { __typename?: 'JobPostEntityResponseCollection', data: Array<{ __typename?: 'JobPostEntity', attributes?: { __typename?: 'JobPost', url?: string | null, position?: string | null, company?: string | null, fileld?: Enum_Jobpost_Fileld | null, createdAt?: any | null, updatedAt?: any | null, description?: string | null } | null }> } | null };
 
 export type DeleteJobMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -2809,15 +2811,14 @@ export type GetStudentsQueryHookResult = ReturnType<typeof useGetStudentsQuery>;
 export type GetStudentsLazyQueryHookResult = ReturnType<typeof useGetStudentsLazyQuery>;
 export type GetStudentsQueryResult = Apollo.QueryResult<GetStudentsQuery, GetStudentsQueryVariables>;
 export const GetJobsDocument = gql`
-    query getJobs {
-  jobPosts {
+    query getJobs($date: DateTime) {
+  jobPosts(filters: {updatedAt: {gte: $date}}) {
     data {
-      id
       attributes {
+        url
         position
         company
         fileld
-        url
         createdAt
         updatedAt
         description
@@ -2839,6 +2840,7 @@ export const GetJobsDocument = gql`
  * @example
  * const { data, loading, error } = useGetJobsQuery({
  *   variables: {
+ *      date: // value for 'date'
  *   },
  * });
  */

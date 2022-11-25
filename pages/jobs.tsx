@@ -10,7 +10,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { initializeApollo } from "../configs/apollo";
-import { constants } from "buffer";
+import dayjs from "dayjs";
 
 // ** types
 interface Data {
@@ -130,9 +130,14 @@ const jobs = ({
 export default jobs;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const today = new Date().toLocaleDateString();
+  const diff = dayjs(today).subtract(90, "d").toDate();
   try {
     const client = initializeApollo(null, ctx.req);
-    const { data, error } = await client.query({ query: GET_JOBS });
+    const { data, error } = await client.query({
+      query: GET_JOBS,
+      variables: { date: diff },
+    });
     return {
       props: { data },
     };

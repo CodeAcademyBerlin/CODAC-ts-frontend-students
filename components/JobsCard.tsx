@@ -29,8 +29,7 @@ function JobsCard({
   const handleClick = () => {
     setCollapse((current) => !current);
   };
-  const [reload, setReload] = useState(jobEntity);
-  // console.log("FIRSTDEL", del);
+  // const [reload, setReload] = useState(jobEntity);
 
   const date: String = new Date(job.updatedAt).toLocaleString("en-US", {
     day: "2-digit",
@@ -45,7 +44,7 @@ function JobsCard({
   });
 
   // const outdated = [];
-  function getNumberOfDays(date) {
+  function getNumberOfDays(date: JobPost["createdAt"]) {
     const date1 = new Date(date);
     const date2 = new Date();
     const oneDay = 1000 * 60 * 60 * 24;
@@ -94,8 +93,6 @@ function JobsCard({
 
   useEffect(() => {
     getNumberOfDays(date);
-    // deleteOldJobs();
-    // console.log("USEEFFECT RUN");
   }, []);
 
   return (
@@ -236,25 +233,27 @@ function JobsCard({
         <Collapse in={collapse}>
           <Divider sx={{ margin: 0 }} />
           <CardContent>
-            <Typography variant="body2">
-              {console.log("jobEntity", jobEntity)}
-              {console.log("job.description", job.description?.length)}
-              {data && job.description?.length > 850 ? (
+            <div className="jobDescription">
+              {job.description && job.description?.length > 850 ? (
                 <div>
                   {job.description?.substring(0, 850)}{" "}
-                  <Link
-                    href={job.url}
-                    target="_blank"
-                    rel="noopener"
-                    className="noDeco"
-                  >
-                    ... see more
-                  </Link>
+                  {job.url ? (
+                    <Link
+                      href={job.url}
+                      target="_blank"
+                      rel="noopener"
+                      className="noDeco"
+                    >
+                      ... see more
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
               ) : (
                 <div>{job.description}</div>
               )}
-            </Typography>
+            </div>
           </CardContent>
         </Collapse>
       </Card>

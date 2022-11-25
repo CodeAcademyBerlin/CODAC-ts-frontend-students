@@ -42,15 +42,14 @@ export const GET_STUDENTS = gql`
   }
 `;
 export const GET_JOBS = gql`
-  query getJobs {
-    jobPosts {
+  query getJobs($date: DateTime) {
+    jobPosts(filters: { updatedAt: { gte: $date } }) {
       data {
-        id
         attributes {
+          url
           position
           company
           fileld
-          url
           createdAt
           updatedAt
           description

@@ -38,6 +38,12 @@ code[class*="language-"] {
   color: white !important;
 }
 
+.jobDescription {
+  line-height: 1.5;
+  letter-spacing: 0.15px;
+  color: grey;
+}
+
 @font-face {
   font-family: "CODAC";
   font-display: swap;
