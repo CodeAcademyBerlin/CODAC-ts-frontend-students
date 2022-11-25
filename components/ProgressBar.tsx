@@ -1,7 +1,6 @@
 import { Box, Chip, LinearProgress, Typography, useTheme } from "@mui/material";
 import { Stack } from "@mui/system";
-import AccountClock from "mdi-material-ui/AccountClock";
-
+import CalenderAccountOutline from "mdi-material-ui/CalendarAccountOutline";
 import { Student } from "../graphql/_generated_";
 
 const ProgressBar = ({ student }: { student: Student }) => {
@@ -25,12 +24,15 @@ const ProgressBar = ({ student }: { student: Student }) => {
         p: theme.spacing(4, 6),
         m: theme.spacing(4, 6),
         borderRadius: theme.shape.borderRadius,
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderColor: theme.palette.background,
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[1],
       }}
     >
       <Stack direction="row" alignItems="center" spacing={2}>
-        <AccountClock sx={{ color: theme.palette.primary.main }} />
+        <CalenderAccountOutline />
         <Typography variant="h6">Course Progress</Typography>
       </Stack>
 
