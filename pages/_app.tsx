@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState } from 'react';
+import React, { ReactElement, ReactNode, useState, useEffect, useMemo } from 'react';
 
 // ** Next Imports
 import Head from 'next/head'
@@ -26,9 +26,10 @@ import { useApollo } from '../configs/apollo';
 
 import MainLayout from '../layouts/MainLayout';
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { lightTheme, darkTheme } from '../configs/theme';
+import { lightTheme, darkTheme, gagTheme } from '../configs/theme';
 import { styled } from '@mui/material/styles'
 import { ThemeLightDark } from 'mdi-material-ui';
+import { ThemeContext } from '../contexts/themeContext';
 
 // // ** Pace Loader
 // if (themeConfig.routingLoader) {
@@ -52,6 +53,7 @@ type AppPropsWithLayout = AppProps & {
   emotionCache: EmotionCache
 }
 
+
 const clientSideEmotionCache = createEmotionCache();
 
 // ** Configure JSS & ClassName
@@ -62,10 +64,20 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
   const getLayout = Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>)
 
   const [theme, setTheme] = useState(lightTheme);
-
-  const toggleTheme = () => {
-    theme === lightTheme ? setTheme(darkTheme) : setTheme(lightTheme);
-  }
+  const toggleTheme = useMemo(() => ({
+      toggleThemes: () => {
+        console.log("function running")
+        if (theme === lightTheme) {
+          setTheme(darkTheme);
+        } 
+        if (theme === darkTheme) {
+          setTheme(gagTheme);
+        } 
+        if (theme === gagTheme) {
+          setTheme(lightTheme)
+        }
+      }
+    }), [theme])
 
   const ThemeButton = styled('span')`
     position: absolute;
@@ -81,7 +93,6 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
       margin: 1em;
     }
   `
-
 
   // useEffect(() => {
   //   const getSession = async () => {
@@ -102,25 +113,24 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
-        <CacheProvider value={emotionCache}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Head>
-              <title>CODAC</title>
-              <meta
-                name='Code Academy Berlin Community App'
-                content={`CODAC – Code Academy Berlin Community App`}
-              />
-              <link rel="shortcut icon" href={favicon.src} />
-
-              <meta name='viewport' content='initial-scale=1, width=device-width' />
-            </Head>
-            { getLayout(<Component { ...pageProps } />) }
-            <ThemeButton onClick={toggleTheme}>
-              <ThemeLightDark />
-            </ThemeButton>
-          </ThemeProvider>
-        </CacheProvider>
+        <ThemeContext.Provider value={toggleTheme}>
+          <CacheProvider value={emotionCache}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Head>
+                <title>CODAC</title>
+                <meta
+                  name='Code Academy Berlin Community App'
+                  content={`CODAC – Code Academy Berlin Community App`}
+                />
+                <link rel="shortcut icon" href={favicon.src} />
+                <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+                <meta name='viewport' content='initial-scale=1, width=device-width' />
+              </Head>
+              { getLayout(<Component { ...pageProps } />) }
+            </ThemeProvider>
+          </CacheProvider>
+        </ThemeContext.Provider>
       </AuthProvider>
     </ApolloProvider>
   )

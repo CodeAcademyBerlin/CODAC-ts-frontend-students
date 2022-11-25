@@ -1,31 +1,24 @@
 import { createContext, useState, ReactNode } from 'react'
 
-//?are these not strings? why complaint from ts in value?
-type Theme = string
+// type Theme = 'light' | 'dark';
 
 export type ThemeContextType = {
-  theme: Theme
-  setTheme?: (value: string) => void
-  // toggleTheme?: () => void
+  toggleThemes: () => void;
 }
 
-const initialTheme = {
-  theme: 'light'
-  // toggleTheme: () => { theme === 'light' ? setTheme('dark') : setTheme('light'); }
-}
+// const initialContext = {
+//   theme: 'light',
+//   setTheme: (theme: 'light') => { 'light' }
+// }
 
-export const ThemeContext = createContext<ThemeContextType>(initialTheme)
+export const ThemeContext = createContext<ThemeContextType>({} as ThemeContextType);
 
-export const ThemeContextProvider = ({ children }:{ children: ReactNode }) => {
+// export const ThemeContextProvider = ({ children }:{ children: ReactNode }) => {
 
-  const [theme, setTheme] = useState('light');
+//   const [theme, setTheme] = useState('light');
 
-  const toggleTheme = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-  }
+//   return <ThemeContext.Provider value={{ theme, setTheme }} >{ children }</ThemeContext.Provider>
 
-  return <ThemeContext.Provider value={{ theme, setTheme }} >{ children }</ThemeContext.Provider>
-
-}
+// }
 
 

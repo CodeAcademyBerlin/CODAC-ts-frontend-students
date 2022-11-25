@@ -1,11 +1,18 @@
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BrandText } from '../../BrandStyle'
 import CollapsibleLi from './CollapsibleLi';
 import { LinkSingle } from '../../../pages/lms/lms'
+import { useTheme } from '@mui/material';
+import { ThemeContext } from '../../../contexts/themeContext';
 
 
 function NavContent() {
+
+  const toggleTheme = useContext(ThemeContext);
+
+  
+  // const { theme, setTheme } = React.useContext(ThemeContext) as ThemeContextType;
 
   const [lmsArray, setLmsArray] = useState([]);
 
@@ -29,12 +36,24 @@ function NavContent() {
     }
     callLinks();
   }, [])
+
+  // const toggleTheme = () => {
+  //   if (theme === 'light') {
+  //     setTheme('dark')
+  //   } else if (theme === 'dark') {
+  //     setTheme('gag')
+  //   } else if (theme === 'gag') {
+  //     setTheme('light')
+  //   }
+  // }
   
   return (
     <div>
       <Link href='/' style={{ textDecoration: 'none' }}>
         <BrandText variant='h6' sx={{ fontSize: 60 }}>CODAC</BrandText>
       </Link>
+
+      <button onClick={toggleTheme.toggleThemes}>theme</button>
 
       <ul className='nav-list'>
 
@@ -47,8 +66,10 @@ function NavContent() {
         </li>
         
         <CollapsibleLi child={lms} />
-        
+
       </ul>
+
+
 
     </div>
   )
