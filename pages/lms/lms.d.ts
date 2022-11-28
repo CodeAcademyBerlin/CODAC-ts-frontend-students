@@ -1,10 +1,10 @@
-export interface LMSPage {
+export interface LinkSingle {
     path: string,
     page: string[],
     title: string,
-    children: []
+    children: Links
 }
-export type LMSPages = LMSPage[]
+export type Links = LinkSingle[]
 
 export interface PageData {
     access: string,

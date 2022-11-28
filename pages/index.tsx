@@ -11,15 +11,13 @@ import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
 import FooterIllustrations from '../componentsDemo/pages/misc/FooterIllustrations'
-import BlankLayout from '../@core/layouts/BlankLayout'
+import BlankLayout from '../layouts/BlankLayout'
 import { BrandText } from '../components/BrandStyle'
 import { TronGrid, TronGridWrapper } from '../components/TronGridPlane'
 
 
 
 // ** Styled Components
-
-
 const LinkStyled = styled(Link)(({ theme }) => ({
   fontSize: '0.875rem',
   textDecoration: 'none',
