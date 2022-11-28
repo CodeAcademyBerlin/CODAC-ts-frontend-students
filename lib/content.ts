@@ -7,7 +7,7 @@ import { LinkSingle, Links } from '../pages/lms/lms';
 
 
 
-const contentDirectory = path.join(process.cwd(), 'content');
+const contentDirectory = path.join(process.cwd(), 'webTest'); //replace by "content"
 interface Paths { params: { page: string[] } };
 
 
@@ -42,7 +42,7 @@ export async function getPaths() {
     const files = fs.readdirSync(dir);
     files.map((file) => {
       const fullDir = path.join(dir, file);
-      const dirArray = fullDir.slice(fullDir.indexOf("content/web") + 8).replace(".md", '').split("\\")
+      const dirArray = fullDir.slice(fullDir.indexOf("webTest") + 8).replace(".md", '').split("\\")
       if ((path.extname(file) === ".md") && (!file.includes("guidelines"))) {
         paths.push({
           params: {
@@ -57,7 +57,7 @@ export async function getPaths() {
             children: []
           })
         }
-        
+
       } else {
         const isDir = (fs.statSync(fullDir)).isDirectory();
         if (isDir) {
@@ -71,7 +71,7 @@ export async function getPaths() {
   return { paths: paths, links: links }
 }
 
-const displayNicely = (string:string) => {
+const displayNicely = (string: string) => {
   let noHyphens = string.replaceAll("-", " ");
   let result = "";
   for (let i = 0; i < noHyphens.length; i++) {
@@ -84,7 +84,7 @@ const displayNicely = (string:string) => {
   return result;
 }
 
-export const buildNestedPages = async() => {
+export const buildNestedPages = async () => {
   const { links } = await getPaths();
   const result = [];
   let i = links.length;
