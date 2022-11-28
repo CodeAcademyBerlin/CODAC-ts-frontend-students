@@ -16,8 +16,8 @@ import dayjs from "dayjs";
 interface Data {
   map(arg0: (jobField: any, i: any) => JSX.Element): React.ReactNode;
   data?: Object;
-  push?: any;
-  includes: Array | undefined;
+  push: any;
+  includes: any;
 }
 
 type index = number;
@@ -80,7 +80,7 @@ const jobs = ({
 
             {allJobs &&
               allJobs.map((jobEntity: JobPostEntity, i: index) => {
-                if (!uniqueFields.includes(jobEntity.attributes?.fileld)) {
+                if (!uniqueFields?.includes(jobEntity.attributes?.fileld)) {
                   uniqueFields.push(jobEntity.attributes?.fileld);
                 }
               })}
@@ -113,13 +113,7 @@ const jobs = ({
         {data &&
           result.map((jobEntity: JobPostEntity, i: index) => (
             <Grid item xs={12} sm={6} md={4} key={i}>
-              {jobEntity.attributes && (
-                <JobsCard
-                  job={jobEntity.attributes}
-                  jobEntity={jobEntity}
-                  data={data}
-                />
-              )}
+              {jobEntity.attributes && <JobsCard job={jobEntity.attributes} />}
             </Grid>
           ))}
       </Grid>

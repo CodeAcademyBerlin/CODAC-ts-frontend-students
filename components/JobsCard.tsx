@@ -13,17 +13,8 @@ import React, { useEffect, useState } from "react";
 import { JobPost, JobPostEntity } from "../graphql/_generated_";
 import Link from "next/link";
 import { useTheme } from "@mui/system";
-import { DELETE_JOBS } from "../graphql/queries";
 
-function JobsCard({
-  job,
-  jobEntity,
-  data,
-}: {
-  job: JobPost;
-  jobEntity: JobPostEntity;
-  data: JobPostEntity;
-}) {
+function JobsCard({ job }: { job: JobPost }) {
   const theme = useTheme();
   const [collapse, setCollapse] = useState<boolean>(false);
   const handleClick = () => {
@@ -43,53 +34,15 @@ function JobsCard({
     year: "2-digit",
   });
 
-  // const outdated = [];
   function getNumberOfDays(date: JobPost["createdAt"]) {
     const date1 = new Date(date);
     const date2 = new Date();
     const oneDay = 1000 * 60 * 60 * 24;
     const diffInTime = date2.getTime() - date1.getTime();
     const diffInDays = Math.round(diffInTime / oneDay);
-    // if (diffInDays > 90) {
-    //   outdated.push(jobEntity.id);
-    // }
+
     return diffInDays;
   }
-
-  // const deleteOldJobs = async () => {
-  //   if (outdated.includes(jobEntity.id)) {
-  //     // const { loading, error, data } = useQuery(DELETE_JOBS);
-  //     let myHeaders = new Headers();
-  //     myHeaders.append("Content-Type", "application/json");
-
-  //     try {
-  //       let graphql = JSON.stringify({
-  //         query: `mutation deleteJob {\n    deleteJobPost(id: ${jobEntity.id}){\n        data{\n            id\n            attributes{\n                company\n                position\n            }\n        }\n    }\n}`,
-  //       });
-  //       let requestOptions = {
-  //         method: "POST",
-  //         headers: myHeaders,
-  //         body: graphql,
-  //         redirect: "follow",
-  //       };
-  //       const response = await fetch(
-  //         "https://codac-364707.ey.r.appspot.com/graphql",
-  //         requestOptions
-  //       );
-  //       const result: Data = await response.json();
-  //       console.log("response", response);
-  //       console.log("response", result);
-  //       // response ? setReload(false) : "";
-  //       // result ? setDel(!del) : "";
-  //       // console.log("SECONDDEL", del);
-  //       // setDel(true);
-  //     } catch (error) {
-  //       console.log("ERROR", error);
-  //     }
-  //   } else {
-  //     // setReload(false);
-  //   }
-  // };
 
   useEffect(() => {
     getNumberOfDays(date);
