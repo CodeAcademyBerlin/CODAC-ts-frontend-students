@@ -65,13 +65,20 @@ query filterStudentByUserId($userId: ID) {
                                         attributes {
                                             firstname
                                             lastname
+                                            main_course {
+                                                data {
+                                                    attributes {
+                                                        name
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                    courses {
+                    main_course {
                         data {
                             attributes
                             {

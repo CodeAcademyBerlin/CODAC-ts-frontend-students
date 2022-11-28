@@ -1,14 +1,15 @@
 import {
   Avatar,
-  Badge,
   Box,
   Card,
-  CardHeader,
   CardMedia,
   Chip,
   Divider,
   List,
   ListItem,
+  ListItemIcon,
+  ListItemText,
+  Stack,
   Tooltip,
   Typography,
   useTheme,
@@ -28,6 +29,10 @@ import Collapse from "@mui/material/Collapse";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import ChevronDoubleDown from "mdi-material-ui/ChevronDoubleDown";
 import AccountGroup from "mdi-material-ui/AccountGroup";
+import SpaceInvaders from "mdi-material-ui/SpaceInvaders";
+import DatabaseSearch from "mdi-material-ui/DatabaseSearch";
+import CodeBraces from "mdi-material-ui/CodeBraces";
+import dayjs from "dayjs";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -55,23 +60,47 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
   return (
     <Card
       sx={{
-        maxWidth: 285,
+        maxWidth: "18rem",
         borderRadius: theme.shape.borderRadius,
         borderStyle: "solid",
         borderWidth: 2,
         borderColor: theme.palette.background,
         p: [1],
+        pb: [2],
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          m: [2],
+          alignItems: "flex-start",
+          m: [0.5],
         }}
       >
-        <CardHeader title={cohort.name} />
+        <Box px={3} py={2}>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <AccountGroup />
+            <Typography
+              sx={{
+                fontStyle: theme.typography.subtitle2,
+                fontVariant: "all-small-caps",
+              }}
+            >
+              Your Cohort:
+            </Typography>
+          </Stack>
+
+          <Typography
+            variant="h6"
+            sx={{
+              fontFamily: theme.typography.fontFamily,
+              fontWeight: theme.typography.fontWeightMedium,
+            }}
+          >
+            {cohort.name}
+          </Typography>
+        </Box>
+
         <CardMedia
           component="img"
           image="https://cdn.drawception.com/images/panels/2015/3-10/3hPfz2CF7d-8.png"
@@ -80,8 +109,8 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
           }}
         />
       </Box>
-      <Divider />
-      <CardActions>
+      <Divider sx={{ backgroundColor: theme.palette.common.black }} />
+      <CardActions sx={{ py: 0, mb: 0 }}>
         <Tooltip
           title="Cohort size"
           TransitionComponent={Zoom}
@@ -89,7 +118,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
           arrow
         >
           <Chip
-            icon={<AccountGroup />}
+            icon={<SpaceInvaders />}
             sx={{ p: 1, fontWeight: theme.typography.fontWeightMedium }}
             color="primary"
             label={cohort.students?.data?.length}
@@ -102,7 +131,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
           arrow
         >
           <Chip
-            label={cohort.start_date}
+            label={dayjs(cohort.start_date).format("DD.MM.YYYY")}
             sx={{
               fontWeight: theme.typography.fontWeightMedium,
             }}
@@ -121,22 +150,77 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <List>
+          <Divider textAlign="center">
+            <Typography
+              sx={{
+                fontVariant: "all-small-caps",
+                fontWeight: theme.typography.fontWeightBold,
+                fontSize: "1.15rem",
+              }}
+            >
+              Cohort Members
+            </Typography>
+          </Divider>
+          <List dense={true}>
             {cohort.students?.data.map((student) => {
               return (
-                <ListItem>
-                  <Chip
-                    avatar={
-                      <Avatar>
-                        {student.attributes?.firstname?.charAt(0)}
-                        {student.attributes?.lastname?.charAt(0)}
-                      </Avatar>
-                    }
-                    label={student.attributes?.firstname}
-                    variant="outlined"
-                    sx={{ m: 1 }}
-                  />
-                </ListItem>
+                <>
+                  <ListItem>
+                    <Avatar
+                      sx={{
+                        fontWeight: theme.typography.fontWeightBold,
+                        fontSize: 15,
+                        color: theme.palette.common.white,
+                        backgroundColor: theme.palette.primary.light,
+                        mr: 1.5,
+                      }}
+                    >
+                      {student.attributes?.firstname?.charAt(0)}
+                      {student.attributes?.lastname?.charAt(0)}
+                    </Avatar>
+                    <ListItemText>
+                      {student.attributes?.firstname}{" "}
+                      {student.attributes?.lastname}
+                    </ListItemText>
+                    <ListItemIcon>
+                      {student.attributes?.main_course?.data?.attributes
+                        ?.name === "data3" ? (
+                        <Tooltip
+                          arrow
+                          title="Data Science"
+                          TransitionComponent={Zoom}
+                          placement="top"
+                        >
+                          <DatabaseSearch
+                            sx={{
+                              height: 20,
+                              color: theme.palette.secondary.main,
+                            }}
+                          />
+                        </Tooltip>
+                      ) : (
+                        //TODO: Update course name
+                        student.attributes?.main_course?.data?.attributes
+                          ?.name === "webdev" && (
+                          <Tooltip
+                            arrow
+                            title="Web Development"
+                            TransitionComponent={Zoom}
+                            placement="top"
+                          >
+                            <CodeBraces
+                              sx={{
+                                height: 20,
+                                color: theme.palette.primary.main,
+                              }}
+                            />
+                          </Tooltip>
+                        )
+                      )}
+                    </ListItemIcon>
+                  </ListItem>
+                  <Divider />
+                </>
               );
             })}
           </List>

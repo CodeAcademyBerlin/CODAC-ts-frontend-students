@@ -21,9 +21,22 @@ const Dashboard = ({
     <ApexChartWrapper>
       <Grid container spacing={6}>
         <Grid item xs={12} md={8}>
-          <Typography sx={{ fontStyle: theme.typography.h5 }}>
-            Welcome {myStudent.firstname}, Member of{" "}
-            {myStudent.cohort?.data?.attributes?.name}
+          <Typography
+            sx={{
+              fontStyle: theme.typography.h4,
+              fontWeight: theme.typography.fontWeightBold,
+              fontFamily: theme.typography.fontFamily,
+            }}
+          >
+            Welcome {myStudent.firstname}, future{" "}
+            {myStudent.main_course?.data?.attributes?.name === "data3" &&
+              "Data Scientist"}
+            {/* //TODO: Update to final course names */}
+            {myStudent.main_course?.data?.attributes?.name === "webdev" &&
+              "Web Developer"}{" "}
+            <span role="img" aria-label="rocket">
+              🚀
+            </span>
           </Typography>
           <ProgressBar student={myStudent} />
           <CohortCard cohort={myStudent.cohort?.data?.attributes} />
