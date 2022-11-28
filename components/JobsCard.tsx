@@ -10,7 +10,7 @@ import CardActions from "@mui/material/CardActions";
 import ChevronUp from "mdi-material-ui/ChevronUp";
 import ChevronDown from "mdi-material-ui/ChevronDown";
 import React, { useEffect, useState } from "react";
-import { JobPost, JobPostEntity } from "../graphql/_generated_";
+import { JobPost } from "../graphql/_generated_";
 import Link from "next/link";
 import { useTheme } from "@mui/system";
 
