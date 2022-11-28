@@ -7,7 +7,7 @@ import { LinkSingle, Links } from '../pages/lms/lms';
 
 
 
-const contentDirectory = path.join(process.cwd(), 'webTest'); //replace by "content"
+const contentDirectory = path.join(process.cwd(), 'content');
 interface Paths { params: { page: string[] } };
 
 
@@ -34,15 +34,17 @@ const buildImgUrl = (markdownBody: string, serverUrl: string) => {
   return markdownBody.replace(/staticAsset\//ig, serverUrl + "/assets/")
 };
 
-export async function getPaths() {
+export async function getPaths(subDirPath?: string) {
   const paths: Array<Paths> = [];
   const links: Links = [];
+  const directory = subDirPath ? path.join(contentDirectory, subDirPath) : contentDirectory;
 
   const getPathsList = (dir: string) => {
     const files = fs.readdirSync(dir);
     files.map((file) => {
       const fullDir = path.join(dir, file);
-      const dirArray = fullDir.slice(fullDir.indexOf("webTest") + 8).replace(".md", '').split("\\")
+      const dirArray = fullDir.split(subDirPath || "content")[1].replace(".md", '').split("\\").filter(e => e !== "")
+      // const dirArray = fullDir.slice(fullDir.indexOf("content") + 8).replace(".md", '').split("\\")
       if ((path.extname(file) === ".md") && (!file.includes("guidelines"))) {
         paths.push({
           params: {
@@ -67,7 +69,7 @@ export async function getPaths() {
     }).filter(Boolean);
   }
 
-  getPathsList(contentDirectory);
+  getPathsList(directory);
   return { paths: paths, links: links }
 }
 
