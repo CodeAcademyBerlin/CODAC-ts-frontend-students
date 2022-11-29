@@ -8,10 +8,9 @@ import { LinkSingle } from '../../../pages/lms/lms';
 type Props = {
   handleDrawerToggle: () => void
   open: boolean
-  lmsArray: LinkSingle[]
 }
 
-function LeftNavBar({ handleDrawerToggle, open, lmsArray }: Props) {
+function LeftNavBar({ handleDrawerToggle, open }: Props) {
 
   const drawerWidth = 240;
 
@@ -40,7 +39,7 @@ function LeftNavBar({ handleDrawerToggle, open, lmsArray }: Props) {
           <ArrowLeftThick />
         </CloseDrawer>
         <br />
-        <NavContent lmsArray={lmsArray} />
+        <NavContent />
       </Drawer>
       <Drawer
         variant="permanent"
@@ -50,7 +49,7 @@ function LeftNavBar({ handleDrawerToggle, open, lmsArray }: Props) {
         }}
         open
       >
-        <NavContent lmsArray={lmsArray} />
+        <NavContent />
       </Drawer>
     </>
   )

@@ -31,13 +31,14 @@ const lms = ({ pageData }: { pageData: PageData }) => {
 }
 
 export async function getStaticProps({ params }: { params: { page: string[] } }) {
-  const pageData = await getPage("web/" + params.page.join("/"));
+  const pageData = await getPage(params.page.length > 1 ? "web/" + params.page.join("/") : "/web");
   return { props: { pageData } };
 }
 
 export async function getStaticPaths() {
   //maps 'content' folder and creates a route for every .md file
   const { paths } = await getPaths("web");
+
   return {
     paths,
     fallback: false,

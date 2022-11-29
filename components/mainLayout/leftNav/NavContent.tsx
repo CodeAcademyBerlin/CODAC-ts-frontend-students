@@ -52,20 +52,16 @@ export const NavLiItem = styled('li')`
   margin-bottom: 0.5em;
 `
 
-function NavContent({ lmsArray }: { lmsArray: LinkSingle[] }) {
+function NavContent() {
 
   const router = useRouter();
   // const theme = useTheme();
 
+  const { lms } = useLmsNavigation()
 
 
 
-  const lms: LinkSingle = {
-    page: ['welcome'],
-    path: 'welcome',
-    title: 'LMS',
-    children: lmsArray
-  }
+
 
 
 
@@ -85,7 +81,7 @@ function NavContent({ lmsArray }: { lmsArray: LinkSingle[] }) {
           <Link className={isNavLinkActive('/jobs', router.asPath) ? 'active' : ''} href={'/jobs'}>Jobs</Link>
         </NavLiItem>
 
-        {lmsArray && <CollapsibleLi child={lms} />}
+        {lms && <CollapsibleLi child={lms} />}
 
       </OuterList>
 

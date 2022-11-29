@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import lmsLinks from '../pages/api/lms-links';
+import { LinkSingle } from '../pages/lms/lms';
 
 
 const getLinks = async () => {
@@ -11,10 +12,19 @@ const getLinks = async () => {
 
 
 export default function useLmsNavigation() {
-    const [lmsArray, setLmsArray] = useState([]);
+    const [lmsArray, setLmsArray] = useState<LinkSingle[]>([]);
+    const [lms, setLms] = useState<LinkSingle>();
+
 
     async function callLinks() {
         const links = await getLinks();
+        const lms: LinkSingle = {
+            page: ['welcome'],
+            path: 'welcome',
+            title: 'LMS',
+            children: links
+        }
+        lms && setLms(lms)
         setLmsArray(links);
     }
 
@@ -22,6 +32,5 @@ export default function useLmsNavigation() {
 
         callLinks();
     }, [])
-    console.log('lmsArray', lmsArray)
-    return { lmsArray };
+    return { lmsArray, lms };
 }

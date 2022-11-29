@@ -31,7 +31,7 @@ const lms = ({ pageData }: { pageData: PageData }) => {
 }
 
 export async function getStaticProps({ params }: { params: { page: string[] } }) {
-  const pageData = await getPage("career/" + params.page.join("/"));
+  const pageData = await getPage(params.page.length > 1 ? "career/" + params.page.join("/") : "/career");
   return { props: { pageData } };
 }
 

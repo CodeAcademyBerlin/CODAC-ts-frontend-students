@@ -4,10 +4,9 @@ import LeftNavBar from '../components/mainLayout/leftNav/LeftNavBar'
 import Head from 'next/head';
 import Footer from '../components/mainLayout/Footer';
 import Header from '../components/mainLayout/Header';
-import { LinkSingle } from '../pages/lms/lms';
 
 
-const MainLayout = ({ children, lmsArray }: { children: ReactNode, lmsArray: LinkSingle[] }) => {
+const MainLayout = ({ children }: { children: ReactNode }) => {
 
   const [open, setOpen] = useState(false);
 
@@ -30,7 +29,7 @@ const MainLayout = ({ children, lmsArray }: { children: ReactNode, lmsArray: Lin
 
   return (
     <>
-      <LeftNavBar lmsArray={lmsArray} handleDrawerToggle={handleDrawerToggle} open={open} />
+      <LeftNavBar handleDrawerToggle={handleDrawerToggle} open={open} />
       <Container>
         <Header handleDrawerToggle={handleDrawerToggle} />
         <section style={{ padding: '1em', marginBottom: '2em' }}>

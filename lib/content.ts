@@ -39,6 +39,13 @@ export async function getPaths(subDirPath?: string) {
   const links: Links = [];
   const directory = subDirPath ? path.join(contentDirectory, subDirPath) : contentDirectory;
 
+  if (subDirPath) {
+    paths.push({
+      params: {
+        page: [subDirPath]
+      },
+    });
+  }
   const getPathsList = (dir: string) => {
     const files = fs.readdirSync(dir);
     files.map((file) => {
