@@ -58,175 +58,196 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
   };
   console.log(cohort);
   return (
-    <Card
-      sx={{
-        maxWidth: "18rem",
-        borderRadius: theme.shape.borderRadius,
-        borderStyle: "solid",
-        borderWidth: 2,
-        borderColor: theme.palette.background,
-        p: [1],
-        pb: [2],
-      }}
-    >
-      <Box
+    cohort && (
+      <Card
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          m: [0.5],
+          maxWidth: "18rem",
+          borderRadius: 3,
+          borderStyle: "solid",
+          borderWidth: 2,
+          borderColor: theme.palette.background,
+          pt: 1,
+          pb: 2,
         }}
       >
-        <Box px={3} py={2}>
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <AccountGroup />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            mx: 0,
+            pb: 2,
+          }}
+        >
+          <Box px={3} py={2}>
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <AccountGroup />
+              <Typography
+                sx={{
+                  fontStyle: theme.typography.subtitle2,
+                  fontVariant: "all-small-caps",
+                }}
+              >
+                Your Cohort:
+              </Typography>
+            </Stack>
+
             <Typography
+              variant="h6"
               sx={{
-                fontStyle: theme.typography.subtitle2,
-                fontVariant: "all-small-caps",
+                fontFamily: theme.typography.fontFamily,
+                fontWeight: theme.typography.fontWeightMedium,
               }}
             >
-              Your Cohort:
+              {cohort.name}
             </Typography>
-          </Stack>
+          </Box>
 
-          <Typography
-            variant="h6"
+          <CardMedia
+            component="img"
+            image="https://cdn.drawception.com/images/panels/2015/3-10/3hPfz2CF7d-8.png"
             sx={{
-              fontFamily: theme.typography.fontFamily,
-              fontWeight: theme.typography.fontWeightMedium,
+              borderRadius: 0,
+              borderStyle: "solid none",
+              borderWidth: 2,
             }}
-          >
-            {cohort.name}
-          </Typography>
+          />
         </Box>
 
-        <CardMedia
-          component="img"
-          image="https://cdn.drawception.com/images/panels/2015/3-10/3hPfz2CF7d-8.png"
+        <CardActions
           sx={{
-            borderRadius: 1,
+            py: 0,
+            mb: 0,
           }}
-        />
-      </Box>
-      <Divider sx={{ backgroundColor: theme.palette.common.black }} />
-      <CardActions sx={{ py: 0, mb: 0 }}>
-        <Tooltip
-          title="Cohort size"
-          TransitionComponent={Zoom}
-          placement="top"
-          arrow
         >
-          <Chip
-            icon={<SpaceInvaders />}
-            sx={{ p: 1, fontWeight: theme.typography.fontWeightMedium }}
-            color="primary"
-            label={cohort.students?.data?.length}
-          />
-        </Tooltip>
-        <Tooltip
-          title="Starting date of your cohort"
-          TransitionComponent={Zoom}
-          placement="top"
-          arrow
-        >
-          <Chip
-            label={dayjs(cohort.start_date).format("DD.MM.YYYY")}
-            sx={{
-              fontWeight: theme.typography.fontWeightMedium,
-            }}
-            color="primary"
-          />
-        </Tooltip>
+          <Tooltip
+            title="Cohort size"
+            TransitionComponent={Zoom}
+            placement="top"
+            arrow
+          >
+            <Chip
+              icon={<SpaceInvaders />}
+              sx={{ p: 1, fontWeight: theme.typography.fontWeightMedium }}
+              color="primary"
+              label={cohort.students?.data?.length}
+            />
+          </Tooltip>
 
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ChevronDoubleDown color="primary" />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Divider textAlign="center">
-            <Typography
+          <Tooltip
+            title="Starting date of your cohort"
+            TransitionComponent={Zoom}
+            placement="top"
+            arrow
+          >
+            <Chip
+              label={
+                cohort.start_date
+                  ? dayjs(cohort.start_date).format("DD.MM.YYYY")
+                  : null
+              }
               sx={{
-                fontVariant: "all-small-caps",
-                fontWeight: theme.typography.fontWeightBold,
-                fontSize: "1.15rem",
+                fontWeight: theme.typography.fontWeightMedium,
               }}
-            >
-              Cohort Members
-            </Typography>
-          </Divider>
-          <List dense={true}>
-            {cohort.students?.data.map((student) => {
-              return (
-                <>
-                  <ListItem>
-                    <Avatar
-                      sx={{
-                        fontWeight: theme.typography.fontWeightBold,
-                        fontSize: 15,
-                        color: theme.palette.common.white,
-                        backgroundColor: theme.palette.primary.light,
-                        mr: 1.5,
-                      }}
-                    >
-                      {student.attributes?.firstname?.charAt(0)}
-                      {student.attributes?.lastname?.charAt(0)}
-                    </Avatar>
-                    <ListItemText>
-                      {student.attributes?.firstname}{" "}
-                      {student.attributes?.lastname}
-                    </ListItemText>
-                    <ListItemIcon>
-                      {student.attributes?.main_course?.data?.attributes
-                        ?.name === "data3" ? (
-                        <Tooltip
-                          arrow
-                          title="Data Science"
-                          TransitionComponent={Zoom}
-                          placement="top"
+              color="primary"
+            />
+          </Tooltip>
+
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ChevronDoubleDown color="primary" />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Divider textAlign="center">
+              <Typography
+                sx={{
+                  fontVariant: "all-small-caps",
+                  fontWeight: theme.typography.fontWeightBold,
+                  fontSize: "1.15rem",
+                }}
+              >
+                Cohort Members
+              </Typography>
+            </Divider>
+            <List dense={true}>
+              {cohort.students?.data.map((student) => {
+                return (
+                  student && (
+                    <>
+                      <ListItem>
+                        <Avatar
+                          sx={{
+                            fontWeight: theme.typography.fontWeightBold,
+                            fontSize: 15,
+                            color: theme.palette.common.white,
+                            backgroundColor: theme.palette.primary.light,
+                            mr: 1.5,
+                          }}
                         >
-                          <DatabaseSearch
-                            sx={{
-                              height: 20,
-                              color: theme.palette.secondary.main,
-                            }}
-                          />
-                        </Tooltip>
-                      ) : (
-                        //TODO: Update course name
-                        student.attributes?.main_course?.data?.attributes
-                          ?.name === "webdev" && (
-                          <Tooltip
-                            arrow
-                            title="Web Development"
-                            TransitionComponent={Zoom}
-                            placement="top"
-                          >
-                            <CodeBraces
-                              sx={{
-                                height: 20,
-                                color: theme.palette.primary.main,
-                              }}
-                            />
-                          </Tooltip>
-                        )
-                      )}
-                    </ListItemIcon>
-                  </ListItem>
-                  <Divider />
-                </>
-              );
-            })}
-          </List>
-        </CardContent>
-      </Collapse>
-    </Card>
+                          {student.attributes?.firstname?.charAt(0)}
+                          {student.attributes?.lastname?.charAt(0)}
+                        </Avatar>
+                        <ListItemText>
+                          {student.attributes?.firstname}{" "}
+                          {student.attributes?.lastname}
+                        </ListItemText>
+                        {student.attributes?.main_course?.data?.attributes
+                          ?.name && (
+                          <ListItemIcon>
+                            {student.attributes?.main_course?.data?.attributes
+                              ?.name === "data3" && (
+                              <Tooltip
+                                arrow
+                                title="Data Science"
+                                TransitionComponent={Zoom}
+                                placement="top"
+                              >
+                                <DatabaseSearch
+                                  sx={{
+                                    height: 20,
+                                    color: theme.palette.secondary.main,
+                                  }}
+                                />
+                              </Tooltip>
+                            )}
+                            {
+                              //TODO: Update course name
+                              student.attributes?.main_course?.data?.attributes
+                                ?.name === "webdev" && (
+                                <Tooltip
+                                  arrow
+                                  title="Web Development"
+                                  TransitionComponent={Zoom}
+                                  placement="top"
+                                >
+                                  <CodeBraces
+                                    sx={{
+                                      height: 20,
+                                      color: theme.palette.primary.main,
+                                    }}
+                                  />
+                                </Tooltip>
+                              )
+                            }
+                          </ListItemIcon>
+                        )}
+                      </ListItem>
+                      <Divider />
+                    </>
+                  )
+                );
+              })}
+            </List>
+          </CardContent>
+        </Collapse>
+      </Card>
+    )
   );
 };
 

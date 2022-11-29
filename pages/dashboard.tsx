@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import ApexChartWrapper from "../@core/styles/libs/react-apexcharts";
-import { Typography, useTheme } from "@mui/material";
+import { Divider, Typography, useTheme } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { getToken, initializeApollo } from "../configs/apollo";
 import { FIND_STUDENT_BY_USER_ID } from "../graphql/queries";
@@ -8,7 +8,8 @@ import { Student } from "../graphql/_generated_";
 import jwt_decode, { JwtPayload } from "jwt-decode";
 import ProgressBar from "../components/ProgressBar";
 import CohortCard from "../components/CohortCard";
-// TBD: useFetch correctly + populate user and student
+
+// TBD: Handle hydration errors
 
 const Dashboard = ({
   data,
@@ -17,34 +18,41 @@ const Dashboard = ({
   const theme = useTheme();
   const myStudent: Student = data.students.data[0].attributes;
   console.log("Data received in Dashboard:", myStudent);
-  return myStudent ? (
-    <ApexChartWrapper>
-      <Grid container spacing={6}>
-        <Grid item xs={12} md={8}>
-          <Typography
-            sx={{
-              fontStyle: theme.typography.h4,
-              fontWeight: theme.typography.fontWeightBold,
-              fontFamily: theme.typography.fontFamily,
-            }}
-          >
-            Welcome {myStudent.firstname}, future{" "}
-            {myStudent.main_course?.data?.attributes?.name === "data3" &&
-              "Data Scientist"}
-            {/* //TODO: Update to final course names */}
-            {myStudent.main_course?.data?.attributes?.name === "webdev" &&
-              "Web Developer"}{" "}
-            <span role="img" aria-label="rocket">
-              🚀
-            </span>
-          </Typography>
-          <ProgressBar student={myStudent} />
-          <CohortCard cohort={myStudent.cohort?.data?.attributes} />
+  if (myStudent)
+    return (
+      <ApexChartWrapper>
+        <Grid container spacing={6}>
+          <Grid item>
+            {myStudent.main_course?.data?.attributes?.name && (
+              <Typography
+                sx={{
+                  fontStyle: theme.typography.h4,
+                  fontWeight: theme.typography.fontWeightBold,
+                  fontFamily: theme.typography.fontFamily,
+                }}
+              >
+                Welcome {myStudent.firstname}, future{" "}
+                {myStudent.main_course?.data?.attributes?.name === "data3" &&
+                  "Data Scientist"}
+                {myStudent.main_course?.data?.attributes?.name === "webdev" &&
+                  "Web Developer"}{" "}
+                <span role="img" aria-label="rocket">
+                  🚀
+                </span>
+              </Typography>
+            )}
+          </Grid>
+          <Grid item xs={12} md={8} lg={6}>
+            <ProgressBar student={myStudent} />
+          </Grid>
+          <Grid item xs={12} md={8} lg={8}>
+            <CohortCard cohort={myStudent.cohort?.data?.attributes} />
+          </Grid>
+
           {/* {user.role.name === "Student" && <ProgressBar />} */}
         </Grid>
-      </Grid>
-    </ApexChartWrapper>
-  ) : null;
+      </ApexChartWrapper>
+    );
 };
 
 export default Dashboard;
