@@ -43,8 +43,8 @@ export async function getPaths(subDirPath?: string) {
     const files = fs.readdirSync(dir);
     files.map((file) => {
       const fullDir = path.join(dir, file);
-      const dirArray = fullDir.split(subDirPath || "content")[1].replace(".md", '').split("\\").filter(e => e !== "")
-      // const dirArray = fullDir.slice(fullDir.indexOf("content") + 8).replace(".md", '').split("\\")
+      const dirArray = subDirPath ? fullDir.split(subDirPath)[1].replace(".md", '').split("\\").filter(e => e !== "")
+        : fullDir.slice(fullDir.indexOf("content") + 8).replace(".md", '').split("\\")
       if ((path.extname(file) === ".md") && (!file.includes("guidelines"))) {
         paths.push({
           params: {

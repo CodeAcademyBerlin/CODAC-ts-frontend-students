@@ -28,6 +28,7 @@ import MainLayout from '../layouts/MainLayout';
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { lightTheme, darkTheme, gagTheme } from '../configs/theme';
 import { ThemeContext } from '../contexts/themeContext';
+import useLmsNavigation from '../contexts/useLmsNavigation';
 
 // // ** Pace Loader
 // if (themeConfig.routingLoader) {
@@ -58,32 +59,33 @@ const clientSideEmotionCache = createEmotionCache();
 const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) => {
 
   const apolloClient = useApollo(pageProps);
+  const { lmsArray } = useLmsNavigation()
 
-  const getLayout = Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>)
+  const getLayout = Component.getLayout ?? ((page) => <MainLayout lmsArray={lmsArray}>{page}</MainLayout>)
 
   const [theme, setTheme] = useState(lightTheme);
   const changeTheme = useMemo(() => ({
-      toggleThemes: () => {
-        if (theme === lightTheme) {
-          setTheme(darkTheme);
-        } 
-        if (theme === darkTheme) {
-          setTheme(gagTheme);
-        } 
-        if (theme === gagTheme) {
-          setTheme(lightTheme)
-        }
-      },
-      setLight: () => {
-        setTheme(lightTheme);
-      },
-      setDark: () => {
+    toggleThemes: () => {
+      if (theme === lightTheme) {
         setTheme(darkTheme);
-      },
-      setGag: () => {
+      }
+      if (theme === darkTheme) {
         setTheme(gagTheme);
       }
-    }), [theme])
+      if (theme === gagTheme) {
+        setTheme(lightTheme)
+      }
+    },
+    setLight: () => {
+      setTheme(lightTheme);
+    },
+    setDark: () => {
+      setTheme(darkTheme);
+    },
+    setGag: () => {
+      setTheme(gagTheme);
+    }
+  }), [theme])
 
   // useEffect(() => {
   //   const getSession = async () => {
@@ -104,8 +106,8 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
-        <ThemeContext.Provider value={changeTheme}>
-          <CacheProvider value={emotionCache}>
+        <CacheProvider value={emotionCache}>
+          <ThemeContext.Provider value={changeTheme}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Head>
@@ -118,10 +120,10 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
                 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
                 <meta name='viewport' content='initial-scale=1, width=device-width' />
               </Head>
-              { getLayout(<Component { ...pageProps } />) }
+              {getLayout(<Component {...pageProps} />)}
             </ThemeProvider>
-          </CacheProvider>
-        </ThemeContext.Provider>
+          </ThemeContext.Provider>
+        </CacheProvider>
       </AuthProvider>
     </ApolloProvider>
   )

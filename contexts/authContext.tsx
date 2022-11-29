@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(initialAuth.user)
 
   useEffect(() => {
-    getSession()
+    // getSession()
   }, [])
 
 

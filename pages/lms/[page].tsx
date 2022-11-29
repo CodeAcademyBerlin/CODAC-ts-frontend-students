@@ -29,19 +29,21 @@ const lms = ({ pageData }: { pageData: PageData }) => {
   )
 }
 
-export async function getStaticProps({ params }: { params: { page: string[] } }) {
-  const pageData = await getPage("welcome");
+export async function getStaticProps({ params }: { params: { page: string } }) {
+  console.log('params', params)
+  const pageData = await getPage('/' + params.page);
   return { props: { pageData } };
 }
 
-// export async function getStaticPaths() {
-//   //maps 'content' folder and creates a route for every .md file
-//   const { paths } = await getPaths();
-//   paths.filter(path => path.params.page.includes("web"))
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
+export async function getStaticPaths() {
+  //maps 'content' folder and creates a route for every .md file
+  const lmsPages = ["welcome", "data", "web", "career"];
+  const paths = lmsPages.map(page => { return { params: { page } } })
+  console.log('paths', paths)
+  return {
+    paths,
+    fallback: false,
+  };
+}
 
 export default lms

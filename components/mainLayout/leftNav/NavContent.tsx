@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { isNavLinkActive } from '../../../lib/IsLinkActive';
 import { useTheme } from '@mui/material';
+import useLmsNavigation from '../../../contexts/useLmsNavigation';
 
 export const OuterList = styled('ul')`
   list-style: none;
@@ -51,12 +52,13 @@ export const NavLiItem = styled('li')`
   margin-bottom: 0.5em;
 `
 
-function NavContent() {
+function NavContent({ lmsArray }: { lmsArray: LinkSingle[] }) {
 
   const router = useRouter();
   // const theme = useTheme();
 
-  const [lmsArray, setLmsArray] = useState([]);
+
+
 
   const lms: LinkSingle = {
     page: ['welcome'],
@@ -65,19 +67,7 @@ function NavContent() {
     children: lmsArray
   }
 
-  const getLinks = async () => {
-    const response = await fetch('/api/lms-links');
-    const result = await response.json();
-    return result
-  }
 
-  useEffect(() => {
-    async function callLinks() {
-      const links = await getLinks();
-      setLmsArray(links);
-    }
-    callLinks();
-  }, [])
 
   return (
     <div>
@@ -95,7 +85,7 @@ function NavContent() {
           <Link className={isNavLinkActive('/jobs', router.asPath) ? 'active' : ''} href={'/jobs'}>Jobs</Link>
         </NavLiItem>
 
-        <CollapsibleLi child={lms} />
+        {lmsArray && <CollapsibleLi child={lms} />}
 
       </OuterList>
 

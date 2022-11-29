@@ -3,13 +3,15 @@ import Drawer from '@mui/material/Drawer';
 import NavContent from './NavContent';
 import { styled } from '@mui/material/styles'
 import { ArrowLeftThick } from 'mdi-material-ui';
+import { LinkSingle } from '../../../pages/lms/lms';
 
 type Props = {
   handleDrawerToggle: () => void
   open: boolean
+  lmsArray: LinkSingle[]
 }
 
-function LeftNavBar({ handleDrawerToggle, open }: Props) {
+function LeftNavBar({ handleDrawerToggle, open, lmsArray }: Props) {
 
   const drawerWidth = 240;
 
@@ -37,8 +39,8 @@ function LeftNavBar({ handleDrawerToggle, open }: Props) {
         <CloseDrawer onClick={handleDrawerToggle}>
           <ArrowLeftThick />
         </CloseDrawer>
-        <br/>
-        <NavContent />
+        <br />
+        <NavContent lmsArray={lmsArray} />
       </Drawer>
       <Drawer
         variant="permanent"
@@ -48,7 +50,7 @@ function LeftNavBar({ handleDrawerToggle, open }: Props) {
         }}
         open
       >
-        <NavContent />
+        <NavContent lmsArray={lmsArray} />
       </Drawer>
     </>
   )

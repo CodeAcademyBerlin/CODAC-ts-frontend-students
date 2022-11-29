@@ -9,7 +9,7 @@ const lmsLinks: NextApiHandler = async (req, res) => {
   } catch (err) {
     console.log("error: ", err);
   }
-  
+
 }
 
 export default lmsLinks
