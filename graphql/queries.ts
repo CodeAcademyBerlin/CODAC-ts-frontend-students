@@ -49,7 +49,7 @@ export const GET_JOBS = gql`
           url
           position
           company
-          fileld
+          field
           createdAt
           updatedAt
           description

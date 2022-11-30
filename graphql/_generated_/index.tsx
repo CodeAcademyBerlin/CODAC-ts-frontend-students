@@ -918,8 +918,9 @@ export enum Enum_Componentmetametadata_Twittercardtype {
   SummaryLargeImage = 'summary_large_image'
 }
 
-export enum Enum_Jobpost_Fileld {
+export enum Enum_Jobpost_Field {
   DataScience = 'Data_Science',
+  Other = 'Other',
   WebDevelopment = 'Web_Development'
 }
 
@@ -1038,7 +1039,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Achievement | Attendance | Cohort | CommentsComment | CommentsCommentReport | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentElementsFeature | ComponentElementsFeatureColumn | ComponentElementsFeatureRow | ComponentElementsFooterSection | ComponentElementsLogos | ComponentElementsNotificationBanner | ComponentElementsPlan | ComponentElementsTestimonial | ComponentHolidaysHolidays | ComponentHoursHours | ComponentLayoutFooter | ComponentLayoutNavbar | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentMetaMetadata | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsPricing | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | Mentor | Page | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Achievement | Attendance | Cohort | CommentsComment | CommentsCommentReport | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentElementsFeature | ComponentElementsFeatureColumn | ComponentElementsFeatureRow | ComponentElementsFooterSection | ComponentElementsLogos | ComponentElementsNotificationBanner | ComponentElementsPlan | ComponentElementsTestimonial | ComponentHolidaysHolidays | ComponentHoursHours | ComponentLayoutFooter | ComponentLayoutNavbar | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentMetaMetadata | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsPricing | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | Mentor | Page | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
 
 export type Holiday = {
   __typename?: 'Holiday';
@@ -1198,7 +1199,7 @@ export type JobPost = {
   company?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
-  fileld?: Maybe<Enum_Jobpost_Fileld>;
+  field?: Maybe<Enum_Jobpost_Field>;
   position?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -1227,7 +1228,7 @@ export type JobPostFiltersInput = {
   company?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
-  fileld?: InputMaybe<StringFilterInput>;
+  field?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<JobPostFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<JobPostFiltersInput>>>;
@@ -1240,7 +1241,7 @@ export type JobPostFiltersInput = {
 export type JobPostInput = {
   company?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
-  fileld?: InputMaybe<Enum_Jobpost_Fileld>;
+  field?: InputMaybe<Enum_Jobpost_Field>;
   position?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   url?: InputMaybe<Scalars['String']>;
@@ -1405,6 +1406,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  createVsBattle?: Maybe<VsBattleEntityResponse>;
   deleteAchievement?: Maybe<AchievementEntityResponse>;
   deleteAttendance?: Maybe<AttendanceEntityResponse>;
   deleteCohort?: Maybe<CohortEntityResponse>;
@@ -1424,6 +1426,7 @@ export type Mutation = {
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteVsBattle?: Maybe<VsBattleEntityResponse>;
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
   /** Request a reset password token */
@@ -1455,6 +1458,7 @@ export type Mutation = {
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  updateVsBattle?: Maybe<VsBattleEntityResponse>;
   upload: UploadFileEntityResponse;
 };
 
@@ -1559,6 +1563,11 @@ export type MutationCreateUsersPermissionsUserArgs = {
 };
 
 
+export type MutationCreateVsBattleArgs = {
+  data: VsBattleInput;
+};
+
+
 export type MutationDeleteAchievementArgs = {
   id: Scalars['ID'];
 };
@@ -1641,6 +1650,11 @@ export type MutationDeleteUsersPermissionsRoleArgs = {
 
 
 export type MutationDeleteUsersPermissionsUserArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteVsBattleArgs = {
   id: Scalars['ID'];
 };
 
@@ -1794,6 +1808,12 @@ export type MutationUpdateUsersPermissionsUserArgs = {
 };
 
 
+export type MutationUpdateVsBattleArgs = {
+  data: VsBattleInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUploadArgs = {
   field?: InputMaybe<Scalars['String']>;
   file: Scalars['Upload'];
@@ -1929,6 +1949,8 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+  vsBattle?: Maybe<VsBattleEntityResponse>;
+  vsBattles?: Maybe<VsBattleEntityResponseCollection>;
 };
 
 
@@ -2148,6 +2170,19 @@ export type QueryUsersPermissionsUserArgs = {
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryVsBattleArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryVsBattlesArgs = {
+  filters?: InputMaybe<VsBattleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2595,6 +2630,7 @@ export type UsersPermissionsUpdateRolePayload = {
 
 export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
+  avatar?: Maybe<Scalars['String']>;
   blocked?: Maybe<Scalars['Boolean']>;
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -2603,6 +2639,7 @@ export type UsersPermissionsUser = {
   role?: Maybe<UsersPermissionsRoleEntityResponse>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   username: Scalars['String'];
+  vs_battle?: Maybe<VsBattleEntityResponse>;
 };
 
 export type UsersPermissionsUserEntity = {
@@ -2624,6 +2661,7 @@ export type UsersPermissionsUserEntityResponseCollection = {
 
 export type UsersPermissionsUserFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  avatar?: InputMaybe<StringFilterInput>;
   blocked?: InputMaybe<BooleanFilterInput>;
   confirmationToken?: InputMaybe<StringFilterInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
@@ -2638,9 +2676,11 @@ export type UsersPermissionsUserFiltersInput = {
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   username?: InputMaybe<StringFilterInput>;
+  vs_battle?: InputMaybe<VsBattleFiltersInput>;
 };
 
 export type UsersPermissionsUserInput = {
+  avatar?: InputMaybe<Scalars['String']>;
   blocked?: InputMaybe<Scalars['Boolean']>;
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
@@ -2650,11 +2690,82 @@ export type UsersPermissionsUserInput = {
   resetPasswordToken?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Scalars['ID']>;
   username?: InputMaybe<Scalars['String']>;
+  vs_battle?: InputMaybe<Scalars['ID']>;
 };
 
 export type UsersPermissionsUserRelationResponseCollection = {
   __typename?: 'UsersPermissionsUserRelationResponseCollection';
   data: Array<UsersPermissionsUserEntity>;
+};
+
+export type VsBattle = {
+  __typename?: 'VsBattle';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  option1?: Maybe<Scalars['String']>;
+  option1voters?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+  option2?: Maybe<Scalars['String']>;
+  option2voters?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type VsBattleOption1votersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type VsBattleOption2votersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type VsBattleEntity = {
+  __typename?: 'VsBattleEntity';
+  attributes?: Maybe<VsBattle>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type VsBattleEntityResponse = {
+  __typename?: 'VsBattleEntityResponse';
+  data?: Maybe<VsBattleEntity>;
+};
+
+export type VsBattleEntityResponseCollection = {
+  __typename?: 'VsBattleEntityResponseCollection';
+  data: Array<VsBattleEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type VsBattleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<VsBattleFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<VsBattleFiltersInput>;
+  option1?: InputMaybe<StringFilterInput>;
+  option1voters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  option2?: InputMaybe<StringFilterInput>;
+  option2voters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<VsBattleFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type VsBattleInput = {
+  description?: InputMaybe<Scalars['String']>;
+  option1?: InputMaybe<Scalars['String']>;
+  option1voters?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  option2?: InputMaybe<Scalars['String']>;
+  option2voters?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type LoginMutationVariables = Exact<{
@@ -2680,7 +2791,7 @@ export type GetJobsQueryVariables = Exact<{
 }>;
 
 
-export type GetJobsQuery = { __typename?: 'Query', jobPosts?: { __typename?: 'JobPostEntityResponseCollection', data: Array<{ __typename?: 'JobPostEntity', attributes?: { __typename?: 'JobPost', url?: string | null, position?: string | null, company?: string | null, fileld?: Enum_Jobpost_Fileld | null, createdAt?: any | null, updatedAt?: any | null, description?: string | null } | null }> } | null };
+export type GetJobsQuery = { __typename?: 'Query', jobPosts?: { __typename?: 'JobPostEntityResponseCollection', data: Array<{ __typename?: 'JobPostEntity', attributes?: { __typename?: 'JobPost', url?: string | null, position?: string | null, company?: string | null, field?: Enum_Jobpost_Field | null, createdAt?: any | null, updatedAt?: any | null, description?: string | null } | null }> } | null };
 
 export type DeleteJobMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -2818,7 +2929,7 @@ export const GetJobsDocument = gql`
         url
         position
         company
-        fileld
+        field
         createdAt
         updatedAt
         description

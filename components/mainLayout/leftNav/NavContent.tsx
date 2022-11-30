@@ -55,7 +55,6 @@ function NavContent() {
 
   const router = useRouter();
   const theme = useTheme();
-  console.log(theme);
 
   const [lmsArray, setLmsArray] = useState([]);
 

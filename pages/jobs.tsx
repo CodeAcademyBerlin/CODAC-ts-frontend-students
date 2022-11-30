@@ -3,7 +3,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import JobsCard from "../components/JobsCard";
-import { JobPostEntity } from "../graphql/_generated_";
+import { GetJobsDocument, JobPostEntity } from "../graphql/_generated_";
 import * as React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -35,7 +35,7 @@ const jobs = ({
     const value = target.value;
     const result: Data = [];
     allJobs.map((jobEntity: JobPostEntity, i: index) => {
-      if (jobEntity.attributes?.fileld?.includes(value)) {
+      if (jobEntity.attributes?.field?.includes(value)) {
         result.push(jobEntity);
       }
     });
@@ -80,8 +80,8 @@ const jobs = ({
 
             {allJobs &&
               allJobs.map((jobEntity: JobPostEntity, i: index) => {
-                if (!uniqueFields?.includes(jobEntity.attributes?.fileld)) {
-                  uniqueFields.push(jobEntity.attributes?.fileld);
+                if (!uniqueFields?.includes(jobEntity.attributes?.field)) {
+                  uniqueFields.push(jobEntity.attributes?.field);
                 }
               })}
             {uniqueFields &&
@@ -129,7 +129,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const client = initializeApollo(null, ctx.req);
     const { data, error } = await client.query({
-      query: GET_JOBS,
+      query: GetJobsDocument,
       variables: { date: diff },
     });
     return {

@@ -118,7 +118,7 @@ function JobsCard({ job }: { job: JobPost }) {
             >
               {" "}
               <span className="boldText">Field:</span>{" "}
-              {job.fileld?.replace("_", " ")}
+              {job.field?.replace("_", " ")}
             </Typography>
             <Typography
               variant="subtitle2"
