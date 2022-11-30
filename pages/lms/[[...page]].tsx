@@ -38,7 +38,7 @@ export async function getStaticProps({ params }: { params: { page: string[] } })
 export async function getStaticPaths() {
   //maps 'content' folder and creates a route for every .md file
   const { paths } = lmspages;
-  const filter = paths.filter(path => path.params.page[0] !== "career")
+  const filter = paths.filter(path => ["welcome", "web"].includes(path.params.page[0]))
   // const { paths } = await getPaths();
 
   return {

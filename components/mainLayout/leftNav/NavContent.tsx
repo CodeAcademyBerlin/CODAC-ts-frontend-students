@@ -56,16 +56,13 @@ function NavContent() {
 
   const router = useRouter();
 
-  const [lmsArray, setLmsArray] = useState<LinkSingle[]>([]);
-
-
 
 
   const lms: LinkSingle = {
     page: ['welcome'],
     path: 'welcome',
     title: 'LMS',
-    children: lmslinks.filter(link => link.path !== "career")
+    children: lmslinks.filter(link => link.path === "web")
   }
 
 
