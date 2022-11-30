@@ -104,6 +104,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
+<<<<<<< HEAD
         <ThemeContext.Provider value={changeTheme}>
           <CacheProvider value={emotionCache}>
             <ThemeProvider theme={theme}>
@@ -122,9 +123,37 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
             </ThemeProvider>
           </CacheProvider>
         </ThemeContext.Provider>
+=======
+        <CacheProvider value={emotionCache}>
+          <Head>
+            <title>{`${themeConfig.templateName}`}</title>
+            <meta
+              name="Code Academy Berlin Community App"
+              content={`${themeConfig.templateName} – Code Academy Berlin Community App`}
+            />
+            <link rel="shortcut icon" href={favicon.src} />
+
+            <meta
+              name="viewport"
+              content="initial-scale=1, width=device-width"
+            />
+          </Head>
+          <SettingsProvider>
+            <SettingsConsumer>
+              {({ settings }) => {
+                return (
+                  <ThemeComponent settings={settings}>
+                    {getLayout(<Component {...pageProps} />)}
+                  </ThemeComponent>
+                );
+              }}
+            </SettingsConsumer>
+          </SettingsProvider>
+        </CacheProvider>
+>>>>>>> Jobpost
       </AuthProvider>
     </ApolloProvider>
-  )
-}
+  );
+};
 
-export default CodacApp
+export default CodacApp;
