@@ -65,7 +65,7 @@ function NavContent() {
     page: ['welcome'],
     path: 'welcome',
     title: 'LMS',
-    children: lmslinks
+    children: lmslinks.filter(link => link.path !== "career")
   }
 
 
