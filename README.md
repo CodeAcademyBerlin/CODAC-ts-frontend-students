@@ -80,3 +80,9 @@ https://towardsdatascience.com/updating-apolloclient-cache-and-re-rendering-data
 https://www.apollographql.com/blog/first-impressions-with-apollo-client-3-2ae2a069ab2f/        
 https://www.apollographql.com/docs/react/caching/cache-interaction/            
 https://www.apollographql.com/blog/first-impressions-with-apollo-client-3-2ae2a069ab2f/         
+
+
+### submodule deploy script authorize cmd:
+chmod u+x vercel-content-submodule.sh
+in a linux shell
+
