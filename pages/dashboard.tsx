@@ -9,74 +9,29 @@ import jwt_decode, { JwtPayload } from "jwt-decode";
 import ProgressBar from "../components/ProgressBar";
 import CohortCard from "../components/CohortCard";
 
-// TBD: Handle hydration errors
+// ** Icons Imports
+import Poll from "mdi-material-ui/Poll";
+import CurrencyUsd from "mdi-material-ui/CurrencyUsd";
+import HelpCircleOutline from "mdi-material-ui/HelpCircleOutline";
+import BriefcaseVariantOutline from "mdi-material-ui/BriefcaseVariantOutline";
+import { Trophy, Table } from "mdi-material-ui";
+import DepositWithdraw from "../componentsDemo/dashboard/DepositWithdraw";
+import SalesByCountries from "../componentsDemo/dashboard/SalesByCountries";
+import StatisticsCard from "../componentsDemo/dashboard/StatisticsCard";
+import TotalEarning from "../componentsDemo/dashboard/TotalEarning";
+import WeeklyOverview from "../componentsDemo/dashboard/WeeklyOverview";
+import CardStatisticsVerticalComponent from "../@core/components/card-statistics/card-stats-vertical";
 
-const Dashboard = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(data);
-  const theme = useTheme();
-  const myStudent: Student = data.students.data[0].attributes;
-  console.log("Data received in Dashboard:", myStudent);
-  if (myStudent)
-    return (
-      <ApexChartWrapper>
-        <Grid container spacing={6}>
-          <Grid item>
-            {myStudent.main_course?.data?.attributes?.name && (
-              <Typography
-                sx={{
-                  fontStyle: theme.typography.h4,
-                  fontWeight: theme.typography.fontWeightBold,
-                  fontFamily: theme.typography.fontFamily,
-                }}
-              >
-                Welcome {myStudent.firstname}, future{" "}
-                {myStudent.main_course?.data?.attributes?.name === "data3" &&
-                  "Data Scientist"}
-                {myStudent.main_course?.data?.attributes?.name === "webdev" &&
-                  "Web Developer"}{" "}
-                <span role="img" aria-label="rocket">
-                  🚀
-                </span>
-              </Typography>
-            )}
-          </Grid>
-          <Grid item xs={12} md={8} lg={6}>
-            <ProgressBar student={myStudent} />
-          </Grid>
-          <Grid item xs={12} md={8} lg={8}>
-            <CohortCard cohort={myStudent.cohort?.data?.attributes} />
-          </Grid>
-
-          {/* {user.role.name === "Student" && <ProgressBar />} */}
-        </Grid>
-      </ApexChartWrapper>
-    );
+const Dashboard = () => {
+  return (
+    <ApexChartWrapper>
+      <Grid container spacing={6}>
+        {/* <Grid item xs={12} md={8}>
+          <StatisticsCard />
+        </Grid> */}
+      </Grid>
+    </ApexChartWrapper>
+  );
 };
 
 export default Dashboard;
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  try {
-    const client = initializeApollo(null, ctx.req);
-    const token = getToken(ctx.req);
-    const decodedToken: JwtPayload = await jwt_decode(token);
-    console.log("token in getServerSideProps:", decodedToken);
-    const { data } = await client.query({
-      query: FIND_STUDENT_BY_USER_ID,
-      variables: { userId: decodedToken.id },
-    });
-    console.log("data in getServerSideProps:", data);
-    return {
-      props: { data },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      props: {
-        data: null,
-      },
-    };
-  }
-};

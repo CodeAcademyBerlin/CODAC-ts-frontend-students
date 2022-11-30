@@ -112,8 +112,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { data, error } = await client.query({ query: GetMeDocument })
 
     const user = data.me
-    console.log('user', user)
-    console.log('error', error)
     return {
       props: user
     }

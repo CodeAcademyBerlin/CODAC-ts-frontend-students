@@ -1,0 +1,68 @@
+.content {
+  max-width: 100%;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+.content code {
+  background: darkslategrey;
+  border-left: 3px solid #C6A7FE;
+  border-radius: 0.5em;
+  color: #f4f4f4;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 1em 0;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+}
+
+.content code::before {
+  display: none;
+}
+
+.content code::after {
+  display: none;
+}
+
+.copyButton {
+  position: absolute;
+  background-color: white;
+  right: 4em;
+  margin-top: -0.5em;
+  margin-right: 0.8em;
+  padding: 0.5em;
+  opacity: 0.5;
+  border: none;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.copyButton:active {
+  opacity: 1;
+  transition: 0.2s;
+  background-color: #ffc4c5;
+}
+
+.content p > img {
+  max-width: 100%;
+  align-self: center;
+}
+
+.content a {
+  color: #26a69a;
+}
+
+@media (hover:hover) {
+
+  .copyButton:hover {
+    opacity: 1;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+}
+
