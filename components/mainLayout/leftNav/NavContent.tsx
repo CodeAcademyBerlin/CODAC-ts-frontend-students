@@ -59,10 +59,10 @@ function NavContent() {
 
   const [lmsArray, setLmsArray] = useState([]);
 
-  const lms:LinkSingle = {
-    page: ['welcome'],
-    path: 'welcome',
-    title: 'LMS',
+  const lms: LinkSingle = {
+    page: ['web'],
+    path: '/',
+    title: 'Web LMS',
     children: lmsArray
   }
 
@@ -79,13 +79,13 @@ function NavContent() {
     }
     callLinks();
   }, [])
-  
+
   return (
     <div>
       <Link href='/' style={{ textDecoration: 'none' }}>
         <BrandText variant='h6' sx={{ fontSize: 60 }}>CODAC</BrandText>
       </Link>
-      <br/>
+      <br />
       <OuterList>
 
         <NavLiItem >
@@ -95,7 +95,7 @@ function NavContent() {
         <NavLiItem>
           <Link className={isNavLinkActive('/jobs', router.asPath) ? 'active' : ''} href={'/jobs'}>Jobs</Link>
         </NavLiItem>
-        
+
         <CollapsibleLi child={lms} />
 
       </OuterList>
