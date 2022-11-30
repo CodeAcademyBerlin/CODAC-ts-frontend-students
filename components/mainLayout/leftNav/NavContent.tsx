@@ -60,7 +60,7 @@ function NavContent() {
 
   const lms: LinkSingle = {
     page: ['web'],
-    path: '/',
+    path: '/web',
     title: 'Web LMS',
     children: lmsArray
   }
