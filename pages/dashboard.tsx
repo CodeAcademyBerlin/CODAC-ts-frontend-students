@@ -5,6 +5,7 @@ import { initializeApollo } from "../configs/apollo";
 import { GET_ME_QUERY, GET_STUDENTS } from "../graphql/queries";
 import { ReactNode } from "react";
 
+
 interface Props {
   children: ReactNode;
 }
