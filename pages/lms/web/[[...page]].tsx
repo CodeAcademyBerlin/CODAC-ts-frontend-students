@@ -3,12 +3,13 @@ import Head from 'next/head';
 
 // ** MUI Components
 import Box from '@mui/material/Box'
+import LmsContentContainer from '../../../components/LmsContentContainer';
+import { getPage, getPaths } from '../../../lib/content';
+import { PageData } from '../lms';
 
-import { getPage, getPaths } from '../../lib/content'
-import LmsContentContainer from '../../components/LmsContentContainer';
-import { PageData } from './lms';
 
-const lms = ({ pageData }:{ pageData: PageData }) => {
+
+const lms = ({ pageData }: { pageData: PageData }) => {
 
   return (
     <>
@@ -30,13 +31,14 @@ const lms = ({ pageData }:{ pageData: PageData }) => {
 }
 
 export async function getStaticProps({ params }: { params: { page: string[] } }) {
-  const pageData = await getPage(params.page.join("/"));
+  const pageData = await getPage(params.page.length > 1 ? "web/" + params.page.join("/") : "/web");
   return { props: { pageData } };
 }
 
 export async function getStaticPaths() {
   //maps 'content' folder and creates a route for every .md file
-  const { paths } = await getPaths();
+  const { paths } = await getPaths("web");
+
   return {
     paths,
     fallback: false,

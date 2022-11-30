@@ -31,9 +31,9 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
     <>
       <LeftNavBar handleDrawerToggle={handleDrawerToggle} open={open} />
       <Container>
-        <Header handleDrawerToggle={ handleDrawerToggle } />
+        <Header handleDrawerToggle={handleDrawerToggle} />
         <section style={{ padding: '1em', marginBottom: '2em' }}>
-          { children }
+          {children}
         </section>
         <Footer />
       </Container>

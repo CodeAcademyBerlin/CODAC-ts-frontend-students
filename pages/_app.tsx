@@ -59,7 +59,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
 
   const apolloClient = useApollo(pageProps);
 
-  const getLayout = Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>)
+  const getLayout = Component.getLayout ?? ((page) => <MainLayout >{page}</MainLayout>)
 
   const [theme, setTheme] = useState(lightTheme);
   const changeTheme = useMemo(() => ({
@@ -104,8 +104,8 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
-        <ThemeContext.Provider value={changeTheme}>
-          <CacheProvider value={emotionCache}>
+        <CacheProvider value={emotionCache}>
+          <ThemeContext.Provider value={changeTheme}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Head>
@@ -120,8 +120,8 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
               </Head>
               {getLayout(<Component {...pageProps} />)}
             </ThemeProvider>
-          </CacheProvider>
-        </ThemeContext.Provider>
+          </ThemeContext.Provider>
+        </CacheProvider>
       </AuthProvider>
     </ApolloProvider>
   );
