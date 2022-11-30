@@ -61,28 +61,6 @@ function NavContent() {
   const { lms } = useLmsNavigation()
 
 
-
-
-
-  const lms: LinkSingle = {
-    page: ['web'],
-    path: '/web',
-    title: 'Web LMS',
-    children: lmsArray
-  }
-
-
-
-
-  useEffect(() => {
-    async function callLinks() {
-      const links = await getLinks();
-      setLmsArray(links);
-    }
-    callLinks();
-  }, [])
-
-
   return (
     <div>
       <Link href='/' style={{ textDecoration: 'none' }}>
@@ -100,7 +78,7 @@ function NavContent() {
         </NavLiItem>
 
 
-        <CollapsibleLi child={lms} />
+        {lms && <CollapsibleLi child={lms} />}
 
 
       </OuterList>
