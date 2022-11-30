@@ -1,13 +1,13 @@
-import { buildNestedPages } from '../../lib/content'
+import { buildNestedPages, getPaths } from '../../lib/content'
 import { NextApiHandler } from "next";
-import localLinks from '../../lmslinks.json'
+
 
 
 const lmsLinks: NextApiHandler = async (req, res) => {
   try {
-    // const links = await buildNestedPages();
-    // res.json(links);
-    res.json(localLinks);
+    const links = await getPaths();
+    res.json(links);
+
   } catch (err) {
     console.log("error: ", err);
   }

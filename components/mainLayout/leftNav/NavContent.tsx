@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { isNavLinkActive } from '../../../lib/IsLinkActive';
 import { useTheme } from '@mui/material';
-import useLmsNavigation from '../../../contexts/useLmsNavigation';
+import lmslinks from '../../../public/assets/lmslinks.json';
 
 export const OuterList = styled('ul')`
   list-style: none;
@@ -56,9 +56,21 @@ function NavContent() {
 
   const router = useRouter();
 
-  // const theme = useTheme();
+  const [lmsArray, setLmsArray] = useState<LinkSingle[]>([]);
 
-  const { lms } = useLmsNavigation()
+
+
+
+  const lms: LinkSingle = {
+    page: ['welcome'],
+    path: 'welcome',
+    title: 'LMS',
+    children: lmslinks
+  }
+
+
+
+
 
 
   return (
@@ -78,7 +90,7 @@ function NavContent() {
         </NavLiItem>
 
 
-        {lms && <CollapsibleLi child={lms} />}
+        <CollapsibleLi child={lms} />
 
 
       </OuterList>
