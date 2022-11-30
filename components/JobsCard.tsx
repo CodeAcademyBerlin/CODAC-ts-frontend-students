@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import CardActions from "@mui/material/CardActions";
 import ChevronUp from "mdi-material-ui/ChevronUp";
 import ChevronDown from "mdi-material-ui/ChevronDown";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { JobPost } from "../graphql/_generated_";
 import Link from "next/link";
 import { useTheme } from "@mui/system";
@@ -20,6 +20,34 @@ function JobsCard({ job }: { job: JobPost }) {
   const handleClick = () => {
     setCollapse((current) => !current);
   };
+  // const [reload, setReload] = useState(jobEntity);
+
+  const date: String = new Date(job.updatedAt).toLocaleString("en-US", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+  });
+
+  const postedDate: String = new Date(job.createdAt).toLocaleString("en-US", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+  });
+
+  function getNumberOfDays(date: JobPost["createdAt"]) {
+    const date1 = new Date(date);
+    const date2 = new Date();
+    const oneDay = 1000 * 60 * 60 * 24;
+    const diffInTime = date2.getTime() - date1.getTime();
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    return diffInDays;
+  }
+
+  useEffect(() => {
+    getNumberOfDays(date);
+  }, []);
+
   return (
     <div>
       {" "}
@@ -53,17 +81,22 @@ function JobsCard({ job }: { job: JobPost }) {
                 {job.company}
               </Typography>
             </Box>
-            <Button sx={{ color: theme.palette.mode }} variant="contained">
-              {" "}
-              {job.url && <Link
-                href={job.url}
-                target="_blank"
-                rel="noopener"
-                className="noDeco"
-              >
-                Apply
-              </Link>}
-            </Button>
+            {job.url === null ? (
+              ""
+            ) : (
+              <Button sx={{ color: theme.palette.mode }} variant="contained">
+                {job.url && (
+                  <Link
+                    href={job.url}
+                    target="_blank"
+                    rel="noopener"
+                    className="noDeco whiteColor"
+                  >
+                    Apply
+                  </Link>
+                )}
+              </Button>
+            )}
           </Box>
           <Box
             sx={{
@@ -74,6 +107,7 @@ function JobsCard({ job }: { job: JobPost }) {
               alignItems: "start",
             }}
           >
+            {" "}
             <Typography
               variant="subtitle2"
               sx={{
@@ -84,7 +118,7 @@ function JobsCard({ job }: { job: JobPost }) {
             >
               {" "}
               <span className="boldText">Field:</span>{" "}
-              {job.fileld?.replace("_", " ")}
+              {job.field?.replace("_", " ")}
             </Typography>
             <Typography
               variant="subtitle2"
@@ -95,17 +129,28 @@ function JobsCard({ job }: { job: JobPost }) {
               }}
             >
               {" "}
-              <span className="boldText">Date:</span>&nbsp;
-              {new Date(job.updatedAt).toLocaleString("de-DE", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "2-digit",
-              })}
+              {date === postedDate ? (
+                <div>
+                  {" "}
+                  <span className="boldText">Posted:</span>&nbsp;
+                  {getNumberOfDays(date)}{" "}
+                  {getNumberOfDays(date) > 1 ? "days" : "day"} ago
+                </div>
+              ) : (
+                <div>
+                  {" "}
+                  <span className="boldText">Posted:</span>&nbsp; {postedDate}{" "}
+                  <br />
+                  <span className="boldText">Updated:</span>&nbsp;
+                  {getNumberOfDays(date)}{" "}
+                  {getNumberOfDays(date) > 1 ? "days" : "day"} ago
+                </div>
+              )}
             </Typography>
           </Box>
         </CardContent>
         <CardActions className="card-action-dense">
-          {job.description === "" ? (
+          {job.description === null ? (
             ""
           ) : (
             <Box
@@ -141,7 +186,27 @@ function JobsCard({ job }: { job: JobPost }) {
         <Collapse in={collapse}>
           <Divider sx={{ margin: 0 }} />
           <CardContent>
-            <Typography variant="body2">{job.description}</Typography>
+            <div className="jobDescription">
+              {job.description && job.description?.length > 850 ? (
+                <div>
+                  {job.description?.substring(0, 850)}{" "}
+                  {job.url ? (
+                    <Link
+                      href={job.url}
+                      target="_blank"
+                      rel="noopener"
+                      className="noDeco"
+                    >
+                      ... see more
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              ) : (
+                <div>{job.description}</div>
+              )}
+            </div>
           </CardContent>
         </Collapse>
       </Card>

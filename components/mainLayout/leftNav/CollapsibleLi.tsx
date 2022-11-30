@@ -12,7 +12,6 @@ function CollapsibleLi({ child }: { child: LinkSingle }) {
   const router = useRouter();
 
   const lmsRoute = (path: string) => {
-
     return router.asPath.includes("/lms/") ? path : `lms/${path}`
   }
 
@@ -29,7 +28,6 @@ function CollapsibleLi({ child }: { child: LinkSingle }) {
       <NavLiItem {...getToggleProps()}>
         <Link
           href={lmsRoute(child.path)}
-          replace
           className={isNavLinkActive(child.path, router.asPath) ? 'active' : ''}>
           {/* { isExpanded ? '+' : '' } */}
           {child.title}
@@ -47,7 +45,6 @@ function CollapsibleLi({ child }: { child: LinkSingle }) {
     <NavLiItem>
       <Link
         href={lmsRoute(child.path)}
-        replace
         className={isNavLinkActive(child.path, router.asPath) ? 'active' : ''}>
         {child.title}
       </Link>

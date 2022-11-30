@@ -124,7 +124,7 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
         </CacheProvider>
       </AuthProvider>
     </ApolloProvider>
-  )
-}
+  );
+};
 
-export default CodacApp
+export default CodacApp;

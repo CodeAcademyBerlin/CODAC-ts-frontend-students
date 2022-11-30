@@ -55,6 +55,7 @@ export const NavLiItem = styled('li')`
 function NavContent() {
 
   const router = useRouter();
+
   // const theme = useTheme();
 
   const { lms } = useLmsNavigation()
@@ -63,6 +64,23 @@ function NavContent() {
 
 
 
+  const lms: LinkSingle = {
+    page: ['web'],
+    path: '/web',
+    title: 'Web LMS',
+    children: lmsArray
+  }
+
+
+
+
+  useEffect(() => {
+    async function callLinks() {
+      const links = await getLinks();
+      setLmsArray(links);
+    }
+    callLinks();
+  }, [])
 
 
   return (
@@ -81,7 +99,9 @@ function NavContent() {
           <Link className={isNavLinkActive('/jobs', router.asPath) ? 'active' : ''} href={'/jobs'}>Jobs</Link>
         </NavLiItem>
 
-        {lms && <CollapsibleLi child={lms} />}
+
+        <CollapsibleLi child={lms} />
+
 
       </OuterList>
 
