@@ -4,7 +4,7 @@ import Head from 'next/head';
 // ** MUI Components
 import Box from '@mui/material/Box'
 import LmsContentContainer from '../../components/LmsContentContainer';
-import { getPage, getPaths } from '../../lib/content';
+import { getPage } from '../../lib/content';
 import { PageData } from './lms';
 import lmspages from "../../public/assets/lmspages.json"
 
