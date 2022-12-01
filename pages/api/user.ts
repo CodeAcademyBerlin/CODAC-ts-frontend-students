@@ -7,7 +7,7 @@ const userRoute: NextApiHandler = async (req, res) => {
   console.log('req', req.cookies)
   const client = initializeApollo(null, req)
   const { data } = await client.query({ query: GetMeDocument })
-  console.log('data', data)
+  console.log("data in userRoute", data)
   res.send({ user: data.me })
 };
 

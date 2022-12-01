@@ -41,6 +41,57 @@ export const GET_STUDENTS = gql`
     }
   }
 `;
+export const FIND_STUDENT_BY_USER_ID = gql`
+query filterStudentByUserId($userId: ID) {
+    students(filters: {
+                user: {
+                    id: {eq: $userId}
+                }
+        })
+        {
+            data {
+                attributes {
+                    firstname
+                    lastname
+                    start_date
+                    end_date
+                    cohort {
+                        data {
+                            attributes {
+                                name
+                                start_date
+                                students {
+                                    data {
+                                        attributes {
+                                            firstname
+                                            lastname
+                                            main_course {
+                                                data {
+                                                    attributes {
+                                                        name
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    main_course {
+                        data {
+                            attributes
+                            {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }   
+}
+`;
+  
 export const GET_JOBS = gql`
   query getJobs($date: DateTime) {
     jobPosts(filters: { updatedAt: { gte: $date } }) {
