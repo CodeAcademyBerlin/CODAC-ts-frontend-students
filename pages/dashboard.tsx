@@ -11,6 +11,11 @@ import CohortCard from "../components/CohortCard";
 
 // TBD: Handle hydration errors
 
+
+interface JwtPayloadWithID extends JwtPayload {
+  id: number
+}
+
 const Dashboard = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -61,7 +66,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const client = initializeApollo(null, ctx.req);
     const token = getToken(ctx.req);
-    const decodedToken: JwtPayload = await jwt_decode(token);
+    const decodedToken: JwtPayloadWithID = await jwt_decode(token);
     console.log("token in getServerSideProps:", decodedToken);
     const { data } = await client.query({
       query: FIND_STUDENT_BY_USER_ID,
