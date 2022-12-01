@@ -65,7 +65,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
         borderRadius: 3,
         borderStyle: "solid",
         borderWidth: 2,
-        borderColor: theme.palette.background,
+        borderColor: theme.palette.background.default,
         pt: 1,
         pb: 2,
       }}

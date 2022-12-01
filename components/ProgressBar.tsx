@@ -26,7 +26,7 @@ const ProgressBar = ({ student }: { student: Student }) => {
           borderRadius: 3,
           borderStyle: "solid",
           borderWidth: 2,
-          borderColor: theme.palette.background,
+          borderColor: theme.palette.background.default,
           backgroundColor: theme.palette.background.paper,
           boxShadow: theme.shadows[1],
         }}
