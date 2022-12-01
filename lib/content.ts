@@ -7,8 +7,8 @@ import { LinkSingle, Links } from '../pages/lms/lms';
 
 
 
-// const contentDirectory = path.join(process.cwd(), 'contentLocal');
-const contentDirectory = path.join(process.cwd(), 'content');
+const contentDirectory = path.join(process.cwd(), 'contentLocal');
+// const contentDirectory = path.join(process.cwd(), 'content');
 interface Paths { params: { page: string[] } };
 
 
