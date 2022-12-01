@@ -58,164 +58,164 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
   };
   console.log(cohort);
   return (
-    cohort && (
-      <Card
+
+    <Card
+      sx={{
+        maxWidth: "18rem",
+        borderRadius: 3,
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderColor: theme.palette.background,
+        pt: 1,
+        pb: 2,
+      }}
+    >
+      <Box
         sx={{
-          maxWidth: "18rem",
-          borderRadius: 3,
-          borderStyle: "solid",
-          borderWidth: 2,
-          borderColor: theme.palette.background,
-          pt: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          mx: 0,
           pb: 2,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            mx: 0,
-            pb: 2,
-          }}
-        >
-          <Box px={3} py={2}>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <AccountGroup />
-              <Typography
-                sx={{
-                  fontStyle: theme.typography.subtitle2,
-                  fontVariant: "all-small-caps",
-                }}
-              >
-                Your Cohort:
-              </Typography>
-            </Stack>
-
+        <Box px={3} py={2}>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <AccountGroup />
             <Typography
-              variant="h6"
               sx={{
-                fontFamily: theme.typography.fontFamily,
-                fontWeight: theme.typography.fontWeightMedium,
+                fontStyle: theme.typography.subtitle2,
+                fontVariant: "all-small-caps",
               }}
             >
-              {cohort.name}
+              Your Cohort:
             </Typography>
-          </Box>
+          </Stack>
 
-          <CardMedia
-            component="img"
-            image="https://cdn.drawception.com/images/panels/2015/3-10/3hPfz2CF7d-8.png"
+          <Typography
+            variant="h6"
             sx={{
-              borderRadius: 0,
-              borderStyle: "solid none",
-              borderWidth: 2,
+              fontFamily: theme.typography.fontFamily,
+              fontWeight: theme.typography.fontWeightMedium,
             }}
-          />
+          >
+            {cohort.name}
+          </Typography>
         </Box>
 
-        <CardActions
+        <CardMedia
+          component="img"
+          image="https://cdn.drawception.com/images/panels/2015/3-10/3hPfz2CF7d-8.png"
           sx={{
-            py: 0,
-            mb: 0,
+            borderRadius: 0,
+            borderStyle: "solid none",
+            borderWidth: 2,
           }}
+        />
+      </Box>
+
+      <CardActions
+        sx={{
+          py: 0,
+          mb: 0,
+        }}
+      >
+        <Tooltip
+          title="Cohort size"
+          TransitionComponent={Zoom}
+          placement="top"
+          arrow
         >
-          <Tooltip
-            title="Cohort size"
-            TransitionComponent={Zoom}
-            placement="top"
-            arrow
-          >
-            <Chip
-              icon={<SpaceInvaders />}
-              sx={{ p: 1, fontWeight: theme.typography.fontWeightMedium }}
-              color="primary"
-              label={cohort.students?.data?.length}
-            />
-          </Tooltip>
+          <Chip
+            icon={<SpaceInvaders />}
+            sx={{ p: 1, fontWeight: theme.typography.fontWeightMedium }}
+            color="primary"
+            label={cohort.students?.data?.length}
+          />
+        </Tooltip>
 
-          <Tooltip
-            title="Starting date of your cohort"
-            TransitionComponent={Zoom}
-            placement="top"
-            arrow
-          >
-            <Chip
-              label={
-                cohort.start_date
-                  ? dayjs(cohort.start_date).format("DD.MM.YYYY")
-                  : null
-              }
+        <Tooltip
+          title="Starting date of your cohort"
+          TransitionComponent={Zoom}
+          placement="top"
+          arrow
+        >
+          <Chip
+            label={
+              cohort.start_date
+                ? dayjs(cohort.start_date).format("DD.MM.YYYY")
+                : null
+            }
+            sx={{
+              fontWeight: theme.typography.fontWeightMedium,
+            }}
+            color="primary"
+          />
+        </Tooltip>
+
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ChevronDoubleDown color="primary" />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Divider textAlign="center">
+            <Typography
               sx={{
-                fontWeight: theme.typography.fontWeightMedium,
+                fontVariant: "all-small-caps",
+                fontWeight: theme.typography.fontWeightBold,
+                fontSize: "1.15rem",
               }}
-              color="primary"
-            />
-          </Tooltip>
-
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ChevronDoubleDown color="primary" />
-          </ExpandMore>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Divider textAlign="center">
-              <Typography
-                sx={{
-                  fontVariant: "all-small-caps",
-                  fontWeight: theme.typography.fontWeightBold,
-                  fontSize: "1.15rem",
-                }}
-              >
-                Cohort Members
-              </Typography>
-            </Divider>
-            <List dense={true}>
-              {cohort.students?.data.map((student) => {
-                return (
-                  student && (
-                    <>
-                      <ListItem>
-                        <Avatar
-                          sx={{
-                            fontWeight: theme.typography.fontWeightBold,
-                            fontSize: 15,
-                            color: theme.palette.common.white,
-                            backgroundColor: theme.palette.primary.light,
-                            mr: 1.5,
-                          }}
-                        >
-                          {student.attributes?.firstname?.charAt(0)}
-                          {student.attributes?.lastname?.charAt(0)}
-                        </Avatar>
-                        <ListItemText>
-                          {student.attributes?.firstname}{" "}
-                          {student.attributes?.lastname}
-                        </ListItemText>
-                        {student.attributes?.main_course?.data?.attributes
-                          ?.name && (
+            >
+              Cohort Members
+            </Typography>
+          </Divider>
+          <List dense={true}>
+            {cohort.students?.data.map((student) => {
+              return (
+                student && (
+                  <>
+                    <ListItem>
+                      <Avatar
+                        sx={{
+                          fontWeight: theme.typography.fontWeightBold,
+                          fontSize: 15,
+                          color: theme.palette.common.white,
+                          backgroundColor: theme.palette.primary.light,
+                          mr: 1.5,
+                        }}
+                      >
+                        {student.attributes?.firstname?.charAt(0)}
+                        {student.attributes?.lastname?.charAt(0)}
+                      </Avatar>
+                      <ListItemText>
+                        {student.attributes?.firstname}{" "}
+                        {student.attributes?.lastname}
+                      </ListItemText>
+                      {student.attributes?.main_course?.data?.attributes
+                        ?.name && (
                           <ListItemIcon>
                             {student.attributes?.main_course?.data?.attributes
                               ?.name === "data3" && (
-                              <Tooltip
-                                arrow
-                                title="Data Science"
-                                TransitionComponent={Zoom}
-                                placement="top"
-                              >
-                                <DatabaseSearch
-                                  sx={{
-                                    height: 20,
-                                    color: theme.palette.secondary.main,
-                                  }}
-                                />
-                              </Tooltip>
-                            )}
+                                <Tooltip
+                                  arrow
+                                  title="Data Science"
+                                  TransitionComponent={Zoom}
+                                  placement="top"
+                                >
+                                  <DatabaseSearch
+                                    sx={{
+                                      height: 20,
+                                      color: theme.palette.secondary.main,
+                                    }}
+                                  />
+                                </Tooltip>
+                              )}
                             {
                               //TODO: Update course name
                               student.attributes?.main_course?.data?.attributes
@@ -237,18 +237,17 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
                             }
                           </ListItemIcon>
                         )}
-                      </ListItem>
-                      <Divider />
-                    </>
-                  )
-                );
-              })}
-            </List>
-          </CardContent>
-        </Collapse>
-      </Card>
-    )
-  );
+                    </ListItem>
+                    <Divider />
+                  </>
+                )
+              );
+            })}
+          </List>
+        </CardContent>
+      </Collapse>
+    </Card>
+  )
 };
 
 export default CohortCard;

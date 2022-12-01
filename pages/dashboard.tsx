@@ -46,7 +46,7 @@ const Dashboard = ({
             <ProgressBar student={myStudent} />
           </Grid>
           <Grid item xs={12} md={8} lg={8}>
-            <CohortCard cohort={myStudent.cohort?.data?.attributes} />
+            {myStudent?.cohort?.data?.attributes && <CohortCard cohort={myStudent.cohort.data.attributes} />}
           </Grid>
 
           {/* {user.role.name === "Student" && <ProgressBar />} */}
