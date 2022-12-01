@@ -9,8 +9,8 @@ import CreditCardOutline from 'mdi-material-ui/CreditCardOutline'
 import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
-import { VerticalNavItemsType } from '../../@core/layouts/types'
 import { BriefcaseOutline, LibraryShelves } from 'mdi-material-ui'
+import { VerticalNavItemsType } from '../../layouts/types'
 
 // ** Type import
 

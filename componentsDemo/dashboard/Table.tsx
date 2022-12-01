@@ -9,7 +9,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
-import { ThemeColor } from '../../@core/layouts/types'
+
 
 // ** Types Imports
 
@@ -25,7 +25,7 @@ interface RowType {
 
 interface StatusObj {
   [key: string]: {
-    color: ThemeColor
+    color: string
   }
 }
 
@@ -143,7 +143,7 @@ const DashboardTable = () => {
                 <TableCell>
                   <Chip
                     label={row.status}
-                    color={statusObj[row.status].color}
+                    color="primary"
                     sx={{
                       height: 24,
                       fontSize: '0.75rem',

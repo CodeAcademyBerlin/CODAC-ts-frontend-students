@@ -1,5 +1,4 @@
 import Grid from "@mui/material/Grid";
-import ApexChartWrapper from "../@core/styles/libs/react-apexcharts";
 import { Divider, Typography, useTheme } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { getToken, initializeApollo } from "../configs/apollo";
@@ -8,6 +7,7 @@ import { Student } from "../graphql/_generated_";
 import jwt_decode, { JwtPayload } from "jwt-decode";
 import ProgressBar from "../components/ProgressBar";
 import CohortCard from "../components/CohortCard";
+import ApexChartWrapper from "../components/libs/react-apexcharts";
 
 // TBD: Handle hydration errors
 
@@ -22,12 +22,11 @@ const Dashboard = ({
   console.log(data);
   const theme = useTheme();
   const myStudent: Student = data && data.students.data[0].attributes;
-  console.log("Data received in Dashboard:", myStudent);
   if (myStudent)
     return (
       <ApexChartWrapper>
         <Grid container spacing={6}>
-          <Grid item>
+          <Grid item xs={12}>
             {myStudent.main_course?.data?.attributes?.name && (
               <Typography
                 sx={{
@@ -47,7 +46,7 @@ const Dashboard = ({
               </Typography>
             )}
           </Grid>
-          <Grid item xs={12} md={8} lg={6}>
+          <Grid item xs={12} >
             <ProgressBar student={myStudent} />
           </Grid>
           <Grid item xs={12} md={8} lg={8}>

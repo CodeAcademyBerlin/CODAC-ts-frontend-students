@@ -5,9 +5,10 @@ import { Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import VerticalAppBarContent from './components/vertical/AppBarContent'
-import { useSettings } from '../@core/hooks/useSettings'
+
 import VerticalNavItems from '../navigation/vertical'
-import VerticalLayout from '../@core/layouts/VerticalLayout'
+import { useSettings } from '../hooks/useSettings'
+import VerticalLayout from './VerticalLayout'
 
 
 interface Props {

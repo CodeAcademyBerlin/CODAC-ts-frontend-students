@@ -9,9 +9,10 @@ import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
-import BlankLayout from '../@core/layouts/BlankLayout'
+
 import Image from 'next/image'
 import image from '../public/images/logo2.png'
+import BlankLayout from '../layouts/BlankLayout'
 
 
 // ** Styled Components

@@ -18,9 +18,9 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 
 // ** Third Party Imports
 import DatePicker from 'react-datepicker'
+import DatePickerWrapper from '../libs/react-datepicker'
 
-// ** Styled Components
-import DatePickerWrapper from '../../@core/styles/libs/react-datepicker'
+
 
 const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label='Birth Date' fullWidth {...props} />

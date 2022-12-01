@@ -11,11 +11,12 @@ import { useContext } from 'react'
 // ** Icons Imports
 import Menu from 'mdi-material-ui/Menu'
 import Magnify from 'mdi-material-ui/Magnify'
-import { Settings } from '../../../@core/context/settingsContext'
-import ModeToggler from '../../../@core/layouts/components/shared-components/ModeToggler'
-import NotificationDropdown from '../../../@core/layouts/components/shared-components/NotificationDropdown'
-import UserDropdown from '../../../@core/layouts/components/shared-components/UserDropdown'
+
 import { AuthContext } from '../../../contexts/authContext'
+import { Settings } from '../../../contexts/settingsContext'
+import ModeToggler from '../shared-components/ModeToggler'
+import NotificationDropdown from '../shared-components/NotificationDropdown'
+import UserDropdown from '../shared-components/UserDropdown'
 
 
 

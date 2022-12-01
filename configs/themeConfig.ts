@@ -2,10 +2,11 @@
 import { PaletteMode } from '@mui/material'
 
 // ** Types
-import { ContentWidth } from '../@core/layouts/types'
+
 
 // import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { ReactNode } from 'react'
+import { ContentWidth } from '../layouts/types'
 
 type ThemeConfig = {
   mode: PaletteMode

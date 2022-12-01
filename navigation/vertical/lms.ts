@@ -1,6 +1,6 @@
 // ** Icon imports
 import { Briefcase, DatabaseEye, Web } from 'mdi-material-ui'
-import { VerticalNavItemsType } from '../../@core/layouts/types'
+import { VerticalNavItemsType } from '../../layouts/types'
 
 // ** Type import
 
@@ -12,7 +12,7 @@ const lmsNavigation = (): VerticalNavItemsType => {
       icon: Web,
       path: 'web'
     },
-    
+
     {
       title: 'Data',
       icon: DatabaseEye,

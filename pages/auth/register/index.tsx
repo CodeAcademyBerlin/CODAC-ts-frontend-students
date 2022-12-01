@@ -28,9 +28,9 @@ import Twitter from 'mdi-material-ui/Twitter'
 import Facebook from 'mdi-material-ui/Facebook'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
-import BlankLayout from '../../../@core/layouts/BlankLayout'
 import themeConfig from '../../../configs/themeConfig'
 import FooterIllustrationsV1 from '../../../componentsDemo/pages/auth/FooterIllustration'
+import BlankLayout from '../../../layouts/BlankLayout'
 
 
 

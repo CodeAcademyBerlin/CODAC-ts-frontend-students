@@ -25,9 +25,10 @@ import { AuthProvider } from "../contexts/authContext"
 import { useApollo } from '../configs/apollo';
 
 import MainLayout from '../layouts/MainLayout';
-import { ThemeProvider, CssBaseline } from "@mui/material";
-import { lightTheme, darkTheme, gagTheme } from '../configs/theme';
-import { ThemeContext } from '../contexts/themeContext';
+import { CssBaseline } from "@mui/material";
+
+import ThemeComponent from '../theme/ThemeComponent';
+import { SettingsProvider, SettingsConsumer } from '../contexts/settingsContext';
 
 // // ** Pace Loader
 // if (themeConfig.routingLoader) {
@@ -61,66 +62,35 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
 
   const getLayout = Component.getLayout ?? ((page) => <MainLayout >{page}</MainLayout>)
 
-  const [theme, setTheme] = useState(lightTheme);
-  const changeTheme = useMemo(() => ({
-    toggleThemes: () => {
-      if (theme === lightTheme) {
-        setTheme(darkTheme);
-      }
-      if (theme === darkTheme) {
-        setTheme(gagTheme);
-      }
-      if (theme === gagTheme) {
-        setTheme(lightTheme)
-      }
-    },
-    setLight: () => {
-      setTheme(lightTheme);
-    },
-    setDark: () => {
-      setTheme(darkTheme);
-    },
-    setGag: () => {
-      setTheme(gagTheme);
-    }
-  }), [theme])
-
-  // useEffect(() => {
-  //   const getSession = async () => {
-  //     const options = {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //     }
-  //     const res = await fetch("/api/user", options);
-  //     const data = await res.json()
-  //     console.log('data', data)
-  //     return data.jwt
-  //   }
-  //   getSession()
-  // }, [])
-
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
         <CacheProvider value={emotionCache}>
-          <ThemeContext.Provider value={changeTheme}>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Head>
-                <title>CODAC</title>
-                <meta
-                  name='Code Academy Berlin Community App'
-                  content={`CODAC – Code Academy Berlin Community App`}
-                />
-                <link rel="shortcut icon" href={favicon.src} />
-                <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
-                <meta name='viewport' content='initial-scale=1, width=device-width' />
-              </Head>
-              {getLayout(<Component {...pageProps} />)}
+
+          {/* <ThemeContext.Provider value={changeTheme}>
+            <ThemeProvider theme={theme}> */}
+          <CssBaseline />
+          <Head>
+            <title>CODAC</title>
+            <meta
+              name='Code Academy Berlin Community App'
+              content={`CODAC – Code Academy Berlin Community App`}
+            />
+            <link rel="shortcut icon" href={favicon.src} />
+            <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+            <meta name='viewport' content='initial-scale=1, width=device-width' />
+          </Head>
+          <SettingsProvider>
+            <SettingsConsumer>
+              {({ settings, toggleTheme }) => {
+                return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
+              }}
+            </SettingsConsumer>
+          </SettingsProvider>
+          {/* {getLayout(<Component {...pageProps} />)} 
             </ThemeProvider>
-          </ThemeContext.Provider>
+            </ThemeContext.Provider>*/}
+
         </CacheProvider>
       </AuthProvider>
     </ApolloProvider>
