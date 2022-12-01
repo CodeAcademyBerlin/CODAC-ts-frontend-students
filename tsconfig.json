@@ -32,8 +32,10 @@
     "env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next-env.d.ts"
-, "configs/themeConfig.ts"  ],
+    "next-env.d.ts",
+    "configs/themeConfig.ts",
+    "components/BerlinSkyline.jsx"
+  ],
   "exclude": [
     "node_modules"
   ]

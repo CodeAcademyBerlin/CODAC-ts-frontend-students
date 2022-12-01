@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { BrandText } from '../../BrandStyle'
+import React from 'react'
+import { BrandText } from '../../components/BrandStyle'
 import CollapsibleLi from './CollapsibleLi';
-import { LinkSingle } from '../../../pages/lms/lms'
+import { LinkSingle } from '../../pages/lms/lms'
 import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
-import { isNavLinkActive } from '../../../lib/IsLinkActive';
+import { isNavLinkActive } from '../../lib/IsLinkActive';
 import { useTheme } from '@mui/material';
-import lmslinks from '../../../public/assets/lmslinks.json';
+import lmslinks from '../../public/assets/lmslinks.json';
 
 export const OuterList = styled('ul')`
   list-style: none;
@@ -62,7 +62,7 @@ function NavContent() {
     page: ['welcome'],
     path: 'welcome',
     title: 'LMS',
-    children: lmslinks.filter(link => link.path === "web")
+    children: lmslinks
   }
 
 
@@ -73,7 +73,7 @@ function NavContent() {
   return (
     <div>
       <Link href='/' style={{ textDecoration: 'none' }}>
-        <BrandText variant='h6' sx={{ fontSize: 60 }}>CODAC</BrandText>
+        <BrandText variant='h3' sx={{ fontSize: 60 }}>CODAC</BrandText>
       </Link>
       <br />
       <OuterList>

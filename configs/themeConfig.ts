@@ -5,7 +5,6 @@ import { PaletteMode } from '@mui/material'
 
 
 // import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { ReactNode } from 'react'
 import { ContentWidth } from '../layouts/types'
 
 type ThemeConfig = {

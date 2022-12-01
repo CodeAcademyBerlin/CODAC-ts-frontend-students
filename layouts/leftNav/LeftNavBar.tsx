@@ -3,7 +3,7 @@ import Drawer from '@mui/material/Drawer';
 import NavContent from './NavContent';
 import { styled } from '@mui/material/styles'
 import { ArrowLeftThick } from 'mdi-material-ui';
-import { LinkSingle } from '../../../pages/lms/lms';
+import { LinkSingle } from '../../pages/lms/lms';
 
 type Props = {
   handleDrawerToggle: () => void

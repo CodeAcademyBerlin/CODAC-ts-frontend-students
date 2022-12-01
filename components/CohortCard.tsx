@@ -56,7 +56,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log(cohort);
+  // console.log(cohort);
   return (
 
     <Card
@@ -179,7 +179,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
             {cohort.students?.data.map((student) => {
               return (
                 student && (
-                  <>
+                  <React.Fragment key={student.id}>
                     <ListItem>
                       <Avatar
                         sx={{
@@ -239,7 +239,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
                         )}
                     </ListItem>
                     <Divider />
-                  </>
+                  </React.Fragment>
                 )
               );
             })}

@@ -10,10 +10,10 @@ function Footer() {
     padding: 0.5em 1em;
     font-weight: 700;
     margin-top: 1em;
-    color: ${({ theme }) => theme.palette.primary.main};
+    color: ${({ theme }) => theme.palette.common.white};
   `
   return (
-    <FooterDiv>By the students of Code Academy Berlin</FooterDiv>
+    <FooterDiv>A platform by the students of Code Academy Berlin</FooterDiv>
   )
 }
 

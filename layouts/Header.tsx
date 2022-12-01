@@ -1,9 +1,9 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import { Menu } from 'mdi-material-ui'
-import ThemeController from '../ThemeController'
+import ThemeController from './ThemeController'
 
-function Header({ handleDrawerToggle }:{ handleDrawerToggle: () => void }) {
+function Header({ handleDrawerToggle }: { handleDrawerToggle: () => void }) {
   const HeaderDiv = styled('header')`
     padding: 0.5em;
     display: flex;
@@ -20,7 +20,7 @@ function Header({ handleDrawerToggle }:{ handleDrawerToggle: () => void }) {
   `
   return (
     <HeaderDiv>
-      <ShowMenu onClick={ handleDrawerToggle }>
+      <ShowMenu onClick={handleDrawerToggle}>
         <Menu />
       </ShowMenu>
       <ThemeController />

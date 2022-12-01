@@ -1,9 +1,9 @@
 import { ReactNode, useState } from 'react'
 import { styled } from '@mui/material/styles'
-import LeftNavBar from '../components/mainLayout/leftNav/LeftNavBar'
+import LeftNavBar from './leftNav/LeftNavBar'
 import Head from 'next/head';
-import Footer from '../components/mainLayout/Footer';
-import Header from '../components/mainLayout/Header';
+import Footer from './Footer';
+import Header from './Header';
 
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
