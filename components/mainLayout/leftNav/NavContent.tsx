@@ -79,6 +79,9 @@ function NavContent() {
       <OuterList>
 
         <NavLiItem >
+          <Link className={isNavLinkActive('/login', router.asPath) ? 'active' : ''} href='/login'>Login</Link>
+        </NavLiItem>
+        <NavLiItem >
           <Link className={isNavLinkActive('/dashboard', router.asPath) ? 'active' : ''} href='/dashboard'>Dashboard</Link>
         </NavLiItem>
 

@@ -16,7 +16,7 @@ const Dashboard = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   console.log(data);
   const theme = useTheme();
-  const myStudent: Student = data.students.data[0].attributes;
+  const myStudent: Student = data && data.students.data[0].attributes;
   console.log("Data received in Dashboard:", myStudent);
   if (myStudent)
     return (
