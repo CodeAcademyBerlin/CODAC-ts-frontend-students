@@ -6,7 +6,7 @@ import { PaletteMode } from '@mui/material'
 
 
 // ** ThemeConfig Import
-import themeConfig from '../configs/themeConfig'
+import themeConfig from '../theme/themeConfig'
 
 // ** Types Import
 import { ThemeName, ContentWidth } from '../layouts/types'

@@ -3,11 +3,16 @@ import { styled } from '@mui/material/styles'
 import LeftNavBar from './leftNav/LeftNavBar'
 import Head from 'next/head';
 import Footer from './Footer';
-import Header from './Header';
+import Header from './appBar/Header';
+import { BrandText } from '../components/common/BrandStyle';
+import UserDropdown from './auth/UserDropdown';
+import { useAuth } from '../hooks/useAuth';
+import AppBarContent from './appBar/AppBarContent';
 
 
-const MainLayout = ({ children }: { children: ReactNode }) => {
+const MainLayout = ({ children, loading }: { children: ReactNode, loading: boolean }) => {
 
+  const { user } = useAuth()
   const [open, setOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -33,9 +38,8 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
       <Container>
         <Header handleDrawerToggle={handleDrawerToggle} />
         <section style={{ padding: '1em', marginBottom: '2em' }}>
-          {children}
+          {loading ? <BrandText variant='h3'>loading</BrandText> : children}
         </section>
-        <Footer />
       </Container>
     </>
   )

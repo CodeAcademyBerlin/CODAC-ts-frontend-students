@@ -1,13 +1,14 @@
-import React, { ReactElement, ReactNode, useState, useMemo } from 'react';
+import React, { ReactElement, ReactNode, useState, useEffect } from 'react';
 
 // ** Next Imports
 import Head from 'next/head'
+import Router from "next/router";
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import favicon from "../public/favicon.ico";
 
 // // ** Loader Import
-// import NProgress from 'nprogress'
+import NProgress from 'nprogress'
 
 // ** Utils Imports
 import { CacheProvider } from '@emotion/react';
@@ -22,26 +23,16 @@ import '../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client'
 import { AuthProvider } from "../contexts/authContext"
-import { useApollo } from '../configs/apollo';
+import { useApollo } from '../lib/apolloClient';
 
 import MainLayout from '../layouts/MainLayout';
 import { CssBaseline } from "@mui/material";
 
 import ThemeComponent from '../theme/ThemeComponent';
 import { SettingsProvider, SettingsConsumer } from '../contexts/settingsContext';
+import themeConfig from '../theme/themeConfig';
 
-// // ** Pace Loader
-// if (themeConfig.routingLoader) {
-//   Router.events.on('routeChangeStart', () => {
-//     NProgress.start()
-//   })
-//   Router.events.on('routeChangeError', () => {
-//     NProgress.done()
-//   })
-//   Router.events.on('routeChangeComplete', () => {
-//     NProgress.done()
-//   })
-// }
+
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -55,20 +46,50 @@ type AppPropsWithLayout = AppProps & {
 
 const clientSideEmotionCache = createEmotionCache();
 
+// ** Pace Loader
+if (themeConfig.routingLoader) {
+  Router.events.on('routeChangeStart', () => {
+    NProgress.start()
+  })
+  Router.events.on('routeChangeError', () => {
+    NProgress.done()
+  })
+  Router.events.on('routeChangeComplete', () => {
+    NProgress.done()
+  })
+}
+
 // ** Configure JSS & ClassName
 const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) => {
 
   const apolloClient = useApollo(pageProps);
 
-  const getLayout = Component.getLayout ?? ((page) => <MainLayout >{page}</MainLayout>)
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const start = () => {
+      console.log("start");
+      setLoading(true);
+    };
+    const end = () => {
+      console.log("finished");
+      setLoading(false);
+    };
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
+
+  const getLayout = Component.getLayout ?? ((page) => <MainLayout loading={loading} >{page}</MainLayout>)
 
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
         <CacheProvider value={emotionCache}>
-
-          {/* <ThemeContext.Provider value={changeTheme}>
-            <ThemeProvider theme={theme}> */}
           <CssBaseline />
           <Head>
             <title>CODAC</title>
@@ -82,15 +103,13 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
           </Head>
           <SettingsProvider>
             <SettingsConsumer>
-              {({ settings, toggleTheme }) => {
-                return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
+              {({ settings }) => {
+                return <ThemeComponent settings={settings}>
+                  {getLayout(<Component {...pageProps} />)}
+                </ThemeComponent>
               }}
             </SettingsConsumer>
           </SettingsProvider>
-          {/* {getLayout(<Component {...pageProps} />)} 
-            </ThemeProvider>
-            </ThemeContext.Provider>*/}
-
         </CacheProvider>
       </AuthProvider>
     </ApolloProvider>
@@ -98,3 +117,5 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
 };
 
 export default CodacApp;
+
+

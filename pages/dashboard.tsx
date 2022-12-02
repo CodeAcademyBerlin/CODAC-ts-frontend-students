@@ -1,13 +1,14 @@
 import Grid from "@mui/material/Grid";
 import { Divider, Typography, useTheme } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { getToken, initializeApollo } from "../configs/apollo";
-import { FIND_STUDENT_BY_USER_ID } from "../graphql/queries";
-import { Student } from "../graphql/_generated_";
+
 import jwt_decode, { JwtPayload } from "jwt-decode";
-import ProgressBar from "../components/ProgressBar";
-import CohortCard from "../components/CohortCard";
+import ProgressBar from "../components/dashboard/ProgressBar";
+import CohortCard from "../components/cohort/CohortCard";
 import ApexChartWrapper from "../components/libs/react-apexcharts";
+import { Student } from "../graphql/global/ __generated__/types";
+import { FilterStudentByUserIdDocument } from "../graphql/queries/__generated__/students";
+import { getToken, initializeApollo } from "../lib/apolloClient";
 
 // TBD: Handle hydration errors
 
@@ -68,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const decodedToken: JwtPayloadWithID = await jwt_decode(token);
     console.log("token in getServerSideProps:", decodedToken);
     const { data } = await client.query({
-      query: FIND_STUDENT_BY_USER_ID,
+      query: FilterStudentByUserIdDocument,
       variables: { userId: decodedToken.id },
     });
     console.log("data in getServerSideProps:", data);

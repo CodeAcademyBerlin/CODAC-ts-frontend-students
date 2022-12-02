@@ -1,18 +1,24 @@
 overwrite: true
 schema: "https://codac-364707.ey.r.appspot.com/graphql"
-documents: "graphql/*.ts"
-
+documents: "graphql/**/*.graphql"
 generates:
-  graphql/_generated_/index.tsx:
-
-    config:
-      reactApolloVersion: 3
-      withHooks: true
-    plugins:
-      - add:
-          content: '// THIS IS A GENERATED FILE, use `yarn codegen` to regenerate'
-      - add:
-          content: '/* tslint:disable */'  
+  graphql/global/ __generated__/types.ts:
       - "typescript"
-      - "typescript-operations"
+  graphql/global/ __generated__:
+    preset: near-operation-file
+    presetConfig:
+      folder: __generated__
+      baseTypesPath: types.ts
+      extension: .ts
+    plugins:
       - "typescript-react-apollo"
+      - "typescript-operations"
+    config:
+          reactApolloVersion: 3
+          withHooks: true
+          withHOC: false
+          withComponent: false
+    hooks:
+      afterAllFileWrite:
+        - eslint --fix
+        - prettier --write

@@ -7,10 +7,8 @@ import {
   useContext,
   useEffect,
 } from "react";
-import {
-  UsersPermissionsLoginPayload,
-  UsersPermissionsMe,
-} from "../graphql/_generated_";
+import { UsersPermissionsMe, UsersPermissionsLoginPayload } from "../graphql/global/ __generated__/types";
+
 
 type User = UsersPermissionsMe | null;
 
@@ -34,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(initialAuth.user);
 
   useEffect(() => {
-    // getSession()
+    getUser()
   }, [])
 
 
@@ -48,7 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     await fetch("/api/login", options);
   };
-  const getSession = async () => {
+  const getUser = async () => {
     const options = {
       method: "POST",
       headers: {

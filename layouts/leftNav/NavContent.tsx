@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
-import { BrandText } from '../../components/BrandStyle'
+import { BrandText } from '../../components/common/BrandStyle'
 import CollapsibleLi from './CollapsibleLi';
 import { LinkSingle } from '../../pages/lms/lms'
 import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
-import { isNavLinkActive } from '../../lib/IsLinkActive';
+import { isNavLinkActive } from '../../utils/IsLinkActive';
 import { useTheme } from '@mui/material';
 import lmslinks from '../../public/assets/lmslinks.json';
 

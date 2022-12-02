@@ -12,11 +12,11 @@ import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box'
 import BlankLayout from '../layouts/BlankLayout'
-import { BrandText } from '../components/BrandStyle'
-import { TronGrid, TronGridWrapper } from '../components/TronGridPlane'
-import BerlinSkyline from '../components/BerlinSkyline'
+import { BrandText } from '../components/common/BrandStyle'
+import BerlinSkyline from '../components/landing-page/BerlinSkyline'
 import { Fade, Slide } from '@mui/material'
 import Footer from '../layouts/Footer'
+import { TronGridWrapper, TronGrid } from '../components/landing-page/TronGridPlane'
 
 
 const blink = keyframes`

@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
 
 import Image from 'next/image'
-import image from '../public/images/logo2.png'
+import image from '../public/assets/logo.png'
 import BlankLayout from '../layouts/BlankLayout'
 
 

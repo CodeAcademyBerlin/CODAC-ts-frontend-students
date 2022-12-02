@@ -16,7 +16,7 @@ import themeOptions from './ThemeOptions'
 
 // ** Global Styles
 import GlobalStyling from './globalStyles'
-import themeConfig from '../configs/themeConfig'
+import themeConfig from './themeConfig'
 import { Settings } from '../contexts/settingsContext'
 
 interface Props {

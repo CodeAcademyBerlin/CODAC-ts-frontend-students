@@ -1,0 +1,15 @@
+ query getJobs($date: DateTime) {
+    jobPosts(filters: { updatedAt: { gte: $date } }) {
+      data {
+        attributes {
+          url
+          position
+          company
+          field
+          createdAt
+          updatedAt
+          description
+        }
+      }
+    }
+  }

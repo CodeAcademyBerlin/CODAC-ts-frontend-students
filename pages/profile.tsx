@@ -19,12 +19,13 @@ import InformationOutline from "mdi-material-ui/InformationOutline";
 
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";
-import TabAccount from "../components/account-settings/TabAccount";
-import TabInfo from "../components/account-settings/TabInfo";
-import TabSecurity from "../components/account-settings/TabSecurity";
-import { initializeApollo } from "../configs/apollo";
-import { GetMeDocument, UsersPermissionsMe } from "../graphql/_generated_";
+import TabAccount from "../components/profile-page/TabAccount";
+import TabInfo from "../components/profile-page/TabInfo";
+import TabSecurity from "../components/profile-page/TabSecurity";
 import { GetServerSideProps } from "next";
+import { UsersPermissionsMe } from "../graphql/global/ __generated__/types";
+import { GetMeDocument } from "../graphql/queries/__generated__/user";
+import { initializeApollo } from "../lib/apolloClient";
 
 const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({
   [theme.breakpoints.down("md")]: {

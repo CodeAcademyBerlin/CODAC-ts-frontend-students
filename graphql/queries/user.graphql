@@ -1,0 +1,10 @@
+  query getMe {
+    me {
+      role {
+        name
+      }
+      email
+      id
+      username
+    }
+  }

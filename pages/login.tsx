@@ -37,13 +37,14 @@ import Twitter from "mdi-material-ui/Twitter";
 import Facebook from "mdi-material-ui/Facebook";
 import EyeOutline from "mdi-material-ui/EyeOutline";
 import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
-import themeConfig from "../configs/themeConfig";
+import themeConfig from "../theme/themeConfig";
 import FooterIllustrationsV1 from "../componentsDemo/pages/auth/FooterIllustration";
-import { useLoginMutation } from "../graphql/_generated_";
-import { BrandText } from "../components/BrandStyle";
+import { useLoginMutation } from "../graphql/mutations/__generated__/user";
+import { BrandText } from "../components/common/BrandStyle";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AuthContext } from "../contexts/authContext";
 import BlankLayout from "../layouts/BlankLayout";
+import MainLayout from "../layouts/MainLayout";
 
 interface State {
   password: string;
@@ -233,6 +234,6 @@ const LoginPage = () => {
   );
 };
 
-LoginPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>;
+// LoginPage.getLayout = (page: ReactNode) => <MainLayout>{page}</MainLayout>;
 
 export default LoginPage;

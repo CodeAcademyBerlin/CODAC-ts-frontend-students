@@ -1,16 +1,16 @@
-import { GET_JOBS } from "../graphql/queries";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
-import JobsCard from "../components/JobsCard";
-import { GetJobsDocument, JobPostEntity } from "../graphql/_generated_";
+import JobsCard from "../components/jobs-page/JobsCard";
+import { GetJobsDocument } from "../graphql/queries/__generated__/jobs";
 import * as React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import { initializeApollo } from "../configs/apollo";
+import { initializeApollo } from "../lib/apolloClient";
 import dayjs from "dayjs";
+import { JobPostEntity } from "../graphql/global/ __generated__/types";
 
 // ** types
 interface Data {

@@ -1,6 +1,6 @@
 // ** MUI Imports
 import { Theme } from '@mui/material/styles'
-import themeConfig from '../../configs/themeConfig'
+import themeConfig from '../themeConfig'
 
 // ** Theme Config Imports
 
