@@ -37,7 +37,8 @@ const LinkStyled = styled(Link)`
 text-decoration: none;
 cursor: pointer;
 `
-const UserDropdown = ({ user }: { user: UsersPermissionsMe }) => {
+
+const UserDropdown = ({ user, logout }: { user: UsersPermissionsMe, logout: () => void }) => {
   // ** States
   const [anchorEl, setAnchorEl] = useState<Element | null>(null)
 
@@ -139,7 +140,7 @@ const UserDropdown = ({ user }: { user: UsersPermissionsMe }) => {
           </Box>
         </MenuItem> */}
         <Divider />
-        <MenuItem sx={{ py: 2 }} onClick={() => handleDropdownClose('/pages/login')}>
+        <MenuItem sx={{ py: 2 }} onClick={() => logout()}>
           <LogoutVariant sx={{ marginRight: 2, fontSize: '1.375rem', color: 'text.secondary' }} />
           Logout
         </MenuItem>

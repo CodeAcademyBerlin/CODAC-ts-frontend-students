@@ -51,6 +51,7 @@ interface State {
   email: string;
   error: string;
   showPassword: boolean;
+  rememberMe: boolean;
 }
 
 // ** Styled Components
@@ -80,6 +81,7 @@ const LoginPage = () => {
     email: "",
     error: "",
     showPassword: false,
+    rememberMe: false,
   });
   const [loginMutation, { data, loading, error }] = useLoginMutation({
     variables: {
@@ -111,7 +113,7 @@ const LoginPage = () => {
       if (data) {
         const { login } = data;
         console.log("login", login);
-        onLoginSucces(login);
+        onLoginSucces(login, values.rememberMe);
         router.push("/dashboard");
       }
     } catch (e) {
@@ -177,7 +179,7 @@ const LoginPage = () => {
                 justifyContent: "space-between",
               }}
             >
-              <FormControlLabel control={<Checkbox />} label="Remember Me" />
+              <FormControlLabel onChange={(e, checked) => setValues({ ...values, rememberMe: checked })} control={<Checkbox />} label="Remember Me" />
               <LinkStyled passHref href="/" onClick={(e) => e.preventDefault()}>
                 Forgot Password?
               </LinkStyled>
@@ -218,14 +220,14 @@ const LoginPage = () => {
                 justifyContent: "center",
               }}
             >
-              <Typography variant="body2" sx={{ marginRight: 2 }}>
+              {/* <Typography variant="body2" sx={{ marginRight: 2 }}>
                 New on our platform?
               </Typography>
               <Typography variant="body2">
                 <LinkStyled passHref href="/pages/register">
                   Create an account
                 </LinkStyled>
-              </Typography>
+              </Typography> */}
             </Box>
           </form>
         </CardContent>
