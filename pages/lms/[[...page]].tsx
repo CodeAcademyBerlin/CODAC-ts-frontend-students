@@ -4,9 +4,9 @@ import Head from 'next/head';
 // ** MUI Components
 import Box from '@mui/material/Box'
 import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
-import { getPage } from '../../lib/lmsContent';
 import { PageData } from './lms';
 import lmspages from "../../public/assets/lmspages.json"
+import { getPage } from '../../lib/lmsContent';
 
 
 const lms = ({ pageData }: { pageData: PageData }) => {
