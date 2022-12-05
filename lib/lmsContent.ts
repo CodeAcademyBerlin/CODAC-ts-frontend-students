@@ -22,7 +22,8 @@ export async function getPage(pagePath: string) {
     .use(html)
     .process(matterResult.content);
   let contentHtml = processedContent.toString();
-  contentHtml = buildImgUrl(contentHtml, "https://caberlin-lms-v3.herokuapp.com");
+  contentHtml = buildImgUrl(contentHtml, "/lms");
+  // contentHtml = buildImgUrl(contentHtml, "https://caberlin-lms-v3.herokuapp.com");
   return {
     pagePath,
     contentHtml,
