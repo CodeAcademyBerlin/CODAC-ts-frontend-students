@@ -11,7 +11,7 @@ import LinearProgress from '@mui/material/LinearProgress'
 // ** Icons Imports
 import MenuUp from 'mdi-material-ui/MenuUp'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
-import { ThemeColor } from '../../@core/layouts/types'
+
 
 // ** Types
 
@@ -21,7 +21,7 @@ interface DataType {
   amount: string
   subtitle: string
   progress: number
-  color: ThemeColor
+  color: string
   imgHeight: number
 }
 
@@ -100,7 +100,7 @@ const TotalEarning = () => {
                   mr: 3,
                   width: 40,
                   height: 40,
-                  backgroundColor: theme => `rgba(${theme.palette.customColors.main}, 0.04)`
+                  backgroundColor: theme => `rgba(${theme.palette.primary.main}, 0.04)`
                 }}
               >
                 <img src={item.imgSrc} alt={item.title} height={item.imgHeight} />
@@ -125,7 +125,7 @@ const TotalEarning = () => {
                   <Typography variant='body2' sx={{ mb: 2, fontWeight: 600, color: 'text.primary' }}>
                     {item.amount}
                   </Typography>
-                  <LinearProgress color={item.color} value={item.progress} variant='determinate' />
+                  <LinearProgress color="primary" value={item.progress} variant='determinate' />
                 </Box>
               </Box>
             </Box>

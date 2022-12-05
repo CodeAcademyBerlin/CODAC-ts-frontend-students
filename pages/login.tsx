@@ -37,19 +37,21 @@ import Twitter from "mdi-material-ui/Twitter";
 import Facebook from "mdi-material-ui/Facebook";
 import EyeOutline from "mdi-material-ui/EyeOutline";
 import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
-import BlankLayout from "../@core/layouts/BlankLayout";
-import themeConfig from "../configs/themeConfig";
+import themeConfig from "../theme/themeConfig";
 import FooterIllustrationsV1 from "../componentsDemo/pages/auth/FooterIllustration";
-import { useLoginMutation } from "../graphql/_generated_";
-import { BrandText } from "../components/BrandStyle";
+import { useLoginMutation } from "../graphql/mutations/__generated__/user";
+import { BrandText } from "../components/common/BrandStyle";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AuthContext } from "../contexts/authContext";
+import BlankLayout from "../layouts/BlankLayout";
+import MainLayout from "../layouts/MainLayout";
 
 interface State {
   password: string;
   email: string;
   error: string;
   showPassword: boolean;
+  rememberMe: boolean;
 }
 
 // ** Styled Components
@@ -79,6 +81,7 @@ const LoginPage = () => {
     email: "",
     error: "",
     showPassword: false,
+    rememberMe: false,
   });
   const [loginMutation, { data, loading, error }] = useLoginMutation({
     variables: {
@@ -110,7 +113,7 @@ const LoginPage = () => {
       if (data) {
         const { login } = data;
         console.log("login", login);
-        onLoginSucces(login);
+        onLoginSucces(login, values.rememberMe);
         router.push("/dashboard");
       }
     } catch (e) {
@@ -176,7 +179,7 @@ const LoginPage = () => {
                 justifyContent: "space-between",
               }}
             >
-              <FormControlLabel control={<Checkbox />} label="Remember Me" />
+              <FormControlLabel onChange={(e, checked) => setValues({ ...values, rememberMe: checked })} control={<Checkbox />} label="Remember Me" />
               <LinkStyled passHref href="/" onClick={(e) => e.preventDefault()}>
                 Forgot Password?
               </LinkStyled>
@@ -217,14 +220,14 @@ const LoginPage = () => {
                 justifyContent: "center",
               }}
             >
-              <Typography variant="body2" sx={{ marginRight: 2 }}>
+              {/* <Typography variant="body2" sx={{ marginRight: 2 }}>
                 New on our platform?
               </Typography>
               <Typography variant="body2">
                 <LinkStyled passHref href="/pages/register">
                   Create an account
                 </LinkStyled>
-              </Typography>
+              </Typography> */}
             </Box>
           </form>
         </CardContent>
@@ -233,6 +236,6 @@ const LoginPage = () => {
   );
 };
 
-LoginPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>;
+// LoginPage.getLayout = (page: ReactNode) => <MainLayout>{page}</MainLayout>;
 
 export default LoginPage;

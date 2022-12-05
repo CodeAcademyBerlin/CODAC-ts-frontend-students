@@ -1,50 +1,77 @@
 "use client"
 // ** React Imports
-import { ReactNode } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 
 // ** Next Import
 import Link from 'next/link'
 
 // ** MUI Components
 import Button from '@mui/material/Button'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme, keyframes } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import Box, { BoxProps } from '@mui/material/Box'
-import FooterIllustrations from '../componentsDemo/pages/misc/FooterIllustrations'
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Box from '@mui/material/Box'
 import BlankLayout from '../layouts/BlankLayout'
-import { BrandText } from '../components/BrandStyle'
-import { TronGrid, TronGridWrapper } from '../components/TronGridPlane'
+import { BrandText } from '../components/common/BrandStyle'
+import BerlinSkyline from '../components/landing-page/BerlinSkyline'
+import { Fade, Slide } from '@mui/material'
+import Footer from '../layouts/Footer'
+import { TronGridWrapper, TronGrid } from '../components/landing-page/TronGridPlane'
 
 
+const blink = keyframes`
+    0% {
+    opacity: 0%;
+    }
+  80%{
+   opacity: 100%;
+      }
+  100%{
+   opacity: 100%;
+      }
+ `;
 
 // ** Styled Components
-const LinkStyled = styled(Link)(({ theme }) => ({
-  fontSize: '0.875rem',
-  textDecoration: 'none',
-}))
-
+const LinkStyled = styled(Link)`
+font-size: 10rem;
+text-decoration: none;
+animation: ${blink} 2s linear infinite alternate-reverse;
+border-color : ${({ theme }) => theme.palette.primary.main};
+border-style: solid;
+background-color: lightgray;
+border-radius: 7px;
+cursor: pointer;
+`
 
 const Home = () => {
+  const theme = useTheme();
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'));
+  const [start, setStart] = useState(false);
+
   return (
-    <Box className='content-center'>
+    <Box className='content-center' >
       <TronGridWrapper>
         <TronGrid />
+        {smUp && <BerlinSkyline />}
       </TronGridWrapper>
 
-
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <BrandText>
-          CODAC
+        <BrandText variant='overline'>
+          {smUp ? "CODAC" : "A"}
         </BrandText>
         <Typography color={"white"} variant='h6' sx={{ mb: 3, fontSize: '1.5rem !important' }}>
-          Code Academy Berlin Community
+          The Code Academy Berlin Community
         </Typography>
-        <LinkStyled passHref href='/dashboard'>
-          <Button component='div' variant='contained' sx={{ px: 5.5 }}>
+
+        {!start ? <LinkStyled onClick={() => setStart(true)} passHref href='/dashboard'>
+          <BrandText sx={{ padding: 5 }} variant='h3'>
             Start
-          </Button>
-        </LinkStyled>
+          </BrandText>
+        </LinkStyled> :
+          <BrandText sx={{ padding: 5, backgroundColor: "lightgray" }} variant='h3'>Loading</BrandText>
+        }
       </Box>
+      <Footer />
     </Box>
   )
 }

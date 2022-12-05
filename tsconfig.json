@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts"
-, "configs/themeConfig.ts"  ],
+  ],
   "exclude": [
     "node_modules"
   ]

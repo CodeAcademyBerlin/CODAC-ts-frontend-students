@@ -14,7 +14,6 @@ import CardContent from '@mui/material/CardContent'
 import ChevronUp from 'mdi-material-ui/ChevronUp'
 import ChevronDown from 'mdi-material-ui/ChevronDown'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
-import { ThemeColor } from '../../@core/layouts/types'
 
 // ** Types
 
@@ -26,7 +25,7 @@ interface DataType {
   subtitle: string
   avatarText: string
   trendNumber: string
-  avatarColor: ThemeColor
+  avatarColor: string
 }
 
 const data: DataType[] = [

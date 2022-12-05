@@ -17,14 +17,14 @@ import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
 import CellphoneLink from 'mdi-material-ui/CellphoneLink'
 import AccountOutline from 'mdi-material-ui/AccountOutline'
-import { ThemeColor } from '../../@core/layouts/types'
+
 
 // ** Types
 
 interface DataType {
   stats: string
   title: string
-  color: ThemeColor
+  color: string
   icon: ReactElement
 }
 

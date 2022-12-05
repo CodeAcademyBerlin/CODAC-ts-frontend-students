@@ -1,5 +1,5 @@
 // ** React Imports
-import { setCookie } from "nookies";
+import { destroyCookie, setCookie } from "nookies";
 import {
   createContext,
   useState,
@@ -7,22 +7,24 @@ import {
   useContext,
   useEffect,
 } from "react";
-import {
-  UsersPermissionsLoginPayload,
-  UsersPermissionsMe,
-} from "../graphql/_generated_";
+import { UsersPermissionsMe, UsersPermissionsLoginPayload } from "../graphql/global/ __generated__/types";
+
 
 type User = UsersPermissionsMe | null;
 
 export type AuthContextValue = {
   user: User;
-  onLoginSucces: (login: UsersPermissionsLoginPayload) => void;
+  onLoginSucces: (login: UsersPermissionsLoginPayload, rememberMe: boolean) => void;
+  logout: () => void;
 };
 
 const initialAuth: AuthContextValue = {
   user: null,
   onLoginSucces: () => {
     throw new Error("onLoginSucces not implemented.");
+  },
+  logout: () => {
+    throw new Error("logout not implemented.");
   },
 };
 
@@ -34,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(initialAuth.user);
 
   useEffect(() => {
-    // getSession()
+    getUser()
   }, [])
 
 
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     await fetch("/api/login", options);
   };
-  const getSession = async () => {
+  const getUser = async () => {
     const options = {
       method: "POST",
       headers: {
@@ -62,22 +64,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const onLoginSucces = async ({ jwt, user }: UsersPermissionsLoginPayload) => {
-    console.log("login", user);
+  const onLoginSucces = async (userPayload: UsersPermissionsLoginPayload, rememberMe: boolean) => {
+    const { jwt, user } = userPayload
     setUser(user);
     jwt &&
       setCookie(
         null,
         "token",
         jwt
-        // , {
-        // maxAge: 30 * 24 * 60 * 60,
-        // path: '/',
-        // }
+        , {
+          // maxAge: 30 * 24 * 60 * 60,
+          path: '/',
+        }
       )
   }
-  return <AuthContext.Provider value={{ user, onLoginSucces }}>{children}</AuthContext.Provider>
+  const logout = () => {
+    setUser(null)
+    destroyCookie(null, "token", {
+      path: '/',
+    })
+  }
+  return <AuthContext.Provider value={{ user, onLoginSucces, logout }}>{children}</AuthContext.Provider>
 }
 
-export const useAuth = () => useContext(AuthContext);
-export const AuthConsumer = AuthContext.Consumer;

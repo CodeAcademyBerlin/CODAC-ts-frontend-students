@@ -1,6 +1,6 @@
-import { GetMeDocument } from "../../graphql/_generated_";
 import { NextApiHandler } from "next";
-import { initializeApollo } from "../../configs/apollo";
+import { GetMeDocument } from "../../graphql/queries/__generated__/user";
+import { initializeApollo } from "../../lib/apolloClient";
 
 
 const userRoute: NextApiHandler = async (req, res) => {
