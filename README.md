@@ -86,3 +86,191 @@ https://www.apollographql.com/blog/first-impressions-with-apollo-client-3-2ae2a0
 chmod u+x vercel-content-submodule.sh
 in a linux shell
 
+Detailed tree view
+```
+codac-ts-frontend-students
+├─ .gitignore
+├─ .gitmodules
+├─ codegen.yml
+├─ components
+│  ├─ cohort
+│  │  └─ CohortCard.tsx
+│  ├─ common
+│  │  └─ BrandStyle.tsx
+│  ├─ dashboard
+│  │  └─ ProgressBar.tsx
+│  ├─ jobs-page
+│  │  └─ JobsCard.tsx
+│  ├─ landing-page
+│  │  ├─ BerlinSkyline.js
+│  │  └─ TronGridPlane.tsx
+│  ├─ libs
+│  │  ├─ react-apexcharts
+│  │  │  └─ index.ts
+│  │  ├─ react-datepicker
+│  │  │  └─ index.ts
+│  │  └─ scroll-to-top
+│  │     └─ index.tsx
+│  ├─ lms-page
+│  │  └─ LmsContentContainer.tsx
+│  └─ profile-page
+│     ├─ TabAccount.tsx
+│     ├─ TabInfo.tsx
+│     └─ TabSecurity.tsx
+├─ componentsDemo
+├─ content
+│  ├─ career
+│  ├─ data
+│  ├─ web
+├─ contexts
+│  ├─ authContext.tsx
+│  └─ settingsContext.tsx
+├─ graphql
+│  ├─ global
+│  │  └─  __generated__
+│  │     └─ types.ts
+│  ├─ mutations
+│  │  ├─ jobs.graphql
+│  │  ├─ user.graphql
+│  │  └─ __generated__
+│  │     ├─ jobs.ts
+│  │     └─ user.ts
+│  └─ queries
+│     ├─ jobs.graphql
+│     ├─ students.graphql
+│     ├─ user.graphql
+│     └─ __generated__
+│        ├─ jobs.ts
+│        ├─ students.ts
+│        └─ user.ts
+├─ hooks
+│  ├─ useAuth.ts
+│  ├─ useLmsNavigation.ts
+│  └─ useSettings.ts
+├─ layouts
+│  ├─ appBar
+│  │  ├─ AppBarContent.tsx
+│  │  ├─ Header.tsx
+│  │  └─ ThemeController.tsx
+│  ├─ auth
+│  │  ├─ NotificationDropdown.tsx
+│  │  ├─ UserDropdown.tsx
+│  │  └─ UserIcon.tsx
+│  ├─ BlankLayout.tsx
+│  ├─ Footer.tsx
+│  ├─ leftNav
+│  │  ├─ CollapsibleLi.tsx
+│  │  ├─ LeftNavBar.tsx
+│  │  └─ NavContent.tsx
+│  ├─ MainLayout.tsx
+│  ├─ types.ts
+│  └─ utils.ts
+├─ lib
+│  ├─ apolloClient.ts
+│  ├─ createEmotionCache.ts
+│  └─ lmsContent.ts
+├─ navigation
+│  └─ vertical
+│     ├─ index.ts
+│     └─ lms.ts
+├─ next.config.js
+├─ next.d.ts
+├─ package.json
+├─ pages
+│  ├─ 401.tsx
+│  ├─ 404.tsx
+│  ├─ 500.tsx
+│  ├─ api
+│  │  ├─ lms-links.ts
+│  │  └─ user.ts
+│  ├─ auth
+│  ├─ dashboard.tsx
+│  ├─ index.tsx
+│  ├─ jobs.tsx
+│  ├─ lms
+│  │  ├─ lms.d.ts
+│  │  └─ [[...page]].tsx
+│  ├─ login.tsx
+│  ├─ pagesDemo
+│  │  ├─ cards
+│  │  │  └─ index.tsx
+│  │  ├─ form-layouts
+│  │  │  └─ index.tsx
+│  │  ├─ icons
+│  │  │  └─ index.tsx
+│  │  ├─ register
+│  │  │  └─ index.tsx
+│  │  ├─ tables
+│  │  │  └─ index.tsx
+│  │  └─ typography
+│  │     └─ index.tsx
+│  ├─ profile.tsx
+│  ├─ _app.tsx
+│  └─ _document.tsx
+├─ public
+│  ├─ assets
+│  │  ├─ lmslinks.json
+│  │  ├─ lmspages.json
+│  │  ├─ logo.png
+│  │  └─ logo.svg
+│  ├─ favicon.ico
+│  └─ fonts
+│     └─ codacA2.woff2
+├─ README.md
+├─ styles
+│  ├─ globals.css
+│  └─ LmsContentContainer.module.css
+├─ theme
+│  ├─ breakpoints
+│  │  └─ index.ts
+│  ├─ globalStyles.ts
+│  ├─ overrides
+│  │  ├─ accordion.ts
+│  │  ├─ alerts.ts
+│  │  ├─ avatars.ts
+│  │  ├─ backdrop.ts
+│  │  ├─ button.ts
+│  │  ├─ card.ts
+│  │  ├─ chip.ts
+│  │  ├─ dateTimePicker.ts
+│  │  ├─ dialog.ts
+│  │  ├─ divider.ts
+│  │  ├─ index.ts
+│  │  ├─ input.ts
+│  │  ├─ link.ts
+│  │  ├─ list.ts
+│  │  ├─ menu.ts
+│  │  ├─ pagination.ts
+│  │  ├─ paper.ts
+│  │  ├─ popover.ts
+│  │  ├─ rating.ts
+│  │  ├─ select.ts
+│  │  ├─ snackbar.ts
+│  │  ├─ switches.ts
+│  │  ├─ table.ts
+│  │  ├─ tabs.ts
+│  │  ├─ timeline.ts
+│  │  ├─ toggleButton.ts
+│  │  ├─ tooltip.ts
+│  │  └─ typography.ts
+│  ├─ palette
+│  │  └─ index.ts
+│  ├─ shadows
+│  │  └─ index.ts
+│  ├─ spacing
+│  │  └─ index.ts
+│  ├─ ThemeComponent.tsx
+│  ├─ themeConfig.ts
+│  ├─ ThemeOptions.ts
+│  └─ typography
+│     └─ index.ts
+├─ tsconfig.json
+├─ utils
+│  ├─ create-emotion-cache.ts
+│  ├─ hex-to-rgba.ts
+│  └─ IsLinkActive.ts
+├─ vercel-content-submodule.sh
+├─ vercel-submodule-workaround.sh
+└─ yarn.lock
+
+```

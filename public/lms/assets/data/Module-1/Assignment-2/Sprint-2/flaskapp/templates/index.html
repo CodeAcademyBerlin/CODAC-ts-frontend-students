@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Predict Bike Share Count</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    
+  </head>
+
+<body>
+ <div class="login">
+  <h1>Predict Bike Share Count</h1>
+  <br>
+  <img src="https://cdn.pixabay.com/photo/2019/05/11/22/09/bike-sharing-4196725_960_720.jpg" alt="Health Insurance" style="vertical-align:middle" width="300" height="200">
+  <br>
+  <br>
+  <br>
+  <!-- Form to enter new data for predictions  -->
+    <form action="{{ url_for('predict')}}"method="POST">
+
+        <label for="Hour">Hour of the Day (between 0 and 23):</label>
+        <input type="number" id="Hour" name="Hour" placeholder="Hour" required="required" min="0" max="23" value = "<?php if (isset($_POST['Hour'])) echo $_GET['Hour'];?>"><br>
+
+        <br>
+        <label for="Is_Holiday">Is_Holiday:</label>
+        <select name="Is_Holiday" id="Is_Holiday">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <script type="text/javascript">
+          document.getElementById('Is_Holiday').value = "<?php if (isset($_POST['Is_Holiday'])) echo $_GET['Is_Holiday'];?>";
+        </script>
+
+        <br>
+        <br>
+        <label for="Day_Of_Week">Day_Of_Week:</label>
+        <select name="Day_Of_Week" id="Day_Of_Week">
+            <option value="Mon">Mon</option>
+            <option value="Tue">Tue</option>
+            <option value="Wed">Wed</option>
+            <option value="Thu">Thu</option>
+            <option value="Fri">Fri</option>
+            <option value="Sat">Sat</option>
+            <option value="Sun">Sun</option>
+        </select>
+
+        <script type="text/javascript">
+          document.getElementById('Day_Of_Week').value = "<?php if (isset($_POST['Day_Of_Week'])) echo $_GET['Day_Of_Week'];?>";
+        </script>
+
+        <br>
+        <br>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{pred}}
+   
+ </div>
+ 
+
+</body>
+</html>
