@@ -16,7 +16,7 @@ const Contributors = ({ data }: any) => {
         <Typography variant='h5'>Contributors</Typography>
       </Grid>
       {data.map((contributor: Contributor) => <Grid item xs={12} sm={6} md={4}>
-        <CardGithub contributor={contributor} />
+        <CardGithub key={contributor.login} contributor={contributor} />
       </Grid>)}
     </Grid>
   )

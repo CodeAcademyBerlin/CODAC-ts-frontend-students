@@ -4,6 +4,7 @@ import Card from '@mui/material/Card'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
+import { styled } from '@mui/material/styles'
 
 // ** Icons Imports
 import Github from 'mdi-material-ui/Github'
@@ -11,6 +12,11 @@ import Group from 'mdi-material-ui/AccountGroup'
 import Link from 'next/link'
 import { Contributor } from '../../@types'
 
+const StyledLink = styled(Link)({
+  display: 'flex',
+  alignItems: 'center',
+  textDecoration: 'none'
+})
 const CardGithub = ({ contributor }: { contributor: Contributor }) => {
   return (
     <Card sx={{ border: 0, boxShadow: 0, color: 'common.white', backgroundColor: 'primary.main' }}>
@@ -20,17 +26,17 @@ const CardGithub = ({ contributor }: { contributor: Contributor }) => {
 
 
           <Typography
-            variant='h6'
+            variant='body1'
             sx={{ display: 'flex', marginBottom: 2.75, alignItems: 'center', color: 'common.white' }}
           >
             {contributor.login}
 
           </Typography>
         </Box>
-        <Typography variant='body2' sx={{ marginBottom: 3, color: 'common.white' }}>
+        {/* <Typography variant='body2' sx={{ marginBottom: 3, color: 'common.white' }}>
           With the Internet spreading like wildfire and reaching every part of our daily life, more and more traffic is
           directed.
-        </Typography>
+        </Typography> */}
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
 
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -40,11 +46,18 @@ const CardGithub = ({ contributor }: { contributor: Contributor }) => {
                 {contributor.contributions}
               </Typography>
             </Box>
-            <Link style={{ textDecoration: "none" }} href={contributor.html_url}>
+            <StyledLink href={contributor.html_url}>
               <Box sx={{ display: 'flex', alignItems: 'center', textDecoration: "none" }}>
                 <Github sx={{ marginRight: 2.5 }} />
               </Box>
-            </Link>
+            </StyledLink>
+            <StyledLink href={`/contributors/${contributor.login}`}>
+              <Box sx={{ display: 'flex', alignItems: 'center', textDecoration: "none" }}>
+                <Typography variant='body2' sx={{ color: 'common.white' }}>
+                  more
+                </Typography>
+              </Box>
+            </StyledLink>
           </Box>
         </Box>
       </CardContent>

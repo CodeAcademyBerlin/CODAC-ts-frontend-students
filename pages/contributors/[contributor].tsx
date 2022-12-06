@@ -15,20 +15,18 @@ import { contributorsFilePaths, CONTRIBUTORS_PATH } from '../../lib/contentFileP
 import { getPageMdx } from '../../lib/lmsContent'
 import { PageData } from '../lms/lms'
 
-const Contributors = ({ source, frontMatter }: any) => {
+const Contributors = ({ pageData }: { pageData: PageData }) => {
+  console.log('pageData', pageData)
+  // const Contributors = ({ source, frontMatter }: any) => {
   return (
     <>
-      <Head>
-        {/* <title>{pageData.title}</title> */}
-      </Head>
+
+      <LmsContentContainer content={pageData.contentHtml} />
+
 
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <>
-          <MDXRemote {...source} components={mdxComponents} />
+        {/* <MDXRemote {...contentHtml} components={mdxComponents} /> */}
 
-          {/* <LmsContentContainer content={pageData.contentHtml} next={pageData.next} prev={pageData.prev} /> */}
-
-        </>
       </Box>
     </>
 
@@ -36,27 +34,27 @@ const Contributors = ({ source, frontMatter }: any) => {
 }
 export default Contributors
 export const getStaticProps = async ({ params }: { params: { contributor: string } }) => {
-  const source = path.join(CONTRIBUTORS_PATH, `${params.contributor}.mdx`)
-  //   const pageData = await getPageMdx(contributorsFilePaths);
-  //   return { props: { pageData } };
-  // }
-
-  const { content, data } = matter(source)
-  const mdxSource = await serialize(content, {
-    scope: data,
-  })
-
-  return {
-    props: {
-      source: mdxSource,
-      frontMatter: data,
-    },
-  }
+  // const source = path.join(CONTRIBUTORS_PATH, `${params.contributor}`)
+  const pageData = await getPageMdx(params.contributor, CONTRIBUTORS_PATH);
+  return { props: { pageData } };
 }
+
+// const { content, data } = matter(source)
+// const mdxSource = await serialize(content, {
+//   scope: data,
+// })
+
+// return {
+//   props: {
+//     source: mdxSource,
+//     frontMatter: data,
+//   },
+// }
+
 
 export const getStaticPaths = async () => {
   const paths = contributorsFilePaths
-    .map((path) => path.replace(/\.mdx?$/, ''))
+    .map((path) => path.replace(/\.md?$/, ''))
     .map((contributor) => ({ params: { contributor } }))
 
   return {
