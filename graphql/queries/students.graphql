@@ -1,13 +1,3 @@
-query getStudents {
-    students {
-      data {
-        attributes {
-          email
-        }
-      }
-    }
-  }
-
 query filterStudentByUserId($userId: ID) {
     students(filters: {
                 user: {
@@ -18,6 +8,58 @@ query filterStudentByUserId($userId: ID) {
             data {
                 attributes {
                     firstname
+                    lastname
+                    start_date
+                    end_date
+                    cohort {
+                        data {
+                            attributes {
+                                name
+                                start_date
+                                students {
+                                    data {
+                                        attributes {
+                                            firstname
+                                            lastname
+                                            main_course {
+                                                data {
+                                                    attributes {
+                                                        name
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    main_course {
+                        data {
+                            attributes
+                            {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }   
+}
+
+query getStudentById($studentId: ID) {
+    student(id: $studentId )
+        {
+            data {
+                attributes {
+                    firstname
+                    avatar {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
                     lastname
                     start_date
                     end_date

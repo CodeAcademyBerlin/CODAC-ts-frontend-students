@@ -9,13 +9,11 @@ import ApexChartWrapper from "../components/libs/react-apexcharts";
 import { Student } from "../graphql/global/ __generated__/types";
 import { FilterStudentByUserIdDocument } from "../graphql/queries/__generated__/students";
 import { getToken, initializeApollo } from "../lib/apolloClient";
+import { JwtPayloadWithID } from "../@types";
 
 // TBD: Handle hydration errors
 
 
-interface JwtPayloadWithID extends JwtPayload {
-  id: number
-}
 
 const Dashboard = ({
   data,
