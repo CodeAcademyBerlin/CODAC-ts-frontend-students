@@ -1,0 +1,52 @@
+query getCohorts {
+  cohorts {
+    data {
+      attributes {
+        name
+        start_date
+        students {
+          data {
+            attributes {
+              firstname
+              lastname
+              start_date
+              end_date
+              main_course {
+                data {
+                  attributes {
+                    name
+                    achievements {
+                      data {
+                        attributes {
+                          name
+                          badge {
+                            data {
+                              attributes {
+                                name
+                                alternativeText
+                                caption
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              avatar {
+                data {
+                  attributes {
+                    alternativeText
+                    name
+                    caption
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
