@@ -6,18 +6,34 @@ import Box from '@mui/material/Box'
 import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
 import { PageData } from './lms';
 import lmspages from "../../public/assets/lmspages.json"
-import { getPage } from '../../lib/lmsContent';
+import { getPage, getPageMdx } from '../../lib/lmsContent';
+import { Breadcrumbs } from '@mui/material';
+import Link from 'next/link';
 
 
 const lms = ({ pageData }: { pageData: PageData }) => {
+  // console.log('pageData', pageData)
 
   return (
     <>
       <Head>
         <title>{pageData.title}</title>
       </Head>
-
+      {/* <Breadcrumbs aria-label="breadcrumb">
+          {pageData.pagePath.split("/").map((path, i, arr) => (
+            <Link
+              href={`/lms/${pageData.pagePath.substring(
+                0,
+                pageData.pagePath.indexOf(path) + path.length
+              )}`}
+              key={path}
+            >
+              {path}
+            </Link>
+          ))}
+        </Breadcrumbs> */}
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
         <>
           <h1>{pageData.title}</h1>
 
@@ -31,7 +47,7 @@ const lms = ({ pageData }: { pageData: PageData }) => {
 }
 
 export async function getStaticProps({ params }: { params: { page: string[] } }) {
-  const pageData = await getPage("/" + params.page.join("/"));
+  const pageData = await getPageMdx("/" + params.page.join("/"));
   return { props: { pageData } };
 }
 

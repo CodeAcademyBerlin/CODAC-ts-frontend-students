@@ -8,7 +8,7 @@ export type Links = LinkSingle[]
 
 export interface PageData {
     access: string,
-    contentHtml: string,
+    contentHtml: MDXRemoteSerializeResult,
     navTitle: string,
     order: number,
     page: string,
