@@ -50,6 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
     await fetch("/api/login", options);
   };
+
   const getUser = async () => {
     const options = {
       method: "POST",
@@ -58,9 +59,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       },
     };
     const res = await fetch("/api/user", options);
-    const { user } = await res.json();
+    const data = await res.json();
+    const user: User = data.user
     if (user) {
       setUser(user);
+      user?.role && getUserData(user.role.name, user.id)
+    }
+  };
+  const getUserData = async (role: string, id: string) => {
+    const body = { role, id }
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body)
+    };
+    const res = await fetch("/api/userData", options);
+    const { userData } = await res.json();
+    if (userData) {
+      console.log('userData', userData)
     }
   };
 

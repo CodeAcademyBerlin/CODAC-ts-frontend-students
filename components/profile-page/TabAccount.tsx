@@ -49,7 +49,7 @@ const ResetButtonStyled = styled(Button)<ButtonProps>(({ theme }) => ({
 const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
   // ** State
   const [openAlert, setOpenAlert] = useState<boolean>(true)
-  const [imgSrc, setImgSrc] = useState<string>('/images/avatars/1.png')
+  const [imgSrc, setImgSrc] = useState<string>(user.userData?.avatar || "")
   const [userState, setUserState] = useState<UsersPermissionsMe>(user)
 
   const onChange = (file: ChangeEvent) => {

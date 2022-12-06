@@ -1,5 +1,5 @@
 
-![logo](./public/logo.png)
+![logo](./public/assets/logo.png)
 # CODAC 
 ###  Code Academy Berlin Community App
 ### Developed by Students of the Academy
@@ -86,7 +86,12 @@ https://www.apollographql.com/blog/first-impressions-with-apollo-client-3-2ae2a0
 chmod u+x vercel-content-submodule.sh
 in a linux shell
 
-Detailed tree view
+
+### charts library
+
+https://www.infragistics.com/products/ignite-ui-react/react/components/charts/types/bar-chart
+
+### Detailed tree view
 ```
 codac-ts-frontend-students
 ├─ .gitignore

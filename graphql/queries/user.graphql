@@ -1,10 +1,19 @@
-  query getMe {
-    me {
-      role {
-        name
-      }
-      email
-      id
-      username
+query getMe {
+      me {
+        id
+        role {
+          id
+          name 
+        }
+        email
+        id
+        username
+        userData {
+            firstname
+            lastname
+            avatar
+            type
+            id
+        }  
     }
-  }
+}
