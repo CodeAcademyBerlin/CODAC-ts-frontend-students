@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 import { LinkSingle, Links } from '../pages/lms/lms';
-
+import { serialize } from 'next-mdx-remote/serialize'
 
 
 const contentDirectory = path.join(process.cwd(), 'contentLocal');
@@ -30,11 +30,46 @@ export async function getPage(pagePath: string) {
     ...matterResult.data,
   };
 }
+export async function getPageMdx(pagePath: string) {
+  const fullPath = path.join(contentDirectory, `${pagePath}.md`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  // Use gray-matter to parse the post metadata section
+  // const matterResult = matter(fileContents);
+  // Use remark to convert markdown into HTML string
+  // const processedContent = await remark()
+  //   .use(html)
+  //   .process(matterResult.content);
+  // let contentHtml = processedContent.toString();
+  // contentHtml = buildImgUrl(contentHtml, "/lms");
+  // contentHtml = buildImgUrl(contentHtml, "https://caberlin-lms-v3.herokuapp.com");
+  const escapeComments = removeComments(fileContents)
+
+  const { content, data } = matter(escapeComments)
+  const contentHtml = buildImgUrl(content, "/lms")
+  const mdxSource = await serialize(contentHtml, {
+    // Optionally pass remark/rehype plugins
+    // mdxOptions: {
+    //   remarkPlugins: [],
+    //   rehypePlugins: [],
+    // },
+    scope: data,
+  })
+
+  return {
+    pagePath,
+    contentHtml: mdxSource,
+    ...data,
+  };
+}
 
 // Include server in img url
 const buildImgUrl = (markdownBody: string, serverUrl: string) => {
   return markdownBody.replace(/staticAsset\//ig, serverUrl + "/assets/")
 };
+const removeComments = (markdownBody: string) => {
+  return markdownBody.replace(/(?=<!--)([\s\S]*?)-->/gm, "")
+};
+
 
 // export async function getPaths(subDirPath?: string) {
 //   const paths: Array<Paths> = [];
