@@ -17,7 +17,7 @@ type BattleCardProps = {
 const BattleCard = (props : BattleCardProps) => {
   
   return (
-    <Card>
+    <Card style={{marginBottom:"2em"}}>
       <CardContent
         sx={{
           display: 'flex',
