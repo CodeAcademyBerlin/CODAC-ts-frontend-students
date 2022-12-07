@@ -4,7 +4,6 @@ import {
   createContext,
   useState,
   ReactNode,
-  useContext,
   useEffect,
 } from "react";
 import { UsersPermissionsMe, UsersPermissionsLoginPayload } from "../graphql/global/ __generated__/types";
@@ -63,22 +62,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const user: User = data.user
     if (user) {
       setUser(user);
-      user?.role && getUserData(user.role.name, user.id)
-    }
-  };
-  const getUserData = async (role: string, id: string) => {
-    const body = { role, id }
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body)
-    };
-    const res = await fetch("/api/userData", options);
-    const { userData } = await res.json();
-    if (userData) {
-      console.log('userData', userData)
     }
   };
 

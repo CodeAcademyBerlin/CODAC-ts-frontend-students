@@ -10,6 +10,7 @@ import { Student } from "../graphql/global/ __generated__/types";
 import { FilterStudentByUserIdDocument } from "../graphql/queries/__generated__/students";
 import { getToken, initializeApollo } from "../lib/apolloClient";
 import { JwtPayloadWithID } from "../@types";
+import OpenAiImage from "../components/common/OpenAiImage";
 
 // TBD: Handle hydration errors
 
@@ -48,8 +49,13 @@ const Dashboard = ({
           <Grid item xs={12} >
             <ProgressBar student={myStudent} />
           </Grid>
-          <Grid item xs={12} md={8} lg={8}>
+          <Grid item xs={12} md={6} lg={4}>
             {myStudent?.cohort?.data?.attributes && <CohortCard cohort={myStudent.cohort.data.attributes} />}
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+
+            <OpenAiImage />
+
           </Grid>
 
           {/* {user.role.name === "Student" && <ProgressBar />} */}
