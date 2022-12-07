@@ -1,58 +1,42 @@
-query getStudents {
-    students {
-      data {
-        attributes {
-          email
+query filterStudentByUserId($userId: ID) {
+  students(filters: { user: { id: { eq: $userId } } }) {
+    data {
+      attributes {
+        firstname
+        lastname
+        start_date
+        end_date
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+              students {
+                data {
+                  attributes {
+                    firstname
+                    lastname
+                    main_course {
+                      data {
+                        attributes {
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        main_course {
+          data {
+            attributes {
+              name
+            }
+          }
         }
       }
     }
   }
-
-query filterStudentByUserId($userId: ID) {
-    students(filters: {
-                user: {
-                    id: {eq: $userId}
-                }
-        })
-        {
-            data {
-                attributes {
-                    firstname
-                    lastname
-                    start_date
-                    end_date
-                    cohort {
-                        data {
-                            attributes {
-                                name
-                                start_date
-                                students {
-                                    data {
-                                        attributes {
-                                            firstname
-                                            lastname
-                                            main_course {
-                                                data {
-                                                    attributes {
-                                                        name
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    main_course {
-                        data {
-                            attributes
-                            {
-                                name
-                            }
-                        }
-                    }
-                }
-            }
-        }   
 }

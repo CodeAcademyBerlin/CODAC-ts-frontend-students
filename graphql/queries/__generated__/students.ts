@@ -4,44 +4,6 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
-export const GetStudentsDocument = gql`
-    query getStudents {
-  students {
-    data {
-      attributes {
-        email
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useGetStudentsQuery__
- *
- * To run a query within a React component, call `useGetStudentsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetStudentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetStudentsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetStudentsQuery(baseOptions?: Apollo.QueryHookOptions<GetStudentsQuery, GetStudentsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetStudentsQuery, GetStudentsQueryVariables>(GetStudentsDocument, options);
-      }
-export function useGetStudentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetStudentsQuery, GetStudentsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetStudentsQuery, GetStudentsQueryVariables>(GetStudentsDocument, options);
-        }
-export type GetStudentsQueryHookResult = ReturnType<typeof useGetStudentsQuery>;
-export type GetStudentsLazyQueryHookResult = ReturnType<typeof useGetStudentsLazyQuery>;
-export type GetStudentsQueryResult = Apollo.QueryResult<GetStudentsQuery, GetStudentsQueryVariables>;
 export const FilterStudentByUserIdDocument = gql`
     query filterStudentByUserId($userId: ID) {
   students(filters: {user: {id: {eq: $userId}}}) {
@@ -114,11 +76,6 @@ export function useFilterStudentByUserIdLazyQuery(baseOptions?: Apollo.LazyQuery
 export type FilterStudentByUserIdQueryHookResult = ReturnType<typeof useFilterStudentByUserIdQuery>;
 export type FilterStudentByUserIdLazyQueryHookResult = ReturnType<typeof useFilterStudentByUserIdLazyQuery>;
 export type FilterStudentByUserIdQueryResult = Apollo.QueryResult<FilterStudentByUserIdQuery, FilterStudentByUserIdQueryVariables>;
-export type GetStudentsQueryVariables = Types.Exact<{ [key: string]: never; }>;
-
-
-export type GetStudentsQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', email?: string | null } | null }> } | null };
-
 export type FilterStudentByUserIdQueryVariables = Types.Exact<{
   userId?: Types.InputMaybe<Types.Scalars['ID']>;
 }>;
