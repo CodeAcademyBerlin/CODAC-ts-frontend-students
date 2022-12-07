@@ -27,6 +27,7 @@ const AppBarContent = () => {
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
+        {/* Search bar
         <TextField
           size='small'
           sx={{ '& .MuiOutlinedInput-root': { borderRadius: 4 } }}
@@ -37,17 +38,16 @@ const AppBarContent = () => {
               </InputAdornment>
             )
           }}
-        />
+        /> */}
       </Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
         <ThemeController />
-        <NotificationDropdown />
+        {/* <NotificationDropdown /> */}
         {user ? <UserDropdown user={user} logout={logout} /> :
           <LinkStyled href="/login">
-            <Box >
+            <IconButton color='primary.main' aria-haspopup='true' aria-controls='customized-menu'>
               <AccountOffOutline sx={{ marginRight: 2 }} />
-
-            </Box>
+            </IconButton>
           </LinkStyled>
         }
       </Box>

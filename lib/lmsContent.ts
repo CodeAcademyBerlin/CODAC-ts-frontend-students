@@ -7,13 +7,11 @@ import { LinkSingle, Links } from '../pages/lms/lms';
 import { serialize } from 'next-mdx-remote/serialize'
 
 
-const contentDirectory = path.join(process.cwd(), 'contentLocal');
-// const contentDirectory = path.join(process.cwd(), 'content');
 interface Paths { params: { page: string[] } };
 
 
-export async function getPage(pagePath: string) {
-  const fullPath = path.join(contentDirectory, `${pagePath}.md`);
+export async function getPage(pagePath: string, directory: string) {
+  const fullPath = path.join(directory, `${pagePath}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
@@ -30,8 +28,8 @@ export async function getPage(pagePath: string) {
     ...matterResult.data,
   };
 }
-export async function getPageMdx(pagePath: string) {
-  const fullPath = path.join(contentDirectory, `${pagePath}.md`);
+export async function getPageMdx(pagePath: string, directory: string) {
+  const fullPath = path.join(directory, `${pagePath}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   // Use gray-matter to parse the post metadata section
   // const matterResult = matter(fileContents);
