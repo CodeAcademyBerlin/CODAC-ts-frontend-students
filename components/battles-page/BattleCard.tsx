@@ -47,7 +47,7 @@ const BattleCard = (props : BattleCardProps) => {
         </Button>
         </div>
       </CardContent>
-      <DenseTable/>
+      <DenseTable option1={props.vsBattle?.option_1_voters.length || 0} option2={props.vsBattle?.option_2_voters.length || 0}/>
     </Card>
   )
 }
