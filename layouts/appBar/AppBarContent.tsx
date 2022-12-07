@@ -45,7 +45,7 @@ const AppBarContent = () => {
         {/* <NotificationDropdown /> */}
         {user ? <UserDropdown user={user} logout={logout} /> :
           <LinkStyled href="/login">
-            <IconButton color='primary.main' aria-haspopup='true' aria-controls='customized-menu'>
+            <IconButton color='primary' aria-haspopup='true' aria-controls='customized-menu'>
               <AccountOffOutline sx={{ marginRight: 2 }} />
             </IconButton>
           </LinkStyled>
