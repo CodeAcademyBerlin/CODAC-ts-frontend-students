@@ -11,6 +11,16 @@ export const GetCohortsDocument = gql`
       attributes {
         name
         start_date
+        logo {
+          data {
+            attributes {
+              url
+              alternativeText
+              caption
+              previewUrl
+            }
+          }
+        }
         students {
           data {
             attributes {
@@ -29,6 +39,7 @@ export const GetCohortsDocument = gql`
                           badge {
                             data {
                               attributes {
+                                url
                                 name
                                 alternativeText
                                 caption
@@ -44,6 +55,7 @@ export const GetCohortsDocument = gql`
               avatar {
                 data {
                   attributes {
+                    url
                     alternativeText
                     name
                     caption
@@ -88,4 +100,4 @@ export type GetCohortsQueryResult = Apollo.QueryResult<GetCohortsQuery, GetCohor
 export type GetCohortsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetCohortsQuery = { __typename?: 'Query', cohorts?: { __typename?: 'CohortEntityResponseCollection', data: Array<{ __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null, start_date?: any | null, students?: { __typename?: 'StudentRelationResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', firstname?: string | null, lastname?: string | null, start_date?: any | null, end_date?: any | null, main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null, achievements?: { __typename?: 'AchievementRelationResponseCollection', data: Array<{ __typename?: 'AchievementEntity', attributes?: { __typename?: 'Achievement', name?: string | null, badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, caption?: string | null } | null } | null } | null } | null }> } | null } | null } | null } | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, name: string, caption?: string | null } | null } | null } | null } | null }> } | null } | null }> } | null };
+export type GetCohortsQuery = { __typename?: 'Query', cohorts?: { __typename?: 'CohortEntityResponseCollection', data: Array<{ __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null, start_date?: any | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, caption?: string | null, previewUrl?: string | null } | null } | null } | null, students?: { __typename?: 'StudentRelationResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', firstname?: string | null, lastname?: string | null, start_date?: any | null, end_date?: any | null, main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null, achievements?: { __typename?: 'AchievementRelationResponseCollection', data: Array<{ __typename?: 'AchievementEntity', attributes?: { __typename?: 'Achievement', name?: string | null, badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, caption?: string | null } | null } | null } | null } | null }> } | null } | null } | null } | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, name: string, caption?: string | null } | null } | null } | null } | null }> } | null } | null }> } | null };

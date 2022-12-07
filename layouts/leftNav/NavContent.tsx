@@ -6,7 +6,6 @@ import { LinkSingle } from '../../pages/lms/lms'
 import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { isNavLinkActive } from '../../utils/IsLinkActive';
-import { useTheme } from '@mui/material';
 import lmslinks from '../../public/assets/lmslinks.json';
 
 export const OuterList = styled('ul')`
@@ -56,19 +55,12 @@ function NavContent() {
 
   const router = useRouter();
 
-
-
   const lms: LinkSingle = {
     page: ['welcome'],
     path: 'welcome',
     title: 'LMS',
     children: lmslinks
   }
-
-
-
-
-
 
   return (
     <div>
@@ -87,6 +79,10 @@ function NavContent() {
 
         <NavLiItem>
           <Link className={isNavLinkActive('/jobs', router.asPath) ? 'active' : ''} href={'/jobs'}>Jobs</Link>
+        </NavLiItem>
+
+        <NavLiItem>
+        <Link className={isNavLinkActive('/community', router.asPath) ? 'active' : ''} href={'/community'}>Community</Link>
         </NavLiItem>
 
 

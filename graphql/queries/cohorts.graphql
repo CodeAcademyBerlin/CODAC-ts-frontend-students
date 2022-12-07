@@ -4,6 +4,16 @@ query getCohorts {
       attributes {
         name
         start_date
+        logo {
+          data {
+            attributes {
+              url
+              alternativeText
+              caption
+              previewUrl
+            }
+          }
+        }
         students {
           data {
             attributes {
@@ -22,6 +32,7 @@ query getCohorts {
                           badge {
                             data {
                               attributes {
+                                url
                                 name
                                 alternativeText
                                 caption
@@ -37,6 +48,7 @@ query getCohorts {
               avatar {
                 data {
                   attributes {
+                    url
                     alternativeText
                     name
                     caption
