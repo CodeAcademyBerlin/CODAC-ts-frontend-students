@@ -16,7 +16,7 @@ import { getPageMdx } from '../../lib/lmsContent'
 import { PageData } from '../lms/lms'
 
 const Contributors = ({ pageData }: { pageData: PageData }) => {
-  console.log('pageData', pageData)
+
   // const Contributors = ({ source, frontMatter }: any) => {
   return (
     <>

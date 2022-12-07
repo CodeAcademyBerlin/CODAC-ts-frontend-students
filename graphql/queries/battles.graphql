@@ -1,0 +1,28 @@
+query getVSBattles {
+  vsBattles {
+    data {
+      attributes {
+        title
+        description
+        option1
+        option2
+        option_1_voters {
+          data {
+            attributes {
+              username
+              email
+            }
+          }
+        }
+        option_2_voters {
+          data {
+            attributes {
+              username
+              email
+            }
+          }
+        }
+      }
+    }
+  }
+}
