@@ -87,8 +87,8 @@ function NavContent() {
           <Link className={isNavLinkActive('/battles', router.asPath) ? 'active' : ''} href={'/battles'}>VS Battles</Link>
         </NavLiItem>
 
-
         <CollapsibleLi child={lms} />
+        
         <NavLiItem >
           <Link className={isNavLinkActive('/contributors', router.asPath) ? 'active' : ''} href='/contributors'>Contributors</Link>
         </NavLiItem>
