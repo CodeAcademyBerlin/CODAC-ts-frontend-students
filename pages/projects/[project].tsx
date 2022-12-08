@@ -12,7 +12,7 @@ import mdxComponents from '../../components/mdx'
 import CustomLink from '../../components/mdx/CustomLink'
 import Layout from '../../components/mdx/Layout'
 import { projectsFilePaths, PROJECTS_PATH } from '../../lib/contentFilePaths'
-import { getPageMdx } from '../../lib/lmsContent'
+import { getPageMdx } from '../../lib/markdown'
 import { PageData } from '../lms/lms'
 
 const Projects = ({ pageData }: { pageData: PageData }) => {
@@ -35,7 +35,9 @@ const Projects = ({ pageData }: { pageData: PageData }) => {
 export default Projects
 export const getStaticProps = async ({ params }: { params: { project: string } }) => {
   // const source = path.join(CONTRIBUTORS_PATH, `${params.contributor}`)
+  console.log('project', params.project)
   const pageData = await getPageMdx(params.project, PROJECTS_PATH);
+  console.log('pageData', pageData)
   return { props: { pageData } };
 }
 

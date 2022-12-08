@@ -5,7 +5,8 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import { LinkSingle, Links } from '../pages/lms/lms';
 import { serialize } from 'next-mdx-remote/serialize'
-
+import imageSize from "rehype-img-size";
+import { projectsFilePaths } from './contentFilePaths';
 
 interface Paths { params: { page: string[] } };
 
@@ -44,13 +45,16 @@ export async function getPageMdx(pagePath: string, directory: string) {
 
   const { content, data } = matter(escapeComments)
   const contentHtml = buildImgUrl(content, "/lms")
+
   const mdxSource = await serialize(contentHtml, {
     // Optionally pass remark/rehype plugins
-    // mdxOptions: {
-    //   remarkPlugins: [],
-    //   rehypePlugins: [],
-    // },
-    scope: data,
+    mdxOptions: {
+      //   remarkPlugins: [],
+      // rehypePlugins: [[imageSize, { dir: "public" }]],
+      // },
+
+    },
+    scope: data
   })
 
   return {
@@ -58,6 +62,18 @@ export async function getPageMdx(pagePath: string, directory: string) {
     contentHtml: mdxSource,
     ...data,
   };
+}
+export async function getFrontmatters(filePaths: string[], directory: string) {
+
+  const frontmatters = filePaths
+    .map((filePath) => {
+      const fullPath = path.join(directory, filePath);
+      const content = fs.readFileSync(fullPath, 'utf8');
+      const { data } = matter(content)
+      return data
+    })
+
+  return frontmatters
 }
 
 // Include server in img url
