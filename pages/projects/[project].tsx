@@ -11,11 +11,11 @@ import LmsContentContainer from '../../components/lms-page/LmsContentContainer'
 import mdxComponents from '../../components/mdx'
 import CustomLink from '../../components/mdx/CustomLink'
 import Layout from '../../components/mdx/Layout'
-import { contributorsFilePaths, CONTRIBUTORS_PATH } from '../../lib/contentFilePaths'
-import { getPageMdx } from '../../lib/lmsContent'
+import { projectsFilePaths, PROJECTS_PATH } from '../../lib/contentFilePaths'
+import { getPageMdx } from '../../lib/markdown'
 import { PageData } from '../lms/lms'
 
-const Contributors = ({ pageData }: { pageData: PageData }) => {
+const Projects = ({ pageData }: { pageData: PageData }) => {
 
   // const Contributors = ({ source, frontMatter }: any) => {
   return (
@@ -32,10 +32,12 @@ const Contributors = ({ pageData }: { pageData: PageData }) => {
 
   )
 }
-export default Contributors
-export const getStaticProps = async ({ params }: { params: { contributor: string } }) => {
+export default Projects
+export const getStaticProps = async ({ params }: { params: { project: string } }) => {
   // const source = path.join(CONTRIBUTORS_PATH, `${params.contributor}`)
-  const pageData = await getPageMdx(params.contributor, CONTRIBUTORS_PATH);
+  console.log('project', params.project)
+  const pageData = await getPageMdx(params.project, PROJECTS_PATH);
+  console.log('pageData', pageData)
   return { props: { pageData } };
 }
 
@@ -53,9 +55,9 @@ export const getStaticProps = async ({ params }: { params: { contributor: string
 
 
 export const getStaticPaths = async () => {
-  const paths = contributorsFilePaths
+  const paths = projectsFilePaths
     .map((path) => path.replace(/\.md?$/, ''))
-    .map((contributor) => ({ params: { contributor } }))
+    .map((project) => ({ params: { project } }))
 
   return {
     paths,

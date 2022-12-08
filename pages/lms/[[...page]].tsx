@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
 import { PageData } from './lms';
 import lmspages from "../../public/assets/lmspages.json"
-import { getPage, getPageMdx } from '../../lib/lmsContent';
+import { getPage, getPageMdx } from '../../lib/markdown';
 import { Breadcrumbs } from '@mui/material';
 import Link from 'next/link';
 import { LMS_CONTENT_PATH } from '../../lib/contentFilePaths';
