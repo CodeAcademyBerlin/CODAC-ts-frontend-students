@@ -80,11 +80,11 @@ function NavContent() {
         </NavLiItem>
 
         <NavLiItem>
-<<<<<<< HEAD
-        <Link className={isNavLinkActive('/community', router.asPath) ? 'active' : ''} href={'/community'}>Community</Link>
-=======
+          <Link className={isNavLinkActive('/community', router.asPath) ? 'active' : ''} href={'/community'}>Community</Link>
+        </NavLiItem>
+
+        <NavLiItem>
           <Link className={isNavLinkActive('/battles', router.asPath) ? 'active' : ''} href={'/battles'}>VS Battles</Link>
->>>>>>> issue25-staging
         </NavLiItem>
 
 
