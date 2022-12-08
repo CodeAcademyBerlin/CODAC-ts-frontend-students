@@ -94,7 +94,7 @@ function NavContent() {
 
         <CollapsibleLi child={lms} />
         <NavLiItem >
-          <Link className={isNavLinkActive('/contributors', router.asPath) ? 'active' : ''} href='/contributors'>Contributors</Link>
+          <Link className={isNavLinkActive('/projects', router.asPath) ? 'active' : ''} href='/projects'>Projects</Link>
         </NavLiItem>
 
       </OuterList>
