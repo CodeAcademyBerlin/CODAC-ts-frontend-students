@@ -41,7 +41,7 @@ Queries are used for data fetching and mutations are used to modify server-side 
 
 12345678910111213141516171819
 //GraphQL Query:
-
+```graphql
 query{
   course(id: "5"){
     id
@@ -49,7 +49,7 @@ query{
     author
   }
 }
-
+```
 ## Relational Queries
 
 With GraphQL, we can make relational queries of multiple fields which results in us getting all the data required in one trip (query), unlike the REST architecture in which we would need to make multiple requests (one for each field).

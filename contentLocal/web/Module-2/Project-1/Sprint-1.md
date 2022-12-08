@@ -10,7 +10,7 @@ next: 'web/Module-2/Project-1/Sprint-2'
 
 ## Kick Off Presentation
 
-<embeddediframe link="https://docs.google.com/presentation/d/1pEKfZH3AxWyLM_5figGSUj_C12FBn1Y1D8gAVDnlsMw/embed?start=false&loop=false&delayms=3000" />
+<Embeddediframe link="https://docs.google.com/presentation/d/1pEKfZH3AxWyLM_5figGSUj_C12FBn1Y1D8gAVDnlsMw/embed?start=false&loop=false&delayms=3000" />
 
 ## Prerequisites
 

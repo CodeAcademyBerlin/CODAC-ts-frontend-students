@@ -51,7 +51,10 @@ This is how you create HTML elements. Most of the elements have an opening and a
 
 Now try to add an image and create a paragraph with some text in it. We know you don't know how, but it's time to try google something!
 
-To add a bit of style to your title change your h1 tag with this one: `<h1 style="color: red;">This is my first webpage</h1>`
+To add a bit of style to your title change your h1 tag with this one: 
+```html
+<h1 style="color: red;">This is my first webpage</h1>
+```
 
 Cool no? So now make also the paragraph red.
 
@@ -68,11 +71,11 @@ And then try to color those elements in red.
 The number one rule of coding is Don't Repeat Your Code (DRY) and it looks like we are repeating this style property already twice in the same file.
 
 Paste this code into it
-
+```css
 .red-text{
 color: red;
 }
-
+```
 and now add the class name "red-text" to the class attribute of your h1 and p elements (Google it).
 
 In this way, we can write the property color only once and apply it to all the elements we want.

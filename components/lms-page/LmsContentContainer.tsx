@@ -2,6 +2,11 @@ import React, { useEffect } from 'react'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
 import styles from '../../styles/LmsContentContainer.module.css';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import mdxComponents from '../../components/mdx'
+import dynamic from 'next/dynamic'
+
+
 import { styled } from '@mui/material/styles'
 
 export const LmsContent = styled('div')`
@@ -68,7 +73,7 @@ export const LmsContent = styled('div')`
   }
 `
 
-function LmsContentContainer({ content, next, prev }: { content: string, next?: string, prev?: string }) {
+function LmsContentContainer({ content, next, prev }: { content: MDXRemoteSerializeResult, next?: string, prev?: string }) {
 
   function addCopyButtons() {
     const codeTags = document.getElementsByTagName("code");
@@ -97,9 +102,9 @@ function LmsContentContainer({ content, next, prev }: { content: string, next?: 
   }
 
   return (
-    <>
-      <LmsContent dangerouslySetInnerHTML={{ __html: content }} />
 
+    <LmsContent>
+      <MDXRemote {...content} components={mdxComponents} />
       <div style={{ padding: 5, width: "100%", display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
         {prev &&
           <Button component={Link} variant='contained' sx={{ px: 5.5 }} href={prev}>
@@ -112,7 +117,7 @@ function LmsContentContainer({ content, next, prev }: { content: string, next?: 
           </Button>
         }
       </div>
-    </>
+    </LmsContent>
 
   )
 }
