@@ -83,7 +83,7 @@ const UserDropdown = ({ user, logout }: { user: UsersPermissionsMe, logout: () =
           alt={user.username}
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
-          src={'/images/avatars/1.png'}
+          src={user.userData?.avatar || ""}
         />
       </Badge>
       <Menu

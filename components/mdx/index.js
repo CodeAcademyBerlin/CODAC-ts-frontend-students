@@ -50,7 +50,7 @@ const mdxComponents = {
 
   img: (props) => (
     // height and width are part of the props, so they get automatically passed here with {...props}
-    <Image {...props} width={props.width || 100} height={props.height || 100} layout="responsive" loading="lazy" />
+    <Image {...props} width={props.width || 80} height={props.height || 80} layout="responsive" loading="lazy" />
   ),
   video: props => (<video alt={props.alt} width='100%' controls>
     <source src={`assets/lms/${props.src}`} {...props} type="video/mp4" /></video>),

@@ -42,7 +42,7 @@ const GitHubContributors = ({ repo, username }: { repo: string, username: string
         </Typography>
 
         <AvatarGroup max={10}>
-          {contributors && contributors.map(contributor => <Avatar src={contributor.avatar_url} alt='Alice Cobb' />)}
+          {contributors && contributors.map(contributor => <Avatar key={contributor.login} src={contributor.avatar_url} alt='Alice Cobb' />)}
         </AvatarGroup>
 
       </Box>

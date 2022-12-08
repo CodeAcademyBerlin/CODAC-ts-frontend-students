@@ -1,6 +1,6 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import { Box } from 'mdi-material-ui'
+import Box from '@mui/material/Box'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import dynamic from 'next/dynamic'
@@ -17,27 +17,17 @@ import { PageData } from '../lms/lms'
 
 const Projects = ({ pageData }: { pageData: PageData }) => {
 
-  // const Contributors = ({ source, frontMatter }: any) => {
   return (
-    <>
-
+    <Box sx={{ mt: 0, p: 5, display: 'flex', justifyContent: "center", alignItems: 'center' }}>
       <LmsContentContainer content={pageData.contentHtml} />
-
-
-      <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* <MDXRemote {...contentHtml} components={mdxComponents} /> */}
-
-      </Box>
-    </>
-
+    </Box>
   )
 }
 export default Projects
 export const getStaticProps = async ({ params }: { params: { project: string } }) => {
-  // const source = path.join(CONTRIBUTORS_PATH, `${params.contributor}`)
   console.log('project', params.project)
   const pageData = await getPageMdx(params.project, PROJECTS_PATH);
-  console.log('pageData', pageData)
+
   return { props: { pageData } };
 }
 
