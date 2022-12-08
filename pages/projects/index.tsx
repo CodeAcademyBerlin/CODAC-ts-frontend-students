@@ -20,6 +20,7 @@ const Projects = ({ projects }: { projects: Project[] }) => {
       {projects.map((project) => <Grid item xs={12} sm={6} md={4}>
         <ProjectCard project={project} />
       </Grid>)}
+
     </Grid>
   )
 }

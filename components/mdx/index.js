@@ -3,8 +3,9 @@ import { styled } from '@mui/material/styles'
 
 import YoutubeEmbed from './YoutubeEmbed'
 import IframeEmbedded from './IframeEmbedded'
+import AnchorTag from './AnchorTag'
 import Image from "next/image";
-
+import Link from "next/link"
 
 
 const StyledPre = styled('pre')`
@@ -45,9 +46,8 @@ const mdxComponents = {
     </StyledPre>
   ), */
   /* code: CodeBlock, */
-  /* a: AnchorTag, */
-
-
+  a: props => <Link href={props.href} target="_blank" ><p>{props.children}</p></Link>,
+  Link: Link,
   img: (props) => (
     // height and width are part of the props, so they get automatically passed here with {...props}
     <Image {...props} width={props.width || 80} height={props.height || 80} layout="responsive" loading="lazy" />
