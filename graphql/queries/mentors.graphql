@@ -1,0 +1,25 @@
+query mentors {
+  mentors {
+    data {
+      attributes {
+        firstname
+        lastname
+        avatar {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        courses {
+          data {
+            attributes {
+              name
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}
