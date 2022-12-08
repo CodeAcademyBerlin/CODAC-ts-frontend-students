@@ -47,6 +47,7 @@
     "react-collapsed": "^3.5.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
+    "react-particles": "^2.6.0",
     "react-perfect-scrollbar": "^1.5.8",
     "react-popper": "^2.3.0",
     "rehype-img-size": "^1.0.1",
