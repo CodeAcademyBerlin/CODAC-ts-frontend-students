@@ -6,6 +6,7 @@ import IframeEmbedded from './IframeEmbedded'
 import AnchorTag from './AnchorTag'
 import Image from "next/image";
 import Link from "next/link"
+import { BrandText } from '../common/BrandStyle';
 
 
 const StyledPre = styled('pre')`
@@ -45,7 +46,7 @@ const mdxComponents = {
       <pre {...props} />
     </StyledPre>
   ), */
-  /* code: CodeBlock, */
+  BrandText: BrandText,
   a: props => <Link href={props.href} target="_blank" ><p>{props.children}</p></Link>,
   Link: Link,
   img: (props) => (
