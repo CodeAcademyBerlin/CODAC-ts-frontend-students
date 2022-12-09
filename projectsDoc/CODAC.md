@@ -75,6 +75,10 @@ That means: With only one API call you can get data from multiple sources/collec
     - Lms page [lms](/lms)
     - Community page [community](/community)
     - themes design
+<img src="/projects/CODAC/CODAC_SSG.png" width="80%" height="auto"/>
 
 #### SSG (Static-Site Generation)
+Static site generation describes the process of compiling and rendering a website at build time. This is how websites outside of javascript frameworks like React are traditionally built. 
+Next.js has the option to statically generate pages on build, if the page props are fetched using getStaticProps. This means all the HTML, CSS and Javascript are already compiled at build time, leaving only small hydration tasks for the browser when a user loads the page. It makes for a lightning fast user experience! 
+
 
