@@ -40,7 +40,6 @@ const jobs = ({
       }
     });
     if (target.value === "") {
-        
       setCheck(!check);
     } else {
       setCheck(false);

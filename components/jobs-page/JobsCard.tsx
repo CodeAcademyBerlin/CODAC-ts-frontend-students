@@ -67,12 +67,17 @@ function JobsCard({ job }: { job: JobPost }) {
             sx={{
               mb: 5,
               display: "flex",
-              flexWrap: "wrap",
+              flexWrap: "nowrap",
               alignItems: "center",
               justifyContent: "space-between",
             }}
           >
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               <Typography variant="h6">{job.position}</Typography>
               <Typography
                 sx={{ fontWeight: 600, fontSize: "1rem" }}
@@ -150,7 +155,7 @@ function JobsCard({ job }: { job: JobPost }) {
           </Box>
         </CardContent>
         <CardActions className="card-action-dense">
-          {job.description === null ? (
+          {job.description === "" ? (
             ""
           ) : (
             <Box
