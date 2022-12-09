@@ -21,6 +21,8 @@ export type SettingsContextValue = {
   settings: Settings
   saveSettings: (updatedSettings: Settings) => void
   toggleTheme: (themeName: ThemeName) => void
+  festive: boolean
+  setFestive: (festive: boolean) => void
 }
 
 const initialSettings: Settings = {
@@ -33,12 +35,15 @@ const initialSettings: Settings = {
 export const SettingsContext = createContext<SettingsContextValue>({
   saveSettings: () => null,
   toggleTheme: () => null,
-  settings: initialSettings
+  settings: initialSettings,
+  festive: false,
+  setFestive: () => null
 })
 
 export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   // ** State
   const [settings, setSettings] = useState<Settings>({ ...initialSettings })
+  const [festive, setFestive] = useState<boolean>(false)
 
 
   const saveSettings = (updatedSettings: Settings) => {
@@ -50,7 +55,7 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   }
 
 
-  return <SettingsContext.Provider value={{ settings, saveSettings, toggleTheme }}>{children}</SettingsContext.Provider>
+  return <SettingsContext.Provider value={{ settings, saveSettings, toggleTheme, festive, setFestive }}>{children}</SettingsContext.Provider>
 }
 
 export const SettingsConsumer = SettingsContext.Consumer

@@ -8,11 +8,14 @@ import { BrandText } from '../components/common/BrandStyle';
 import UserDropdown from './auth/UserDropdown';
 import { useAuth } from '../hooks/useAuth';
 import AppBarContent from './appBar/AppBarContent';
+import Congrats from '../components/common/Congrat';
+import { useSettings } from '../hooks/useSettings';
 
 
 const MainLayout = ({ children, loading }: { children: ReactNode, loading: boolean }) => {
 
   const { user } = useAuth()
+  const { festive } = useSettings()
   const [open, setOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -34,6 +37,7 @@ const MainLayout = ({ children, loading }: { children: ReactNode, loading: boole
 
   return (
     <>
+      {festive && <Congrats />}
       <LeftNavBar handleDrawerToggle={handleDrawerToggle} open={open} />
       <Container>
         <Header handleDrawerToggle={handleDrawerToggle} />
@@ -41,6 +45,7 @@ const MainLayout = ({ children, loading }: { children: ReactNode, loading: boole
           {loading ? <BrandText variant='h3'>loading</BrandText> : children}
         </section>
       </Container>
+
     </>
   )
 }

@@ -9,8 +9,8 @@ image: /assets/screenshot.png
 <img src="/projects/CODAC/CODAC3_logo3D.png" width="30%" height="auto"/>
 ## By Students of the Academy
 
-
-
+Kanban Board [open issues](https://github.com/orgs/CodeAcademyBerlin/projects/4) 
+Open Issues [open issues](https://github.com/codeacademyberlin/codac-ts-frontend-students/issues) 
 ### Built With
 - React.js
 Client side JavaScript Library
@@ -56,3 +56,5 @@ Rendering of elements in the browser, from Javascript. The browser pulls the Jav
     - Lms page [lms](/lms)
     - Community page [community](/community)
     - themes design
+
+
