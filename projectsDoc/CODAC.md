@@ -82,3 +82,4 @@ Static site generation describes the process of compiling and rendering a websit
 Next.js has the option to statically generate pages on build, if the page props are fetched using getStaticProps. This means all the HTML, CSS and Javascript are already compiled at build time, leaving only small hydration tasks for the browser when a user loads the page. It makes for a lightning fast user experience! 
 
 
+<Link href="/congrats" ><p>?</p></Link>
