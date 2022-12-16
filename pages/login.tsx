@@ -37,7 +37,6 @@ import Twitter from "mdi-material-ui/Twitter";
 import Facebook from "mdi-material-ui/Facebook";
 import EyeOutline from "mdi-material-ui/EyeOutline";
 import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
-import themeConfig from "../theme/themeConfig";
 import FooterIllustrationsV1 from "../componentsDemo/pages/auth/FooterIllustration";
 import { useLoginMutation } from "../cabServer/mutations/__generated__/user";
 import { BrandText } from "../components/common/BrandStyle";
@@ -132,7 +131,6 @@ const LoginPage = () => {
               variant="h5"
               sx={{ fontWeight: 600, marginBottom: 1.5 }}
             >
-              Welcome to {themeConfig.templateName}! 👋🏻
             </Typography>
             <Typography variant="body2">
               Please sign-in to your account and start the adventure

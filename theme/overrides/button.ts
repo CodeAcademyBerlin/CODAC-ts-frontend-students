@@ -1,6 +1,5 @@
 // ** MUI Imports
 import { Theme } from '@mui/material/styles'
-import themeConfig from '../themeConfig'
 
 // ** Theme Config Imports
 
@@ -42,11 +41,6 @@ const Button = (theme: Theme) => {
         }
       }
     },
-    MuiButtonBase: {
-      defaultProps: {
-        disableRipple: themeConfig.disableRipple
-      }
-    }
   }
 }
 

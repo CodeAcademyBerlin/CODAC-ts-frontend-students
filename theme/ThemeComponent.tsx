@@ -16,7 +16,7 @@ import themeOptions from './ThemeOptions'
 
 // ** Global Styles
 import GlobalStyling from './globalStyles'
-import themeConfig from './themeConfig'
+// import themeConfig from './themeConfig'
 import { Settings } from '../contexts/settingsContext'
 
 interface Props {
@@ -41,9 +41,9 @@ const ThemeComponent = (props: Props) => {
   })
 
   // ** Set responsive font sizes to true
-  if (themeConfig.responsiveFontSizes) {
-    theme = responsiveFontSizes(theme)
-  }
+  // if (themeConfig.responsiveFontSizes) {
+  //   theme = responsiveFontSizes(theme)
+  // }
 
   return (
     <ThemeProvider theme={theme}>

@@ -43,7 +43,7 @@ const themeOptions = (settings: Settings): ThemeOptions => {
       toolbar: {
         minHeight: 64
       }
-    }
+    },
   }
 
   return themeConfig

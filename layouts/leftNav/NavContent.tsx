@@ -62,7 +62,6 @@ function NavContent() {
     title: 'LMS',
     children: lmslinks
   }
-  console.log('navigation', navigation)
   return (
     <div>
       <Link href='/' style={{ textDecoration: 'none' }}>

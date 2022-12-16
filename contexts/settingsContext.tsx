@@ -6,10 +6,11 @@ import { PaletteMode } from '@mui/material'
 
 
 // ** ThemeConfig Import
-import themeConfig from '../theme/themeConfig'
+// import themeConfig from '../theme/themeConfig'
 
 // ** Types Import
 import { ThemeName, ContentWidth } from '../layouts/types'
+
 
 export type Settings = {
   mode: PaletteMode
@@ -30,14 +31,14 @@ const initialSettings = (): Settings => {
   if (typeof window !== 'undefined')
     return {
       themeName: localStorage?.getItem('theme') || 'light',
-      mode: themeConfig.mode,
-      contentWidth: themeConfig.contentWidth
+      mode: 'light',
+      contentWidth: 'boxed'
     }
   // for SSR
   else return {
     themeName: 'light',
-    mode: themeConfig.mode,
-    contentWidth: themeConfig.contentWidth
+    mode: 'light',
+    contentWidth: 'boxed'
   }
 }
 

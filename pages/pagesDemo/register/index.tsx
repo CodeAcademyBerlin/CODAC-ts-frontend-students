@@ -28,7 +28,6 @@ import Twitter from 'mdi-material-ui/Twitter'
 import Facebook from 'mdi-material-ui/Facebook'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
-import themeConfig from '../../../theme/themeConfig'
 import FooterIllustrationsV1 from '../../../componentsDemo/pages/auth/FooterIllustration'
 import BlankLayout from '../../../layouts/BlankLayout'
 
@@ -143,18 +142,7 @@ const RegisterPage = () => {
                 </g>
               </g>
             </svg>
-            <Typography
-              variant='h6'
-              sx={{
-                ml: 3,
-                lineHeight: 1,
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                fontSize: '1.5rem !important'
-              }}
-            >
-              {themeConfig.templateName}
-            </Typography>
+
           </Box>
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>

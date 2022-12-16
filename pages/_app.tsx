@@ -30,7 +30,6 @@ import { CssBaseline } from "@mui/material";
 
 import ThemeComponent from '../theme/ThemeComponent';
 import { SettingsProvider, SettingsConsumer } from '../contexts/settingsContext';
-import themeConfig from '../theme/themeConfig';
 
 
 
@@ -47,17 +46,15 @@ type AppPropsWithLayout = AppProps & {
 const clientSideEmotionCache = createEmotionCache();
 
 // ** Pace Loader
-if (themeConfig.routingLoader) {
-  Router.events.on('routeChangeStart', () => {
-    NProgress.start()
-  })
-  Router.events.on('routeChangeError', () => {
-    NProgress.done()
-  })
-  Router.events.on('routeChangeComplete', () => {
-    NProgress.done()
-  })
-}
+Router.events.on('routeChangeStart', () => {
+  NProgress.start()
+})
+Router.events.on('routeChangeError', () => {
+  NProgress.done()
+})
+Router.events.on('routeChangeComplete', () => {
+  NProgress.done()
+})
 
 // ** Configure JSS & ClassName
 const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) => {
