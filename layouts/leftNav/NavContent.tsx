@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { isNavLinkActive } from '../../lib/IsLinkActive';
 import lmslinks from '../../public/assets/lmslinks.json';
+import navigation from '../../navigation/vertical';
 
 export const OuterList = styled('ul')`
   list-style: none;
@@ -61,7 +62,7 @@ function NavContent() {
     title: 'LMS',
     children: lmslinks
   }
-
+  console.log('navigation', navigation)
   return (
     <div>
       <Link href='/' style={{ textDecoration: 'none' }}>
@@ -71,27 +72,11 @@ function NavContent() {
       <OuterList>
 
 
-        <NavLiItem >
-          <Link className={isNavLinkActive('/dashboard', router.asPath) ? 'active' : ''} href='/dashboard'>Dashboard</Link>
-        </NavLiItem>
-
-        <NavLiItem>
-          <Link className={isNavLinkActive('/jobs', router.asPath) ? 'active' : ''} href={'/jobs'}>Jobs</Link>
-        </NavLiItem>
-
-        <NavLiItem>
-          <Link className={isNavLinkActive('/community', router.asPath) ? 'active' : ''} href={'/community'}>Community</Link>
-        </NavLiItem>
-
-        <NavLiItem>
-          <Link className={isNavLinkActive('/battles', router.asPath) ? 'active' : ''} href={'/battles'}>VS Battles</Link>
-        </NavLiItem>
+        {navigation.map(navItem => <NavLiItem key={navItem.title} >
+          <Link className={isNavLinkActive(navItem.path, router.asPath) ? 'active' : ''} href={navItem.path}>{navItem.title}</Link>
+        </NavLiItem>)}
 
         <CollapsibleLi child={lms} />
-
-        <NavLiItem >
-          <Link className={isNavLinkActive('/projects', router.asPath) ? 'active' : ''} href='/projects'>Projects</Link>
-        </NavLiItem>
 
       </OuterList>
 

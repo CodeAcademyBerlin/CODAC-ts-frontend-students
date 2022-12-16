@@ -25,24 +25,34 @@ export type SettingsContextValue = {
   setFestive: (festive: boolean) => void
 }
 
-const initialSettings: Settings = {
-  themeName: 'light',
-  mode: themeConfig.mode,
-  contentWidth: themeConfig.contentWidth
+
+const initialSettings = (): Settings => {
+  if (typeof window !== 'undefined')
+    return {
+      themeName: localStorage?.getItem('theme') || 'light',
+      mode: themeConfig.mode,
+      contentWidth: themeConfig.contentWidth
+    }
+  // for SSR
+  else return {
+    themeName: 'light',
+    mode: themeConfig.mode,
+    contentWidth: themeConfig.contentWidth
+  }
 }
 
 // ** Create Context
 export const SettingsContext = createContext<SettingsContextValue>({
   saveSettings: () => null,
   toggleTheme: () => null,
-  settings: initialSettings,
+  settings: initialSettings(),
   festive: false,
   setFestive: () => null
 })
 
 export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   // ** State
-  const [settings, setSettings] = useState<Settings>({ ...initialSettings })
+  const [settings, setSettings] = useState<Settings>({ ...initialSettings() })
   const [festive, setFestive] = useState<boolean>(false)
 
 
@@ -50,8 +60,8 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
     setSettings(updatedSettings)
   }
   const toggleTheme = (themeName: ThemeName) => {
-
     setSettings({ ...settings, themeName })
+    localStorage.setItem("theme", themeName)
   }
 
 

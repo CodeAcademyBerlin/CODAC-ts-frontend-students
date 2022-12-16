@@ -94,9 +94,6 @@ const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
             <TextField fullWidth label='Username' value={userState.username} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label='Name' placeholder='John Doe' defaultValue='John Doe' />
-          </Grid>
-          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               type='email'
@@ -105,6 +102,12 @@ const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
+            <TextField fullWidth label='firstname' value={userState.userData?.firstname} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField fullWidth label='lastname' value={userState.userData?.lastname} />
+          </Grid>
+          {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
               <InputLabel>Role</InputLabel>
               <Select label='Role' defaultValue='admin'>
@@ -147,7 +150,7 @@ const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
                 </Link>
               </Alert>
             </Grid>
-          ) : null}
+          ) : null} */}
 
           <Grid item xs={12}>
             <Button variant='contained' sx={{ marginRight: 3.5 }}>

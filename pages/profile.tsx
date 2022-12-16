@@ -71,7 +71,7 @@ const AccountSettings = (user: UsersPermissionsMe) => {
               </Box>
             }
           />
-          <Tab
+          {/* <Tab
             value="security"
             label={
               <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -88,18 +88,18 @@ const AccountSettings = (user: UsersPermissionsMe) => {
                 <TabName>Info</TabName>
               </Box>
             }
-          />
+          /> */}
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value="account">
           <TabAccount user={user} />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value="security">
+        {/* <TabPanel sx={{ p: 0 }} value="security">
           <TabSecurity />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value="info">
           <TabInfo />
-        </TabPanel>
+        </TabPanel> */}
       </TabContext>
     </Card>
   );

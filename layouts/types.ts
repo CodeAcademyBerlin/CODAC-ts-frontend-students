@@ -5,10 +5,10 @@ import { Settings } from '../contexts/settingsContext'
 
 export type ContentWidth = 'full' | 'boxed'
 
-export type ThemeName = 'light' | 'dark' | 'gag'
+export type ThemeName = 'light' | 'dark' | 'gag' | string
 
 export type NavLink = {
-  path?: string
+  path: string
   title: string
   action?: string
   subject?: string

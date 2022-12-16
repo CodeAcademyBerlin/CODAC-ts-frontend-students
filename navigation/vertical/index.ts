@@ -10,84 +10,35 @@ import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
 import { BriefcaseOutline, LibraryShelves } from 'mdi-material-ui'
-import { VerticalNavItemsType } from '../../layouts/types'
+import { NavLink, VerticalNavItemsType } from '../../layouts/types'
 
 // ** Type import
 
-const navigation = (): VerticalNavItemsType => {
-  return [
-    {
-      title: 'Dashboard',
-      icon: HomeOutline,
-      path: '/dashboard'
-    },
-    {
-      title: 'Jobs',
-      icon: BriefcaseOutline,
-      path: '/jobs'
-    },
-    // {
-    //   title: 'Account Settings',
-    //   icon: AccountCogOutline,
-    //   path: '/account-settings'
-    // },
-    // {
-    //   sectionTitle: 'Pages'
-    // },
-    {
-      title: 'Login',
-      icon: Login,
-      path: '/login',
-      openInNewTab: true
-    },
-    // {
-    //   title: 'Register',
-    //   icon: AccountPlusOutline,
-    //   path: '/pages/register',
-    //   openInNewTab: true
-    // },
-    {
-      title: 'Error',
-      icon: AlertCircleOutline,
-      path: '/pages/error',
-      openInNewTab: true
-    },
-    { sectionTitle: "Learning Management System" },
-    {
-      title: 'LMS',
-      icon: LibraryShelves,
-      path: '/lms/welcome'
-    },
+const navigation: NavLink[] = [
+  {
+    title: 'Dashboard',
+    icon: HomeOutline,
+    path: '/dashboard'
+  },
+  {
+    title: 'Community',
+    path: '/community'
+  },
+  {
+    title: 'Jobs',
+    icon: BriefcaseOutline,
+    path: '/jobs'
+  },
+  {
+    title: 'VS Battles',
+    path: '/battles'
+  },
+  {
+    title: 'Projects',
+    path: '/projects'
+  },
 
-    // {
-    //   sectionTitle: 'User Interface'
-    // },
-    // {
-    //   title: 'Typography',
-    //   icon: FormatLetterCase,
-    //   path: '/typography'
-    // },
-    // {
-    //   title: 'Icons',
-    //   path: '/icons',
-    //   icon: GoogleCirclesExtended
-    // },
-    // {
-    //   title: 'Cards',
-    //   icon: CreditCardOutline,
-    //   path: '/cards'
-    // },
-    // {
-    //   title: 'Tables',
-    //   icon: Table,
-    //   path: '/tables'
-    // },
-    // {
-    //   icon: CubeOutline,
-    //   title: 'Form Layouts',
-    //   path: '/form-layouts'
-    // }
-  ]
-}
+]
+
 
 export default navigation

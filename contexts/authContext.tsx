@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const onLoginSucces = async (userPayload: UsersPermissionsLoginPayload, rememberMe: boolean) => {
     const { jwt, user } = userPayload
-    setUser(user);
+
     jwt &&
       setCookie(
         null,
@@ -78,6 +78,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           path: '/',
         }
       )
+    getUser()
   }
   const logout = () => {
     setUser(null)

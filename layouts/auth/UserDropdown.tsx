@@ -1,10 +1,5 @@
-// ** React Imports
 import { useState, SyntheticEvent, Fragment } from 'react'
-
-// ** Next Import
 import { useRouter } from 'next/router'
-
-// ** MUI Imports
 import Box from '@mui/material/Box'
 import Menu from '@mui/material/Menu'
 import Badge from '@mui/material/Badge'
@@ -13,18 +8,16 @@ import Divider from '@mui/material/Divider'
 import MenuItem from '@mui/material/MenuItem'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-
-// ** Icons Imports
 import CogOutline from 'mdi-material-ui/CogOutline'
 import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import EmailOutline from 'mdi-material-ui/EmailOutline'
 import LogoutVariant from 'mdi-material-ui/LogoutVariant'
 import AccountOutline from 'mdi-material-ui/AccountOutline'
 import MessageOutline from 'mdi-material-ui/MessageOutline'
-import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
-import { UsersPermissionsMe } from '../../cabServer/global/__generated__/types'
+import { AccountOffOutline } from 'mdi-material-ui'
+import IconButton from '@mui/material/IconButton'
 import Link from 'next/link'
-
+import { useAuth } from '../../hooks/useAuth'
 // ** Styled Components
 const BadgeContentSpan = styled('span')(({ theme }) => ({
   width: 8,
@@ -38,8 +31,9 @@ text-decoration: none;
 cursor: pointer;
 `
 
-const UserDropdown = ({ user, logout }: { user: UsersPermissionsMe, logout: () => void }) => {
-  // ** States
+const UserDropdown = () => {
+  const { user, logout } = useAuth()
+  console.log('user', user)
   const [anchorEl, setAnchorEl] = useState<Element | null>(null)
 
   // ** Hooks
@@ -69,8 +63,12 @@ const UserDropdown = ({ user, logout }: { user: UsersPermissionsMe, logout: () =
       color: 'text.secondary'
     }
   }
-
-  return (
+  if (!user) return (<LinkStyled href="/login">
+    <IconButton color='primary' aria-haspopup='true' aria-controls='customized-menu'>
+      <AccountOffOutline sx={{ marginRight: 2 }} />
+    </IconButton>
+  </LinkStyled>)
+  else return (
     <Fragment>
       <Badge
         overlap='circular'
