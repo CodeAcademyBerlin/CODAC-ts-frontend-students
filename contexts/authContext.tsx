@@ -6,7 +6,7 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { UsersPermissionsMe, UsersPermissionsLoginPayload } from "../graphql/global/ __generated__/types";
+import { UsersPermissionsMe, UsersPermissionsLoginPayload } from "../cabServer/global/__generated__/types";
 
 
 type User = UsersPermissionsMe | null;

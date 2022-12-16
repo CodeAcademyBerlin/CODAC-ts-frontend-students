@@ -2,7 +2,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import JobsCard from "../components/jobs-page/JobsCard";
-import { GetJobsDocument } from "../graphql/queries/__generated__/jobs";
+import { GetJobsDocument } from "../cabServer/queries/__generated__/jobs";
 import * as React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -10,7 +10,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { initializeApollo } from "../lib/apolloClient";
 import dayjs from "dayjs";
-import { JobPostEntity } from "../graphql/global/ __generated__/types";
+import { JobPostEntity } from "../cabServer/global/__generated__/types";
 
 // ** types
 interface Data {

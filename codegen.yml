@@ -1,13 +1,13 @@
 overwrite: true
 schema: "https://codac-364707.ey.r.appspot.com/graphql"
-documents: "graphql/**/*.graphql"
+documents: "cabServer/**/*.graphql"
 generates:
-  graphql/global/ __generated__/types.ts:
+  cabServer/global/__generated__/types.ts:
       - "typescript"
-  graphql/global/ __generated__:
+  cabServer/global/__generated__:
     preset: near-operation-file
     presetConfig:
-      folder: __generated__
+      folder:__generated__
       baseTypesPath: types.ts
       extension: .ts
     plugins:

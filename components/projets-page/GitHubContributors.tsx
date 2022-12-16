@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles'
 import Github from 'mdi-material-ui/Github'
 import Group from 'mdi-material-ui/AccountGroup'
 import Link from 'next/link'
-import { Contributor } from '../../@types'
+import { Contributor } from '../../types'
 import { Button, AvatarGroup } from '@mui/material'
 import { Suspense, useEffect, useState } from 'react'
 

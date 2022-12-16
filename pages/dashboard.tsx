@@ -6,10 +6,10 @@ import jwt_decode, { JwtPayload } from "jwt-decode";
 import ProgressBar from "../components/dashboard/ProgressBar";
 import CohortCard from "../components/cohort/CohortCard";
 import ApexChartWrapper from "../components/libs/react-apexcharts";
-import { Student } from "../graphql/global/ __generated__/types";
-import { FilterStudentByUserIdDocument } from "../graphql/queries/__generated__/students";
+import { Student } from "../cabServer/global/__generated__/types";
+import { FilterStudentByUserIdDocument } from "../cabServer/queries/__generated__/students";
 import { getToken, initializeApollo } from "../lib/apolloClient";
-import { JwtPayloadWithID } from "../@types";
+import { JwtPayloadWithID } from "../types";
 import OpenAiImage from "../components/common/OpenAiImage";
 
 // TBD: Handle hydration errors

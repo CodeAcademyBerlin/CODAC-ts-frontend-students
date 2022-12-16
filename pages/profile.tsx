@@ -23,8 +23,8 @@ import TabAccount from "../components/profile-page/TabAccount";
 import TabInfo from "../components/profile-page/TabInfo";
 import TabSecurity from "../components/profile-page/TabSecurity";
 import { GetServerSideProps } from "next";
-import { UsersPermissionsMe } from "../graphql/global/ __generated__/types";
-import { GetMeDocument } from "../graphql/queries/__generated__/user";
+import { UsersPermissionsMe } from "../cabServer/global/__generated__/types";
+import { GetMeDocument } from "../cabServer/queries/__generated__/user";
 import { initializeApollo } from "../lib/apolloClient";
 
 const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({

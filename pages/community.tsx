@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrandText } from '../components/common/BrandStyle'
-import { GetCohortsDocument } from '../graphql/queries/__generated__/cohorts';
-import { MentorsDocument } from '../graphql/queries/__generated__/mentors';
+import { GetCohortsDocument } from '../cabServer/queries/__generated__/cohorts';
+import { MentorsDocument } from '../cabServer/queries/__generated__/mentors';
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { initializeApollo } from "../lib/apolloClient";
-import { CohortEntity, MentorEntity } from "../graphql/global/ __generated__/types";
+import { CohortEntity, MentorEntity } from "../cabServer/global/__generated__/types";
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -110,19 +110,19 @@ function community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
     <>
       {/* <BrandText variant='h3' sx={{ fontSize: 80 }}>Codacommunity</BrandText> */}
       <h1>CodaCommunity</h1>
-      { error && <p>Something went wrong...</p> }
-      
-      { mentors && <>
+      {error && <p>Something went wrong...</p>}
+
+      {mentors && <>
         <h4>Mentors</h4>
         <MentorsContainer>
-          { mentors.map((mentor:MentorEntity, i:Number) => {
+          {mentors.map((mentor: MentorEntity, i: Number) => {
             return mentor.attributes ?
               <MentorsContent>
-                <img style={{ marginLeft: `-${i}em` }} src={ mentor.attributes.avatar?.data?.attributes?.url || "assets/logo.png" } 
+                <img style={{ marginLeft: `-${i}em` }} src={mentor.attributes.avatar?.data?.attributes?.url || "assets/logo.png"}
                   aria-owns={open ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(e) => handlePopoverOpen(e, mentor.attributes?.firstname || "")}
-                  onMouseLeave={handlePopoverClose}/>
+                  onMouseLeave={handlePopoverClose} />
                 <Popover
                   id="mouse-over-popover"
                   sx={{
@@ -141,47 +141,47 @@ function community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
                   onClose={handlePopoverClose}
                   disableRestoreFocus
                 >
-                  <p style={{ padding: "0.5em", margin: 0 }}>{ popoverContent }</p>
+                  <p style={{ padding: "0.5em", margin: 0 }}>{popoverContent}</p>
                 </Popover>
               </MentorsContent>
-            : null
-          }) }
+              : null
+          })}
         </MentorsContainer>
-      </> }
+      </>}
 
-      { cohorts && <>
+      {cohorts && <>
         <h4>Active Cohorts</h4>
-        { cohorts.map((cohort:CohortEntity, i:Number) => {
-          return cohort.attributes ? 
-          <Accordion key={ cohort.attributes.name } expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
-            <AccordionSummary
-              expandIcon={ <ArrowDown /> }
-              aria-controls={`panel${i}bh-content`}
-              id={`panel${i}bh-header`}>
-              <CohortContent>
-                <img src={ cohort.attributes.logo?.data?.attributes?.url || "assets/logo.png" } alt={ cohort.attributes.name || "Cohort" } />
-                <div>
-                  <h4>{ cohort.attributes.name }</h4>
-                  <p>start date: { cohort.attributes.start_date }</p>
-                </div>
-              </CohortContent>
-            </AccordionSummary> 
-            <AccordionDetails>
-              { cohort.attributes.students && cohort.attributes.students.data.map((student) => {
-                return <StudentContent key={ student.attributes?.lastname }>
-                  <div style={{ display: "flex" }}>
-                    <img src={ student.attributes?.avatar?.data?.attributes?.url || "assets/logo.png" } alt={ student.attributes?.firstname + " " + student.attributes?.lastname || "Student"}/>
-                    <p>{ student.attributes?.firstname }  { student.attributes?.lastname }</p>
+        {cohorts.map((cohort: CohortEntity, i: Number) => {
+          return cohort.attributes ?
+            <Accordion key={cohort.attributes.name} expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
+              <AccordionSummary
+                expandIcon={<ArrowDown />}
+                aria-controls={`panel${i}bh-content`}
+                id={`panel${i}bh-header`}>
+                <CohortContent>
+                  <img src={cohort.attributes.logo?.data?.attributes?.url || "assets/logo.png"} alt={cohort.attributes.name || "Cohort"} />
+                  <div>
+                    <h4>{cohort.attributes.name}</h4>
+                    <p>start date: {cohort.attributes.start_date}</p>
                   </div>
-                  <p>Graduation: { student.attributes?.end_date }</p>
-                  <p className='align-right'><b>{ student.attributes?.main_course?.data?.attributes?.name }</b></p>
-                </StudentContent>
-              }) }
-            </AccordionDetails>
-          </Accordion>
-          : null
-        }) }
-      </> }
+                </CohortContent>
+              </AccordionSummary>
+              <AccordionDetails>
+                {cohort.attributes.students && cohort.attributes.students.data.map((student) => {
+                  return <StudentContent key={student.attributes?.lastname}>
+                    <div style={{ display: "flex" }}>
+                      <img src={student.attributes?.avatar?.data?.attributes?.url || "assets/logo.png"} alt={student.attributes?.firstname + " " + student.attributes?.lastname || "Student"} />
+                      <p>{student.attributes?.firstname}  {student.attributes?.lastname}</p>
+                    </div>
+                    <p>Graduation: {student.attributes?.end_date}</p>
+                    <p className='align-right'><b>{student.attributes?.main_course?.data?.attributes?.name}</b></p>
+                  </StudentContent>
+                })}
+              </AccordionDetails>
+            </Accordion>
+            : null
+        })}
+      </>}
 
       <h4>Alumni</h4>
 
@@ -210,5 +210,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
   }
-  
+
 }

@@ -39,7 +39,7 @@ import EyeOutline from "mdi-material-ui/EyeOutline";
 import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
 import themeConfig from "../theme/themeConfig";
 import FooterIllustrationsV1 from "../componentsDemo/pages/auth/FooterIllustration";
-import { useLoginMutation } from "../graphql/mutations/__generated__/user";
+import { useLoginMutation } from "../cabServer/mutations/__generated__/user";
 import { BrandText } from "../components/common/BrandStyle";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AuthContext } from "../contexts/authContext";

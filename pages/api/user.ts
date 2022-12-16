@@ -1,5 +1,5 @@
 import { NextApiHandler } from "next";
-import { GetMeDocument } from "../../graphql/queries/__generated__/user";
+import { GetMeDocument } from "../../cabServer/queries/__generated__/user";
 import { initializeApollo } from "../../lib/apolloClient";
 
 

@@ -1,7 +1,7 @@
 import { Box, Chip, LinearProgress, Typography, useTheme } from "@mui/material";
 import { Stack } from "@mui/system";
 import CalenderAccountOutline from "mdi-material-ui/CalendarAccountOutline";
-import { Student } from "../../graphql/global/ __generated__/types";
+import { Student } from "../../cabServer/global/__generated__/types";
 
 const ProgressBar = ({ student }: { student: Student }) => {
   const theme = useTheme();

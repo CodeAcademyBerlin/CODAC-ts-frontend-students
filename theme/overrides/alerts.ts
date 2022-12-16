@@ -3,7 +3,7 @@ import { Theme } from '@mui/material/styles'
 import { lighten, darken } from '@mui/material/styles'
 
 // ** Util Import
-import { hexToRGBA } from '../../utils/hex-to-rgba'
+import { hexToRGBA } from '../../lib/hex-to-rgba'
 
 
 const Alert = (theme: Theme) => {

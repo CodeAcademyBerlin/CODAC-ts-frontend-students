@@ -27,7 +27,7 @@ import SpaceInvaders from "mdi-material-ui/SpaceInvaders";
 import DatabaseSearch from "mdi-material-ui/DatabaseSearch";
 import CodeBraces from "mdi-material-ui/CodeBraces";
 import dayjs from "dayjs";
-import { Cohort } from "../../graphql/global/ __generated__/types";
+import { Cohort } from "../../cabServer/global/__generated__/types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;

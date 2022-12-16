@@ -5,7 +5,7 @@ import CollapsibleLi from './CollapsibleLi';
 import { LinkSingle } from '../../pages/lms/lms'
 import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
-import { isNavLinkActive } from '../../utils/IsLinkActive';
+import { isNavLinkActive } from '../../lib/IsLinkActive';
 import lmslinks from '../../public/assets/lmslinks.json';
 
 export const OuterList = styled('ul')`
@@ -88,7 +88,7 @@ function NavContent() {
         </NavLiItem>
 
         <CollapsibleLi child={lms} />
-        
+
         <NavLiItem >
           <Link className={isNavLinkActive('/projects', router.asPath) ? 'active' : ''} href='/projects'>Projects</Link>
         </NavLiItem>

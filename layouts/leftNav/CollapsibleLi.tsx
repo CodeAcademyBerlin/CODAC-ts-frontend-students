@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import useCollapse from 'react-collapsed'
-import { isNavLinkActive } from '../../utils/IsLinkActive'
+import { isNavLinkActive } from '../../lib/IsLinkActive'
 import { LinkSingle } from '../../pages/lms/lms'
 import { NavList, NavLiItem } from './NavContent'
 

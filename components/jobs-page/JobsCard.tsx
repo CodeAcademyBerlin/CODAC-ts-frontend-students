@@ -12,7 +12,7 @@ import ChevronDown from "mdi-material-ui/ChevronDown";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "@mui/system";
-import { JobPost } from "../../graphql/global/ __generated__/types";
+import { JobPost } from "../../cabServer/global/__generated__/types";
 
 function JobsCard({ job }: { job: JobPost }) {
   const theme = useTheme();

@@ -2,7 +2,7 @@
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { GetServerSideProps } from 'next'
-import { Contributor, Project } from '../../@types'
+import { Contributor, Project } from '../../types'
 import CardGithub from '../../components/projets-page/GitHubContributors'
 import ProjectCard from '../../components/projets-page/ProjectCard'
 import { projectsFilePaths, PROJECTS_PATH } from '../../lib/contentFilePaths'

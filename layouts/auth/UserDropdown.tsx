@@ -22,7 +22,7 @@ import LogoutVariant from 'mdi-material-ui/LogoutVariant'
 import AccountOutline from 'mdi-material-ui/AccountOutline'
 import MessageOutline from 'mdi-material-ui/MessageOutline'
 import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
-import { UsersPermissionsMe } from '../../graphql/global/ __generated__/types'
+import { UsersPermissionsMe } from '../../cabServer/global/__generated__/types'
 import Link from 'next/link'
 
 // ** Styled Components

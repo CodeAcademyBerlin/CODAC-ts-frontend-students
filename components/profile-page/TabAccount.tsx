@@ -20,7 +20,7 @@ import Button, { ButtonProps } from '@mui/material/Button'
 
 // ** Icons Imports
 import Close from 'mdi-material-ui/Close'
-import { UsersPermissionsMe } from '../../graphql/global/ __generated__/types'
+import { UsersPermissionsMe } from '../../cabServer/global/__generated__/types'
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,

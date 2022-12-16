@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 
 // ** Icons Imports
-import { VsBattle } from '../../graphql/global/ __generated__/types'
+import { VsBattle } from '../../cabServer/global/__generated__/types'
 import VoteOutline from 'mdi-material-ui/VoteOutline'
 import DenseTable from './BattleTable'
 

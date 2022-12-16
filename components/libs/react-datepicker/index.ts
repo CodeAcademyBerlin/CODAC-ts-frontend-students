@@ -1,7 +1,7 @@
 // ** MUI imports
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
-import { hexToRGBA } from '../../../utils/hex-to-rgba'
+import { hexToRGBA } from '../../../lib/hex-to-rgba'
 
 
 
