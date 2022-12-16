@@ -284,8 +284,8 @@ Lucas Dupias - lucas@codeacademyberlin.com
     - Progress bar dashboard component
     - My Cohort dashboard component
   - [Emily](https://github.comMadame-Aehm)
-    - Lms page [lms](/lms)
-    - Community page [community](/community)
+    - Lms page
+    - Community page
     - themes design
   - [Philipp](https://github.com/philippspiegler)
     - VS Battle page
