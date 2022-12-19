@@ -17,6 +17,7 @@ import BerlinSkyline from '../components/landing-page/BerlinSkyline'
 import { Fade, Slide } from '@mui/material'
 import Footer from '../layouts/Footer'
 import { TronGridWrapper, TronGrid } from '../components/landing-page/TronGridPlane'
+import ParticlesComp from '../components/common/Particles/Particles'
 
 
 const blink = keyframes`
@@ -54,10 +55,10 @@ const Home = () => {
         <TronGrid />
         {smUp && <BerlinSkyline />}
       </TronGridWrapper>
-
+      <ParticlesComp type='snow' />
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <BrandText variant='overline'>
-          {smUp ? "CODAC" : "A"}
+        <BrandText sx={{ fontSize: smUp && "10rem" || "5rem" }} variant='overline'>
+          {"CODAC"}
         </BrandText>
         <Typography color={"white"} variant='h6' sx={{ mb: 3, fontSize: '1.5rem !important' }}>
           The Code Academy Berlin Community

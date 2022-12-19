@@ -8,7 +8,6 @@ import { BrandText } from '../components/common/BrandStyle';
 import UserDropdown from './auth/UserDropdown';
 import { useAuth } from '../hooks/useAuth';
 import AppBarContent from './appBar/AppBarContent';
-import Congrats from '../components/common/Congrat';
 import { useSettings } from '../hooks/useSettings';
 
 
@@ -37,7 +36,6 @@ const MainLayout = ({ children, loading }: { children: ReactNode, loading: boole
 
   return (
     <>
-      {festive && <Congrats />}
       <LeftNavBar handleDrawerToggle={handleDrawerToggle} open={open} />
       <Container>
         <Header handleDrawerToggle={handleDrawerToggle} />

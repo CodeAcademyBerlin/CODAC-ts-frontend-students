@@ -32,7 +32,7 @@ text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 
  `;
 
 export const BrandText = styled(Typography)`
-    font-size: 10rem;
+    /* font-size: 10rem; */
     text-align: center;
     font-family: CODAC;
     color: ${({ theme }) => theme.palette.primary.main};
