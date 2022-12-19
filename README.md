@@ -128,6 +128,17 @@ To get a local copy up and running follow these simple example steps.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Troubleshoot
+  - If you get the following error on SSG pages (i.e LMS or Projects)
+  `TypeError: _jsxDEV is not a function`
+  This is linked to an environment variable NODE_ENV setting of your machine.
+
+  Fix:
+  on windows run in terminal: `setx NODE_ENV dev`
+  on linux and macos run in terminal: `export NODE_ENV=dev`
+
+  Close and restart VS code before testing again. 
+  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
