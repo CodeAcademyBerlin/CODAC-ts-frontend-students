@@ -104,7 +104,6 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 - Node
 - Yarn package manager
-* npm
   ```sh
   npm i yarn -g
   ```
@@ -115,11 +114,9 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/codeacademyberlin/codac-ts-frontend-students.git
    ```
-2. Install NPM packages(yarn preferred)
+2. Install NPM packages
    ```sh
    yarn
-    # or
-   npm install
    ```
 3. rename `.env.local.example` to `.env.local` and request the missing api keys
 4. Run the Next.js app in dev mode
