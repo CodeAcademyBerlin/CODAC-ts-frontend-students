@@ -44,10 +44,12 @@
     "env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next-env.d.ts"
-, "components/landing-page/BerlinSkyline.js"  ],
+    "next-env.d.ts",
+    "components/landing-page/BerlinSkyline.js"
+  ],
   "exclude": [
     "node_modules",
-    "cypress"
+    "cypress",
+    "cypress.config.ts"
   ]
 }

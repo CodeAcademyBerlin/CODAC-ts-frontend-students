@@ -43,7 +43,7 @@ import { BrandText } from "../components/common/BrandStyle";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AuthContext } from "../contexts/authContext";
 import BlankLayout from "../layouts/BlankLayout";
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../layouts/MainLayout/MainLayout";
 
 interface State {
   password: string;

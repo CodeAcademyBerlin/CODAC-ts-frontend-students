@@ -1,17 +1,17 @@
-import { ReactNode, useState } from 'react'
+import { ReactElement, ReactNode, useState } from 'react'
 import { styled } from '@mui/material/styles'
-import LeftNavBar from './leftNav/LeftNavBar'
+import LeftNavBar from '../leftNav/LeftNavBar'
 import Head from 'next/head';
-import Footer from './Footer';
-import Header from './appBar/Header';
-import { BrandText } from '../components/common/BrandStyle';
-import UserDropdown from './auth/UserDropdown';
-import { useAuth } from '../hooks/useAuth';
-import AppBarContent from './appBar/AppBarContent';
-import { useSettings } from '../hooks/useSettings';
+import Footer from '../Footer';
+import Header from '../appBar/Header';
+import { BrandText } from '../../components/common/BrandStyle';
+import UserDropdown from '../auth/UserDropdown';
+import { useAuth } from '../../hooks/useAuth';
+import AppBarContent from '../appBar/AppBarContent';
+import { useSettings } from '../../hooks/useSettings';
 
 
-const MainLayout = ({ children, loading }: { children: ReactNode, loading: boolean }) => {
+export const MainLayout = ({ children, loading }: { children: ReactNode, loading: boolean }) => {
 
   const { user } = useAuth()
   const { festive } = useSettings()
@@ -48,4 +48,6 @@ const MainLayout = ({ children, loading }: { children: ReactNode, loading: boole
   )
 }
 
-export default MainLayout
+const getLayout = (page: ReactElement, loading: boolean) => <MainLayout loading={loading}>{page}</MainLayout>;
+
+export default getLayout;
