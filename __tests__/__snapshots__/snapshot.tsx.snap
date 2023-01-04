@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <div
+    class="content-center MuiBox-root css-0"
+  >
+    <div
+      class="css-1r0ri1n"
+    >
+      <div
+        class="css-1ez1uwf"
+      />
+    </div>
+    <div
+      id="tsparticles"
+    >
+      <canvas
+        style="width: 100%; height: 100%;"
+      />
+    </div>
+    <div
+      class="MuiBox-root css-eboj6a"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-overline css-5bo49h-MuiTypography-root"
+      >
+        CODAC
+      </span>
+      <h6
+        class="MuiTypography-root MuiTypography-h6 css-1yzpz3c-MuiTypography-root"
+      >
+        The Code Academy Berlin Community
+      </h6>
+      <a
+        class="css-1svt4rg"
+        href="/dashboard"
+      >
+        <h3
+          class="MuiTypography-root MuiTypography-h3 css-1wz5gqi-MuiTypography-root"
+        >
+          Start
+        </h3>
+      </a>
+    </div>
+    <footer
+      class="css-2ssaom"
+    >
+      A platform by the students of Code Academy Berlin
+    </footer>
+  </div>
+</div>
+`;

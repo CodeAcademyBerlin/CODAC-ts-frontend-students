@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import { Divider, Typography, useTheme } from "@mui/material";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
 import jwt_decode, { JwtPayload } from "jwt-decode";
 import ProgressBar from "../components/dashboard/ProgressBar";

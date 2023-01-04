@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 // ** React Imports
 import { forwardRef, useState } from 'react'
 

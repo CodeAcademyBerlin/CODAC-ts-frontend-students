@@ -15,7 +15,6 @@ import Link from 'next/link'
 import StyledLink from '../common/StyledLink'
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  console.log('project', project)
   return (
     <Card sx={{ position: 'relative' }}>
       <CardMedia sx={{ height: '12.625rem' }} image={project.image} />

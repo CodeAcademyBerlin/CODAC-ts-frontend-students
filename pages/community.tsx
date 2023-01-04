@@ -2,7 +2,7 @@ import React from 'react'
 import { BrandText } from '../components/common/BrandStyle'
 import { GetCohortsDocument } from '../cabServer/queries/__generated__/cohorts';
 import { MentorsDocument } from '../cabServer/queries/__generated__/mentors';
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 import { initializeApollo } from "../lib/apolloClient";
 import { CohortEntity, MentorEntity } from "../cabServer/global/__generated__/types";
 import Accordion from '@mui/material/Accordion';
@@ -83,7 +83,7 @@ export const StudentContent = styled('div')`
   }
 `
 
-function community({ error, cohorts, mentors }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -189,7 +189,7 @@ function community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
   )
 }
 
-export default community
+export default Community
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {

@@ -1,4 +1,4 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import JobsCard from "../components/jobs-page/JobsCard";
@@ -22,7 +22,7 @@ interface Data {
 
 type index = number;
 
-const jobs = ({
+const Jobs = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [result, setResult] = useState(data.jobPosts.data);
@@ -87,22 +87,20 @@ const jobs = ({
             {uniqueFields &&
               uniqueFields.map((job, i) => {
                 return (
-                  <div>
-                    <Grid item xs={12} sm={6} md={4} key={i}>
-                      {job && (
-                        <FormControlLabel
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                          value={job}
-                          control={<Radio id="All" />}
-                          label={job.replace("_", " ")}
-                          className="All"
-                          id="AllForm"
-                        />
-                      )}
-                    </Grid>
-                  </div>
+                  <Grid item xs={12} sm={6} md={4} key={i}>
+                    {job && (
+                      <FormControlLabel
+                        onClick={(e) => {
+                          handleClick(e);
+                        }}
+                        value={job}
+                        control={<Radio id="All" />}
+                        label={job.replace("_", " ")}
+                        className="All"
+                        id="AllForm"
+                      />
+                    )}
+                  </Grid>
                 );
               })}
           </RadioGroup>
@@ -121,7 +119,7 @@ const jobs = ({
   );
 };
 
-export default jobs;
+export default Jobs;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const today = new Date().toLocaleDateString();

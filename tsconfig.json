@@ -18,7 +18,19 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
+    "types": [
+      "jest",
+      "node",
+      "@types/testing-library__jest-dom"
+    ],
     "paths": {
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ],
       "apexcharts": [
         "./node_modules/apexcharts-clevision"
       ],
@@ -33,8 +45,9 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts"
-  ],
+, "components/landing-page/BerlinSkyline.js"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "cypress"
   ]
 }

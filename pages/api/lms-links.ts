@@ -1,5 +1,5 @@
 // import { buildNestedPages, getPaths } from '../../lib/content'
-import { NextApiHandler } from "next";
+import { NextApiHandler } from "next/types";
 
 
 

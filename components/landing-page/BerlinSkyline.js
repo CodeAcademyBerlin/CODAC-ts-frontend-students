@@ -11,7 +11,7 @@ const style = {
 	left: "25%",
 };
 
-export default () => {
+const BerlinSkyline = () => {
 	return (
 		<svg style={style} viewBox="0 0 667.7 259.9">
 			<g stroke="#24bfc45e" fill="none" id="layer1" transform="translate(529.3378,-883.68646)">
@@ -1227,3 +1227,6 @@ export default () => {
 		</svg>
 	);
 };
+
+
+export default BerlinSkyline

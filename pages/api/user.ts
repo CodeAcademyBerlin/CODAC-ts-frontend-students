@@ -1,4 +1,4 @@
-import { NextApiHandler } from "next";
+import { NextApiHandler } from "next/types";
 import { GetMeDocument } from "../../cabServer/queries/__generated__/user";
 import { initializeApollo } from "../../lib/apolloClient";
 

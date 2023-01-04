@@ -8,7 +8,7 @@ import isEqual from 'lodash.isequal'
 import type { AppProps } from 'next/app'
 import { useMemo } from 'react'
 import { parseCookies } from "nookies";
-import { NextApiRequest } from 'next'
+import { NextApiRequest } from 'next/types'
 
 type PageProps = any;
 const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
