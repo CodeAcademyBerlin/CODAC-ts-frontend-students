@@ -11,5 +11,5 @@ export const projectsFilePaths = fs
     .filter((path) => /\.md?$/.test(path))
 
 
-export const LMS_CONTENT_PATH = path.join(process.cwd(), 'contentLocal');
+export const LMS_CONTENT_PATH = process.env.NODE_ENV === "production" ? path.join(process.cwd(), 'content') : path.join(process.cwd(), 'contentLocal');
 // const contentDirectory = path.join(process.cwd(), 'content');

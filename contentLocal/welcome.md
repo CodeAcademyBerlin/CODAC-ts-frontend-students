@@ -7,6 +7,7 @@ order: 10
 
 ![Welcome](staticAsset/linkedin-header.png)
 
+## LOCAL
 ## 🌄Welcome the Code Academy Berlin LMS Platform
 
 ### 🧭 During the next 3 to 5 months the CA Berlin team will guide you through the journey into becoming a web developer or data scientist.

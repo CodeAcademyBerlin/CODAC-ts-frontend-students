@@ -4,7 +4,6 @@ SUBMODULE_GITHUB=github.com/CodeAcademyBerlin/content
 SUBMODULE_PATH=content
 
 # github access token is necessary
-# add it to Environment Variables on Vercel
 if [ "$GITHUB_ACCESS_TOKEN" == "" ]; then
   echo "Error: GITHUB_ACCESS_TOKEN is empty"
   exit 1
@@ -16,3 +15,4 @@ set -e
 rm -rf content || true # remove the tmp folder if exists
 
 git clone https://$GITHUB_ACCESS_TOKEN@$SUBMODULE_GITHUB
+echo "content repository cloned"
