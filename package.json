@@ -9,6 +9,7 @@
     "lint": "next lint",
     "test": "jest --watch",
     "test:ci": "jest --ci",
+    "prepare": "husky install",
     "cypress": "cypress open",
     "codegen": "graphql-codegen --config codegen.yml",
     "vercel-install": "./vercel-submodule-workaround.sh && yarn --ignore-scripts --production=false"
@@ -31,8 +32,6 @@
     "apollo-upload-client": "^17.0.0",
     "dayjs": "^1.11.6",
     "deepmerge": "^4.2.2",
-    "eslint": "8.26.0",
-    "eslint-config-next": "13.0.1",
     "fs": "^0.0.1-security",
     "graphql": "^16.6.0",
     "gray-matter": "^4.0.3",
@@ -77,8 +76,20 @@
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "cypress": "^12.2.0",
+    "eslint": "8.26.0",
+    "eslint-config-next": "13.0.1",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-jest": "^27.2.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-storybook": "^0.6.8",
+    "eslint-plugin-testing-library": "^5.9.1",
+    "husky": "^8.0.3",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1",
     "typescript": "4.8.4"
   }
 }

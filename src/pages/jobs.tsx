@@ -1,16 +1,17 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
-import Grid from "@mui/material/Grid";
-import { useState } from "react";
-import JobsCard from "../components/jobs-page/JobsCard";
-import { GetJobsDocument } from "../../cabServer/queries/__generated__/jobs";
-import * as React from "react";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import { initializeApollo } from "../lib/apolloClient";
-import dayjs from "dayjs";
-import { JobPostEntity } from "../../cabServer/global/__generated__/types";
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import dayjs from 'dayjs';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
+import { useState } from 'react';
+import * as React from 'react';
+
+import { JobPostEntity } from '../../cabServer/global/__generated__/types';
+import { GetJobsDocument } from '../../cabServer/queries/__generated__/jobs';
+import JobsCard from '../components/jobs-page/JobsCard';
+import { initializeApollo } from '../lib/apolloClient';
 
 // ** types
 interface Data {
@@ -39,7 +40,7 @@ const Jobs = ({
         result.push(jobEntity);
       }
     });
-    if (target.value === "") {
+    if (target.value === '') {
       setCheck(!check);
     } else {
       setCheck(false);
@@ -52,7 +53,7 @@ const Jobs = ({
   return (
     <div>
       <div>
-        {" "}
+        {' '}
         <FormControl>
           <RadioGroup
             row
@@ -61,7 +62,7 @@ const Jobs = ({
           >
             {allJobs.length >= 1 ? (
               <div>
-                {" "}
+                {' '}
                 <FormControlLabel
                   onClick={(e) => {
                     handleClick(e);
@@ -95,7 +96,7 @@ const Jobs = ({
                         }}
                         value={job}
                         control={<Radio id="All" />}
-                        label={job.replace("_", " ")}
+                        label={job.replace('_', ' ')}
                         className="All"
                         id="AllForm"
                       />
@@ -105,7 +106,7 @@ const Jobs = ({
               })}
           </RadioGroup>
         </FormControl>
-      </div>{" "}
+      </div>{' '}
       <br />
       <Grid container spacing={6}>
         {data &&
@@ -123,7 +124,7 @@ export default Jobs;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const today = new Date().toLocaleDateString();
-  const diff = dayjs(today).subtract(90, "d").toDate();
+  const diff = dayjs(today).subtract(90, 'd').toDate();
   try {
     const client = initializeApollo(null, ctx.req);
     const { data, error } = await client.query({

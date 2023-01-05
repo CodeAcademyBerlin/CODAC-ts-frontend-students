@@ -7,7 +7,7 @@ generates:
   cabServer/global/__generated__:
     preset: near-operation-file
     presetConfig:
-      folder:__generated__
+      folder: __generated__
       baseTypesPath: types.ts
       extension: .ts
     plugins:

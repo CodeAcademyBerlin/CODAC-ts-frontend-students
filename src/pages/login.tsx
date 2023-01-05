@@ -1,49 +1,47 @@
 // ** React Imports
+// ** MUI Components
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import MuiCard, { CardProps } from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Checkbox from '@mui/material/Checkbox';
+import CircularProgress from '@mui/material/CircularProgress';
+import Divider from '@mui/material/Divider';
+import FormControl from '@mui/material/FormControl';
+import MuiFormControlLabel, {
+  FormControlLabelProps,
+} from '@mui/material/FormControlLabel';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { styled, useTheme } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import EyeOffOutline from 'mdi-material-ui/EyeOffOutline';
+import EyeOutline from 'mdi-material-ui/EyeOutline';
+import Facebook from 'mdi-material-ui/Facebook';
+import Github from 'mdi-material-ui/Github';
+// ** Icons Imports
+import Google from 'mdi-material-ui/Google';
+import Twitter from 'mdi-material-ui/Twitter';
+// ** Next Imports
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   ChangeEvent,
   MouseEvent,
   ReactNode,
   useContext,
   useState,
-} from "react";
+} from 'react';
 
-// ** Next Imports
-import Link from "next/link";
-import { useRouter } from "next/router";
-
-// ** MUI Components
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import Checkbox from "@mui/material/Checkbox";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import CardContent from "@mui/material/CardContent";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import { styled, useTheme } from "@mui/material/styles";
-import MuiCard, { CardProps } from "@mui/material/Card";
-import InputAdornment from "@mui/material/InputAdornment";
-import MuiFormControlLabel, {
-  FormControlLabelProps,
-} from "@mui/material/FormControlLabel";
-
-// ** Icons Imports
-import Google from "mdi-material-ui/Google";
-import Github from "mdi-material-ui/Github";
-import Twitter from "mdi-material-ui/Twitter";
-import Facebook from "mdi-material-ui/Facebook";
-import EyeOutline from "mdi-material-ui/EyeOutline";
-import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
-import FooterIllustrationsV1 from "../componentsDemo/pages/auth/FooterIllustration";
-import { useLoginMutation } from "../../cabServer/mutations/__generated__/user";
-import { BrandText } from "../components/common/BrandStyle";
-import CircularProgress from "@mui/material/CircularProgress";
-import { AuthContext } from "../contexts/authContext";
-import BlankLayout from "../layouts/BlankLayout";
-import MainLayout from "../layouts/MainLayout/MainLayout";
+import { useLoginMutation } from '../../cabServer/mutations/__generated__/user';
+import { BrandText } from '../components/common/BrandStyle';
+import FooterIllustrationsV1 from '../componentsDemo/pages/auth/FooterIllustration';
+import { AuthContext } from '../contexts/authContext';
+import BlankLayout from '../layouts/BlankLayout';
+import MainLayout from '../layouts/MainLayout/MainLayout';
 
 interface State {
   password: string;
@@ -55,30 +53,30 @@ interface State {
 
 // ** Styled Components
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
-  [theme.breakpoints.up("sm")]: { width: "28rem" },
+  [theme.breakpoints.up('sm')]: { width: '28rem' },
 }));
 
 const LinkStyled = styled(Link)(({ theme }) => ({
-  fontSize: "0.875rem",
-  textDecoration: "none",
+  fontSize: '0.875rem',
+  textDecoration: 'none',
   color: theme.palette.primary.main,
 }));
 
 const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(
   ({ theme }) => ({
-    "& .MuiFormControlLabel-label": {
-      fontSize: "0.875rem",
+    '& .MuiFormControlLabel-label': {
+      fontSize: '0.875rem',
       color: theme.palette.text.secondary,
     },
-  })
+  }),
 );
 
 const LoginPage = () => {
   // ** State
   const [values, setValues] = useState<State>({
-    password: "",
-    email: "",
-    error: "",
+    password: '',
+    email: '',
+    error: '',
     showPassword: false,
     rememberMe: false,
   });
@@ -111,12 +109,12 @@ const LoginPage = () => {
       const { data } = await loginMutation();
       if (data) {
         const { login } = data;
-        console.log("login", login);
+        console.log('login', login);
         onLoginSucces(login, values.rememberMe);
-        router.push("/dashboard");
+        router.push('/dashboard');
       }
     } catch (e) {
-      setValues({ ...values, error: "e.message" });
+      setValues({ ...values, error: 'e.message' });
     }
   };
 
@@ -130,8 +128,7 @@ const LoginPage = () => {
             <Typography
               variant="h5"
               sx={{ fontWeight: 600, marginBottom: 1.5 }}
-            >
-            </Typography>
+            ></Typography>
             <Typography variant="body2">
               Please sign-in to your account and start the adventure
             </Typography>
@@ -142,7 +139,7 @@ const LoginPage = () => {
               fullWidth
               id="email"
               value={values.email}
-              onChange={handleChange("email")}
+              onChange={handleChange('email')}
               label="Email"
               sx={{ marginBottom: 4 }}
             />
@@ -152,8 +149,8 @@ const LoginPage = () => {
                 label="Password"
                 value={values.password}
                 id="auth-login-password"
-                onChange={handleChange("password")}
-                type={values.showPassword ? "text" : "password"}
+                onChange={handleChange('password')}
+                type={values.showPassword ? 'text' : 'password'}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -171,23 +168,29 @@ const LoginPage = () => {
             <Box
               sx={{
                 mb: 4,
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
               }}
             >
-              <FormControlLabel onChange={(e, checked) => setValues({ ...values, rememberMe: checked })} control={<Checkbox />} label="Remember Me" />
+              <FormControlLabel
+                onChange={(e, checked) =>
+                  setValues({ ...values, rememberMe: checked })
+                }
+                control={<Checkbox />}
+                label="Remember Me"
+              />
               <LinkStyled passHref href="/" onClick={(e) => e.preventDefault()}>
                 Forgot Password?
               </LinkStyled>
             </Box>
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-                justifyContent: "center",
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
               }}
             >
               {error && (
@@ -212,10 +215,10 @@ const LoginPage = () => {
 
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-                justifyContent: "center",
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
               }}
             >
               {/* <Typography variant="body2" sx={{ marginRight: 2 }}>
