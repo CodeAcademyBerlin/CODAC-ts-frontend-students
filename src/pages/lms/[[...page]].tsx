@@ -1,16 +1,18 @@
 // ** React Imports
-import Head from 'next/head';
-
-// ** MUI Components
-import Box from '@mui/material/Box'
-import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
-import { PageData } from './lms';
-import lmspages from "../../../public/assets/lmspages.json"
-import { getPage, getPageMdx } from '../../lib/markdown';
 import { Breadcrumbs } from '@mui/material';
+// ** MUI Components
+import Box from '@mui/material/Box';
+import Head from 'next/head';
 import Link from 'next/link';
-import { LMS_ASSETS_PATH, LMS_CONTENT_PATH } from '../../definitions/contentFilePaths';
 
+import lmspages from '../../../public/assets/lmspages.json';
+import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
+import {
+  LMS_ASSETS_PATH,
+  LMS_CONTENT_PATH,
+} from '../../definitions/contentFilePaths';
+import { getPage, getPageMdx } from '../../lib/markdown';
+import { PageData } from './lms';
 
 const lms = ({ pageData }: { pageData: PageData }) => {
   // console.log('pageData', pageData)
@@ -33,22 +35,38 @@ const lms = ({ pageData }: { pageData: PageData }) => {
             </Link>
           ))}
         </Breadcrumbs> */}
-      <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
+      <Box
+        sx={{
+          p: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <>
           <h1>{pageData.title}</h1>
 
-          <LmsContentContainer content={pageData.contentHtml} next={pageData.next} prev={pageData.prev} />
-
+          <LmsContentContainer
+            content={pageData.contentHtml}
+            next={pageData.next}
+            prev={pageData.prev}
+          />
         </>
       </Box>
     </>
+  );
+};
 
-  )
-}
-
-export async function getStaticProps({ params }: { params: { page: string[] } }) {
-  const pageData = await getPageMdx("/" + params.page.join("/"), LMS_CONTENT_PATH, LMS_ASSETS_PATH);
+export async function getStaticProps({
+  params,
+}: {
+  params: { page: string[] };
+}) {
+  const pageData = await getPageMdx(
+    '/' + params.page.join('/'),
+    LMS_CONTENT_PATH,
+    LMS_ASSETS_PATH,
+  );
   return { props: { pageData } };
 }
 
@@ -64,4 +82,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default lms
+export default lms;

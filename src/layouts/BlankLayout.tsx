@@ -1,16 +1,13 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const BlankLayout = ({ children }: Props) => {
-
   return (
-    <div style={{ minHeight: "100vh", overflowX: "hidden" }}>
-      {children}
-    </div>
-  )
-}
+    <div style={{ minHeight: '100vh', overflowX: 'hidden' }}>{children}</div>
+  );
+};
 
-export default BlankLayout
+export default BlankLayout;

@@ -1,35 +1,47 @@
-import fs from 'fs'
-import matter from 'gray-matter'
-import Box from '@mui/material/Box'
-import { MDXRemote } from 'next-mdx-remote'
-import { serialize } from 'next-mdx-remote/serialize'
-import dynamic from 'next/dynamic'
-import Head from 'next/head'
-import Link from 'next/link'
-import path from 'path'
-import LmsContentContainer from '../../components/lms-page/LmsContentContainer'
-import mdxComponents from '../../components/mdx'
-import CustomLink from '../../components/mdx/CustomLink'
-import Layout from '../../components/mdx/Layout'
-import { PROJECTS_PATH } from '../../definitions/contentFilePaths'
-import { getPageMdx, mdxFilesPaths } from '../../lib/markdown'
-import { PageData } from '../lms/lms'
+import Box from '@mui/material/Box';
+import fs from 'fs';
+import matter from 'gray-matter';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import Link from 'next/link';
+import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import path from 'path';
+
+import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
+import mdxComponents from '../../components/mdx';
+import CustomLink from '../../components/mdx/CustomLink';
+import Layout from '../../components/mdx/Layout';
+import { PROJECTS_PATH } from '../../definitions/contentFilePaths';
+import { getPageMdx, mdxFilesPaths } from '../../lib/markdown';
+import { PageData } from '../lms/lms';
 
 const Projects = ({ pageData }: { pageData: PageData }) => {
-
   return (
-    <Box sx={{ mt: 0, p: 5, display: 'flex', justifyContent: "center", alignItems: 'center' }}>
+    <Box
+      sx={{
+        mt: 0,
+        p: 5,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <LmsContentContainer content={pageData.contentHtml} />
     </Box>
-  )
-}
-export default Projects
-export const getStaticProps = async ({ params }: { params: { project: string } }) => {
-  console.log('project', params.project)
-  const pageData = await getPageMdx(params.project, PROJECTS_PATH, "/assets/");
+  );
+};
+export default Projects;
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { project: string };
+}) => {
+  console.log('project', params.project);
+  const pageData = await getPageMdx(params.project, PROJECTS_PATH, '/assets/');
 
   return { props: { pageData } };
-}
+};
 
 // const { content, data } = matter(source)
 // const mdxSource = await serialize(content, {
@@ -43,14 +55,13 @@ export const getStaticProps = async ({ params }: { params: { project: string } }
 //   },
 // }
 
-
 export const getStaticPaths = async () => {
   const paths = mdxFilesPaths(PROJECTS_PATH)
     .map((path) => path.replace(/\.md?$/, ''))
-    .map((project) => ({ params: { project } }))
-  console.log('paths', paths)
+    .map((project) => ({ params: { project } }));
+  console.log('paths', paths);
   return {
     paths,
     fallback: false,
-  }
-}
+  };
+};

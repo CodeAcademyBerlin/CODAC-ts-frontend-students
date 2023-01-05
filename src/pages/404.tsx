@@ -1,58 +1,67 @@
 // ** React Imports
-import { ReactNode } from 'react'
-
-// ** Next Import
-import Link from 'next/link'
-
+import Box, { BoxProps } from '@mui/material/Box';
 // ** MUI Components
-import Button from '@mui/material/Button'
-import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
-import Box, { BoxProps } from '@mui/material/Box'
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Image from 'next/image';
+// ** Next Import
+import Link from 'next/link';
+import { ReactNode } from 'react';
 
-import Image from 'next/image'
-import image from '../../public/assets/logo.png'
-import BlankLayout from '../layouts/BlankLayout'
-
+import image from '../../public/assets/logo.png';
+import BlankLayout from '../layouts/BlankLayout';
 
 // ** Styled Components
 const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    width: '90vw'
-  }
-}))
+    width: '90vw',
+  },
+}));
 
 const StyledLink = styled(Link)({
   display: 'flex',
   alignItems: 'center',
-  textDecoration: 'none'
-})
+  textDecoration: 'none',
+});
 
 const Error404 = () => {
   return (
-    <Box className='content-center'>
-      <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+    <Box className="content-center">
+      <Box
+        sx={{
+          p: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
         <BoxWrapper>
+          <Typography variant="h1">404</Typography>
 
-          <Typography variant='h1'>404</Typography>
-
-          <Image width={60} height={60} alt='error-illustration' src={image} />
-          <Typography variant='h5' sx={{ mb: 1, fontSize: '1.5rem !important' }}>
+          <Image width={60} height={60} alt="error-illustration" src={image} />
+          <Typography
+            variant="h5"
+            sx={{ mb: 1, fontSize: '1.5rem !important' }}
+          >
             Page Not Found
           </Typography>
-          <Typography variant='body2'>We couldn&prime;t find the page you are looking for.</Typography>
+          <Typography variant="body2">
+            We couldn&prime;t find the page you are looking for.
+          </Typography>
         </BoxWrapper>
 
-        <StyledLink passHref href='/'>
-          <Button component='div' variant='contained' sx={{ px: 5.5 }}>
+        <StyledLink passHref href="/">
+          <Button component="div" variant="contained" sx={{ px: 5.5 }}>
             Back to Home
           </Button>
         </StyledLink>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-Error404.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+Error404.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>;
 
-export default Error404
+export default Error404;

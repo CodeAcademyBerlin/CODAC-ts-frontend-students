@@ -1,10 +1,8 @@
 // ** MUI Imports
-import Grid from '@mui/material/Grid'
-import TypographyHeadings from '../../../componentsDemo/typography/TypographyHeadings'
-import TypographyTexts from '../../../componentsDemo/typography/TypographyTexts'
+import Grid from '@mui/material/Grid';
 
-
-
+import TypographyHeadings from '../../../componentsDemo/typography/TypographyHeadings';
+import TypographyTexts from '../../../componentsDemo/typography/TypographyTexts';
 
 const TypographyPage = () => {
   return (
@@ -16,7 +14,7 @@ const TypographyPage = () => {
         <TypographyTexts />
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
-export default TypographyPage
+export default TypographyPage;

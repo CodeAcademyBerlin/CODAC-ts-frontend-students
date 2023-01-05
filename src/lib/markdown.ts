@@ -1,13 +1,14 @@
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
+import { serialize } from 'next-mdx-remote/serialize';
+import path from 'path';
+import imageSize from 'rehype-img-size';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { serialize } from 'next-mdx-remote/serialize'
-import imageSize from "rehype-img-size";
 
-interface Paths { params: { page: string[] } };
-
+interface Paths {
+  params: { page: string[] };
+}
 
 export async function getPage(pagePath: string, directory: string) {
   const fullPath = path.join(directory, `${pagePath}.md`);
@@ -19,7 +20,7 @@ export async function getPage(pagePath: string, directory: string) {
     .use(html)
     .process(matterResult.content);
   let contentHtml = processedContent.toString();
-  contentHtml = buildImgUrl(contentHtml, "/lms");
+  contentHtml = buildImgUrl(contentHtml, '/lms');
   // contentHtml = buildImgUrl(contentHtml, "https://caberlin-lms-v3.herokuapp.com");
   return {
     pagePath,
@@ -28,12 +29,16 @@ export async function getPage(pagePath: string, directory: string) {
   };
 }
 
-export async function getPageMdx(pagePath: string, directory: string, assetsDir: string) {
+export async function getPageMdx(
+  pagePath: string,
+  directory: string,
+  assetsDir: string,
+) {
   const fullPath = path.join(directory, `${pagePath}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const escapeComments = removeComments(fileContents)
-  const { content, data } = matter(escapeComments)
-  const contentHtml = buildImgUrl(content, assetsDir)
+  const escapeComments = removeComments(fileContents);
+  const { content, data } = matter(escapeComments);
+  const contentHtml = buildImgUrl(content, assetsDir);
   const mdxSource = await serialize(contentHtml, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
@@ -41,10 +46,9 @@ export async function getPageMdx(pagePath: string, directory: string, assetsDir:
       //   remarkPlugins: [],
       // rehypePlugins: [[imageSize, { dir: "public" }]],
       // },
-
     },
-    scope: data
-  })
+    scope: data,
+  });
 
   return {
     pagePath,
@@ -53,32 +57,34 @@ export async function getPageMdx(pagePath: string, directory: string, assetsDir:
   };
 }
 export async function getFrontmatters(dir: string) {
-  const filePaths = mdxFilesPaths(dir)
-  const frontmatters = filePaths
-    .map((filePath) => {
-      const fullPath = path.join(dir, filePath);
-      const content = fs.readFileSync(fullPath, 'utf8');
-      const { data } = matter(content)
-      return data
-    })
+  const filePaths = mdxFilesPaths(dir);
+  const frontmatters = filePaths.map((filePath) => {
+    const fullPath = path.join(dir, filePath);
+    const content = fs.readFileSync(fullPath, 'utf8');
+    const { data } = matter(content);
+    return data;
+  });
 
-  return frontmatters
+  return frontmatters;
 }
 
 // Include server in img url
 const buildImgUrl = (markdownBody: string, assetsDir: string) => {
-  return markdownBody.replace(/staticAsset\//ig, assetsDir)
+  return markdownBody.replace(/staticAsset\//gi, assetsDir);
 };
 const removeComments = (markdownBody: string) => {
-  return markdownBody.replace(/(?=<!--)([\s\S]*?)-->/gm, "")
+  return markdownBody.replace(/(?=<!--)([\s\S]*?)-->/gm, '');
 };
 
 // list of all mdx files inside path directory
 export const mdxFilesPaths = (dir: string): string[] => {
-  return fs.readdirSync(dir)
-    // Only include md(x) files
-    .filter((path) => /\.md?$/.test(path))
-}
+  return (
+    fs
+      .readdirSync(dir)
+      // Only include md(x) files
+      .filter((path) => /\.md?$/.test(path))
+  );
+};
 
 // export async function getPaths(subDirPath?: string) {
 //   const paths: Array<Paths> = [];

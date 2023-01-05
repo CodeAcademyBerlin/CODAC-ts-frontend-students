@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react'
-import Button from '@mui/material/Button'
-import Link from 'next/link'
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import React, { useEffect } from 'react';
+
+import mdxComponents from '../../components/mdx';
 import styles from '../../styles/LmsContentContainer.module.css';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import mdxComponents from '../../components/mdx'
-import dynamic from 'next/dynamic'
-
-
-import { styled } from '@mui/material/styles'
 
 export const LmsContent = styled('div')`
   max-width: 100%;
@@ -63,64 +62,87 @@ export const LmsContent = styled('div')`
     color: ${({ theme }) => theme.palette.primary.light};
   }
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     .copyButton:hover {
       opacity: 1;
       transition: 0.2s;
       cursor: pointer;
-      background-color: ${({ theme }) => theme.palette.action.hover}
+      background-color: ${({ theme }) => theme.palette.action.hover};
     }
   }
-`
+`;
 
-function LmsContentContainer({ content, next, prev }: { content: MDXRemoteSerializeResult, next?: string, prev?: string }) {
-
-
-
+function LmsContentContainer({
+  content,
+  next,
+  prev,
+}: {
+  content: MDXRemoteSerializeResult;
+  next?: string;
+  prev?: string;
+}) {
   useEffect(() => {
     function addCopyButtons() {
-      const codeTags = document.getElementsByTagName("code");
+      const codeTags = document.getElementsByTagName('code');
       for (let i = 0; i < codeTags.length; i++) {
-        const copyButton = document.createElement("button");
-        copyButton.classList.add("copyButton");
-        copyButton.innerHTML = "Copy";
-        copyButton.setAttribute('title', "Copy snippet");
-        copyButton.addEventListener("click", () => copyToClipboard(codeTags[i].lastChild?.textContent));
+        const copyButton = document.createElement('button');
+        copyButton.classList.add('copyButton');
+        copyButton.innerHTML = 'Copy';
+        copyButton.setAttribute('title', 'Copy snippet');
+        copyButton.addEventListener('click', () =>
+          copyToClipboard(codeTags[i].lastChild?.textContent),
+        );
         codeTags[i].insertBefore(copyButton, codeTags[i].childNodes[0]);
       }
     }
     addCopyButtons();
-  }, [content])
+  }, [content]);
 
   async function copyToClipboard(toCopy: string | null | undefined) {
     if (toCopy && toCopy !== undefined) {
       try {
         await navigator.clipboard.writeText(toCopy);
       } catch (err) {
-        console.log("error: ", err)
+        console.log('error: ', err);
       }
     }
   }
 
   return (
-
     <LmsContent>
       <MDXRemote {...content} components={mdxComponents} />
-      <div style={{ padding: 5, width: "100%", display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-        {prev &&
-          <Button component={Link} variant='contained' sx={{ px: 5.5 }} href={prev}>
+      <div
+        style={{
+          padding: 5,
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }}
+      >
+        {prev && (
+          <Button
+            component={Link}
+            variant="contained"
+            sx={{ px: 5.5 }}
+            href={prev}
+          >
             Previous
           </Button>
-        }
-        {next &&
-          <Button component={Link} variant='contained' sx={{ px: 5.5 }} href={next}>
+        )}
+        {next && (
+          <Button
+            component={Link}
+            variant="contained"
+            sx={{ px: 5.5 }}
+            href={next}
+          >
             Next
           </Button>
-        }
+        )}
       </div>
     </LmsContent>
-
-  )
+  );
 }
 
-export default LmsContentContainer
+export default LmsContentContainer;

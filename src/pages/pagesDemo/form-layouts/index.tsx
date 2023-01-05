@@ -1,16 +1,14 @@
 // ** MUI Imports
-import Grid from '@mui/material/Grid'
-
-
-
 // ** Third Party Styles Imports
-import 'react-datepicker/dist/react-datepicker.css'
-import DatePickerWrapper from '../../../components/libs/react-datepicker'
-import FormLayoutsAlignment from '../../../componentsDemo/form-layouts/FormLayoutsAlignment'
-import FormLayoutsBasic from '../../../componentsDemo/form-layouts/FormLayoutsBasic'
-import FormLayoutsIcons from '../../../componentsDemo/form-layouts/FormLayoutsIcons'
-import FormLayoutsSeparator from '../../../componentsDemo/form-layouts/FormLayoutsSeparator'
+import 'react-datepicker/dist/react-datepicker.css';
 
+import Grid from '@mui/material/Grid';
+
+import DatePickerWrapper from '../../../components/libs/react-datepicker';
+import FormLayoutsAlignment from '../../../componentsDemo/form-layouts/FormLayoutsAlignment';
+import FormLayoutsBasic from '../../../componentsDemo/form-layouts/FormLayoutsBasic';
+import FormLayoutsIcons from '../../../componentsDemo/form-layouts/FormLayoutsIcons';
+import FormLayoutsSeparator from '../../../componentsDemo/form-layouts/FormLayoutsSeparator';
 
 const FormLayouts = () => {
   return (
@@ -30,7 +28,7 @@ const FormLayouts = () => {
         </Grid>
       </Grid>
     </DatePickerWrapper>
-  )
-}
+  );
+};
 
-export default FormLayouts
+export default FormLayouts;

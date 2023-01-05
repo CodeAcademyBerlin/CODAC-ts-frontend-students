@@ -1,7 +1,8 @@
-import React from 'react'
-import { styled } from '@mui/material/styles'
-import { Menu } from 'mdi-material-ui'
-import AppBarContent from './AppBarContent'
+import { styled } from '@mui/material/styles';
+import { Menu } from 'mdi-material-ui';
+import React from 'react';
+
+import AppBarContent from './AppBarContent';
 
 function Header({ handleDrawerToggle }: { handleDrawerToggle: () => void }) {
   const HeaderDiv = styled('header')`
@@ -9,15 +10,15 @@ function Header({ handleDrawerToggle }: { handleDrawerToggle: () => void }) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  `
+  `;
 
   const ShowMenu = styled('span')`
     display: flex;
     align-items: center;
     @media only screen and (min-width: 600px) {
-      visibility: hidden
+      visibility: hidden;
     }
-  `
+  `;
   return (
     <HeaderDiv>
       <ShowMenu onClick={handleDrawerToggle}>
@@ -25,7 +26,7 @@ function Header({ handleDrawerToggle }: { handleDrawerToggle: () => void }) {
       </ShowMenu>
       <AppBarContent />
     </HeaderDiv>
-  )
+  );
 }
 
-export default Header
+export default Header;

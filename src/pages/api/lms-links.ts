@@ -1,17 +1,13 @@
 // import { buildNestedPages, getPaths } from '../../lib/content'
-import { NextApiHandler } from "next/types";
-
-
+import { NextApiHandler } from 'next/types';
 
 const lmsLinks: NextApiHandler = async (req, res) => {
   try {
     // const links = await getPaths();
-    res.json("links");
-
+    res.json('links');
   } catch (err) {
-    console.log("error: ", err);
+    console.log('error: ', err);
   }
+};
 
-}
-
-export default lmsLinks
+export default lmsLinks;

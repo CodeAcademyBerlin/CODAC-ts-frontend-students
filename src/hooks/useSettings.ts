@@ -1,4 +1,9 @@
-import { useContext } from 'react'
-import { SettingsContext, SettingsContextValue } from '../contexts/settingsContext'
+import { useContext } from 'react';
 
-export const useSettings = (): SettingsContextValue => useContext(SettingsContext)
+import {
+  SettingsContext,
+  SettingsContextValue,
+} from '../contexts/settingsContext';
+
+export const useSettings = (): SettingsContextValue =>
+  useContext(SettingsContext);

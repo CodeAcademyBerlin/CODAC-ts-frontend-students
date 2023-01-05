@@ -1,5 +1,5 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles'
+import { Theme } from '@mui/material/styles';
 
 const Popover = (theme: Theme) => {
   return {
@@ -7,12 +7,12 @@ const Popover = (theme: Theme) => {
       styleOverrides: {
         root: {
           '& .MuiPopover-paper': {
-            boxShadow: theme.shadows[6]
-          }
-        }
-      }
-    }
-  }
-}
+            boxShadow: theme.shadows[6],
+          },
+        },
+      },
+    },
+  };
+};
 
-export default Popover
+export default Popover;

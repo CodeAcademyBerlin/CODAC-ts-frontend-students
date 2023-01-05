@@ -1,5 +1,5 @@
 // ** MUI Imports
-import { Theme } from '@mui/material/styles'
+import { Theme } from '@mui/material/styles';
 
 const Menu = (theme: Theme) => {
   return {
@@ -8,12 +8,15 @@ const Menu = (theme: Theme) => {
         root: {
           '& .MuiMenu-paper': {
             borderRadius: 5,
-            boxShadow: theme.palette.mode === 'light' ? theme.shadows[8] : theme.shadows[9]
-          }
-        }
-      }
-    }
-  }
-}
+            boxShadow:
+              theme.palette.mode === 'light'
+                ? theme.shadows[8]
+                : theme.shadows[9],
+          },
+        },
+      },
+    },
+  };
+};
 
-export default Menu
+export default Menu;

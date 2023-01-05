@@ -1,6 +1,7 @@
 // ** Theme Type Import
-import { ThemeOptions } from '@mui/material'
-import { ThemeName } from '../../layouts/types'
+import { ThemeOptions } from '@mui/material';
+
+import { ThemeName } from '../../layouts/types';
 
 const Shadows = (themeName: ThemeName): ThemeOptions['shadows'] => {
   if (themeName === 'light') {
@@ -29,10 +30,9 @@ const Shadows = (themeName: ThemeName): ThemeOptions['shadows'] => {
       '0px 10px 13px -6px rgba(58, 53, 65, 0.2), 0px 21px 33px 3px rgba(58, 53, 65, 0.14), 0px 8px 40px 7px rgba(58, 53, 65, 0.12)',
       '0px 10px 14px -6px rgba(58, 53, 65, 0.2), 0px 22px 35px 3px rgba(58, 53, 65, 0.14), 0px 8px 42px 7px rgba(58, 53, 65, 0.12)',
       '0px 11px 14px -7px rgba(58, 53, 65, 0.2), 0px 23px 36px 3px rgba(58, 53, 65, 0.14), 0px 9px 44px 8px rgba(58, 53, 65, 0.12)',
-      '0px 11px 15px -7px rgba(58, 53, 65, 0.2), 0px 24px 38px 3px rgba(58, 53, 65, 0.14), 0px 9px 46px 8px rgba(58, 53, 65, 0.12)'
-    ]
-  }
-  else if (themeName === "gag") {
+      '0px 11px 15px -7px rgba(58, 53, 65, 0.2), 0px 24px 38px 3px rgba(58, 53, 65, 0.14), 0px 9px 46px 8px rgba(58, 53, 65, 0.12)',
+    ];
+  } else if (themeName === 'gag') {
     return [
       'none',
       '0px 2px 1px -1px rgba(51, 225, 51, 0.2), 0px 1px 1px 0px rgba(51, 225, 51, 0.14), 0px 1px 3px 0px rgba(51, 225, 51, 0.12)',
@@ -58,8 +58,8 @@ const Shadows = (themeName: ThemeName): ThemeOptions['shadows'] => {
       '0px 10px 13px -6px rgba(51, 225, 51, 0.2), 0px 21px 33px 3px rgba(51, 225, 51, 0.14), 0px 8px 40px 7px rgba(51, 225, 51, 0.12)',
       '0px 10px 14px -6px rgba(51, 225, 51, 0.2), 0px 22px 35px 3px rgba(51, 225, 51, 0.14), 0px 8px 42px 7px rgba(51, 225, 51, 0.12)',
       '0px 11px 14px -7px rgba(51, 225, 51, 0.2), 0px 23px 36px 3px rgba(51, 225, 51, 0.14), 0px 9px 44px 8px rgba(51, 225, 51, 0.12)',
-      '0px 11px 15px -7px rgba(51, 225, 51, 0.2), 0px 24px 38px 3px rgba(51, 225, 51, 0.14), 0px 9px 46px 8px rgba(51, 225, 51, 0.12)'
-    ]
+      '0px 11px 15px -7px rgba(51, 225, 51, 0.2), 0px 24px 38px 3px rgba(51, 225, 51, 0.14), 0px 9px 46px 8px rgba(51, 225, 51, 0.12)',
+    ];
   } else {
     return [
       'none',
@@ -86,8 +86,8 @@ const Shadows = (themeName: ThemeName): ThemeOptions['shadows'] => {
       '0px 10px 13px -6px rgba(19, 17, 32, 0.2), 0px 21px 33px 3px rgba(19, 17, 32, 0.14), 0px 8px 40px 7px rgba(19, 17, 32, 0.12)',
       '0px 10px 14px -6px rgba(19, 17, 32, 0.2), 0px 22px 35px 3px rgba(19, 17, 32, 0.14), 0px 8px 42px 7px rgba(19, 17, 32, 0.12)',
       '0px 11px 14px -7px rgba(19, 17, 32, 0.2), 0px 23px 36px 3px rgba(19, 17, 32, 0.14), 0px 9px 44px 8px rgba(19, 17, 32, 0.12)',
-      '0px 11px 15px -7px rgba(19, 17, 32, 0.2), 0px 24px 38px 3px rgba(19, 17, 32, 0.14), 0px 9px 46px 8px rgba(19, 17, 32, 0.12)'
-    ]
+      '0px 11px 15px -7px rgba(19, 17, 32, 0.2), 0px 24px 38px 3px rgba(19, 17, 32, 0.14), 0px 9px 46px 8px rgba(19, 17, 32, 0.12)',
+    ];
   }
-}
-export default Shadows
+};
+export default Shadows;

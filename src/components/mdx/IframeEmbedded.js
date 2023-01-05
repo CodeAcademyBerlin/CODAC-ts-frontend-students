@@ -1,6 +1,6 @@
 import React from 'react';
 
-const IframeEmbedded = ({ link, title, height = "500px" }) => {
+const IframeEmbedded = ({ link, title, height = '500px' }) => {
   return (
     <div className="video-responsive">
       <iframe

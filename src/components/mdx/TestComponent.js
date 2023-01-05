@@ -12,5 +12,5 @@ export default function TestComponent({ name = 'world' }) {
         }
       `}</style>
     </>
-  )
+  );
 }

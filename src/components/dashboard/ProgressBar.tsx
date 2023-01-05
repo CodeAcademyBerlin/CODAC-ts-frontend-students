@@ -1,7 +1,8 @@
-import { Box, Chip, LinearProgress, Typography, useTheme } from "@mui/material";
-import { Stack } from "@mui/system";
-import CalenderAccountOutline from "mdi-material-ui/CalendarAccountOutline";
-import { Student } from "../../../cabServer/global/__generated__/types";
+import { Box, Chip, LinearProgress, Typography, useTheme } from '@mui/material';
+import { Stack } from '@mui/system';
+import CalenderAccountOutline from 'mdi-material-ui/CalendarAccountOutline';
+
+import { Student } from '../../../cabServer/global/__generated__/types';
 
 const ProgressBar = ({ student }: { student: Student }) => {
   const theme = useTheme();
@@ -10,7 +11,7 @@ const ProgressBar = ({ student }: { student: Student }) => {
   const finishDate: Date = new Date(student.end_date);
   const currentDate = Date.now();
   const timeDifference = Math.abs(
-    finishDate.getTime() - startingDate.getTime()
+    finishDate.getTime() - startingDate.getTime(),
   );
   const daysTotal = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
   const timeLeft = Math.abs(finishDate.getTime() - currentDate);
@@ -24,7 +25,7 @@ const ProgressBar = ({ student }: { student: Student }) => {
         sx={{
           p: theme.spacing(3, 4),
           borderRadius: 3,
-          borderStyle: "solid",
+          borderStyle: 'solid',
           borderWidth: 2,
           borderColor: theme.palette.background.default,
           backgroundColor: theme.palette.background.paper,
@@ -35,7 +36,7 @@ const ProgressBar = ({ student }: { student: Student }) => {
           <CalenderAccountOutline />
           <Typography
             sx={{
-              fontVariant: "all-small-caps",
+              fontVariant: 'all-small-caps',
               fontWeight: theme.typography.fontWeightBold,
             }}
           >
@@ -43,41 +44,41 @@ const ProgressBar = ({ student }: { student: Student }) => {
           </Typography>
         </Stack>
 
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box
             sx={{
-              width: "100%",
+              width: '100%',
               mr: 1.5,
               color:
                 progressValue <= 10
-                  ? "#e6eb9e"
+                  ? '#e6eb9e'
                   : progressValue <= 20
-                    ? "#d4dd5c"
-                    : progressValue <= 30
-                      ? "#c0c63b"
-                      : progressValue <= 40
-                        ? "#9d992d"
-                        : progressValue <= 50
-                          ? "#4664aa"
-                          : progressValue <= 60
-                            ? "#5586cf"
-                            : progressValue <= 70
-                              ? "#6aa3e2"
-                              : progressValue <= 80
-                                ? "#9ec8ef"
-                                : progressValue <= 90
-                                  ? "#93e6bf"
-                                  : progressValue < 100
-                                    ? "#13d490"
-                                    : "#00ba71",
+                  ? '#d4dd5c'
+                  : progressValue <= 30
+                  ? '#c0c63b'
+                  : progressValue <= 40
+                  ? '#9d992d'
+                  : progressValue <= 50
+                  ? '#4664aa'
+                  : progressValue <= 60
+                  ? '#5586cf'
+                  : progressValue <= 70
+                  ? '#6aa3e2'
+                  : progressValue <= 80
+                  ? '#9ec8ef'
+                  : progressValue <= 90
+                  ? '#93e6bf'
+                  : progressValue < 100
+                  ? '#13d490'
+                  : '#00ba71',
             }}
           >
             <LinearProgress
               sx={{
-                height: "1rem",
+                height: '1rem',
                 borderRadius: theme.shape.borderRadius,
-                borderStyle: "solid",
-                borderWidth: "0.125rem",
+                borderStyle: 'solid',
+                borderWidth: '0.125rem',
                 borderColor: theme.palette.grey[900],
               }}
               color="inherit"
@@ -98,7 +99,7 @@ const ProgressBar = ({ student }: { student: Student }) => {
           <Typography
             sx={{
               fontStyle: theme.typography.subtitle2,
-              fontVariant: "all-small-caps",
+              fontVariant: 'all-small-caps',
             }}
           >
             Graduation in {daysLeft} days

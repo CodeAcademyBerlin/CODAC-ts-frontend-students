@@ -4,10 +4,10 @@ const select = {
       select: {
         minWidth: '6rem !important',
         '&.MuiTablePagination-select': {
-          minWidth: '1rem !important'
-        }
-      }
-    }
-  }
-}
-export default select
+          minWidth: '1rem !important',
+        },
+      },
+    },
+  },
+};
+export default select;

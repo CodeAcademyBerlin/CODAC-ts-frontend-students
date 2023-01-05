@@ -1,25 +1,25 @@
-import React from 'react'
 import Drawer from '@mui/material/Drawer';
-import NavContent from './NavContent';
-import { styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles';
 import { ArrowLeftThick } from 'mdi-material-ui';
+import React from 'react';
+
 import { LinkSingle } from '../../pages/lms/lms';
+import NavContent from './NavContent';
 
 type Props = {
-  handleDrawerToggle: () => void
-  open: boolean
-}
+  handleDrawerToggle: () => void;
+  open: boolean;
+};
 
 function LeftNavBar({ handleDrawerToggle, open }: Props) {
-
   const drawerWidth = 240;
 
   const CloseDrawer = styled('span')`
     position: absolute;
-    right: 0; 
-    margin: 0.5em; 
-    fontSize: large;
-  `
+    right: 0;
+    margin: 0.5em;
+    fontsize: large;
+  `;
 
   return (
     <>
@@ -52,7 +52,7 @@ function LeftNavBar({ handleDrawerToggle, open }: Props) {
         <NavContent />
       </Drawer>
     </>
-  )
+  );
 }
 
-export default LeftNavBar
+export default LeftNavBar;
