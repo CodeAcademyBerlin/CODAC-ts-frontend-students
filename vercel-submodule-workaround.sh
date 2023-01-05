@@ -17,7 +17,7 @@ rm -rf content || true # remove the tmp folder if exists
 git clone https://$GITHUB_ACCESS_TOKEN@$SUBMODULE_GITHUB
 echo "content repository cloned"
 
-rm -rf public/assets/lms 
+rm -rf public/lms/assets
 echo "removed old assets from public"
 
 mv content/assets/* public/assets/lms/ 
