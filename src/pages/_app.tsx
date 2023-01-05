@@ -31,10 +31,9 @@ import { CssBaseline } from "@mui/material";
 import ThemeComponent from '../theme/ThemeComponent';
 import { SettingsProvider, SettingsConsumer } from '../contexts/settingsContext';
 import { VT323 } from '@next/font/google'
-import localFont from '@next/font/local'
-// Font files can be colocated inside of `pages`
-const codacFont = localFont({ src: '../../public/fonts/codacA2.woff2' })
-const vt323 = VT323({ weight: "400" })
+
+
+const vt323 = VT323({ weight: "400", subsets: ["latin"] })
 
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -104,11 +103,9 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
           <SettingsProvider>
             <SettingsConsumer>
               {({ settings }) => {
-                return <main className={`${vt323.className} ${codacFont.className}`}>
-                  <ThemeComponent settings={settings}>
-                    {getLayout(<Component {...pageProps} />, loading)}
-                  </ThemeComponent>
-                </main>
+                return <ThemeComponent settings={settings}>
+                  {getLayout(<Component {...pageProps} />, loading)}
+                </ThemeComponent>
               }}
             </SettingsConsumer>
           </SettingsProvider>

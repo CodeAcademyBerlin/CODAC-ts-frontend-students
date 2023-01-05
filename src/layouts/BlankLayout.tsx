@@ -8,7 +8,7 @@ const BlankLayout = ({ children }: Props) => {
 
   return (
     <div style={{ minHeight: "100vh", overflowX: "hidden" }}>
-      { children }
+      {children}
     </div>
   )
 }

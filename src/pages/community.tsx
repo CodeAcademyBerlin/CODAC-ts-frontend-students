@@ -1,5 +1,4 @@
 import React from 'react'
-import { BrandText } from '../components/common/BrandStyle'
 import { GetCohortsDocument } from '../../cabServer/queries/__generated__/cohorts';
 import { MentorsDocument } from '../../cabServer/queries/__generated__/mentors';
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
@@ -158,7 +157,7 @@ function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
         <h4>Active Cohorts</h4>
         {cohorts.map((cohort: CohortEntity, i: Number) => {
           return cohort.attributes ?
-            <Accordion key={cohort.attributes.name} expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
+            <Accordion key={cohort.id} expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
               <AccordionSummary
                 expandIcon={<ArrowDown />}
                 aria-controls={`panel${i}bh-content`}
@@ -177,7 +176,7 @@ function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
               </AccordionSummary>
               <AccordionDetails>
                 {cohort.attributes.students && cohort.attributes.students.data.map((student) => {
-                  return <StudentContent key={student.attributes?.lastname}>
+                  return <StudentContent key={student.id}>
                     <div style={{ display: "flex" }}>
                       <Image
                         width={50}

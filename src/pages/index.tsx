@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box'
 import BlankLayout from '../layouts/BlankLayout'
-import { BrandText } from '../components/common/BrandStyle'
+import { BrandText, BrandTextWrapper } from '../components/common/BrandStyle'
 import BerlinSkyline from '../components/landing-page/BerlinSkyline'
 import { Fade, Slide } from '@mui/material'
 import Footer from '../layouts/Footer'
@@ -50,30 +50,30 @@ const Home = () => {
   const [start, setStart] = useState(false);
 
   return (
-    <Box className='content-center' >
+    <>
       <TronGridWrapper>
         <TronGrid />
         {smUp && <BerlinSkyline />}
       </TronGridWrapper>
       <ParticlesComp type='snow' />
-      <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <BrandText sx={{ fontSize: smUp && "10rem" || "5rem" }} variant='overline'>
+      <Box sx={{ mt: 50, p: 5, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <BrandTextWrapper depth neon sx={{ fontSize: smUp && "10rem" || "5rem" }} variant='h1'>
           {"CODAC"}
-        </BrandText>
+        </BrandTextWrapper>
         <Typography color={"white"} variant='h6' sx={{ mb: 3, fontSize: '1.5rem !important' }}>
           The Code Academy Berlin Community
         </Typography>
 
         {!start ? <LinkStyled onClick={() => setStart(true)} passHref href='/dashboard'>
-          <BrandText sx={{ padding: 5 }} variant='h3'>
+          <BrandTextWrapper sx={{ padding: 5 }} variant='h3'>
             Start
-          </BrandText>
+          </BrandTextWrapper>
         </LinkStyled> :
           <BrandText sx={{ padding: 5, backgroundColor: "lightgray" }} variant='h3'>Loading</BrandText>
         }
       </Box>
       <Footer />
-    </Box>
+    </>
   )
 }
 

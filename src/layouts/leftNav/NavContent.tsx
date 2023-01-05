@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { BrandText } from '../../components/common/BrandStyle'
+import { BrandText, BrandTextWrapper } from '../../components/common/BrandStyle'
 import CollapsibleLi from './CollapsibleLi';
 import { LinkSingle } from '../../pages/lms/lms'
 import { styled } from '@mui/material/styles'
@@ -65,7 +65,7 @@ function NavContent() {
   return (
     <div>
       <Link href='/' style={{ textDecoration: 'none' }}>
-        <BrandText variant='h3' sx={{ fontSize: 60 }}>CODAC</BrandText>
+        <BrandTextWrapper depth variant='h3' sx={{ fontSize: 60 }}>CODAC</BrandTextWrapper>
       </Link>
       <br />
       <OuterList>

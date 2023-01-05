@@ -1,9 +1,12 @@
-import { Button, css, Typography } from '@mui/material';
+import { Box, Button, css, SxProps, Theme, Typography, TypographyPropsVariantOverrides } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles'
-// pages/_app.js
+import { Variant } from '@mui/material/styles/createTypography';
+import localFont from '@next/font/local'
+import { FC, ReactNode } from 'react';
+// Font files can be colocated inside of `pages`
+const codacFont = localFont({ src: '../../../public/fonts/codacA2.woff2' })
 
-
-const neon = keyframes`
+const neonLight = keyframes`
        0% {
     text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191,
   1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191,
@@ -38,9 +41,26 @@ export const BrandText = styled(Typography)`
     text-align: center;
     font-family: CODAC;
     color: ${({ theme }) => theme.palette.primary.main};
-    animation: ${neon} 2s linear infinite alternate-reverse;
-    text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191,
+`
+interface Props {
+  children: ReactNode
+  sx: SxProps<Theme>
+  variant?: Variant | 'inherit'
+  depth?: boolean
+  neon?: boolean
+}
+
+export const BrandTextWrapper = (props: Props) => {
+  const { children, depth, neon } = props
+  const animation = neon && `${neonLight} 2s linear infinite alternate-reverse;` || ``
+  const textShadow = depth && !neon && `1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191,
     1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191,
     1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),
-    1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 100px #38bcc1;
-`
+    1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 100px #38bcc1;`|| ``
+
+  return (
+    <Box className={codacFont.className} sx={{ animation, textShadow }}>
+      <BrandText {...props} >{children}</BrandText>
+    </Box>
+  )
+}

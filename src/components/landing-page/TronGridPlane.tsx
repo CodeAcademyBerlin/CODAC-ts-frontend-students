@@ -22,7 +22,7 @@ export const TronGrid = styled("div")`
   background-size: 100px 100px, 100px 100px;
   background-position: -1px -1px;
   transform: rotateX(85deg);
-  animation: ${planeMove} 2s linear infinite;
+  animation: ${planeMove} 3s linear infinite;
   
 `
 export const TronGridWrapper = styled("div")`
