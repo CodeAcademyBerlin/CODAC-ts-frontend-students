@@ -46,7 +46,7 @@ function JobsCard({ job }: { job: JobPost }) {
 
   useEffect(() => {
     getNumberOfDays(date);
-  }, []);
+  }, [date]);
 
   return (
     <div>

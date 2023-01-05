@@ -118,7 +118,7 @@ function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
         <MentorsContainer>
           {mentors.map((mentor: MentorEntity, i: Number) => {
             return mentor.attributes ?
-              <MentorsContent>
+              <MentorsContent key={mentor.id}>
                 <Image alt={mentor.attributes?.firstname || "avatar"}
                   style={{ marginLeft: `-${i}em` }}
                   src={mentor.attributes.avatar?.data?.attributes?.url || "assets/logo.png"}
@@ -165,6 +165,8 @@ function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
                 id={`panel${i}bh-header`}>
                 <CohortContent>
                   <Image
+                    width={50}
+                    height={50}
                     src={cohort.attributes.logo?.data?.attributes?.url || "assets/logo.png"}
                     alt={cohort.attributes.name || "Cohort"} />
                   <div>
@@ -177,7 +179,10 @@ function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
                 {cohort.attributes.students && cohort.attributes.students.data.map((student) => {
                   return <StudentContent key={student.attributes?.lastname}>
                     <div style={{ display: "flex" }}>
-                      <Image src={student.attributes?.avatar?.data?.attributes?.url || "assets/logo.png"} alt={student.attributes?.firstname + " " + student.attributes?.lastname || "Student"} />
+                      <Image
+                        width={50}
+                        height={50}
+                        src={student.attributes?.avatar?.data?.attributes?.url || "assets/logo.png"} alt={student.attributes?.firstname + " " + student.attributes?.lastname || "Student"} />
                       <p>{student.attributes?.firstname}  {student.attributes?.lastname}</p>
                     </div>
                     <p>Graduation: {student.attributes?.end_date}</p>

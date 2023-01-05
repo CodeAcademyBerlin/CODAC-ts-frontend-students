@@ -19,7 +19,7 @@ const themeOptions = (settings: Settings): ThemeOptions => {
     palette: palette(themeName),
     typography: {
       fontFamily: [
-        'Inter',
+        'VT323',
         'sans-serif',
         '-apple-system',
         'BlinkMacSystemFont',

@@ -11,6 +11,7 @@ import LinearProgress from '@mui/material/LinearProgress'
 // ** Icons Imports
 import MenuUp from 'mdi-material-ui/MenuUp'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
+import Image from 'next/image'
 
 
 // ** Types
@@ -103,7 +104,7 @@ const TotalEarning = () => {
                   backgroundColor: theme => `rgba(${theme.palette.primary.main}, 0.04)`
                 }}
               >
-                <img src={item.imgSrc} alt={item.title} height={item.imgHeight} />
+                <Image src={item.imgSrc} alt={item.title} height={item.imgHeight} />
               </Avatar>
               <Box
                 sx={{

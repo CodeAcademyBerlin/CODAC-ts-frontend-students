@@ -18,6 +18,7 @@ import BellOutline from 'mdi-material-ui/BellOutline'
 
 // ** Third Party Components
 import PerfectScrollbarComponent from 'react-perfect-scrollbar'
+import Image from 'next/image'
 
 // ** Styled Menu component
 const Menu = styled(MuiMenu)<MenuProps>(({ theme }) => ({
@@ -166,7 +167,7 @@ const NotificationDropdown = () => {
           </MenuItem>
           <MenuItem onClick={handleDropdownClose}>
             <Box sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-              <img width={38} height={38} alt='paypal' src='/images/misc/paypal.png' />
+              <Image width={38} height={38} alt='paypal' src='/images/misc/paypal.png' />
               <Box sx={{ mx: 4, flex: '1 1', display: 'flex', overflow: 'hidden', flexDirection: 'column' }}>
                 <MenuItemTitle>Paypal</MenuItemTitle>
                 <MenuItemSubtitle variant='body2'>Received Payment</MenuItemSubtitle>
@@ -190,7 +191,7 @@ const NotificationDropdown = () => {
           </MenuItem>
           <MenuItem onClick={handleDropdownClose}>
             <Box sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-              <img width={38} height={38} alt='chart' src='/images/misc/chart.png' />
+              <Image width={38} height={38} alt='chart' src='/images/misc/chart.png' />
               <Box sx={{ mx: 4, flex: '1 1', display: 'flex', overflow: 'hidden', flexDirection: 'column' }}>
                 <MenuItemTitle>Finance report has been generated</MenuItemTitle>
                 <MenuItemSubtitle variant='body2'>25 hrs ago</MenuItemSubtitle>

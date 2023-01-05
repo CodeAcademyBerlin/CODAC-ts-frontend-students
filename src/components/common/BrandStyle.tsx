@@ -1,5 +1,7 @@
 import { Button, css, Typography } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles'
+// pages/_app.js
+
 
 const neon = keyframes`
        0% {

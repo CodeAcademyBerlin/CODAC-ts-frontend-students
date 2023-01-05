@@ -12,6 +12,7 @@ function Congrats() {
   const { setFestive } = useSettings()
   useEffect(() => {
     setFestive(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

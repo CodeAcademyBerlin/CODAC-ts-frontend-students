@@ -6,6 +6,7 @@ import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import MuiDivider, { DividerProps } from '@mui/material/Divider'
+import Image from 'next/image'
 
 interface DataType {
   logo: string
@@ -134,7 +135,7 @@ const DepositWithdraw = () => {
                 sx={{ display: 'flex', alignItems: 'center', mb: index !== depositData.length - 1 ? 6 : 0 }}
               >
                 <Box sx={{ minWidth: 38, display: 'flex', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.title} width={item.logoWidth} height={item.logoHeight} />
+                  <Image src={item.logo} alt={item.title} width={item.logoWidth} height={item.logoHeight} />
                 </Box>
                 <Box
                   sx={{
@@ -180,7 +181,7 @@ const DepositWithdraw = () => {
                 sx={{ display: 'flex', alignItems: 'center', mb: index !== depositData.length - 1 ? 6 : 0 }}
               >
                 <Box sx={{ minWidth: 36, display: 'flex', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.title} width={item.logoWidth} height={item.logoHeight} />
+                  <Image src={item.logo} alt={item.title} width={item.logoWidth} height={item.logoHeight} />
                 </Box>
                 <Box
                   sx={{

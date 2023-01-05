@@ -9,7 +9,7 @@ import lmspages from "../../../public/assets/lmspages.json"
 import { getPage, getPageMdx } from '../../lib/markdown';
 import { Breadcrumbs } from '@mui/material';
 import Link from 'next/link';
-import { LMS_CONTENT_PATH } from '../../lib/contentFilePaths';
+import { LMS_ASSETS_PATH, LMS_CONTENT_PATH } from '../../definitions/contentFilePaths';
 
 
 const lms = ({ pageData }: { pageData: PageData }) => {
@@ -48,7 +48,7 @@ const lms = ({ pageData }: { pageData: PageData }) => {
 }
 
 export async function getStaticProps({ params }: { params: { page: string[] } }) {
-  const pageData = await getPageMdx("/" + params.page.join("/"), LMS_CONTENT_PATH);
+  const pageData = await getPageMdx("/" + params.page.join("/"), LMS_CONTENT_PATH, LMS_ASSETS_PATH);
   return { props: { pageData } };
 }
 

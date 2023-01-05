@@ -5,7 +5,7 @@ import { GetServerSideProps } from 'next/types'
 import { Contributor, Project } from 'src/types'
 import CardGithub from '../../components/projects-page/GitHubContributors'
 import ProjectCard from '../../components/projects-page/ProjectCard'
-import { projectsFilePaths, PROJECTS_PATH } from '../../lib/contentFilePaths'
+import { PROJECTS_PATH } from '../../definitions/contentFilePaths'
 import { getFrontmatters } from '../../lib/markdown'
 
 
@@ -29,7 +29,7 @@ export default Projects
 
 export const getServerSideProps: GetServerSideProps = async () => {
 
-  const projects = await getFrontmatters(projectsFilePaths, PROJECTS_PATH)
+  const projects = await getFrontmatters(PROJECTS_PATH)
   // console.log('projects', projects)
   // const projects = [
   //   {

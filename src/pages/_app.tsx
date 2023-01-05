@@ -30,7 +30,11 @@ import { CssBaseline } from "@mui/material";
 
 import ThemeComponent from '../theme/ThemeComponent';
 import { SettingsProvider, SettingsConsumer } from '../contexts/settingsContext';
-
+import { VT323 } from '@next/font/google'
+import localFont from '@next/font/local'
+// Font files can be colocated inside of `pages`
+const codacFont = localFont({ src: '../../public/fonts/codacA2.woff2' })
+const vt323 = VT323({ weight: "400" })
 
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -95,15 +99,16 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({ Component, pageProps
               content={`CODAC – Code Academy Berlin Community App`}
             />
             <link rel="shortcut icon" href={favicon.src} />
-            <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
             <meta name='viewport' content='initial-scale=1, width=device-width' />
           </Head>
           <SettingsProvider>
             <SettingsConsumer>
               {({ settings }) => {
-                return <ThemeComponent settings={settings}>
-                  {getLayout(<Component {...pageProps} />, loading)}
-                </ThemeComponent>
+                return <main className={`${vt323.className} ${codacFont.className}`}>
+                  <ThemeComponent settings={settings}>
+                    {getLayout(<Component {...pageProps} />, loading)}
+                  </ThemeComponent>
+                </main>
               }}
             </SettingsConsumer>
           </SettingsProvider>

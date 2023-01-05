@@ -21,6 +21,7 @@ function CollapsibleLi({ child }: { child: LinkSingle }) {
     } else {
       setExpanded(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath])
 
   return child.children.length > 0 ? (

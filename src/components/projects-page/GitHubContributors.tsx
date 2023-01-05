@@ -30,7 +30,7 @@ const GitHubContributors = ({ repo, username }: { repo: string, username: string
       setContributors(data)
     }
     getGitHubContributors()
-  }, [])
+  }, [repo, username])
 
   return (
     <Suspense fallback={<p>Loading GitHub Data...</p>}>

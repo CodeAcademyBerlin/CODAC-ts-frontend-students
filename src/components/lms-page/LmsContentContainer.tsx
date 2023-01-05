@@ -75,19 +75,20 @@ export const LmsContent = styled('div')`
 
 function LmsContentContainer({ content, next, prev }: { content: MDXRemoteSerializeResult, next?: string, prev?: string }) {
 
-  function addCopyButtons() {
-    const codeTags = document.getElementsByTagName("code");
-    for (let i = 0; i < codeTags.length; i++) {
-      const copyButton = document.createElement("button");
-      copyButton.classList.add("copyButton");
-      copyButton.innerHTML = "Copy";
-      copyButton.setAttribute('title', "Copy snippet");
-      copyButton.addEventListener("click", () => copyToClipboard(codeTags[i].lastChild?.textContent));
-      codeTags[i].insertBefore(copyButton, codeTags[i].childNodes[0]);
-    }
-  }
+
 
   useEffect(() => {
+    function addCopyButtons() {
+      const codeTags = document.getElementsByTagName("code");
+      for (let i = 0; i < codeTags.length; i++) {
+        const copyButton = document.createElement("button");
+        copyButton.classList.add("copyButton");
+        copyButton.innerHTML = "Copy";
+        copyButton.setAttribute('title', "Copy snippet");
+        copyButton.addEventListener("click", () => copyToClipboard(codeTags[i].lastChild?.textContent));
+        codeTags[i].insertBefore(copyButton, codeTags[i].childNodes[0]);
+      }
+    }
     addCopyButtons();
   }, [content])
 

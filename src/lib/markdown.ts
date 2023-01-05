@@ -3,10 +3,8 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { LinkSingle, Links } from '../pages/lms/lms';
 import { serialize } from 'next-mdx-remote/serialize'
 import imageSize from "rehype-img-size";
-import { projectsFilePaths } from './contentFilePaths';
 
 interface Paths { params: { page: string[] } };
 
@@ -29,27 +27,17 @@ export async function getPage(pagePath: string, directory: string) {
     ...matterResult.data,
   };
 }
-// @Emil
-export async function getPageMdx(pagePath: string, directory: string) {
+
+export async function getPageMdx(pagePath: string, directory: string, assetsDir: string) {
   const fullPath = path.join(directory, `${pagePath}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-  // Use gray-matter to parse the post metadata section
-  // const matterResult = matter(fileContents);
-  // Use remark to convert markdown into HTML string
-  // const processedContent = await remark()
-  //   .use(html)
-  //   .process(matterResult.content);
-  // let contentHtml = processedContent.toString();
-  // contentHtml = buildImgUrl(contentHtml, "/lms");
-  // contentHtml = buildImgUrl(contentHtml, "https://caberlin-lms-v3.herokuapp.com");
   const escapeComments = removeComments(fileContents)
-
   const { content, data } = matter(escapeComments)
-  const contentHtml = buildImgUrl(content, "/lms")
-
+  const contentHtml = buildImgUrl(content, assetsDir)
   const mdxSource = await serialize(contentHtml, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
+      development: false,
       //   remarkPlugins: [],
       // rehypePlugins: [[imageSize, { dir: "public" }]],
       // },
@@ -64,11 +52,11 @@ export async function getPageMdx(pagePath: string, directory: string) {
     ...data,
   };
 }
-export async function getFrontmatters(filePaths: string[], directory: string) {
-
+export async function getFrontmatters(dir: string) {
+  const filePaths = mdxFilesPaths(dir)
   const frontmatters = filePaths
     .map((filePath) => {
-      const fullPath = path.join(directory, filePath);
+      const fullPath = path.join(dir, filePath);
       const content = fs.readFileSync(fullPath, 'utf8');
       const { data } = matter(content)
       return data
@@ -78,13 +66,19 @@ export async function getFrontmatters(filePaths: string[], directory: string) {
 }
 
 // Include server in img url
-const buildImgUrl = (markdownBody: string, serverUrl: string) => {
-  return markdownBody.replace(/staticAsset\//ig, serverUrl + "/assets/")
+const buildImgUrl = (markdownBody: string, assetsDir: string) => {
+  return markdownBody.replace(/staticAsset\//ig, assetsDir)
 };
 const removeComments = (markdownBody: string) => {
   return markdownBody.replace(/(?=<!--)([\s\S]*?)-->/gm, "")
 };
 
+// list of all mdx files inside path directory
+export const mdxFilesPaths = (dir: string): string[] => {
+  return fs.readdirSync(dir)
+    // Only include md(x) files
+    .filter((path) => /\.md?$/.test(path))
+}
 
 // export async function getPaths(subDirPath?: string) {
 //   const paths: Array<Paths> = [];

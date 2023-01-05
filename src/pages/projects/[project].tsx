@@ -11,8 +11,8 @@ import LmsContentContainer from '../../components/lms-page/LmsContentContainer'
 import mdxComponents from '../../components/mdx'
 import CustomLink from '../../components/mdx/CustomLink'
 import Layout from '../../components/mdx/Layout'
-import { projectsFilePaths, PROJECTS_PATH } from '../../lib/contentFilePaths'
-import { getPageMdx } from '../../lib/markdown'
+import { PROJECTS_PATH } from '../../definitions/contentFilePaths'
+import { getPageMdx, mdxFilesPaths } from '../../lib/markdown'
 import { PageData } from '../lms/lms'
 
 const Projects = ({ pageData }: { pageData: PageData }) => {
@@ -26,7 +26,7 @@ const Projects = ({ pageData }: { pageData: PageData }) => {
 export default Projects
 export const getStaticProps = async ({ params }: { params: { project: string } }) => {
   console.log('project', params.project)
-  const pageData = await getPageMdx(params.project, PROJECTS_PATH);
+  const pageData = await getPageMdx(params.project, PROJECTS_PATH, "/assets/");
 
   return { props: { pageData } };
 }
@@ -45,10 +45,10 @@ export const getStaticProps = async ({ params }: { params: { project: string } }
 
 
 export const getStaticPaths = async () => {
-  const paths = projectsFilePaths
+  const paths = mdxFilesPaths(PROJECTS_PATH)
     .map((path) => path.replace(/\.md?$/, ''))
     .map((project) => ({ params: { project } }))
-
+  console.log('paths', paths)
   return {
     paths,
     fallback: false,
