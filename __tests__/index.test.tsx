@@ -1,4 +1,4 @@
-import LandingPage from '../pages/index'
+import LandingPage from 'src/pages/index'
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'
@@ -11,7 +11,7 @@ describe('LandingPage', () => {
   });
 
 
-  it('set loading state when click on strat button', async () => {
+  it('set loading state when click on start button', async () => {
     const { getByText } = render(<LandingPage />);
     const button = getByText('Start');
     fireEvent.click(button);

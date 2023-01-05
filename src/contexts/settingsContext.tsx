@@ -1,5 +1,5 @@
 // ** React Imports
-import { createContext, useState, ReactNode } from 'react'
+import { createContext, useState, ReactNode, useEffect } from 'react'
 
 // ** MUI Imports
 import { PaletteMode } from '@mui/material'
@@ -53,8 +53,17 @@ export const SettingsContext = createContext<SettingsContextValue>({
 
 export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   // ** State
-  const [settings, setSettings] = useState<Settings>({ ...initialSettings() })
+  const [settings, setSettings] = useState<Settings>({
+    themeName: 'light',
+    mode: 'light',
+    contentWidth: 'boxed'
+  })
   const [festive, setFestive] = useState<boolean>(false)
+
+  useEffect(() => {
+    setSettings(initialSettings())
+  }, [])
+
 
 
   const saveSettings = (updatedSettings: Settings) => {

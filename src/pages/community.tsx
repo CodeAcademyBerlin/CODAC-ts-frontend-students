@@ -11,6 +11,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import { ArrowDown, Box } from 'mdi-material-ui';
 import { styled } from '@mui/material/styles'
 import Popover from '@mui/material/Popover';
+import Image from 'next/image';
 
 export const MentorsContainer = styled('div')`
   display: flex;
@@ -118,7 +119,11 @@ function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
           {mentors.map((mentor: MentorEntity, i: Number) => {
             return mentor.attributes ?
               <MentorsContent>
-                <img style={{ marginLeft: `-${i}em` }} src={mentor.attributes.avatar?.data?.attributes?.url || "assets/logo.png"}
+                <Image alt={mentor.attributes?.firstname || "avatar"}
+                  style={{ marginLeft: `-${i}em` }}
+                  src={mentor.attributes.avatar?.data?.attributes?.url || "assets/logo.png"}
+                  width={50}
+                  height={50}
                   aria-owns={open ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(e) => handlePopoverOpen(e, mentor.attributes?.firstname || "")}
@@ -159,7 +164,9 @@ function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
                 aria-controls={`panel${i}bh-content`}
                 id={`panel${i}bh-header`}>
                 <CohortContent>
-                  <img src={cohort.attributes.logo?.data?.attributes?.url || "assets/logo.png"} alt={cohort.attributes.name || "Cohort"} />
+                  <Image
+                    src={cohort.attributes.logo?.data?.attributes?.url || "assets/logo.png"}
+                    alt={cohort.attributes.name || "Cohort"} />
                   <div>
                     <h4>{cohort.attributes.name}</h4>
                     <p>start date: {cohort.attributes.start_date}</p>
@@ -170,7 +177,7 @@ function Community({ error, cohorts, mentors }: InferGetServerSidePropsType<type
                 {cohort.attributes.students && cohort.attributes.students.data.map((student) => {
                   return <StudentContent key={student.attributes?.lastname}>
                     <div style={{ display: "flex" }}>
-                      <img src={student.attributes?.avatar?.data?.attributes?.url || "assets/logo.png"} alt={student.attributes?.firstname + " " + student.attributes?.lastname || "Student"} />
+                      <Image src={student.attributes?.avatar?.data?.attributes?.url || "assets/logo.png"} alt={student.attributes?.firstname + " " + student.attributes?.lastname || "Student"} />
                       <p>{student.attributes?.firstname}  {student.attributes?.lastname}</p>
                     </div>
                     <p>Graduation: {student.attributes?.end_date}</p>

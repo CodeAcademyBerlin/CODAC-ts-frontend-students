@@ -29,6 +29,7 @@ export async function getPage(pagePath: string, directory: string) {
     ...matterResult.data,
   };
 }
+// @Emil
 export async function getPageMdx(pagePath: string, directory: string) {
   const fullPath = path.join(directory, `${pagePath}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
