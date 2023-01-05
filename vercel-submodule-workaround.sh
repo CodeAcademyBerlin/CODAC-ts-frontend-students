@@ -20,5 +20,5 @@ echo "content repository cloned"
 rm -rf public/lms/assets
 echo "removed old assets from public"
 
-mv content/assets/* public/assets/lms/ 
+mv content/assets public/lms/ 
 echo "moved assets to public"
