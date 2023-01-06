@@ -1,9 +1,12 @@
+import * as React from "react";
 // ** MUI Imports
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
+import { styled } from "@mui/material/styles";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 
 // ** Icons Imports
 import { VsBattle } from "../../cabServer/global/__generated__/types";
@@ -15,7 +18,28 @@ type BattleCardProps = {
   vsBattle: VsBattle;
 };
 
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
+}
+
+const ExpandMore = styled((props: ExpandMoreProps) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+  transition: theme.transitions.create("transform", {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
 const BattleCard = (props: BattleCardProps) => {
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   return (
     <Card style={{ marginBottom: "2em" }}>
       <CardContent
@@ -66,7 +90,14 @@ const BattleCard = (props: BattleCardProps) => {
         option1={props.vsBattle?.option_1_voters?.data.length || 0}
         option2={props.vsBattle?.option_2_voters?.data.length || 0}
       />
-      <ChevronDoubleDown></ChevronDoubleDown>
+      <ExpandMore
+        expand={expanded}
+        onClick={handleExpandClick}
+        aria-expanded={expanded}
+        aria-label="show more"
+      >
+        <ChevronDoubleDown color="primary" />
+      </ExpandMore>
     </Card>
   );
 };
