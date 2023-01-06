@@ -8,6 +8,6 @@ export const PROJECTS_ASSETS_PATH = '/assets/';
 // During deployment, the LMS content is cloned from the gitHub repository before build
 export const LMS_CONTENT_PATH = path.join(
   process.cwd(),
-  process.env.NEXT_PUBLIC_LMS_CONTENT_PATH!,
+  process.env.NEXT_PUBLIC_LMS_CONTENT_PATH || 'lms-dev-sample',
 );
 export const LMS_ASSETS_PATH = '/lms/assets/';

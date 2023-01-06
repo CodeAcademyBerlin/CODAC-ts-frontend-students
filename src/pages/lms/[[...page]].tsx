@@ -1,6 +1,4 @@
-// ** React Imports
-import { Breadcrumbs } from '@mui/material';
-// ** MUI Components
+import { Breadcrumbs, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -14,10 +12,8 @@ import {
 import { getPage, getPageMdx } from '../../lib/markdown';
 import { PageData } from './lms';
 
-const lms = ({ pageData }: { pageData: PageData }) => {
-  // console.log('pageData', pageData)
-
-  return (
+const lms = ({ pageData }: { pageData: PageData | null }) => {
+  return pageData ? (
     <>
       <Head>
         <title>{pageData.title}</title>
@@ -54,6 +50,26 @@ const lms = ({ pageData }: { pageData: PageData }) => {
         </>
       </Box>
     </>
+  ) : (
+    <Box className="content-center">
+      <Box
+        sx={{
+          p: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant="h1">404</Typography>
+        <Typography variant="h5" sx={{ mb: 1, fontSize: '1.5rem !important' }}>
+          Page Not Found
+        </Typography>
+        <Typography variant="body2">
+          We couldn&prime;t find the page you are looking for.
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 
@@ -62,12 +78,16 @@ export async function getStaticProps({
 }: {
   params: { page: string[] };
 }) {
-  const pageData = await getPageMdx(
-    '/' + params.page.join('/'),
-    LMS_CONTENT_PATH,
-    LMS_ASSETS_PATH,
-  );
-  return { props: { pageData } };
+  try {
+    const pageData = await getPageMdx(
+      '/' + params.page.join('/'),
+      LMS_CONTENT_PATH,
+      LMS_ASSETS_PATH,
+    );
+    return { props: { pageData } };
+  } catch (e) {
+    return { props: { pageData: null } };
+  }
 }
 
 export async function getStaticPaths() {

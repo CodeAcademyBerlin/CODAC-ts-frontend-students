@@ -16,31 +16,32 @@
 <br>
 
 <!-- TABLE OF CONTENTS -->
+
 ## 📚 Table of Contents
 
 1. [About Strapql](#-about-strapql)
 2. [Queries and Mutations](#-queries-and-mutations)
-    - [Register](#%EF%B8%8F-register)
-    - [Login](#-login)
-    - [Me Query](#-me-query)
-      - [How to attach JWT in headers](#-how-to-attach-jwt-in-headers-)
-    - [Create a user in Users](#-create-a-user-in-users-a-collection-type-that-comes-default-in-strapi-app)
-      - [How to get Superadmin's JWT](#-how-to-get-superadmins-jwt)
-    - [Retrieve/Fetch a single User](#-retrievefetch-a-single-user)
-    - [Retrieve/Fetch all Users](#-retrievefetch-all-users)
-    - [Update a User](#-update-a-user)
-    - [Delete/Remove a User](#-deleteremove-a-user)
-    - [Create an Entry in a Collection Type](#-create-an-entry-in-a-collection-type)
-    - [Fetch/Retrieve a single entry in collection type](#-fetchretrieve-a-single-entry-in-collection-type)
-    - [Fetch/Retrieve all entries in collection type](#-fetchretrieve-all-entries-in-collection-type)
-    - [Update an entry in collection type](#-update-an-entry-in-collection-type)
-    - [Delete/Remove an entry in collection type](#-deleteremove-an-entry-in-collection-type)
-    - [Upload a single image](#-%EF%B8%8F-upload-a-single-image)
-    - [Upload multiple images in a single field](#-%EF%B8%8F-upload-multiple-images-in-a-single-field)
-    - [Upload a single image in separate fields](#-%EF%B8%8F-upload-a-single-image-in-separate-fields)
-    - [Get all files](#-get-all-files)
-    - [Fetch a single role](#-fetch-a-single-role)
-    - [Fetch all roles](#---fetch-all-roles)
+   - [Register](#%EF%B8%8F-register)
+   - [Login](#-login)
+   - [Me Query](#-me-query)
+     - [How to attach JWT in headers](#-how-to-attach-jwt-in-headers-)
+   - [Create a user in Users](#-create-a-user-in-users-a-collection-type-that-comes-default-in-strapi-app)
+     - [How to get Superadmin's JWT](#-how-to-get-superadmins-jwt)
+   - [Retrieve/Fetch a single User](#-retrievefetch-a-single-user)
+   - [Retrieve/Fetch all Users](#-retrievefetch-all-users)
+   - [Update a User](#-update-a-user)
+   - [Delete/Remove a User](#-deleteremove-a-user)
+   - [Create an Entry in a Collection Type](#-create-an-entry-in-a-collection-type)
+   - [Fetch/Retrieve a single entry in collection type](#-fetchretrieve-a-single-entry-in-collection-type)
+   - [Fetch/Retrieve all entries in collection type](#-fetchretrieve-all-entries-in-collection-type)
+   - [Update an entry in collection type](#-update-an-entry-in-collection-type)
+   - [Delete/Remove an entry in collection type](#-deleteremove-an-entry-in-collection-type)
+   - [Upload a single image](#-%EF%B8%8F-upload-a-single-image)
+   - [Upload multiple images in a single field](#-%EF%B8%8F-upload-multiple-images-in-a-single-field)
+   - [Upload a single image in separate fields](#-%EF%B8%8F-upload-a-single-image-in-separate-fields)
+   - [Get all files](#-get-all-files)
+   - [Fetch a single role](#-fetch-a-single-role)
+   - [Fetch all roles](#---fetch-all-roles)
 3. [Contributing](#-contributing)
 4. [Contact](#-contact)
 5. [Acknowledgements](#-acknowledgements)
@@ -67,10 +68,12 @@ Hello there, welcome to Strapi GraphQL API documentation! This contains some of 
 
 - Queries are used to read or fetch values while a mutation is used to write or post values (`READ`/`RETRIEVE`).
 - Mutations modify data in the data store and returns a value. It can be used to insert, update, or delete data (`CREATE`, `UPDATE`, and `DELETE`).
-<br> (Source : [TutorialsPoint](https://www.tutorialspoint.com/graphql/index.htm))
+  <br> (Source : [TutorialsPoint](https://www.tutorialspoint.com/graphql/index.htm))
 
 ## ®️ Register
+
 Just like any other applications that requires you to create an account, you have to sign up first to create a user in `users` collection type that comes default in Strapi. Here is how to register an account :
+
 ```
 mutation Register($input: UsersPermissionsRegisterInput!) {
   register(input: $input) {
@@ -84,6 +87,7 @@ mutation Register($input: UsersPermissionsRegisterInput!) {
 ```
 
 Next, put your `username`, `email`, and `password` as variables :
+
 ```
 {
   "input": {
@@ -93,9 +97,11 @@ Next, put your `username`, `email`, and `password` as variables :
   }
 }
 ```
+
 Finally, a JWT shows in response.
 
 ## 🔒 Login
+
 ```
 mutation Login($input: UsersPermissionsLoginInput!) {
   login(input: $input) {
@@ -117,6 +123,7 @@ mutation Login($input: UsersPermissionsLoginInput!) {
 ```
 
 Then enter your `identifier` and `password` as variables :
+
 ```
 {
   "input": {
@@ -125,11 +132,13 @@ Then enter your `identifier` and `password` as variables :
   }
 }
 ```
+
 Eventually, you will get JWT in response.
 
 ## 🙋 Me Query
 
 To identify current user, you can use `me` query, like this :
+
 ```
 query MeQuery {
   me {
@@ -147,19 +156,22 @@ query MeQuery {
   }
 }
 ```
+
 <b>Note : `me` query requires JWT attached in headers!</b>
 
 ### 📎 How to attach JWT in headers :
+
 `authorization : Bearer YOUR_TOKEN`
 
 ## 🆕 Create a User in Users (a collection type that comes default in Strapi app)
->What? Create a User? Did I just create a User using `Registration` mutation above?
+
+> What? Create a User? Did I just create a User using `Registration` mutation above?
 
 Sure, here is some notable points :
-|                                            |                `Create User` mutation                |                                   `Registration` mutation                                   |
+| | `Create User` mutation | `Registration` mutation |
 |:------------------------------------------:|:----------------------------------------------------:|:-------------------------------------------------------------------------------------------:|
-|       Needs JWT attached in Headers?       | Yes, usually you must be `superadmin` role in Strapi |                                              No                                             |
-| Is created user `authenticated` initially? |                          No                          | Yes, users that are created with `Registration` mutation is already authenticated initially |
+| Needs JWT attached in Headers? | Yes, usually you must be `superadmin` role in Strapi | No |
+| Is created user `authenticated` initially? | No | Yes, users that are created with `Registration` mutation is already authenticated initially |
 
 ```
 mutation CreateUser($input: createUserInput) {
@@ -198,6 +210,7 @@ mutation CreateUser($input: createUserInput) {
 ```
 
 Pass these variables :
+
 ```
 {
   "input": {
@@ -209,6 +222,7 @@ Pass these variables :
   }
 }
 ```
+
 <b>Note : Please attach a JWT in Headers, usually Superadmin's JWT.</b>
 
 ### 🔑 How to get Superadmin's JWT
@@ -218,6 +232,7 @@ Go to `Documentation` in the menu on the left side -> Copy the token in `Retriev
 ## 🧑 Retrieve/Fetch a single User
 
 Previously, we created a new user. To retrieve a specific user inside User collection type, you can make use of this query :
+
 ```
 query FetchSingleUser($id: ID!) {
   user(id: $id) {
@@ -237,6 +252,7 @@ query FetchSingleUser($id: ID!) {
 ```
 
 Variables :
+
 ```
 {
   "id": "YOUR_USER_ID"
@@ -245,7 +261,8 @@ Variables :
 
 ## 👥 Retrieve/Fetch all Users
 
-If you want to get all users in your Strapi app, this is the query you are looking for : 
+If you want to get all users in your Strapi app, this is the query you are looking for :
+
 ```
 query FetchUsers {
   users {
@@ -269,6 +286,7 @@ You do not have to pass any variables but you may need to attach JWT in your hea
 ## 🔄 Update a User
 
 Imagine you want to change a user's email. To do such things, you should use a mutation which updates the user's data. Here is an example to change a user's email :
+
 ```
 mutation UpdateUser($input: updateUserInput) {
   updateUser(input: $input) {
@@ -290,6 +308,7 @@ mutation UpdateUser($input: updateUserInput) {
 ```
 
 Then pass some variabes that you would like to change (in this case, `email` field) :
+
 ```
 {
   "input": {
@@ -298,7 +317,7 @@ Then pass some variabes that you would like to change (in this case, `email` fie
     },
     "data": {
       "email": "YOUR_USER_EMAIL"
-    } 
+    }
   }
 }
 ```
@@ -307,9 +326,10 @@ If you want to change fields other than `email`, just replace the `email` variab
 
 ## ❌ Delete/Remove a User
 
->A user decided to no longer use my app. How do I remove him/her?
+> A user decided to no longer use my app. How do I remove him/her?
 
 Here is a mutation that might do the task :
+
 ```
 mutation deleteUser($input: deleteUserInput) {
   deleteUser(input: $input) {
@@ -331,6 +351,7 @@ mutation deleteUser($input: deleteUserInput) {
 ```
 
 Place the user ID of the user you want to remove as a variable :
+
 ```
 {
   "input": {
@@ -346,6 +367,7 @@ Place the user ID of the user you want to remove as a variable :
 ## 🆕 Create an Entry in a Collection Type
 
 Suppose you have created a collection type named `idCardVerification`. Here is how you can add a new record inside it :
+
 ```
 mutation createIdCardVerification($input: createIdCardVerificationInput) {
   createIdCardVerification(input: $input) {
@@ -360,6 +382,7 @@ mutation createIdCardVerification($input: createIdCardVerificationInput) {
 ```
 
 For instace, `identifier` and `birthPlace` are variables available in `idCardVerification` collection type. Here are variables you should pass :
+
 ```
 {
   "input": {
@@ -376,6 +399,7 @@ For instace, `identifier` and `birthPlace` are variables available in `idCardVer
 ## 📮 Fetch/Retrieve a single entry in collection type
 
 To fetch an entry in your collection type, this query is probably able help you :
+
 ```
 query FetchSingleIdCardVerification($id: ID!) {
   idCardVerification(id: $id) {
@@ -387,6 +411,7 @@ query FetchSingleIdCardVerification($id: ID!) {
 ```
 
 Pass the ID of the record/entry you want to fetch :
+
 ```
 {
   "id": "ID_OF_ENTRY"
@@ -396,6 +421,7 @@ Pass the ID of the record/entry you want to fetch :
 ## 📒 Fetch/Retrieve all entries in collection type
 
 This may get you all of the entries in your collection type :
+
 ```
 query FetchIdCardVerifications {
   idCardVerifications {
@@ -422,6 +448,7 @@ mutation UpdateIdCardVerification($input: updateIdCardVerificationInput) {
 ```
 
 You want to change `birthPlace` value to California, United States. Pass these in variables :
+
 ```
 {
   "input": {
@@ -452,6 +479,7 @@ mutation deleteIdCardVerification($input: deleteIdCardVerificationInput) {
 ```
 
 Variables :
+
 ```
 {
   "input": {
@@ -465,10 +493,12 @@ Variables :
 ## 📤 🖼️ Upload a single image
 
 ### ⚠️ Warning : Currently Strapi's GraphQL Playground does not support file/image upload. You can use other GraphQL client to test your GraphQL upload mutation.
+
 One of the GraphQL clients I use is Altair. You can download it here : https://altair.sirmuel.design/#download
 
 Please create a new entry in your collection type API first ! Otherwise this will not be attached to your entry.
 Note : the `refId` is the ID of the entry you create in your collection type API.
+
 ```
 mutation SingleImageUpload($refId: ID, $ref: String, $field: String, $file: Upload!) {
   upload(refId: $refId, ref: $ref, field: $field, file: $file) {
@@ -491,6 +521,7 @@ mutation SingleImageUpload($refId: ID, $ref: String, $field: String, $file: Uplo
 ```
 
 Variables :
+
 ```
 {
   "refId": "ID_OF_YOUR_ENTRY_IN_YOUR_COLLECTION_TYPE",
@@ -503,6 +534,7 @@ Here is an example :<br/>
 <img src="https://raw.githubusercontent.com/kevinadhiguna/strapi-graphql-documentation/master/assets/gif/singleImageUpload.gif" />
 
 ## 📤 🖼️ Upload multiple images in a single field
+
 ```
 mutation MultipleImageUpload(
   $refId: ID
@@ -530,6 +562,7 @@ mutation MultipleImageUpload(
 ```
 
 Variables :
+
 ```
 {
   "refId": "ID_OF_YOUR_ENTRY_IN_YOUR_COLLECTION_TYPE",
@@ -544,9 +577,11 @@ Here is an example :<br/>
 <img src="https://raw.githubusercontent.com/kevinadhiguna/strapi-graphql-documentation/master/assets/gif/multipleImageUpload.gif" />
 
 ## 📤 🖼️ Upload a single image in separate fields
->Hmm... but how do I upload a single image to several fields in a single request?
+
+> Hmm... but how do I upload a single image to several fields in a single request?
 
 All right, imagine you created a collection type which has several fields, including `cardImage`, `facePhoto`, and `personWithCardPhoto`. Otherwise, just replace those fields with yours. Ok, here we go :
+
 ```
 mutation UploadSingleImageToSeveralFields(
   $ref: String
@@ -622,6 +657,7 @@ mutation UploadSingleImageToSeveralFields(
 ```
 
 Variables :
+
 ```
 {
   "ref": "YOUR_COLLECTION_TYPE_NAME",
@@ -640,9 +676,11 @@ Here is an example :<br/>
 In the `UploadSingleImageToSeveralFields` mutation above, you still need `ref`, `refId`, and field name. However you are sending a request to a collection type and are trying to attach images in a sngle record inside the collection type. So, you are able to set `ref` and `refId` as variables. The field name ? You should name it statically as you want to upload an image in different fields. Hopefully this approach helps :)
 
 ## 📂 Get all files
->All right, I got images and files uploaded to my Strapi app but how do I know what files did I upload ?  
+
+> All right, I got images and files uploaded to my Strapi app but how do I know what files did I upload ?
 
 To get all the files uploaded to database within your Strapi app, here is the query :
+
 ```
 query FetchFiles {
   files {
@@ -669,6 +707,7 @@ Unfortunately, currently Strapi does not provide a query to fetch a single file.
 ## 👨‍💻 Fetch a single role
 
 Here is the query to display a single role :
+
 ```
 query fetchSingleRole($id: ID!) {
   role(id: $id) {
@@ -705,6 +744,7 @@ query fetchSingleRole($id: ID!) {
 ```
 
 Variable :
+
 ```
 {
   "id": "ROLE_ID"
@@ -714,6 +754,7 @@ Variable :
 ## 👨‍💻 👨‍💼 🧑‍🔧 Fetch all roles
 
 Below is the query to get all roles :
+
 ```
 query FetchRoles {
   roles {
@@ -760,6 +801,7 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 ## 🌐 Contact
+
 Author : Kevin Adhiguna - [@kevinadhiguna](https://linkedin.com/in/kevinadhiguna) - hi.kevinadhiguna@gmail.com
 
 See on Github : [https://github.com/kevinadhiguna/strapi-graphql-documentation](https://github.com/kevinadhiguna/strapi-graphql-documentation)
@@ -767,6 +809,7 @@ See on Github : [https://github.com/kevinadhiguna/strapi-graphql-documentation](
 Read more on Blog : [https://about.lovia.life/docs/engineering/graphql/strapi-graphql-documentation/](https://about.lovia.life/docs/engineering/graphql/strapi-graphql-documentation/)
 
 ## 🎉 Acknowledgements
-* [Strapi](https://github.com/strapi/strapi)
-* [Lovia](https://about.lovia.life)
-* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+
+- [Strapi](https://github.com/strapi/strapi)
+- [Lovia](https://about.lovia.life)
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template)

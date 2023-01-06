@@ -2,7 +2,8 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:storybook/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:mdx/recommended"
   ],
   "plugins": ["simple-import-sort", "testing-library"],
   "rules": {
@@ -12,6 +13,7 @@
     "import/no-unresolved": "error"
   },
   "settings": {
+    "mdx/remark": true,
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
@@ -22,6 +24,7 @@
     }
   },
   "parserOptions": {
+    "markdownExtensions": ".md",
     "project": "./tsconfig.json"
   },
   "overrides": [
