@@ -1,20 +1,19 @@
-import LandingPage from 'src/pages/index'
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
+import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
+import LandingPage from 'src/pages/index';
 
 describe('LandingPage', () => {
   it('renders the page header', () => {
-    const { getByText } = render(<LandingPage />);
-    expect(getByText('CODAC')).toBeInTheDocument();
+    render(<LandingPage />);
+    expect(screen.getByText('CODAC')).toBeInTheDocument();
   });
 
-
   it('set loading state when click on start button', async () => {
-    const { getByText } = render(<LandingPage />);
-    const button = getByText('Start');
+    render(<LandingPage />);
+    const button = screen.getByText('Start');
     fireEvent.click(button);
-    expect(getByText('Loading')).toBeInTheDocument();
+    expect(screen.getByText('Loading')).toBeInTheDocument();
   });
 });

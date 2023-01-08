@@ -2,6 +2,7 @@ import { Breadcrumbs, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
+import { getPaths } from 'src/lib/paths';
 
 import lmspages from '../../../public/assets/lmspages.json';
 import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
@@ -92,9 +93,9 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
   //maps 'content' folder and creates a route for every .md file
-  const { paths } = lmspages;
+  // const { paths } = lmspages;
   // const filter = paths.filter(path => ["welcome", "web"].includes(path.params.page[0]))
-  // const { paths } = await getPaths();
+  const { paths } = getPaths(LMS_CONTENT_PATH);
 
   return {
     paths,

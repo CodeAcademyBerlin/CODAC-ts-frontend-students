@@ -1,23 +1,38 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, getByText, render, screen } from '@testing-library/react';
+import singletonRouter, { useRouter } from 'next/router';
+import mockRouter from 'next-router-mock';
+import { initialSettings } from 'src/contexts/settingsContext';
+import ThemeComponent from 'src/theme/ThemeComponent';
 
 import getLayout, { MainLayout } from './MainLayout';
 
-describe('CommonLayout', () => {
-  test.each([
-    getLayout(<p>children</p>, false),
-    <MainLayout loading={false} key="common">
-      <p>children</p>
-    </MainLayout>,
-  ])('should render properly', (comp) => {
-    render(comp);
+jest.mock('next/router', () => require('next-router-mock'));
+// This is needed for mocking 'next/link':
+jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
-    const footer = screen.getByRole('contentinfo');
-    expect(footer).toHaveTextContent('Powered by');
+describe('test main layout routing', () => {
+  // beforeEach(() => {
+  //   mockRouter.setCurrentUrl('/dashboard');
 
-    const logo = screen.getByAltText('Vercel Logo');
-    expect(logo).toBeInTheDocument();
+  it('should render successfully - base', async () => {
+    render(
+      <ThemeComponent settings={initialSettings()}>
+        <MainLayout loading={false} key="common">
+          <p>Testing Layout</p>
+        </MainLayout>
+      </ThemeComponent>,
+    );
+    const dashBoardLink = screen.getByRole('link', { name: 'Dashboard' });
+    expect(dashBoardLink).toBeInTheDocument();
+    expect(dashBoardLink).toHaveAttribute('href', '/dashboard');
 
-    const children = screen.getByText('children');
-    expect(children).toBeInTheDocument();
+    // fireEvent.click(dashBoardLink);
+    // expect(singletonRouter).toMatchObject({ asPath: '/dashboard' });
+
+    // const loginButton = screen.getByRole('button', { href: '/login' });
+    // expect(loginButton).toBeInTheDocument();
+    // fireEvent.click(loginButton);
+    // expect(singletonRouter).toMatchObject({ asPath: '/login' });
   });
+  // });
 });

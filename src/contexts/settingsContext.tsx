@@ -22,7 +22,7 @@ export type SettingsContextValue = {
   setFestive: (festive: boolean) => void;
 };
 
-const initialSettings = (): Settings => {
+export const initialSettings = (): Settings => {
   if (typeof window !== 'undefined')
     return {
       themeName: localStorage?.getItem('theme') || 'light',

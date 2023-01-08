@@ -1,7 +1,10 @@
 import { styled } from '@mui/material/styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { LMS_CONTENT_PATH } from 'src/definitions/contentFilePaths';
+import { getPaths } from 'src/lib/paths';
+import lms from 'src/navigation/vertical/lms';
 
 import lmslinks from '../../../public/assets/lmslinks.json';
 import {
@@ -60,12 +63,24 @@ export const NavLiItem = styled('li')`
 function NavContent() {
   const router = useRouter();
 
-  const lms: LinkSingle = {
-    page: ['welcome'],
-    path: 'welcome',
-    title: 'LMS',
-    children: lmslinks,
-  };
+  const [lmsTree, setLmsTree] = useState<LinkSingle | null>(null);
+  useEffect(() => {
+    const getTree = async () => {
+      const res = await fetch('/api/lms-links');
+      const tree = await res.json();
+
+      const lmsTree: LinkSingle = {
+        page: ['welcome'],
+        path: 'welcome',
+        title: 'LMS',
+        children: tree,
+        index: LMS_CONTENT_PATH,
+      };
+      setLmsTree(lmsTree);
+    };
+    getTree();
+  }, []);
+
   return (
     <div>
       <Link href="/" style={{ textDecoration: 'none' }}>
@@ -88,7 +103,7 @@ function NavContent() {
           </NavLiItem>
         ))}
 
-        <CollapsibleLi child={lms} />
+        {lmsTree && <CollapsibleLi child={lmsTree} />}
       </OuterList>
     </div>
   );

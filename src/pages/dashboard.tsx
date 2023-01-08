@@ -74,7 +74,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       query: FilterStudentByUserIdDocument,
       variables: { userId: decodedToken.id },
     });
-    console.log('data in getServerSideProps:', data);
     return {
       props: { data },
     };

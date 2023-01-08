@@ -39,7 +39,7 @@
     // Only uses Cypress lint rules in test files
     {
       "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
+        // "**/__tests__/**/*.[jt]s?(x)",
         "**/cypress/**/?(*.)+(cy).[jt]s?(x)"
       ],
       "extends": ["plugin:cypress/recommended"],

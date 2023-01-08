@@ -14,9 +14,6 @@ type VsBattles = VsBattle[];
 function Battle({}: Props) {
   const { data, loading, error } = useGetVsBattlesQuery();
   const vsBattles = data?.vsBattles?.data || [];
-  console.log('vsBattles', vsBattles);
-
-  console.log('data,', data);
   return (
     <div>
       {vsBattles &&

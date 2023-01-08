@@ -59,7 +59,7 @@ interface Props {
 }
 
 export const BrandTextWrapper = (props: Props) => {
-  const { children, depth, neon } = props;
+  const { children, depth, neon, sx, variant } = props;
   const animation =
     (neon && `${neonLight} 2s linear infinite alternate-reverse;`) || ``;
   const textShadow =
@@ -73,7 +73,9 @@ export const BrandTextWrapper = (props: Props) => {
 
   return (
     <Box className={codacFont.className} sx={{ animation, textShadow }}>
-      <BrandText {...props}>{children}</BrandText>
+      <BrandText variant={variant} sx={sx}>
+        {children}
+      </BrandText>
     </Box>
   );
 };

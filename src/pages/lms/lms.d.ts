@@ -3,6 +3,8 @@ export interface LinkSingle {
   page: string[];
   title: string;
   children: Links;
+  index: string;
+  parent?: string;
 }
 export type Links = LinkSingle[];
 

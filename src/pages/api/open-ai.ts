@@ -20,7 +20,6 @@ const openAi: NextApiHandler = async (req, res) => {
       size: imageSize,
     });
 
-    console.log('data.data[0]', response.data);
     const imageUrl = response.data.data[0].url;
     res.status(200).json({
       success: true,
