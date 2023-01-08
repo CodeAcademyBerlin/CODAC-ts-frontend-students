@@ -9,9 +9,9 @@ import lmslinks from '../../../public/assets/lmslinks.json';
 
 const lmsLinks: NextApiHandler = async (req, res) => {
   try {
-    // const { tree } = getPaths(LMS_CONTENT_PATH);
+    const { paths } = getPaths(LMS_CONTENT_PATH);
 
-    res.json(lmslinks);
+    res.json(paths);
   } catch (err) {
     console.log('error: ', err);
   }
