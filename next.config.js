@@ -9,6 +9,8 @@ const nextConfig = {
   images: {
     domains: ['storage.googleapis.com', 'codac-364707.appspot.com'],
   },
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+
   env: {
     ssrSessionKey: process.env.SSR_SESSION_KEY,
   },

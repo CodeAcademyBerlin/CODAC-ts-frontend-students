@@ -41,9 +41,8 @@ export function getPaths(dir: string, subDirPath?: string) {
       if (fs.statSync(absolutePath).isDirectory()) {
         getFilesRecursively(relativePath);
       } else if (path.extname(file) === '.md') {
-        const dirArray = decodeURIComponent(relativePath)
-          .replace('.md', '')
-          .split('\\');
+        const dirArray = relativePath.replace('.md', '').split('\\');
+        console.log('dirArray', dirArray);
         paths.push({
           params: {
             page: dirArray,
