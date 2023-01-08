@@ -41,10 +41,9 @@ export function getPaths(dir: string, subDirPath?: string) {
       if (fs.statSync(absolutePath).isDirectory()) {
         getFilesRecursively(relativePath);
       } else if (path.extname(file) === '.md') {
-        const dirArray = relativePath
+        const dirArray = decodeURIComponent(relativePath)
           .replace('.md', '')
-          .split('\\')
-          .filter((e) => e !== '');
+          .split('\\');
         paths.push({
           params: {
             page: dirArray,
@@ -149,8 +148,8 @@ const displayNicely = (string: string) => {
 //   return result;
 // };
 
-const findByPath = (pages: Links, page: LinkSingle) => {
-  return pages.find((p) => {
-    return p.path === page.page.slice(0, -1).join('/');
-  });
-};
+// const findByPath = (pages: Links, page: LinkSingle) => {
+//   return pages.find((p) => {
+//     return p.path === page.page.slice(0, -1).join('/');
+//   });
+// };
