@@ -38,11 +38,10 @@ export function getPaths(dir: string, subDirPath?: string) {
     filesInDirectory.forEach((file) => {
       const absolutePath = path.join(absoluteDir, file);
       const relativePath = path.join(relativeDir, file);
-      const dirArray = relativePath.replace('.md', '').split('\\');
       if (fs.statSync(absolutePath).isDirectory()) {
         getFilesRecursively(relativePath);
-      } else {
-        console.log('dirArray', dirArray);
+      } else if (path.extname(file) === '.md') {
+        const dirArray = relativePath.replace('.md', '').split('\\');
         paths.push({
           params: {
             page: dirArray,
