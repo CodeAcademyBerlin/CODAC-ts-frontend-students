@@ -24,6 +24,10 @@ const navigation: NavLink[] = [
     title: 'Community',
     path: '/community'
   },
+    {
+    title: 'News',
+    path: '/news'
+  },
   {
     title: 'Jobs',
     icon: BriefcaseOutline,
