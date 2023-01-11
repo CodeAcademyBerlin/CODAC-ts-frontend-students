@@ -1,0 +1,36 @@
+query getNews {
+  newsPosts {
+    data {
+      attributes {
+        title
+        post
+        author {
+          data {
+            id
+            attributes {
+              username
+            }
+          }
+        }
+        likes {
+          data {
+            id
+            attributes {
+              username
+            }
+          }
+        }
+        createdAt
+        updatedAt
+        image {
+          data {
+            id
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
