@@ -22,12 +22,12 @@ function Battle({}: Props) {
   return (
     <div>
       {vsBattles &&
-        vsBattles.map((battle) => {
+        vsBattles.map((battle, index) => {
           if (battle.attributes) {
             return (
-              <>
-                <BattleCard vsBattle={battle} key={battle.id} />
-              </>
+              <div key={index}>
+                <BattleCard vsBattle={battle} />
+              </div>
             );
           }
         })}
