@@ -1,6 +1,6 @@
 import React from 'react';
 //import auth to get the actual user information
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 // ** MUI Imports
 import Box from '@mui/material/Box';
@@ -35,6 +35,17 @@ const Overflow = (props: Props) => {
         }}
       >
         <h1>CODAC Overflow</h1>
+
+        <p>Welcome to CODAC Overflow Page.</p>
+
+        <p>here you can ask questions, if you get stuck in your current project and
+          the other students will try their best to help ypu out.</p>
+
+        <p>It is a give and get basically.</p>
+
+        <p>Below you can see the all the topics, that have been someday asked by one of our students:</p>
+        
+          
 
       </Paper>
     </Box>
