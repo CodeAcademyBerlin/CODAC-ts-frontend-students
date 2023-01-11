@@ -9,15 +9,15 @@ import { styled } from "@mui/material/styles";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 
 // ** Icons Imports
-import { VsBattle } from "../../cabServer/global/__generated__/types";
+import { VsBattleEntity } from "../../cabServer/global/__generated__/types";
 import VoteOutline from "mdi-material-ui/VoteOutline";
 import DenseTable from "./BattleTable";
 import ChevronDoubleDown from "mdi-material-ui/ChevronDoubleDown";
+import { useVoteVsBattleMutation } from "../../cabServer/mutations/__generated__/battles";
 
 type BattleCardProps = {
-  vsBattle: VsBattle;
+  vsBattle: VsBattleEntity;
 };
-
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -39,6 +39,20 @@ const BattleCard = (props: BattleCardProps) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const [voteVsBattleMutation, { data, loading, error }] =
+    useVoteVsBattleMutation();
+
+  const handleVote = (option: number) => {
+    voteVsBattleMutation({
+      variables: {
+        vsBattleId: props.vsBattle.id!,
+        option: option,
+      },
+    });
+  };
+
+  console.log("data", data);
 
   return (
     <Card style={{ marginBottom: "2em" }}>
@@ -63,7 +77,7 @@ const BattleCard = (props: BattleCardProps) => {
           <VoteOutline sx={{ fontSize: "2rem" }} />
         </Avatar>
         <Typography variant="h6" sx={{ marginBottom: 2.75 }}>
-          {props.vsBattle.title}
+          {props.vsBattle.attributes?.title}
         </Typography>
         <Typography variant="body2" sx={{ marginBottom: 6 }}>
           voice your opinion
@@ -72,8 +86,9 @@ const BattleCard = (props: BattleCardProps) => {
           <Button
             variant="contained"
             sx={{ padding: (theme) => theme.spacing(1.75, 5.5) }}
+            onClick={() => handleVote(1)}
           >
-            {props.vsBattle.option1}
+            {props.vsBattle.attributes?.option1}
           </Button>
           <Button
             variant="contained"
@@ -81,14 +96,15 @@ const BattleCard = (props: BattleCardProps) => {
               padding: (theme) => theme.spacing(1.75, 5.5),
               marginLeft: "2em",
             }}
+            onClick={() => handleVote(2)}
           >
-            {props.vsBattle.option2}
+            {props.vsBattle.attributes?.option2}
           </Button>
         </div>
       </CardContent>
       <DenseTable
-        option1={props.vsBattle?.option_1_voters?.data.length || 0}
-        option2={props.vsBattle?.option_2_voters?.data.length || 0}
+        option1={props.vsBattle?.attributes?.option_1_voters?.data.length || 0}
+        option2={props.vsBattle?.attributes?.option_2_voters?.data.length || 0}
       />
       <ExpandMore
         expand={expanded}
