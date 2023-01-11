@@ -6,7 +6,6 @@ import {
 } from '../../cabServer/global/__generated__/types';
 import { useGetVsBattlesQuery } from '../../cabServer/queries/__generated__/battles';
 import BattleCard from '../components/battles-page/BattleCard';
-
 type Props = {};
 
 type VsBattles = VsBattle[];
@@ -14,6 +13,7 @@ type VsBattles = VsBattle[];
 function Battle({}: Props) {
   const { data, loading, error } = useGetVsBattlesQuery();
   const vsBattles = data?.vsBattles?.data || [];
+
   return (
     <div>
       {vsBattles &&

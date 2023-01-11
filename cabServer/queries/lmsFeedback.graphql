@@ -1,0 +1,20 @@
+query getLMSFeedbacks {
+  lmsFeedbacks {
+    data {
+      id
+      attributes {
+        comments {
+          author {
+            data {
+              attributes {
+                username
+              }
+            }
+          }
+          message
+          timestamp
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,9 @@
     "prepare": "husky install",
     "cypress": "cypress open",
     "codegen": "graphql-codegen --config codegen.yml",
-    "vercel-install": "./vercel-submodule-workaround.sh && yarn --ignore-scripts --production=false"
+    "vercel-install": "./vercel-submodule-workaround.sh && yarn --ignore-scripts --production=false",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
@@ -63,8 +65,16 @@
     "@graphql-codegen/add": "^3.2.1",
     "@graphql-codegen/cli": "^2.13.11",
     "@graphql-codegen/near-operation-file-preset": "^2.4.4",
+    "@graphql-codegen/typescript": "^2.8.7",
     "@graphql-codegen/typescript-operations": "^2.5.6",
     "@graphql-codegen/typescript-react-apollo": "^3.3.6",
+    "@storybook/addon-essentials": "7.0.0-beta.20",
+    "@storybook/addon-interactions": "7.0.0-beta.20",
+    "@storybook/addon-links": "7.0.0-beta.20",
+    "@storybook/blocks": "7.0.0-beta.20",
+    "@storybook/nextjs": "7.0.0-beta.20",
+    "@storybook/react": "^6.5.15",
+    "@storybook/testing-library": "0.0.13",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/apollo-upload-client": "^17.0.2",
@@ -93,6 +103,7 @@
     "lint-staged": "^13.1.0",
     "next-router-mock": "^0.8.0",
     "prettier": "^2.8.1",
+    "storybook": "7.0.0-beta.20",
     "typescript": "4.8.4"
   }
 }
