@@ -1,0 +1,20 @@
+query getAchievements{
+    achievements {
+    data {
+      id
+      attributes {
+        badge {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        name
+        description
+        points
+        type
+      }
+    }
+  }
+}
