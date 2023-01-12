@@ -6,12 +6,8 @@ import Avatar from '@mui/material/Avatar'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import AvatarGroup from '@mui/material/AvatarGroup'
 import { NewsPostEntity } from "../../cabServer/global/__generated__/types"
-import { first } from 'lodash'
-import { useEffect, Suspense } from 'react'
-import Link from 'next/link'
-import StyledLink from '../common/StyledLink'
+
 
 const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
     console.log('news post component', newsPost)
@@ -36,7 +32,15 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
       <CardContent>
         <Box sx={{ mr: 2, mb: 2, ml: 2, display: 'flex', flexDirection: 'column' }}>
           <Typography variant='h6'>{newsPost.attributes?.title}</Typography>
-          <Typography variant='body2'>{newsPost.attributes?.post}</Typography>
+          <Typography variant='body2'>{newsPost.attributes?.post}</Typography> <br/>
+                  
+          <Typography variant='caption'>Liked by:</Typography> 
+                  {newsPost.attributes?.likes?.data?.map((like, i: number) =>
+               <Box key={i}>
+                          <Typography variant='caption'>{like.attributes?.username}</Typography>
+                           </Box>
+                  )}
+                 
         </Box>
       </CardContent>
     </Card>

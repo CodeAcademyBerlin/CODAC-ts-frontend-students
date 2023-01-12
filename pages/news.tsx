@@ -14,11 +14,13 @@ const News = ({ newsPosts}: { newsPosts: NewsPostEntity[]}) => {
 console.log('newsPosts', newsPosts)
   return (
     <Grid container spacing={6} >
-      {newsPosts && newsPosts.map((newsPost, index: number) => <Grid item xs={12} sm={14} md={12} key={index}>
-        <NewsCard newsPost={newsPost} />
+
+      {newsPosts && newsPosts.map((newsPost, index: number) =>
+        <Grid item xs={12} sm={14} md={12} key={index}>
+          <NewsCard newsPost={newsPost} />
+        </Grid>)}
       
-      </Grid>)}
-       </Grid>)}
+    </Grid>)}
 
       
 
