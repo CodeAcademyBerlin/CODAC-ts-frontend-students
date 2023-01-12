@@ -62,6 +62,8 @@
     "tsparticles-engine": "^2.6.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.1",
+    "@commitlint/config-conventional": "^17.4.0",
     "@emotion/babel-plugin": "^11.10.5",
     "@graphql-codegen/add": "^3.2.1",
     "@graphql-codegen/cli": "^2.13.11",
