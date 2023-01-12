@@ -1,3 +1,6 @@
+# WARNING: file needs to be authorized after every changes
+# authorize file in Linux shell : sudo chmod u+x clone-lms-content-prod.sh
+
 # github submodule repo address without https:// prefix
 SUBMODULE_GITHUB=github.com/CodeAcademyBerlin/content
 
@@ -20,4 +23,5 @@ echo "removed old assets from public"
 mv content/assets public/lms/ 
 echo "moved assets to public"
 
-# authorize file in Linux shell : sudo chmod u+x clone-lms-content-prod.sh
+
+
