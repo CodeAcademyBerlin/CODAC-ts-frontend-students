@@ -19,3 +19,5 @@ echo "removed old assets from public"
 
 mv content/assets public/lms/ 
 echo "moved assets to public"
+
+# authorize file chmod u+x clone-lms-content-prod.sh
