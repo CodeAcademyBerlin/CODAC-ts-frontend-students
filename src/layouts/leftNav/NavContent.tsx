@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -6,7 +7,7 @@ import { LMS_CONTENT_PATH } from 'src/definitions/contentFilePaths';
 import { getPaths } from 'src/lib/paths';
 import lms from 'src/navigation/vertical/lms';
 
-import lmslinks from '../../../public/assets/lmslinks.json';
+// import lmslinks from '../../../public/assets/lmslinks.json';
 import {
   BrandText,
   BrandTextWrapper,

@@ -38,7 +38,7 @@
     "deepmerge": "^4.2.2",
     "graphql": "^16.6.0",
     "gray-matter": "^4.0.3",
-    "isomorphic-unfetch": "^3.1.0",
+    "isomorphic-unfetch": "^4.0.2",
     "jwt-decode": "^3.1.2",
     "lodash.isequal": "^4.5.0",
     "mdi-material-ui": "^7.6.0",
@@ -58,6 +58,7 @@
     "rehype-img-size": "^1.0.1",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
+    "sharp": "^0.31.3",
     "tsparticles": "^2.6.0",
     "tsparticles-engine": "^2.6.0"
   },
