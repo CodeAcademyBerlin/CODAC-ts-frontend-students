@@ -1,6 +1,6 @@
 {
   "name": "codac-ts-frontend-students",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,6 +11,7 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "prepare": "husky install",
+    "release": "commit-and-tag-version",
     "cypress": "cypress open",
     "codegen": "graphql-codegen --config codegen.yml",
     "vercel-install": "./vercel-submodule-workaround.sh && yarn --ignore-scripts --production=false",
@@ -85,6 +86,7 @@
     "@types/react-datepicker": "^4.8.0",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "commit-and-tag-version": "^10.1.0",
     "cypress": "^12.2.0",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.1",
