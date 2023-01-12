@@ -24,7 +24,6 @@ query getNews {
         updatedAt
         image {
           data {
-            id
             attributes {
               url
             }
