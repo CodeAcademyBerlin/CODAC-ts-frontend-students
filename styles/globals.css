@@ -51,3 +51,12 @@ code[class*="language-"] {
   font-display: swap;
   src: url("/fonts/codacA2.woff2") format("woff2");
 }
+
+#dynamic-overflow-link{
+  cursor: pointer;
+  color: #26a69a;
+}
+
+#dynamic-overflow-link:hover{
+  color: #4ed6ca;
+}
