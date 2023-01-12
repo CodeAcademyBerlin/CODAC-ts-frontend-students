@@ -143,7 +143,29 @@ Close and restart VS code before testing again.
 ### Main Structure
 
 ```sh
+├── __test__ # integration tests with Jest
+├── .github # CI/CD scripts for github actions
+├── .husky # husky scripts for linting (commit msg and files)
+├── .storybook # Configuration files for Storybook
 ├── cabServer # Queries & Mutations for Code Academy Berlin's GraphQl Server and generated types
+├── cypress # e2e (and/or integration) tests and fixtures for Cypress
+├── lmsDevSample # Sample data for the LMS pages
+├── projects # data for the porjects pages
+├── pagesDemo # THESE PAGES ARE CURRENTLY ONLY FOR DEMO(To be deleted)
+├── public # Static assets (Images, Fonts)**
+├── src # Next App (see below)
+├── env.local # Private variables of the app (DO NOT PUSH TO GITHUB!)
+├── env.local.example # Describe the variables names of .env.local file) (VARIABLES VALUE SHOULD BE DUMMY!)
+├── package.json
+└── .gitignore # list of files to be not tracked by source control
+└── .gitmodules # refers to the git submodule for the LMS data
+└── codegen.yml # setting for code generation of the types of CAB Servers
+└── ... # more configurations files
+```
+
+### Next App in src directory
+
+```sh
 ├── components # Home grown components organized in subfolder for every pages
 |   ├── page subfolder...
 ├── componentsDemo # DEMO components for pages (to be moved to components folder if used)
@@ -160,13 +182,6 @@ Close and restart VS code before testing again.
 ├── styles # global styles
 ├── theme # MUI theme definition
 ├── types # global types
-├── env.local # Private variables of the app (DO NOT PUSH TO GITHUB!)
-├── env.local.example # Describe the variables names of .env.local file) (VARIABLES VALUE SHOULD BE DUMMY!)
-├── package.json
-└── .gitignore # list of files to be not tracked by source control
-└── .gitmodules # refers to the git submodule for the LMS data
-└── codegen.yml # setting for code generation of the types of CAB Servers
-└── ... # more configurations files
 ```
 
 ### Pages Structure
