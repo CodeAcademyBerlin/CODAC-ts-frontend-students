@@ -3,21 +3,21 @@ schema: "https://codac-364707.ey.r.appspot.com/graphql"
 documents: "cabServer/**/*.graphql"
 generates:
   cabServer/global/__generated__/types.ts:
-      - "typescript"
+    - "typescript"
   cabServer/global/__generated__:
     preset: near-operation-file
     presetConfig:
-      folder:__generated__
+      folder: __generated__
       baseTypesPath: types.ts
       extension: .ts
     plugins:
       - "typescript-react-apollo"
       - "typescript-operations"
     config:
-          reactApolloVersion: 3
-          withHooks: true
-          withHOC: false
-          withComponent: false
+      reactApolloVersion: 3
+      withHooks: true
+      withHOC: false
+      withComponent: false
     hooks:
       afterAllFileWrite:
         - eslint --fix
