@@ -24,6 +24,7 @@
 - [linting](https://github.com/conventional-changelog/commitlint)
 - [changelog generation](https://github.com/absolute-version/commit-and-tag-version)
 - runs linting for code and commit message [on each commit](https://github.com/typicode/husky)
+- recommended extensions
 - [GitHub actions](https://github.com/features/actions):
 
   - linting
