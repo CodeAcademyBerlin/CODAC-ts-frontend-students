@@ -11,7 +11,7 @@ import TableRow, { TableRowProps } from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles'
 import TableCell, { TableCellProps, tableCellClasses } from '@mui/material/TableCell'
-
+import Avatar from '@mui/material/Avatar';
 
 type Props = {}
 
@@ -68,12 +68,13 @@ const AchievementTable = ({ allAchievements }: { allAchievements?: AchievementEn
                 {allAchievements.map((achievementEntity: AchievementEntity, i: number) =>
                     achievementEntity.attributes && <TableBody key={i}>
                         <StyledTableRow>
+                            <StyledTableCell><Avatar alt="AchievementBadge" src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""} /></StyledTableCell>
                             {/* <StyledTableCell><img src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""}></img></StyledTableCell> */}
                             {/* <StyledTableCell component='th' scope='row'>{achievementEntity.attributes.badge.data.attributes.url || ""}</StyledTableCell> */}
-                            <StyledTableCell align='right'>{achievementEntity.attributes.name || ""}</StyledTableCell>
-                            <StyledTableCell align='right'>{achievementEntity.attributes.description || ""}</StyledTableCell>
-                            <StyledTableCell align='right'>{achievementEntity.attributes.points || ""}</StyledTableCell>
-                            <StyledTableCell align='right'>{achievementEntity.attributes.type || ""}</StyledTableCell>
+                            <StyledTableCell align='left'>{achievementEntity.attributes.name || ""}</StyledTableCell>
+                            <StyledTableCell align='left'>{achievementEntity.attributes.description || ""}</StyledTableCell>
+                            <StyledTableCell align='center'>{achievementEntity.attributes.points || ""}</StyledTableCell>
+                            <StyledTableCell align='center'>{achievementEntity.attributes.type || ""}</StyledTableCell>
                         </StyledTableRow>
                     </TableBody>
                 )}
