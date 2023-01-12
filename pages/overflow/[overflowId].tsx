@@ -5,10 +5,23 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { initializeApollo } from "../../lib/apolloClient";
 //import generated query
 import { GetCodacOverflowsDocument } from "../../cabServer/queries/__generated__/overflow";
+//import types
+import { CodacOverflowEntity } from "../../cabServer/global/__generated__/types";
 
 // ** MUI Imports
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
+//Paper Styling from MUI
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const OverflowTopic = ({
   data,
@@ -41,6 +54,18 @@ const OverflowTopic = ({
         alignItems: 'center'
         }}
       >
+        <Stack
+          spacing={2}
+          style={{
+            margin: "10px 0px 10px 0px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+        }}>
+          {result && result.map((topic: CodacOverflowEntity) => (
+            <Item><h3>{topic.attributes?.title}</h3></Item>
+          ))}
+        </Stack>
         Overflow-Topic
       </Paper>
       </Box>
