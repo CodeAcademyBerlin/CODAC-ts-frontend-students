@@ -1,7 +1,5 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
-
 ### 0.1.1 (2023-01-12)
 
 ### What's new in 0.1.1
@@ -15,19 +13,16 @@ All notable changes to this project will be documented in this file. See [commit
 
 - The basic Next.js template with [TypeScript](https://www.typescriptlang.org/) support
 - [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/docs/react-testing-library/intro/) (provided by [@swc/jest](https://swc.rs/docs/usage/jest) for better performance)
-- [Mocking for http req and res](https://github.com/howardabrams/node-mocks-http) (useful for API handlers)
-- Two [layouts](https://nextjs.org/docs/basic-features/layouts) are ready to be used: A "common" one (intended to be used as default) and an "empty" one (just in case you need a completely different look & feel for some pages)
 - [Storybook](https://storybook.js.org/) configured and integrated with Next.js
 - [Cypress](https://www.cypress.io/) is already configured for Next.js and integrated with GitHub actions
 - [prettier](https://prettier.io/)
 - [eslint](https://eslint.org/)
-  - prettier integration
-  - [automatic import sorting](https://github.com/lydell/eslint-plugin-simple-import-sort)
-  - [Testing library integration](https://github.com/testing-library/eslint-plugin-testing-library)
+- prettier integration
+- [automatic import sorting](https://github.com/lydell/eslint-plugin-simple-import-sort)
+- [Testing library integration](https://github.com/testing-library/eslint-plugin-testing-library)
 - [conventional commits](https://www.conventionalcommits.org/) integration:
-  - [linting](https://github.com/conventional-changelog/commitlint)
-  - [commitizen](https://github.com/commitizen/cz-cli) integration
-  - [changelog generation](https://github.com/absolute-version/commit-and-tag-version)
+- [linting](https://github.com/conventional-changelog/commitlint)
+- [changelog generation](https://github.com/absolute-version/commit-and-tag-version)
 - runs linting for code and commit message [on each commit](https://github.com/typicode/husky)
 - [GitHub actions](https://github.com/features/actions):
 
@@ -42,6 +37,11 @@ All notable changes to this project will be documented in this file. See [commit
 For a better organization, the code is organized inside the `src` folder, while the configuration files and the `public` directory are located at the root level.
 
 [This is supported by Next.js by default](https://nextjs.org/docs/advanced-features/src-directory).
+
+### lmsDevSample
+
+This folder contains extract from the LMS content for testing.
+Actual content is cloned from github in production
 
 ### **test**
 
