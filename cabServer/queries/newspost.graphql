@@ -1,0 +1,30 @@
+query getNews {
+  newsPosts {
+    data {
+      attributes {
+        post
+        post
+        author {
+          data {
+            attributes {
+              email
+              student {
+                data {
+                  attributes {
+                    avatar {
+                      data {
+                        attributes {
+                          url
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

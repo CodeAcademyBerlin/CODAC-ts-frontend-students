@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:storybook/recommended",
+    "plugin:prettier/recommended",
+    "plugin:mdx/recommended"
+  ],
+  "plugins": ["simple-import-sort", "testing-library"],
+  "rules": {
+    "prettier/prettier": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/no-unresolved": "error"
+  },
+  "settings": {
+    "mdx/remark": true,
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": "."
+      }
+    }
+  },
+  "parserOptions": {
+    "markdownExtensions": ".md",
+    "project": "./tsconfig.json"
+  },
+  "overrides": [
+    // Only uses Testing Library lint rules in test files
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:jest/recommended", "plugin:testing-library/react"]
+    },
+    // Only uses Cypress lint rules in test files
+    {
+      "files": [
+        // "**/__tests__/**/*.[jt]s?(x)",
+        "**/cypress/**/?(*.)+(cy).[jt]s?(x)"
+      ],
+      "extends": ["plugin:cypress/recommended"],
+      "parserOptions": {
+        "project": "./cypress/tsconfig.json"
+      }
+    }
+  ]
+}

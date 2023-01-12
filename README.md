@@ -4,7 +4,8 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+
+<!-- [![MIT License][license-shield]][license-url] -->
 
 <!-- PROJECT LOGO -->
 <br />
@@ -12,7 +13,6 @@
   <a href="https://github.com/codeacademyberlin/codac-ts-frontend-students">
     <img src="public/projects/CODAC/CODAC3_logo3D.png" alt="CODAC"  height="200">
   </a>
-
 
   <p align="center">
     <br />
@@ -26,8 +26,6 @@
     <a href="https://github.com/codeacademyberlin/codac-ts-frontend-students/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -56,16 +54,13 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 ![CODAC Screen Shot](./public/assets/screenshot.png)
 
 **CODAC** stands for **Code Academy Berlin Community**.
-
-
 
 This platform is the heart of resources necessary to carry out the courses in **Data Science** or **Web Development** offered by the start up training center [![CAB][cab-shield]][cab-url]
 
@@ -73,35 +68,33 @@ It is intended to be improved and maintained by students of the Academy. Particu
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
-[![React][React.js]][React-url]
+[![React][react.js]][react-url]
 
-**React.js** is a free and open-source front-end JavaScript library for building user interfaces based on UI components. 
+**React.js** is a free and open-source front-end JavaScript library for building user interfaces based on UI components.
 
-[![Next][Next.js]][Next-url]
+[![Next][next.js]][next-url]
 
 **Next.js** is an open-source web development framework enabling React-based web applications with server-side rendering and generating static websites.
 
-[![Typescript][Typescript.js]][Typescript-url]
+[![Typescript][typescript.js]][typescript-url]
 
 **TypeScript** is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 
-[![GraphQL][GraphQL]][GraphQL-url]
+[![GraphQL][graphql]][graphql-url]
 
 **GraphQL** is a query language for APIs and a runtime for fulfilling those queries with your existing data.
 
-
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+
 - Node
 - Yarn package manager
   ```sh
@@ -118,52 +111,49 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    yarn
    ```
-3. rename `.env.local.example` to `.env.local` and request the missing api keys
+3. rename `.env.local.example` to `.env.local`
+
 4. Run the Next.js app in dev mode
-    ```bash
-    yarn dev
-    # or
-    npm run dev
-    ```
+   ```bash
+   yarn dev
+   # or
+   npm run dev
+   ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Troubleshoot
-  - If you get the following error on SSG pages (i.e LMS or Projects)
+
+- If you get the following error on SSG pages (i.e LMS or Projects)
   `TypeError: _jsxDEV is not a function`
   This is linked to an environment variable NODE_ENV setting of your machine.
 
-  Fix:
-  on windows run in terminal: `setx NODE_ENV dev`
-  on linux and macos run in terminal: `export NODE_ENV=dev`
+Fix:
+on windows run in terminal: `setx NODE_ENV dev`
+on linux and macos run in terminal: `export NODE_ENV=dev`
 
-  Close and restart VS code before testing again. 
-  
+Close and restart VS code before testing again.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- FOLDER STRUCTURE -->
+
 ## Folder Structure
+
 ### Main Structure
+
 ```sh
+├── __test__ # integration tests with Jest
+├── .github # CI/CD scripts for github actions
+├── .husky # husky scripts for linting (commit msg and files)
+├── .storybook # Configuration files for Storybook
 ├── cabServer # Queries & Mutations for Code Academy Berlin's GraphQl Server and generated types
-├── components # Home grown components organized in subfolder for every pages
-|   ├── page subfolder...
-├── componentsDemo # DEMO components for pages (to be moved to components folder if used)
-├── content # Git submodule sourcing data for the LMS
-├── context # React context providers
-│   ├── authContext # User Authentication
-│   ├── settingsContext # User Preferences (look & feel)
-├── layouts # Home grown layouts components
-├── lib # Utilities 
-├── navigation # Routing links
-├── pages # See below
+├── cypress # e2e (and/or integration) tests and fixtures for Cypress
+├── lmsDevSample # Sample data for the LMS pages
+├── projects # data for the porjects pages
 ├── pagesDemo # THESE PAGES ARE CURRENTLY ONLY FOR DEMO(To be deleted)
-├── public #Static assets (Images, Fonts)**
-├── styles # global styles
-├── theme # MUI theme definition
-├── types # global types 
+├── public # Static assets (Images, Fonts)**
+├── src # Next App (see below)
 ├── env.local # Private variables of the app (DO NOT PUSH TO GITHUB!)
 ├── env.local.example # Describe the variables names of .env.local file) (VARIABLES VALUE SHOULD BE DUMMY!)
 ├── package.json
@@ -172,27 +162,52 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 └── codegen.yml # setting for code generation of the types of CAB Servers
 └── ... # more configurations files
 ```
-### Pages Structure
-#### Rendering method:
-- λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
-- ○  (Static)  automatically rendered as static HTML (uses no initial props)
-- ●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
+### Next App in src directory
+
 ```sh
-┌ ○ /                                                                      
-├   /_app # Entry point of Next.js wrapped by providers                                                                 
-├ ○ /401                                                                   
-├ ○ /404                                                                   
-├ ○ /500                                                                   
-├ λ /api/lms-links                                                         
-├ λ /api/open-ai                                                           
-├ λ /api/user                                                              
-├ ○ /battles                                                               
-├ λ /community                                                             
-├ ○ /congrats                                                              
-├ λ /dashboard                                                             
-├ λ /jobs                                                                  
-├ ● /lms/[[...page]] (5552 ms)                                             
-├   ├ /lms/data/Module-1/Project-2/Machine-Learning-Fundamentals 
+├── components # Home grown components organized in subfolder for every pages
+|   ├── page subfolder...
+├── componentsDemo # DEMO components for pages (to be moved to components folder if used)
+├── content # Git submodule sourcing data for the LMS
+├── context # React context providers
+│   ├── authContext # User Authentication
+│   ├── settingsContext # User Preferences (look & feel)
+├── layouts # Home grown layouts components
+├── lib # Utilities
+├── navigation # Routing links
+├── pages # See below
+├── pagesDemo # THESE PAGES ARE CURRENTLY ONLY FOR DEMO(To be deleted)
+├── public #Static assets (Images, Fonts)**
+├── styles # global styles
+├── theme # MUI theme definition
+├── types # global types
+```
+
+### Pages Structure
+
+#### Rendering method:
+
+- λ (Server) server-side renders at runtime (uses getInitialProps or getServerSideProps)
+- ○ (Static) automatically rendered as static HTML (uses no initial props)
+- ● (SSG) automatically generated as static HTML + JSON (uses getStaticProps)
+
+```sh
+┌ ○ /
+├   /_app # Entry point of Next.js wrapped by providers
+├ ○ /401
+├ ○ /404
+├ ○ /500
+├ λ /api/lms-links
+├ λ /api/open-ai
+├ λ /api/user
+├ ○ /battles
+├ λ /community
+├ ○ /congrats
+├ λ /dashboard
+├ λ /jobs
+├ ● /lms/[[...page]] (5552 ms)
+├   ├ /lms/data/Module-1/Project-2/Machine-Learning-Fundamentals
 ├   ├ /lms/career/Step-1/Chapter-1
 ├   ├ /lms/career/Step-1/Chapter-2
 ├   ├ /lms/career/Step-1/Chapter-3
@@ -200,54 +215,53 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ├   ├ /lms/career/Step-1
 ├   ├ /lms/career/Step-2/Task-1
 ├   └ [+70 more paths]
-├ ○ /login                                                                 
-├ ○ /pagesDemo/cards                                                       
-├ ○ /pagesDemo/form-layouts                                                
-├ ○ /pagesDemo/icons                                                       
-├ ○ /pagesDemo/register                                                    
-├ ○ /pagesDemo/tables                                                      
-├ ○ /pagesDemo/typography                                                  
-├ λ /profile                                                               
-├ λ /projects                                                             
-└ ● /projects/[project]                                                   
+├ ○ /login
+├ ○ /pagesDemo/cards
+├ ○ /pagesDemo/form-layouts
+├ ○ /pagesDemo/icons
+├ ○ /pagesDemo/register
+├ ○ /pagesDemo/tables
+├ ○ /pagesDemo/typography
+├ λ /profile
+├ λ /projects
+└ ● /projects/[project]
     └ /projects/CODAC
 ```
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CAB Server -->
+
 ## CAB Server
 
 The **CAB Server** refers to the Code Academy Berlin Administration Backend and hold various data about the Academy
 
 It is built with the Framework **Strapi** and offers a **GraphQL** API.
 
-[![Strapi][Strapi]][Strapi-url]
+[![Strapi][strapi]][strapi-url]
 
 Queries & Mutation to are to be described in the cabServer folder before being generated through code generation for use in the app:
 
 ![CODAC Screen Shot](./public/assets/codegen.png)
 
 to regenerate the api types run script
-   ```sh
-   yarn codegen
-    # or
-   npm run codegen
-   ```
+
+```sh
+yarn codegen
+ # or
+npm run codegen
+```
 
 <!-- ROADMAP -->
+
 ## Roadmap
-
-
 
 See the [open issues](https://github.com/codeacademyberlin/codac-ts-frontend-students/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are made by the students of **Code Academy Berlin**.
@@ -260,18 +274,16 @@ Contributions are made by the students of **Code Academy Berlin**.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Lucas Dupias - lucas@codeacademyberlin.com
@@ -280,12 +292,12 @@ Lucas Dupias - lucas@codeacademyberlin.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
-* December 2022 - **Neon Narwhals** Cohort
+- December 2022 - **Neon Narwhals** Cohort
+
   - [Alberto](https://github.com/BetoCarrillo)
     - Job offer page
   - [Jan](https://github.com/petrikoj)
@@ -298,15 +310,14 @@ Lucas Dupias - lucas@codeacademyberlin.com
   - [Philipp](https://github.com/philippspiegler)
     - VS Battle page
 
-* []()
-* []()
+- []()
+- []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/codeacademyberlin/codac-ts-frontend-students.svg?style=for-the-badge
 [contributors-url]: https://github.com/codeacademyberlin/codac-ts-frontend-students/graphs/contributors
 [cab-shield]: https://img.shields.io/badge/Code%20Academy%20Berlin-%2300897D
@@ -322,13 +333,13 @@ Lucas Dupias - lucas@codeacademyberlin.com
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/school/codeacademyberlin
 [product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Typescript-url]: https://www.typescriptlang.org/
-[Typescript.js]: https://img.shields.io/badge/Typescript.js-35495E?style=for-the-badge&logo=typescript&logoColor=3178c6
-[GraphQL-url]: https://graphql.org/
-[GraphQL]: https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white
-[Strapi-url]: https://strapi.io/
-[Strapi]: https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white
+[next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[next-url]: https://nextjs.org/
+[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[react-url]: https://reactjs.org/
+[typescript-url]: https://www.typescriptlang.org/
+[typescript.js]: https://img.shields.io/badge/Typescript.js-35495E?style=for-the-badge&logo=typescript&logoColor=3178c6
+[graphql-url]: https://graphql.org/
+[graphql]: https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white
+[strapi-url]: https://strapi.io/
+[strapi]: https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white
