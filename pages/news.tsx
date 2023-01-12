@@ -1,33 +1,26 @@
-import {useState} from "react"
-
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
+import NewsCard from "../components/news-page/NewsCard"
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { NewsPost, NewsPostEntity } from "../cabServer/global/__generated__/types"
 import { initializeApollo } from "../lib/apolloClient"
 import { GetNewsDocument } from "../cabServer/queries/__generated__/news";
 
 
-// type newsPosts = NewsPost[]
+const News = ({ newsPosts}: { newsPosts: NewsPostEntity[]}) => {
 
-const News = ({ newsPosts }: { newsPosts: NewsPostEntity[]}) => {
-
-    // const allNewsPosts = newsPosts?.newsPosts?.data || []
-    console.log('newsPosts', newsPosts)
+console.log('newsPosts', newsPosts)
   return (
-    <Grid container spacing={6}>
-      {/* <Grid item xs={12} sx={{ paddingBottom: 4 }}>
-        <Typography variant='h5'>Projets</Typography>
-      </Grid>
-      {newsposts.map((newspost) => <Grid item xs={12} sm={6} md={4}>
-        <ProjectCard newspost={newspost} />
-      </Grid>)} */}
+    <Grid container spacing={6} >
+      {newsPosts && newsPosts.map((newsPost, index: number) => <Grid item xs={12} sm={14} md={12} key={index}>
+        <NewsCard newsPost={newsPost} />
+      
+      </Grid>)}
+       </Grid>)}
 
-    </Grid>
-  )
-}
+      
 
 export default News
 
