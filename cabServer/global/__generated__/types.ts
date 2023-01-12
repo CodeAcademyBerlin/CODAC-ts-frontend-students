@@ -916,6 +916,19 @@ export enum Enum_Newspost_Tags {
   Web = 'web',
 }
 
+export enum Enum_Mentor_Specialization {
+  All = 'all',
+  Data = 'data',
+  Web = 'web',
+}
+
+export enum Enum_Newspost_Tags {
+  Cab = 'CAB',
+  Data = 'data',
+  Leisure = 'leisure',
+  Web = 'web',
+}
+
 export type EmailDesignerEmailTemplate = {
   __typename?: 'EmailDesignerEmailTemplate';
   bodyHtml?: Maybe<Scalars['String']>;
@@ -1583,6 +1596,10 @@ export type MutationCreateCodacOverflowArgs = {
   data: CodacOverflowInput;
 };
 
+export type MutationCreateCodacOverflowArgs = {
+  data: CodacOverflowInput;
+};
+
 export type MutationCreateCohortArgs = {
   data: CohortInput;
 };
@@ -1611,8 +1628,16 @@ export type MutationCreateLmsFeedbackArgs = {
   data: LmsFeedbackInput;
 };
 
+export type MutationCreateLmsFeedbackArgs = {
+  data: LmsFeedbackInput;
+};
+
 export type MutationCreateMentorArgs = {
   data: MentorInput;
+};
+
+export type MutationCreateNewsPostArgs = {
+  data: NewsPostInput;
 };
 
 export type MutationCreateNewsPostArgs = {
@@ -1628,6 +1653,10 @@ export type MutationCreatePageLocalizationArgs = {
   data?: InputMaybe<PageInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type MutationCreateSpikeArgs = {
+  data: SpikeInput;
 };
 
 export type MutationCreateSpikeArgs = {
@@ -1670,6 +1699,10 @@ export type MutationDeleteCodacOverflowArgs = {
   id: Scalars['ID'];
 };
 
+export type MutationDeleteCodacOverflowArgs = {
+  id: Scalars['ID'];
+};
+
 export type MutationDeleteCohortArgs = {
   id: Scalars['ID'];
 };
@@ -1698,7 +1731,15 @@ export type MutationDeleteLmsFeedbackArgs = {
   id: Scalars['ID'];
 };
 
+export type MutationDeleteLmsFeedbackArgs = {
+  id: Scalars['ID'];
+};
+
 export type MutationDeleteMentorArgs = {
+  id: Scalars['ID'];
+};
+
+export type MutationDeleteNewsPostArgs = {
   id: Scalars['ID'];
 };
 
@@ -1709,6 +1750,10 @@ export type MutationDeleteNewsPostArgs = {
 export type MutationDeletePageArgs = {
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type MutationDeleteSpikeArgs = {
+  id: Scalars['ID'];
 };
 
 export type MutationDeleteSpikeArgs = {
@@ -1787,6 +1832,11 @@ export type MutationUpdateCodacOverflowArgs = {
   id: Scalars['ID'];
 };
 
+export type MutationUpdateCodacOverflowArgs = {
+  data: CodacOverflowInput;
+  id: Scalars['ID'];
+};
+
 export type MutationUpdateCohortArgs = {
   data: CohortInput;
   id: Scalars['ID'];
@@ -1827,8 +1877,18 @@ export type MutationUpdateLmsFeedbackArgs = {
   id: Scalars['ID'];
 };
 
+export type MutationUpdateLmsFeedbackArgs = {
+  data: LmsFeedbackInput;
+  id: Scalars['ID'];
+};
+
 export type MutationUpdateMentorArgs = {
   data: MentorInput;
+  id: Scalars['ID'];
+};
+
+export type MutationUpdateNewsPostArgs = {
+  data: NewsPostInput;
   id: Scalars['ID'];
 };
 
@@ -1841,6 +1901,11 @@ export type MutationUpdatePageArgs = {
   data: PageInput;
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type MutationUpdateSpikeArgs = {
+  data: SpikeInput;
+  id: Scalars['ID'];
 };
 
 export type MutationUpdateSpikeArgs = {
@@ -2135,6 +2200,17 @@ export type QueryCodacOverflowsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type QueryCodacOverflowArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QueryCodacOverflowsArgs = {
+  filters?: InputMaybe<CodacOverflowFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
 export type QueryCohortArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2216,6 +2292,16 @@ export type QueryLmsFeedbacksArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type QueryLmsFeedbackArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QueryLmsFeedbacksArgs = {
+  filters?: InputMaybe<LmsFeedbackFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
 export type QueryMentorArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2223,6 +2309,17 @@ export type QueryMentorArgs = {
 export type QueryMentorsArgs = {
   filters?: InputMaybe<MentorFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QueryNewsPostArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QueryNewsPostsArgs = {
+  filters?: InputMaybe<NewsPostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2245,6 +2342,17 @@ export type QueryPageArgs = {
 export type QueryPagesArgs = {
   filters?: InputMaybe<PageFiltersInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QuerySpikeArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QuerySpikesArgs = {
+  filters?: InputMaybe<SpikeFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -2428,6 +2536,12 @@ export type Student = {
   start_date?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   user?: Maybe<UsersPermissionsUserEntityResponse>;
+};
+
+export type StudentAchievementsArgs = {
+  filters?: InputMaybe<AchievementFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type StudentAchievementsArgs = {
