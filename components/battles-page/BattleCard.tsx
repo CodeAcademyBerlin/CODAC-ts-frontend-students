@@ -17,6 +17,7 @@ import { useVoteVsBattleMutation } from "../../cabServer/mutations/__generated__
 
 type BattleCardProps = {
   vsBattle: VsBattleEntity;
+  handleVote: (vsBattleId: string, option: number) => void;
 };
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -40,19 +41,23 @@ const BattleCard = (props: BattleCardProps) => {
     setExpanded(!expanded);
   };
 
-  const [voteVsBattleMutation, { data, loading, error }] =
-    useVoteVsBattleMutation();
+  // const [voteVsBattleMutation, { data, loading, error }] =
+  //   useVoteVsBattleMutation();
 
-  const handleVote = (option: number) => {
-    voteVsBattleMutation({
-      variables: {
-        vsBattleId: props.vsBattle.id!,
-        option: option,
-      },
-    });
-  };
+  // const handleVote = (option: number) => {
+  //   voteVsBattleMutation({
+  //     variables: {
+  //       vsBattleId: props.vsBattle.id!,
+  //       option: option,
+  //     },
+  //   });
+  // };
 
-  console.log("data", data);
+  // React.useEffect(() => {
+  //   console.log("useEffectRan on BattleCard");
+  // }, [data]);
+
+  // console.log("data", data);
 
   return (
     <Card style={{ marginBottom: "2em" }}>
@@ -86,7 +91,9 @@ const BattleCard = (props: BattleCardProps) => {
           <Button
             variant="contained"
             sx={{ padding: (theme) => theme.spacing(1.75, 5.5) }}
-            onClick={() => handleVote(1)}
+            onClick={() => {
+              props.handleVote(props.vsBattle.id?, 1);
+            }}
           >
             {props.vsBattle.attributes?.option1}
           </Button>
@@ -96,7 +103,9 @@ const BattleCard = (props: BattleCardProps) => {
               padding: (theme) => theme.spacing(1.75, 5.5),
               marginLeft: "2em",
             }}
-            onClick={() => handleVote(2)}
+            onClick={() => {
+              props.handleVote(props.vsBattle.id?, 2);
+            }}
           >
             {props.vsBattle.attributes?.option2}
           </Button>

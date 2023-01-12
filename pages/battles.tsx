@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BattleCard from "../components/battles-page/BattleCard";
 import {
   VsBattle,
@@ -7,7 +7,10 @@ import {
 import { useGetVsBattlesQuery } from "../cabServer/queries/__generated__/battles";
 import { GetServerSideProps } from "next";
 import { initializeApollo } from "../lib/apolloClient";
-import { VoteVsBattleDocument } from "../cabServer/mutations/__generated__/battles";
+import {
+  useVoteVsBattleMutation,
+  VoteVsBattleDocument,
+} from "../cabServer/mutations/__generated__/battles";
 
 type Props = {};
 
@@ -15,6 +18,23 @@ type VsBattles = VsBattle[];
 
 function Battle({}: Props) {
   const { data, loading, error } = useGetVsBattlesQuery();
+
+  const [voteVsBattleMutation, { data: mutationData, error: mutationError }] =
+    useVoteVsBattleMutation();
+
+  const handleVote = (vsBattleId: string, option: number) => {
+    voteVsBattleMutation({
+      variables: {
+        vsBattleId: vsBattleId,
+        option: option,
+      },
+    });
+  };
+
+  useEffect(() => {
+    console.log("useEffectRan on battle page");
+  }, [mutationData]);
+
   const vsBattles = data?.vsBattles?.data || [];
   console.log("vsBattles", vsBattles);
 
@@ -26,7 +46,7 @@ function Battle({}: Props) {
           if (battle.attributes) {
             return (
               <div key={index}>
-                <BattleCard vsBattle={battle} />
+                <BattleCard vsBattle={battle} handleVote={handleVote} />
               </div>
             );
           }
