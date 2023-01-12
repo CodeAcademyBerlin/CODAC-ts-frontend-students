@@ -1,5 +1,6 @@
 # WARNING: file needs to be authorized after every changes
 # authorize file in Linux shell : sudo chmod u+x clone-lms-content-prod.sh
+# update git index: git update-index --add --chmod=+x clone-lms-content-prod.sh 
 
 # github submodule repo address without https:// prefix
 SUBMODULE_GITHUB=github.com/CodeAcademyBerlin/content
