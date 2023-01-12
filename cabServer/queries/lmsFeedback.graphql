@@ -1,9 +1,14 @@
-query getLMSFeedbacks {
+query feedback {
   lmsFeedbacks {
     data {
       id
       attributes {
+        rating
+        slug
+        createdAt
         comments {
+          id
+          message
           author {
             data {
               attributes {
@@ -11,8 +16,6 @@ query getLMSFeedbacks {
               }
             }
           }
-          message
-          timestamp
         }
       }
     }

@@ -1,20 +1,21 @@
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
+import Button from "@mui/material/Button";
+import Link from "next/link";
+import styles from "../../styles/LmsContentContainer.module.css";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import mdxComponents from "../../components/mdx";
+import dynamic from "next/dynamic";
 
-import mdxComponents from '../../components/mdx';
-import styles from '../../styles/LmsContentContainer.module.css';
+import { styled } from "@mui/material/styles";
 
-export const LmsContent = styled('div')`
-  max-width: 100%;
+export const LmsContent = styled("div")`
+  max-width: 50%;
   word-wrap: break-word;
   display: flex;
   flex-direction: column;
+  font-size: 18px;
 
-  ${'code'} {
+  ${"code"} {
     background: ${({ theme }) => theme.palette.background.paper};
     border-left: 3px solid ${({ theme }) => theme.palette.primary.main};
     border-radius: 0.5em;
@@ -29,7 +30,7 @@ export const LmsContent = styled('div')`
     display: block;
   }
 
-  ${'code'}::before, ${'code'}::after {
+  ${"code"}::before, ${"code"}::after {
     display: none;
   }
 
@@ -53,12 +54,12 @@ export const LmsContent = styled('div')`
     background-color: ${({ theme }) => theme.palette.primary.light};
   }
 
-  ${'p'}:first-child img {
+  ${"p"}:first-child img {
     max-width: 100%;
     text-align: center;
   }
 
-  ${'a'} {
+  ${"a"} {
     color: ${({ theme }) => theme.palette.primary.light};
   }
 
@@ -68,6 +69,30 @@ export const LmsContent = styled('div')`
       transition: 0.2s;
       cursor: pointer;
       background-color: ${({ theme }) => theme.palette.action.hover};
+    }
+  }
+`;
+
+function LmsContentContainer({
+  content,
+  next,
+  prev,
+}: {
+  content: MDXRemoteSerializeResult;
+  next?: string;
+  prev?: string;
+}) {
+  function addCopyButtons() {
+    const codeTags = document.getElementsByTagName("code");
+    for (let i = 0; i < codeTags.length; i++) {
+      const copyButton = document.createElement("button");
+      copyButton.classList.add("copyButton");
+      copyButton.innerHTML = "Copy";
+      copyButton.setAttribute("title", "Copy snippet");
+      copyButton.addEventListener("click", () =>
+        copyToClipboard(codeTags[i].lastChild?.textContent)
+      );
+      codeTags[i].insertBefore(copyButton, codeTags[i].childNodes[0]);
     }
   }
 `;
@@ -103,7 +128,7 @@ function LmsContentContainer({
       try {
         await navigator.clipboard.writeText(toCopy);
       } catch (err) {
-        console.log('error: ', err);
+        console.log("error: ", err);
       }
     }
   }
@@ -114,16 +139,16 @@ function LmsContentContainer({
       <div
         style={{
           padding: 5,
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
         }}
       >
         {prev && (
           <Button
             component={Link}
-            variant="contained"
+            variant='contained'
             sx={{ px: 5.5 }}
             href={prev}
           >
@@ -133,7 +158,7 @@ function LmsContentContainer({
         {next && (
           <Button
             component={Link}
-            variant="contained"
+            variant='contained'
             sx={{ px: 5.5 }}
             href={next}
           >
