@@ -58,6 +58,7 @@ const BattleCard = (props: BattleCardProps) => {
   // }, [data]);
 
   // console.log("data", data);
+  console.log(props.vsBattle.id);
 
   return (
     <Card style={{ marginBottom: "2em" }}>
@@ -92,7 +93,7 @@ const BattleCard = (props: BattleCardProps) => {
             variant="contained"
             sx={{ padding: (theme) => theme.spacing(1.75, 5.5) }}
             onClick={() => {
-              props.handleVote(props.vsBattle.id?, 1);
+              props.handleVote(props.vsBattle.id!, 1);
             }}
           >
             {props.vsBattle.attributes?.option1}
@@ -104,7 +105,7 @@ const BattleCard = (props: BattleCardProps) => {
               marginLeft: "2em",
             }}
             onClick={() => {
-              props.handleVote(props.vsBattle.id?, 2);
+              props.handleVote(props.vsBattle.id!, 2);
             }}
           >
             {props.vsBattle.attributes?.option2}

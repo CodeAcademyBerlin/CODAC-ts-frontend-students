@@ -32,7 +32,7 @@ function Battle({}: Props) {
   };
 
   useEffect(() => {
-    console.log("useEffectRan on battle page");
+    data;
   }, [mutationData]);
 
   const vsBattles = data?.vsBattles?.data || [];
