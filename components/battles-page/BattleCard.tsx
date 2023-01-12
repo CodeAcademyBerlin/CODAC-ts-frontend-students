@@ -58,7 +58,7 @@ const BattleCard = (props: BattleCardProps) => {
   // }, [data]);
 
   // console.log("data", data);
-  console.log(props.vsBattle.id);
+  console.log("battleId", props.vsBattle.id);
 
   return (
     <Card style={{ marginBottom: "2em" }}>

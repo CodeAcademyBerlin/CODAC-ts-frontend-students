@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BattleCard from "../components/battles-page/BattleCard";
 import {
   VsBattle,
@@ -17,8 +17,7 @@ type Props = {};
 type VsBattles = VsBattle[];
 
 function Battle({}: Props) {
-  const { data, loading, error } = useGetVsBattlesQuery();
-
+  const { data, loading, error, refetch } = useGetVsBattlesQuery();
   const [voteVsBattleMutation, { data: mutationData, error: mutationError }] =
     useVoteVsBattleMutation();
 
@@ -32,13 +31,11 @@ function Battle({}: Props) {
   };
 
   useEffect(() => {
-    data;
+    refetch();
   }, [mutationData]);
 
   const vsBattles = data?.vsBattles?.data || [];
-  console.log("vsBattles", vsBattles);
 
-  console.log("data,", data);
   return (
     <div>
       {vsBattles &&
