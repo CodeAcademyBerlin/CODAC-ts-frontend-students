@@ -1,7 +1,7 @@
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import Button from '@mui/material/Button'
+import CardHeader from '@mui/material/CardHeader'
 import Avatar from '@mui/material/Avatar'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
@@ -22,24 +22,32 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
   return (
     <Card sx={{ position: 'relative' }}>
       <CardContent>
-        <Box>
-          <Typography variant='caption'>{newsPost.attributes?.author?.data?.attributes?.username}</Typography> 
-          <br />
-          <Typography variant='caption'>{updatedDate}</Typography>
-        </Box>
+        <CardHeader
+        avatar={<Avatar>U</Avatar>}
+        title={newsPost.attributes?.author?.data?.attributes?.username}
+        subheader={updatedDate}
+         />
       </CardContent>
-      <CardMedia component={"img"} image={newsPost.attributes?.image?.data?.attributes?.url || "no image"} />
+          {newsPost.attributes?.image?.data?.map((oneimage, i: number) =>
+              <CardMedia component={"img"} height={"274"} image={oneimage.attributes?.url || "no image"} key={i} />
+          )}
       <CardContent>
-        <Box sx={{ mr: 2, mb: 2, ml: 2, display: 'flex', flexDirection: 'column' }}>
-          <Typography variant='h6'>{newsPost.attributes?.title}</Typography>
+        <Box sx={{ mr: 1, mb: 2, ml: 1, display: 'flex', flexDirection: 'column' }}>
+          <Typography variant='h5'>{newsPost.attributes?.title}</Typography> <br/>
           <Typography variant='body2'>{newsPost.attributes?.post}</Typography> <br/>
-                  
-          <Typography variant='caption'>Liked by:</Typography> 
-                  {newsPost.attributes?.likes?.data?.map((like, i: number) =>
-               <Box key={i}>
-                          <Typography variant='caption'>{like.attributes?.username}</Typography>
-                           </Box>
-                  )}
+
+        {/* show likes if likes exist */}
+       
+            {newsPost.attributes?.likes?.data && newsPost.attributes?.likes?.data?.length > 0 ?
+                (<div>
+                    <Typography variant='caption'>Liked by:</Typography> 
+                    {newsPost.attributes?.likes?.data?.map((like, i: number) =>
+                    <div key={i}>
+                        <Typography variant='caption'>{like.attributes?.username}</Typography>
+                    </div>
+                        )}
+                </div>) : ""
+                }
                  
         </Box>
       </CardContent>

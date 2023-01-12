@@ -1920,8 +1920,8 @@ export type NewsPost = {
   __typename?: 'NewsPost';
   author?: Maybe<UsersPermissionsUserEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  // image?: Maybe<UploadFileRelationResponseCollection>;
-  image?: Maybe<UploadFileEntityResponse>;
+  image?: Maybe<UploadFileRelationResponseCollection>;
+  // image?: Maybe<UploadFileEntityResponse>;
   likes?: Maybe<UsersPermissionsUserRelationResponseCollection>;
   post?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
