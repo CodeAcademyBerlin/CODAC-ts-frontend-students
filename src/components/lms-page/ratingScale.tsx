@@ -1,31 +1,32 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
-import Box from "@mui/material/Box";
-import StarIcon from "@mui/icons-material/Star";
+import { valueToObjectRepresentation } from '@apollo/client/utilities';
+import StarIcon from '@mui/icons-material/Star';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/lmsRating';
+import { values } from 'lodash';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 
-// ** Custom Components
-import TextFeedback from "../../components/lms-page/textFeedback";
 // ** Mutation
-import { useCreateLmsFeedbackMutation } from "../../cabServer/mutations/__generated__/lmsRating";
-import { valueToObjectRepresentation } from "@apollo/client/utilities";
-import { values } from "lodash";
+// ** Custom Components
+import TextFeedback from '../../components/lms-page/textFeedback';
+import SubmitBtn from './submitBtn';
 
 type LMSfeedbackProps = {
   slug: string;
 };
 
 const labels: { [index: string]: string } = {
-  1: "Useless",
-  2: "Poor",
-  3: "Ok",
-  4: "Good",
-  5: "Excellent",
+  1: 'Useless',
+  2: 'Poor',
+  3: 'Ok',
+  4: 'Good',
+  5: 'Excellent',
 };
 
 function getLabelText(rating: number) {
-  return `${rating} Star${rating !== 1 ? "s" : ""}, ${labels[rating]}`;
+  return `${rating} Star${rating !== 1 ? 's' : ''}, ${labels[rating]}`;
 }
 
 export default function HoverRating({ slug }: LMSfeedbackProps) {
@@ -40,43 +41,43 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
         rating: rating,
         slug: slug,
       },
-    }
+    },
   );
-  console.log("data", data);
-  console.log("error", error);
+  console.log('data', data);
+  console.log('error', error);
 
   return (
     <>
       <Box
         sx={{
-          p: "50px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          p: '50px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
         <Typography fontSize={18} mt={2} gutterBottom>
           How would you rate the content of this page?
         </Typography>
         <Rating
-          name='hover-feedback'
-          size='large'
+          name="hover-feedback"
+          size="large"
           value={rating}
           precision={1}
           getLabelText={getLabelText}
           onChange={(
             event: any,
-            newRating: React.SetStateAction<number | null>
+            newRating: React.SetStateAction<number | null>,
           ) => {
             setRating(newRating);
           }}
           onChangeActive={(
             event: any,
-            newHover: React.SetStateAction<number>
+            newHover: React.SetStateAction<number>,
           ) => {
             setHover(newHover);
           }}
-          emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
+          emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
         />
         {rating !== null && (
           <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
@@ -84,6 +85,9 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
       </Box>
       {rating !== null && rating < 3 && (
         <TextFeedback slug={slug} rating={rating} createRating={createRating} />
+      )}
+      {rating !== null && rating > 2 && (
+        <SubmitBtn slug={slug} rating={rating} createRating={createRating} />
       )}
     </>
   );

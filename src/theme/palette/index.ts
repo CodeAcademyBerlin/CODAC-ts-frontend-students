@@ -17,11 +17,11 @@ const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
     dark: '#f53725',
   };
 
-  const lightModeText = "58, 53, 65";
-  const darkModeText = "231, 227, 252";
+  const lightModeText = '58, 53, 65';
+  const darkModeText = '231, 227, 252';
 
   const light: PaletteOptions = {
-    mode: "light",
+    mode: 'light',
     primary: primary,
     secondary: secondary,
     text: {
@@ -44,7 +44,7 @@ const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
   };
 
   const gag: PaletteOptions = {
-    mode: "dark",
+    mode: 'dark',
     primary: {
       main: '#33FF33',
       light: '#00FF33',
@@ -72,7 +72,7 @@ const DefaultPalette = (themeName: ThemeName): PaletteOptions => {
   };
 
   const dark: PaletteOptions = {
-    mode: "dark",
+    mode: 'dark',
     primary: primary,
     secondary: secondary,
     text: {

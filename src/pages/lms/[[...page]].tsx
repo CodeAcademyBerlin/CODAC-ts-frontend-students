@@ -1,4 +1,4 @@
-import { Breadcrumbs, Typography } from '@mui/material';
+import { Breadcrumbs, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -6,6 +6,8 @@ import { getPaths } from 'src/lib/paths';
 
 import lmspages from '../../../public/assets/lmspages.json';
 import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
+// ** Custom Components
+import ContentRating from '../../components/lms-page/ratingScale';
 import {
   LMS_ASSETS_PATH,
   LMS_CONTENT_PATH,
@@ -13,7 +15,7 @@ import {
 import { getPage, getPageMdx } from '../../lib/markdown';
 import { PageData } from './lms';
 
-const lms = ({ pageData }: { pageData: PageData | null }) => {
+const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
   return pageData ? (
     <>
       <Head>
@@ -48,6 +50,12 @@ const lms = ({ pageData }: { pageData: PageData | null }) => {
             next={pageData.next}
             prev={pageData.prev}
           />
+          <Divider
+            // border-width="0px 0px"
+            border-style="solid"
+            border-color="rgb(230, 232, 240)"
+          />
+          <ContentRating slug={slug} />
         </>
       </Box>
     </>
@@ -80,14 +88,15 @@ export async function getStaticProps({
   params: { page: string[] };
 }) {
   try {
+    const slug = params.page.join('/');
     const pageData = await getPageMdx(
       '/' + params.page.join('/'),
       LMS_CONTENT_PATH,
       LMS_ASSETS_PATH,
     );
-    return { props: { pageData } };
+    return { props: { pageData, slug } };
   } catch (e) {
-    return { props: { pageData: null } };
+    return { props: { pageData: null, slug: '' } };
   }
 }
 
