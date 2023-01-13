@@ -165,71 +165,6 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type CodacOverflow = {
-  __typename?: 'CodacOverflow';
-  author?: Maybe<UsersPermissionsUserEntityResponse>;
-  comments?: Maybe<Array<Maybe<ComponentCommentsComments>>>;
-  course?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  data?: Maybe<Scalars['Date']>;
-  description?: Maybe<Scalars['String']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  slug?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type CodacOverflowCommentsArgs = {
-  filters?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type CodacOverflowEntity = {
-  __typename?: 'CodacOverflowEntity';
-  attributes?: Maybe<CodacOverflow>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type CodacOverflowEntityResponse = {
-  __typename?: 'CodacOverflowEntityResponse';
-  data?: Maybe<CodacOverflowEntity>;
-};
-
-export type CodacOverflowEntityResponseCollection = {
-  __typename?: 'CodacOverflowEntityResponseCollection';
-  data: Array<CodacOverflowEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type CodacOverflowFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<CodacOverflowFiltersInput>>>;
-  author?: InputMaybe<UsersPermissionsUserFiltersInput>;
-  comments?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
-  course?: InputMaybe<StringFilterInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  data?: InputMaybe<DateFilterInput>;
-  description?: InputMaybe<StringFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  not?: InputMaybe<CodacOverflowFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<CodacOverflowFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  slug?: InputMaybe<StringFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type CodacOverflowInput = {
-  author?: InputMaybe<Scalars['ID']>;
-  comments?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsInput>>>;
-  course?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['Date']>;
-  description?: InputMaybe<Scalars['String']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  slug?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
 export type Cohort = {
   __typename?: 'Cohort';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -849,9 +784,10 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
 
-export enum Enum_Achievement_Type {
-  Additional = 'additional',
-  Student = 'student',
+export enum Enum_Commentscommentreport_Reason {
+  BadLanguage = 'BAD_LANGUAGE',
+  Discrimination = 'DISCRIMINATION',
+  Other = 'OTHER',
 }
 
 export enum Enum_Componentelementsnotificationbanner_Type {
@@ -901,19 +837,6 @@ export enum Enum_Lead_Marketingfunnel {
   Switchup = 'switchup',
   Undefined = 'undefined',
   Wdb = 'wdb',
-}
-
-export enum Enum_Mentor_Specialization {
-  All = 'all',
-  Data = 'data',
-  Web = 'web',
-}
-
-export enum Enum_Newspost_Tags {
-  Cab = 'CAB',
-  Data = 'data',
-  Leisure = 'leisure',
-  Web = 'web',
 }
 
 export type EmailDesignerEmailTemplate = {
@@ -1014,13 +937,13 @@ export type FloatFilterInput = {
 export type GenericMorph =
   | Achievement
   | Attendance
-  | CodacOverflow
   | Cohort
+  | CommentsComment
+  | CommentsCommentReport
   | ComponentAchievementAchievement
   | ComponentAttendanceAttendanceDay
   | ComponentAttendanceAttendanceHour
   | ComponentCardsBlogCard
-  | ComponentCommentsComments
   | ComponentElementsFeature
   | ComponentElementsFeatureColumn
   | ComponentElementsFeatureRow
@@ -1052,11 +975,8 @@ export type GenericMorph =
   | I18NLocale
   | JobPost
   | Lead
-  | LmsFeedback
   | Mentor
-  | NewsPost
   | Page
-  | Spike
   | Student
   | UploadFile
   | UploadFolder
@@ -1351,65 +1271,6 @@ export type LeadInput = {
   unsubscribed?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type LmsFeedback = {
-  __typename?: 'LmsFeedback';
-  comments?: Maybe<Array<Maybe<ComponentCommentsComments>>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  issues?: Maybe<Array<Maybe<ComponentCommentsComments>>>;
-  rating?: Maybe<Scalars['Int']>;
-  slug: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type LmsFeedbackCommentsArgs = {
-  filters?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type LmsFeedbackIssuesArgs = {
-  filters?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type LmsFeedbackEntity = {
-  __typename?: 'LmsFeedbackEntity';
-  attributes?: Maybe<LmsFeedback>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type LmsFeedbackEntityResponse = {
-  __typename?: 'LmsFeedbackEntityResponse';
-  data?: Maybe<LmsFeedbackEntity>;
-};
-
-export type LmsFeedbackEntityResponseCollection = {
-  __typename?: 'LmsFeedbackEntityResponseCollection';
-  data: Array<LmsFeedbackEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type LmsFeedbackFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<LmsFeedbackFiltersInput>>>;
-  comments?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  issues?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
-  not?: InputMaybe<LmsFeedbackFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<LmsFeedbackFiltersInput>>>;
-  rating?: InputMaybe<IntFilterInput>;
-  slug?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type LmsFeedbackInput = {
-  comments?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsInput>>>;
-  issues?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsInput>>>;
-  rating?: InputMaybe<Scalars['Int']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
 export type Mentor = {
   __typename?: 'Mentor';
   avatar?: Maybe<UploadFileEntityResponse>;
@@ -1579,12 +1440,16 @@ export type MutationCreateAttendanceArgs = {
   data: AttendanceInput;
 };
 
-export type MutationCreateCodacOverflowArgs = {
-  data: CodacOverflowInput;
-};
-
 export type MutationCreateCohortArgs = {
   data: CohortInput;
+};
+
+export type MutationCreateCommentsCommentArgs = {
+  data: CommentsCommentInput;
+};
+
+export type MutationCreateCommentsCommentReportArgs = {
+  data: CommentsCommentReportInput;
 };
 
 export type MutationCreateCourseArgs = {
@@ -1607,16 +1472,8 @@ export type MutationCreateLeadArgs = {
   data: LeadInput;
 };
 
-export type MutationCreateLmsFeedbackArgs = {
-  data: LmsFeedbackInput;
-};
-
 export type MutationCreateMentorArgs = {
   data: MentorInput;
-};
-
-export type MutationCreateNewsPostArgs = {
-  data: NewsPostInput;
 };
 
 export type MutationCreatePageArgs = {
@@ -1628,10 +1485,6 @@ export type MutationCreatePageLocalizationArgs = {
   data?: InputMaybe<PageInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
-
-export type MutationCreateSpikeArgs = {
-  data: SpikeInput;
 };
 
 export type MutationCreateStudentArgs = {
@@ -1666,11 +1519,15 @@ export type MutationDeleteAttendanceArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationDeleteCodacOverflowArgs = {
+export type MutationDeleteCohortArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationDeleteCohortArgs = {
+export type MutationDeleteCommentsCommentArgs = {
+  id: Scalars['ID'];
+};
+
+export type MutationDeleteCommentsCommentReportArgs = {
   id: Scalars['ID'];
 };
 
@@ -1698,21 +1555,17 @@ export type MutationDeleteLmsFeedbackArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationDeleteMentorArgs = {
+export type MutationDeleteLmsFeedbackArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationDeleteNewsPostArgs = {
+export type MutationDeleteMentorArgs = {
   id: Scalars['ID'];
 };
 
 export type MutationDeletePageArgs = {
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
-
-export type MutationDeleteSpikeArgs = {
-  id: Scalars['ID'];
 };
 
 export type MutationDeleteStudentArgs = {
@@ -1782,13 +1635,18 @@ export type MutationUpdateAttendanceArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationUpdateCodacOverflowArgs = {
-  data: CodacOverflowInput;
+export type MutationUpdateCohortArgs = {
+  data: CohortInput;
   id: Scalars['ID'];
 };
 
-export type MutationUpdateCohortArgs = {
-  data: CohortInput;
+export type MutationUpdateCommentsCommentArgs = {
+  data: CommentsCommentInput;
+  id: Scalars['ID'];
+};
+
+export type MutationUpdateCommentsCommentReportArgs = {
+  data: CommentsCommentReportInput;
   id: Scalars['ID'];
 };
 
@@ -1822,18 +1680,8 @@ export type MutationUpdateLeadArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationUpdateLmsFeedbackArgs = {
-  data: LmsFeedbackInput;
-  id: Scalars['ID'];
-};
-
 export type MutationUpdateMentorArgs = {
   data: MentorInput;
-  id: Scalars['ID'];
-};
-
-export type MutationUpdateNewsPostArgs = {
-  data: NewsPostInput;
   id: Scalars['ID'];
 };
 
@@ -1841,11 +1689,6 @@ export type MutationUpdatePageArgs = {
   data: PageInput;
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
-
-export type MutationUpdateSpikeArgs = {
-  data: SpikeInput;
-  id: Scalars['ID'];
 };
 
 export type MutationUpdateStudentArgs = {
@@ -1884,78 +1727,6 @@ export type MutationUploadArgs = {
   info?: InputMaybe<FileInfoInput>;
   ref?: InputMaybe<Scalars['String']>;
   refId?: InputMaybe<Scalars['ID']>;
-};
-
-export type MutationVoteVsBattleArgs = {
-  id: Scalars['ID'];
-  option: Scalars['Int'];
-};
-
-export type NewsPost = {
-  __typename?: 'NewsPost';
-  author?: Maybe<UsersPermissionsUserEntityResponse>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  image?: Maybe<UploadFileRelationResponseCollection>;
-  likes?: Maybe<UsersPermissionsUserRelationResponseCollection>;
-  post?: Maybe<Scalars['String']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  tags?: Maybe<Enum_Newspost_Tags>;
-  title?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type NewsPostImageArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type NewsPostLikesArgs = {
-  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type NewsPostEntity = {
-  __typename?: 'NewsPostEntity';
-  attributes?: Maybe<NewsPost>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type NewsPostEntityResponse = {
-  __typename?: 'NewsPostEntityResponse';
-  data?: Maybe<NewsPostEntity>;
-};
-
-export type NewsPostEntityResponseCollection = {
-  __typename?: 'NewsPostEntityResponseCollection';
-  data: Array<NewsPostEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type NewsPostFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<NewsPostFiltersInput>>>;
-  author?: InputMaybe<UsersPermissionsUserFiltersInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  likes?: InputMaybe<UsersPermissionsUserFiltersInput>;
-  not?: InputMaybe<NewsPostFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<NewsPostFiltersInput>>>;
-  post?: InputMaybe<StringFilterInput>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  tags?: InputMaybe<StringFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type NewsPostInput = {
-  author?: InputMaybe<Scalars['ID']>;
-  image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  likes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  post?: InputMaybe<Scalars['String']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  tags?: InputMaybe<Enum_Newspost_Tags>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type Page = {
@@ -2124,23 +1895,33 @@ export type QueryAttendancesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type QueryCodacOverflowArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-export type QueryCodacOverflowsArgs = {
-  filters?: InputMaybe<CodacOverflowFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
 export type QueryCohortArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
 export type QueryCohortsArgs = {
   filters?: InputMaybe<CohortFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QueryCommentsCommentArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QueryCommentsCommentReportArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QueryCommentsCommentReportsArgs = {
+  filters?: InputMaybe<CommentsCommentReportFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QueryCommentsCommentsArgs = {
+  filters?: InputMaybe<CommentsCommentFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -2206,16 +1987,6 @@ export type QueryLeadsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type QueryLmsFeedbackArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-export type QueryLmsFeedbacksArgs = {
-  filters?: InputMaybe<LmsFeedbackFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
 export type QueryMentorArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2223,17 +1994,6 @@ export type QueryMentorArgs = {
 export type QueryMentorsArgs = {
   filters?: InputMaybe<MentorFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type QueryNewsPostArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-export type QueryNewsPostsArgs = {
-  filters?: InputMaybe<NewsPostFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2245,17 +2005,6 @@ export type QueryPageArgs = {
 export type QueryPagesArgs = {
   filters?: InputMaybe<PageFiltersInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type QuerySpikeArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-export type QuerySpikesArgs = {
-  filters?: InputMaybe<SpikeFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -2327,64 +2076,6 @@ export type ResponseCollectionMeta = {
   pagination: Pagination;
 };
 
-export type Spike = {
-  __typename?: 'Spike';
-  content?: Maybe<Scalars['String']>;
-  courses?: Maybe<CourseRelationResponseCollection>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  day?: Maybe<Scalars['Int']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  recording?: Maybe<UploadFileEntityResponse>;
-  title?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type SpikeCoursesArgs = {
-  filters?: InputMaybe<CourseFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type SpikeEntity = {
-  __typename?: 'SpikeEntity';
-  attributes?: Maybe<Spike>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type SpikeEntityResponse = {
-  __typename?: 'SpikeEntityResponse';
-  data?: Maybe<SpikeEntity>;
-};
-
-export type SpikeEntityResponseCollection = {
-  __typename?: 'SpikeEntityResponseCollection';
-  data: Array<SpikeEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type SpikeFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<SpikeFiltersInput>>>;
-  content?: InputMaybe<StringFilterInput>;
-  courses?: InputMaybe<CourseFiltersInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  day?: InputMaybe<IntFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  not?: InputMaybe<SpikeFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<SpikeFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type SpikeInput = {
-  content?: InputMaybe<Scalars['String']>;
-  courses?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  day?: InputMaybe<Scalars['Int']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  recording?: InputMaybe<Scalars['ID']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
 export type StringFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -2428,12 +2119,6 @@ export type Student = {
   start_date?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   user?: Maybe<UsersPermissionsUserEntityResponse>;
-};
-
-export type StudentAchievementsArgs = {
-  filters?: InputMaybe<AchievementFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type StudentCoursesArgs = {
