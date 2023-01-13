@@ -1,19 +1,19 @@
-import * as React from 'react';
-// ** MUI Imports
-import Card from '@mui/material/Card';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+// ** MUI Imports
+import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { styled } from '@mui/material/styles';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import ChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
+import VoteOutline from 'mdi-material-ui/VoteOutline';
+import * as React from 'react';
 
 // ** Icons Imports
 import { VsBattleEntity } from '../../../cabServer/global/__generated__/types';
-import VoteOutline from 'mdi-material-ui/VoteOutline';
-import DenseTable from './BattleTable';
-import ChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
 import { useVoteVsBattleMutation } from '../../../cabServer/mutations/__generated__/battles';
+import DenseTable from './BattleTable';
 
 type BattleCardProps = {
   vsBattle: VsBattleEntity;

@@ -1,16 +1,17 @@
+import { GetServerSideProps } from 'next/types';
 import React, { useEffect, useState } from 'react';
-import BattleCard from '../components/battles-page/BattleCard';
+
 import {
   VsBattle,
   VsBattleEntity,
 } from '../../cabServer/global/__generated__/types';
-import { useGetVsBattlesQuery } from '../../cabServer/queries/__generated__/battles';
-import { GetServerSideProps } from 'next/types';
-import { initializeApollo } from '../lib/apolloClient';
 import {
   useVoteVsBattleMutation,
   VoteVsBattleDocument,
 } from '../../cabServer/mutations/__generated__/battles';
+import { useGetVsBattlesQuery } from '../../cabServer/queries/__generated__/battles';
+import BattleCard from '../components/battles-page/BattleCard';
+import { initializeApollo } from '../lib/apolloClient';
 
 type Props = {};
 
@@ -32,6 +33,7 @@ function Battle({}: Props) {
 
   useEffect(() => {
     refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mutationData]);
 
   const vsBattles = data?.vsBattles?.data || [];
