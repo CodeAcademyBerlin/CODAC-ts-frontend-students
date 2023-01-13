@@ -6,6 +6,9 @@ import Avatar from '@mui/material/Avatar'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
+import ThumbUp from "mdi-material-ui/ThumbUp"
+import Tooltip from '@mui/material/Tooltip';
+
 import { NewsPostEntity } from "../../cabServer/global/__generated__/types"
 
 
@@ -18,7 +21,6 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
     year: "2-digit",
   });
     
-    
   return (
     <Card sx={{ position: 'relative' }}>
       <CardContent>
@@ -26,7 +28,7 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
         avatar={<Avatar>U</Avatar>}
         title={newsPost.attributes?.author?.data?.attributes?.username}
         subheader={updatedDate}
-         />
+      />
       </CardContent>
           {newsPost.attributes?.image?.data?.map((oneimage, i: number) =>
               <CardMedia component={"img"} height={"274"} image={oneimage.attributes?.url || "no image"} key={i} />
@@ -39,16 +41,14 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
         {/* show likes if likes exist */}
        
             {newsPost.attributes?.likes?.data && newsPost.attributes?.likes?.data?.length > 0 ?
-                (<div>
-                    <Typography variant='caption'>Liked by:</Typography> 
-                    {newsPost.attributes?.likes?.data?.map((like, i: number) =>
-                    <div key={i}>
-                        <Typography variant='caption'>{like.attributes?.username}</Typography>
-                    </div>
-                        )}
+            (<div>
+              <Tooltip title={newsPost.attributes?.likes?.data?.map((like) =>
+              like.attributes?.username)} placement="right-end">
+                <ThumbUp />
+              </Tooltip>
+                  <Typography variant='caption'>{" "}{newsPost.attributes?.likes?.data?.length}</Typography>     
                 </div>) : ""
-                }
-                 
+              }       
         </Box>
       </CardContent>
     </Card>
