@@ -1,5 +1,5 @@
 query getNews {
-  newsPosts {
+  newsPosts(sort: "updatedAt:desc") {
     data {
       attributes {
         title

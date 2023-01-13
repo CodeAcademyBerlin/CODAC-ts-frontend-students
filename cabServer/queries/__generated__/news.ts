@@ -6,7 +6,7 @@ const defaultOptions = {} as const;
 
 export const GetNewsDocument = gql`
     query getNews {
-  newsPosts {
+  newsPosts(sort: "updatedAt:desc") {
     data {
       attributes {
         title
