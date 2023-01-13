@@ -50,11 +50,7 @@ const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
             next={pageData.next}
             prev={pageData.prev}
           />
-          <Divider
-            // border-width="0px 0px"
-            border-style="solid"
-            border-color="rgb(230, 232, 240)"
-          />
+          <Divider style={{ width: '75%' }} />
           <ContentRating slug={slug} />
         </>
       </Box>

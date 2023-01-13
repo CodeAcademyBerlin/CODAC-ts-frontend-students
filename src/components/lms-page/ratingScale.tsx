@@ -1,12 +1,13 @@
 import { valueToObjectRepresentation } from '@apollo/client/utilities';
 import StarIcon from '@mui/icons-material/Star';
+import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/lmsRating';
 import { values } from 'lodash';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 // ** Mutation
 // ** Custom Components
@@ -46,6 +47,10 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
   console.log('data', data);
   console.log('error', error);
 
+  // useEffect(() => {
+  //   setRating();
+  // }, [rating]);
+
   return (
     <>
       <Box
@@ -84,7 +89,12 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
         )}
       </Box>
       {rating !== null && rating < 3 && (
-        <TextFeedback slug={slug} rating={rating} createRating={createRating} />
+        <TextFeedback
+          slug={slug}
+          rating={rating}
+          // setRating={setRating}
+          createRating={createRating}
+        />
       )}
       {rating !== null && rating > 2 && (
         <SubmitBtn slug={slug} rating={rating} createRating={createRating} />

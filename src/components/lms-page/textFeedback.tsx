@@ -3,16 +3,22 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import { MouseEvent, useState } from 'react';
+import React from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 
 type LMSfeedbackProps = {
   rating: number;
   slug: string;
   createRating: () => void;
+  // setRating: React.SetStateAction<number | null>;
 };
 
-export default function TextFeedback({ createRating }: LMSfeedbackProps) {
+export default function TextFeedback({
+  createRating,
+}: // setRating,
+LMSfeedbackProps) {
   const [message, setMessage] = useState<string>('');
+  const [rating, setRating] = React.useState<number | any>();
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setMessage(event.target.value);
@@ -25,6 +31,11 @@ export default function TextFeedback({ createRating }: LMSfeedbackProps) {
     } catch (e) {
       ({ error: 'e.message' });
     }
+  };
+
+  const handleCancel = (event: MouseEvent<HTMLButtonElement>) => {
+    // setRating = React.useState<number | any>(null);
+    setRating(null);
   };
 
   return (
@@ -46,7 +57,9 @@ export default function TextFeedback({ createRating }: LMSfeedbackProps) {
           onChange={handleChange}
         />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button sx={{ mt: 3, ml: 1 }}>Cancel</Button>
+          <Button sx={{ mt: 3, ml: 1 }} onClick={handleCancel} type="submit">
+            Cancel
+          </Button>
           <Button
             onClick={handleSubmit}
             sx={{ mt: 3, ml: 1 }}
