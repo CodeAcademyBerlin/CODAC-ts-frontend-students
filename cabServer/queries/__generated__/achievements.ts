@@ -6,7 +6,7 @@ const defaultOptions = {} as const;
 
 export const GetAchievementsDocument = gql`
     query getAchievements {
-  achievements {
+  achievements(sort: "id:asc", pagination: {pageSize: 100}) {
     data {
       id
       attributes {
@@ -21,6 +21,7 @@ export const GetAchievementsDocument = gql`
         description
         points
         type
+        course
       }
     }
   }
@@ -56,4 +57,4 @@ export type GetAchievementsQueryResult = Apollo.QueryResult<GetAchievementsQuery
 export type GetAchievementsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetAchievementsQuery = { __typename?: 'Query', achievements?: { __typename?: 'AchievementEntityResponseCollection', data: Array<{ __typename?: 'AchievementEntity', id?: string | null, attributes?: { __typename?: 'Achievement', name?: string | null, description?: string | null, points?: number | null, type?: Types.Enum_Achievement_Type | null, badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
+export type GetAchievementsQuery = { __typename?: 'Query', achievements?: { __typename?: 'AchievementEntityResponseCollection', data: Array<{ __typename?: 'AchievementEntity', id?: string | null, attributes?: { __typename?: 'Achievement', name?: string | null, description?: string | null, points?: number | null, type?: Types.Enum_Achievement_Type | null, course?: string | null, badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
