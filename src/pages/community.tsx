@@ -14,6 +14,7 @@ import {
 } from '../../cabServer/global/__generated__/types';
 import { GetCohortsDocument } from '../../cabServer/queries/__generated__/cohorts';
 import { MentorsDocument } from '../../cabServer/queries/__generated__/mentors';
+import logo from '../../public/assets/logo.png';
 import { initializeApollo } from '../lib/apolloClient';
 
 export const MentorsContainer = styled('div')`
@@ -132,8 +133,7 @@ function Community({
                     alt={mentor.attributes?.firstname || 'avatar'}
                     style={{ marginLeft: `-${i}em` }}
                     src={
-                      mentor.attributes.avatar?.data?.attributes?.url ||
-                      'assets/logo.png'
+                      mentor.attributes.avatar?.data?.attributes?.url || logo
                     }
                     width={50}
                     height={50}
@@ -193,8 +193,7 @@ function Community({
                       width={50}
                       height={50}
                       src={
-                        cohort.attributes.logo?.data?.attributes?.url ||
-                        'assets/logo.png'
+                        cohort.attributes.logo?.data?.attributes?.url || logo
                       }
                       alt={cohort.attributes.name || 'Cohort'}
                     />
@@ -215,7 +214,7 @@ function Community({
                               height={50}
                               src={
                                 student.attributes?.avatar?.data?.attributes
-                                  ?.url || 'assets/logo.png'
+                                  ?.url || logo
                               }
                               alt={
                                 student.attributes?.firstname +
