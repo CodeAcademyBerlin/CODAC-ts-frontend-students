@@ -2,6 +2,7 @@ import { Breadcrumbs, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
+import LmsComments from 'src/components/lms-page/lmsComments';
 import { getPaths } from 'src/lib/paths';
 
 import lmspages from '../../../public/assets/lmspages.json';
@@ -51,7 +52,11 @@ const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
             prev={pageData.prev}
           />
           <Divider style={{ width: '75%' }} />
+
           <ContentRating slug={slug} />
+
+          <Divider style={{ width: '75%' }} />
+          <LmsComments />
         </>
       </Box>
     </>
