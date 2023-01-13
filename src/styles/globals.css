@@ -60,3 +60,8 @@ code[class*="language-"] {
 #dynamic-overflow-link:hover{
   color: #4ed6ca;
 }
+
+#overflow-text-style{
+  text-align: start;
+  flex-wrap: wrap;
+}
