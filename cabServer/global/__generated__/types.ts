@@ -851,11 +851,7 @@ export type DateTimeFilterInput = {
 
 export enum Enum_Achievement_Type {
   Additional = 'additional',
-<<<<<<< HEAD
   Student = 'student',
-=======
-  Student = 'student'
->>>>>>> overflow
 }
 
 export enum Enum_Componentelementsnotificationbanner_Type {
@@ -918,19 +914,6 @@ export enum Enum_Newspost_Tags {
   Data = 'data',
   Leisure = 'leisure',
   Web = 'web',
-}
-
-export enum Enum_Mentor_Specialization {
-  All = 'all',
-  Data = 'data',
-  Web = 'web'
-}
-
-export enum Enum_Newspost_Tags {
-  Cab = 'CAB',
-  Data = 'data',
-  Leisure = 'leisure',
-  Web = 'web'
 }
 
 export type EmailDesignerEmailTemplate = {
@@ -1028,7 +1011,6 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-<<<<<<< HEAD
 export type GenericMorph =
   | Achievement
   | Attendance
@@ -1082,9 +1064,6 @@ export type GenericMorph =
   | UsersPermissionsRole
   | UsersPermissionsUser
   | VsBattle;
-=======
-export type GenericMorph = Achievement | Attendance | CodacOverflow | Cohort | ComponentAchievementAchievement | ComponentAttendanceAttendanceDay | ComponentAttendanceAttendanceHour | ComponentCardsBlogCard | ComponentCommentsComments | ComponentElementsFeature | ComponentElementsFeatureColumn | ComponentElementsFeatureRow | ComponentElementsFooterSection | ComponentElementsLogos | ComponentElementsNotificationBanner | ComponentElementsPlan | ComponentElementsTestimonial | ComponentHolidaysHolidays | ComponentHoursHours | ComponentLayoutFooter | ComponentLayoutNavbar | ComponentLinksButton | ComponentLinksButtonLink | ComponentLinksLink | ComponentMetaMetadata | ComponentSectionsBottomActions | ComponentSectionsFeatureColumnsGroup | ComponentSectionsFeatureRowsGroup | ComponentSectionsHero | ComponentSectionsLargeVideo | ComponentSectionsLeadForm | ComponentSectionsPricing | ComponentSectionsRichText | ComponentSectionsTestimonialsGroup | Course | EmailDesignerEmailTemplate | Holiday | I18NLocale | JobPost | Lead | LmsFeedback | Mentor | NewsPost | Page | Spike | Student | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VsBattle;
->>>>>>> overflow
 
 export type Holiday = {
   __typename?: 'Holiday';
@@ -1382,20 +1361,12 @@ export type LmsFeedback = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type LmsFeedbackCommentsArgs = {
   filters?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type LmsFeedbackIssuesArgs = {
   filters?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
@@ -1612,19 +1583,10 @@ export type MutationCreateCodacOverflowArgs = {
   data: CodacOverflowInput;
 };
 
-export type MutationCreateCodacOverflowArgs = {
-  data: CodacOverflowInput;
-};
-
-
 export type MutationCreateCohortArgs = {
   data: CohortInput;
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type MutationCreateCourseArgs = {
   data: CourseInput;
 };
@@ -1649,11 +1611,6 @@ export type MutationCreateLmsFeedbackArgs = {
   data: LmsFeedbackInput;
 };
 
-export type MutationCreateLmsFeedbackArgs = {
-  data: LmsFeedbackInput;
-};
-
-
 export type MutationCreateMentorArgs = {
   data: MentorInput;
 };
@@ -1661,11 +1618,6 @@ export type MutationCreateMentorArgs = {
 export type MutationCreateNewsPostArgs = {
   data: NewsPostInput;
 };
-
-export type MutationCreateNewsPostArgs = {
-  data: NewsPostInput;
-};
-
 
 export type MutationCreatePageArgs = {
   data: PageInput;
@@ -1681,11 +1633,6 @@ export type MutationCreatePageLocalizationArgs = {
 export type MutationCreateSpikeArgs = {
   data: SpikeInput;
 };
-
-export type MutationCreateSpikeArgs = {
-  data: SpikeInput;
-};
-
 
 export type MutationCreateStudentArgs = {
   data: StudentInput;
@@ -1723,19 +1670,10 @@ export type MutationDeleteCodacOverflowArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationDeleteCodacOverflowArgs = {
-  id: Scalars['ID'];
-};
-
-
 export type MutationDeleteCohortArgs = {
   id: Scalars['ID'];
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type MutationDeleteCourseArgs = {
   id: Scalars['ID'];
 };
@@ -1760,11 +1698,6 @@ export type MutationDeleteLmsFeedbackArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationDeleteLmsFeedbackArgs = {
-  id: Scalars['ID'];
-};
-
-
 export type MutationDeleteMentorArgs = {
   id: Scalars['ID'];
 };
@@ -1772,11 +1705,6 @@ export type MutationDeleteMentorArgs = {
 export type MutationDeleteNewsPostArgs = {
   id: Scalars['ID'];
 };
-
-export type MutationDeleteNewsPostArgs = {
-  id: Scalars['ID'];
-};
-
 
 export type MutationDeletePageArgs = {
   id: Scalars['ID'];
@@ -1786,11 +1714,6 @@ export type MutationDeletePageArgs = {
 export type MutationDeleteSpikeArgs = {
   id: Scalars['ID'];
 };
-
-export type MutationDeleteSpikeArgs = {
-  id: Scalars['ID'];
-};
-
 
 export type MutationDeleteStudentArgs = {
   id: Scalars['ID'];
@@ -1864,21 +1787,11 @@ export type MutationUpdateCodacOverflowArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationUpdateCodacOverflowArgs = {
-  data: CodacOverflowInput;
-  id: Scalars['ID'];
-};
-
-
 export type MutationUpdateCohortArgs = {
   data: CohortInput;
   id: Scalars['ID'];
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type MutationUpdateCourseArgs = {
   data: CourseInput;
   id: Scalars['ID'];
@@ -1914,12 +1827,6 @@ export type MutationUpdateLmsFeedbackArgs = {
   id: Scalars['ID'];
 };
 
-export type MutationUpdateLmsFeedbackArgs = {
-  data: LmsFeedbackInput;
-  id: Scalars['ID'];
-};
-
-
 export type MutationUpdateMentorArgs = {
   data: MentorInput;
   id: Scalars['ID'];
@@ -1929,12 +1836,6 @@ export type MutationUpdateNewsPostArgs = {
   data: NewsPostInput;
   id: Scalars['ID'];
 };
-
-export type MutationUpdateNewsPostArgs = {
-  data: NewsPostInput;
-  id: Scalars['ID'];
-};
-
 
 export type MutationUpdatePageArgs = {
   data: PageInput;
@@ -1946,12 +1847,6 @@ export type MutationUpdateSpikeArgs = {
   data: SpikeInput;
   id: Scalars['ID'];
 };
-
-export type MutationUpdateSpikeArgs = {
-  data: SpikeInput;
-  id: Scalars['ID'];
-};
-
 
 export type MutationUpdateStudentArgs = {
   data: StudentInput;
@@ -1991,10 +1886,6 @@ export type MutationUploadArgs = {
   refId?: InputMaybe<Scalars['ID']>;
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type MutationVoteVsBattleArgs = {
   id: Scalars['ID'];
   option: Scalars['Int'];
@@ -2013,20 +1904,12 @@ export type NewsPost = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type NewsPostImageArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type NewsPostLikesArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
@@ -2252,19 +2135,6 @@ export type QueryCodacOverflowsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type QueryCodacOverflowArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryCodacOverflowsArgs = {
-  filters?: InputMaybe<CodacOverflowFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
 export type QueryCohortArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2275,10 +2145,6 @@ export type QueryCohortsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type QueryCourseArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2350,18 +2216,6 @@ export type QueryLmsFeedbacksArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type QueryLmsFeedbackArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryLmsFeedbacksArgs = {
-  filters?: InputMaybe<LmsFeedbackFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
 export type QueryMentorArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -2382,19 +2236,6 @@ export type QueryNewsPostsArgs = {
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
-
-export type QueryNewsPostArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryNewsPostsArgs = {
-  filters?: InputMaybe<NewsPostFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
 
 export type QueryPageArgs = {
   id?: InputMaybe<Scalars['ID']>;
@@ -2419,19 +2260,6 @@ export type QuerySpikesArgs = {
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
-
-export type QuerySpikeArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QuerySpikesArgs = {
-  filters?: InputMaybe<SpikeFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
 
 export type QueryStudentArgs = {
   id?: InputMaybe<Scalars['ID']>;
@@ -2511,10 +2339,6 @@ export type Spike = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> overflow
 export type SpikeCoursesArgs = {
   filters?: InputMaybe<CourseFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
@@ -2611,13 +2435,6 @@ export type StudentAchievementsArgs = {
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
-
-export type StudentAchievementsArgs = {
-  filters?: InputMaybe<AchievementFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
 
 export type StudentCoursesArgs = {
   filters?: InputMaybe<CourseFiltersInput>;

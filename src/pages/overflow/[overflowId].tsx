@@ -11,6 +11,8 @@ import React, { useState } from 'react';
 import { CodacOverflowEntity } from '../../../cabServer/global/__generated__/types';
 //import generated query
 import { GetCodacOverflowsDocument } from '../../../cabServer/queries/__generated__/overflow';
+//import generated query
+import { CodacOverflowByIdDocument } from '../../../cabServer/queries/__generated__/overflowOne';
 //import Apollo für ServerSideProps
 import { initializeApollo } from '../../lib/apolloClient';
 
@@ -26,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const OverflowTopic = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [result, setResult] = useState(data.codacOverflows.data);
+  const [result, setResult] = useState(data.codacOverflow.data);
   console.log('result data', result);
 
   return (
@@ -62,12 +64,12 @@ const OverflowTopic = ({
               alignItems: 'center',
             }}
           >
-            {result &&
+            {/* {result &&
               result.map((topic: CodacOverflowEntity) => (
                 <Item key={topic.id}>
                   <h3>{topic.attributes?.title}</h3>
                 </Item>
-              ))}
+              ))} */}
           </Stack>
           Overflow-Topic
         </Paper>
@@ -78,11 +80,14 @@ const OverflowTopic = ({
 
 export default OverflowTopic;
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx, context) => {
   try {
+    const { overflowId } = context.params;
+    const idNumber = 1;
     const client = initializeApollo(null, ctx.req);
     const { data, error } = await client.query({
-      query: GetCodacOverflowsDocument,
+      query: CodacOverflowByIdDocument,
+      variables: { id: idNumber },
     });
     console.log('Fetch was successful, see success:', data);
     return {
