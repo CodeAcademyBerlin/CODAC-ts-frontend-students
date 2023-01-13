@@ -1,7 +1,10 @@
+import 'react-toastify/dist/ReactToastify.css';
+
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { MouseEvent, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 type LMSfeedbackProps = {
   rating: number;
@@ -14,6 +17,9 @@ export default function TextFeedback({ createRating }: LMSfeedbackProps) {
     event.preventDefault();
     try {
       createRating();
+      toast.success('Thank you for your feedback', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     } catch (e) {
       ({ error: 'e.message' });
     }

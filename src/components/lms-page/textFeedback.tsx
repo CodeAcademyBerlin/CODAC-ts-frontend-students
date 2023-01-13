@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import React from 'react';
 import { MouseEvent, useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 type LMSfeedbackProps = {
   rating: number;
@@ -28,6 +29,9 @@ LMSfeedbackProps) {
     event.preventDefault();
     try {
       createRating();
+      toast.success('Thank you for your feedback', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     } catch (e) {
       ({ error: 'e.message' });
     }
