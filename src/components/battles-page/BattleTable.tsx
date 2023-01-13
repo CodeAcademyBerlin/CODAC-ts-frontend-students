@@ -16,10 +16,12 @@ function BattleTable({ option1, option2 }: Props) {
         marginBottom: '1em',
       }}
     >
-      <tr>
-        <th>{option1}</th>
-        <th>{option2}</th>
-      </tr>
+      <tbody>
+        <tr>
+          <th>{option1}</th>
+          <th>{option2}</th>
+        </tr>
+      </tbody>
     </table>
   );
 }
