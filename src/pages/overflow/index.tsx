@@ -1,5 +1,6 @@
 // ** MUI Imports
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
@@ -98,24 +99,38 @@ const Overflow = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            position: 'relative',
           }}
           noValidate
           autoComplete="off"
         >
           <form onSubmit={handleSearch}>
-            <div>
-              <TextField
-                id="outlined-search"
-                value={searchedTopic}
-                label="Search for topics"
-                name="search"
-                type="search"
-                onChange={(e) => {
-                  setSearchedTopic(e.target.value);
-                }}
-              />
-            </div>
+            <TextField
+              id="outlined-search"
+              value={searchedTopic}
+              label="Search for topics"
+              name="search"
+              type="search"
+              onChange={(e) => {
+                setSearchedTopic(e.target.value);
+              }}
+            />
           </form>
+          <StyledLink href={'overflow/newQuestion'}>
+            <Button
+              sx={{
+                mt: 3,
+                ml: 1,
+                position: 'absolute',
+                top: '0',
+                right: '10px',
+              }}
+              type="submit"
+              variant="contained"
+            >
+              Ask a question
+            </Button>
+          </StyledLink>
         </Box>
 
         <Stack
