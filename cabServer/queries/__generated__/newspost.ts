@@ -5,24 +5,23 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const GetNewsDocument = gql`
-  query getNews {
-    newsPosts {
-      data {
-        attributes {
-          post
-          post
-          author {
-            data {
-              attributes {
-                email
-                student {
-                  data {
-                    attributes {
-                      avatar {
-                        data {
-                          attributes {
-                            url
-                          }
+    query getNews {
+  newsPosts {
+    data {
+      attributes {
+        post
+        post
+        author {
+          data {
+            attributes {
+              email
+              student {
+                data {
+                  attributes {
+                    avatar {
+                      data {
+                        attributes {
+                          url
                         }
                       }
                     }
@@ -35,7 +34,8 @@ export const GetNewsDocument = gql`
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useGetNewsQuery__
@@ -52,74 +52,18 @@ export const GetNewsDocument = gql`
  *   },
  * });
  */
-export function useGetNewsQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetNewsQuery, GetNewsQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetNewsQuery, GetNewsQueryVariables>(
-    GetNewsDocument,
-    options,
-  );
-}
-export function useGetNewsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetNewsQuery,
-    GetNewsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetNewsQuery, GetNewsQueryVariables>(
-    GetNewsDocument,
-    options,
-  );
-}
+export function useGetNewsQuery(baseOptions?: Apollo.QueryHookOptions<GetNewsQuery, GetNewsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetNewsQuery, GetNewsQueryVariables>(GetNewsDocument, options);
+      }
+export function useGetNewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNewsQuery, GetNewsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetNewsQuery, GetNewsQueryVariables>(GetNewsDocument, options);
+        }
 export type GetNewsQueryHookResult = ReturnType<typeof useGetNewsQuery>;
 export type GetNewsLazyQueryHookResult = ReturnType<typeof useGetNewsLazyQuery>;
-export type GetNewsQueryResult = Apollo.QueryResult<
-  GetNewsQuery,
-  GetNewsQueryVariables
->;
-export type GetNewsQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type GetNewsQueryResult = Apollo.QueryResult<GetNewsQuery, GetNewsQueryVariables>;
+export type GetNewsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export type GetNewsQuery = {
-  __typename?: 'Query';
-  newsPosts?: {
-    __typename?: 'NewsPostEntityResponseCollection';
-    data: Array<{
-      __typename?: 'NewsPostEntity';
-      attributes?: {
-        __typename?: 'NewsPost';
-        post?: string | null;
-        author?: {
-          __typename?: 'UsersPermissionsUserEntityResponse';
-          data?: {
-            __typename?: 'UsersPermissionsUserEntity';
-            attributes?: {
-              __typename?: 'UsersPermissionsUser';
-              email: string;
-              student?: {
-                __typename?: 'StudentEntityResponse';
-                data?: {
-                  __typename?: 'StudentEntity';
-                  attributes?: {
-                    __typename?: 'Student';
-                    avatar?: {
-                      __typename?: 'UploadFileEntityResponse';
-                      data?: {
-                        __typename?: 'UploadFileEntity';
-                        attributes?: {
-                          __typename?: 'UploadFile';
-                          url: string;
-                        } | null;
-                      } | null;
-                    } | null;
-                  } | null;
-                } | null;
-              } | null;
-            } | null;
-          } | null;
-        } | null;
-      } | null;
-    }>;
-  } | null;
-};
+
+export type GetNewsQuery = { __typename?: 'Query', newsPosts?: { __typename?: 'NewsPostEntityResponseCollection', data: Array<{ __typename?: 'NewsPostEntity', attributes?: { __typename?: 'NewsPost', post?: string | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', email: string, student?: { __typename?: 'StudentEntityResponse', data?: { __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null }> } | null };
