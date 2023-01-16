@@ -1,0 +1,22 @@
+query getLMSFeedbacks {
+  lmsFeedbacks(filters: { slug: { eq: "testtest" } }) {
+    data {
+      id
+      attributes {
+        slug
+        comments {
+          id
+          message
+          timestamp
+          author {
+            data {
+              attributes {
+                username
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
