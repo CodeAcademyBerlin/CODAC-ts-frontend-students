@@ -11,13 +11,17 @@ import VoteOutline from 'mdi-material-ui/VoteOutline';
 import * as React from 'react';
 
 // ** Icons Imports
-import { VsBattleEntity } from '../../../cabServer/global/__generated__/types';
+import {
+  UsersPermissionsMe,
+  VsBattleEntity,
+} from '../../../cabServer/global/__generated__/types';
 import { useVoteVsBattleMutation } from '../../../cabServer/mutations/__generated__/battles';
 import DenseTable from './BattleTable';
 
 type BattleCardProps = {
   vsBattle: VsBattleEntity;
   handleVote: (vsBattleId: string, option: number) => void;
+  user: UsersPermissionsMe;
 };
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -41,7 +45,7 @@ const BattleCard = (props: BattleCardProps) => {
     setExpanded(!expanded);
   };
 
-  console.log('battleId', props.vsBattle.id);
+  console.log('user', props.user);
 
   return (
     <Card style={{ marginBottom: '2em' }}>
@@ -95,18 +99,28 @@ const BattleCard = (props: BattleCardProps) => {
           </Button>
         </div>
       </CardContent>
-      <DenseTable
-        option1={props.vsBattle?.attributes?.option_1_voters?.data.length || 0}
-        option2={props.vsBattle?.attributes?.option_2_voters?.data.length || 0}
-      />
-      <ExpandMore
-        expand={expanded}
-        onClick={handleExpandClick}
-        aria-expanded={expanded}
-        aria-label="show more"
-      >
-        <ChevronDoubleDown color="primary" />
-      </ExpandMore>
+      {props.user.id ? (
+        <div>
+          <DenseTable
+            option1={
+              props.vsBattle?.attributes?.option_1_voters?.data.length || 0
+            }
+            option2={
+              props.vsBattle?.attributes?.option_2_voters?.data.length || 0
+            }
+          />
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ChevronDoubleDown color="primary" />
+          </ExpandMore>
+        </div>
+      ) : (
+        <></>
+      )}
     </Card>
   );
 };
