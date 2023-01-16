@@ -8,10 +8,7 @@ export default function LmsComments() {
       sx={{
         p: 5,
         display: 'flex',
-        // flexDirection: 'column',
-        // alignItems: 'center',
-        justifyContent: 'flex-start',
-        textAlign: 'left',
+        width: '50%',
       }}
     >
       <Typography variant="h5">Comments</Typography>
