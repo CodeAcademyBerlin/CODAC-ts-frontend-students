@@ -61,8 +61,6 @@ const achievements = ({
         return data;
     };
 
-
-
     return (
         <div>
             <Box><Typography mb={2} variant='h5'>📃 Achievement List 📃</Typography>
@@ -99,9 +97,9 @@ const achievements = ({
                                         uniqueFields.push(achievementEntity.attributes?.course);
                                     }
                                 })}
+
                             {uniqueFields &&
                                 uniqueFields.map((course, i) => {
-                                    console.log('course', course)
                                     return (
                                         <div>
                                             <Grid item xs={12} sm={6} md={4} key={i}>
