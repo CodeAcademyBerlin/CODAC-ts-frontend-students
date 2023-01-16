@@ -44,12 +44,12 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
       },
     },
   );
-  console.log('data', data);
-  console.log('error', error);
+  // console.log('data', data);
+  // console.log('error', error);
 
-  // useEffect(() => {
-  //   setRating();
-  // }, [rating]);
+  const handleCancel = (event: any) => {
+    setRating(null);
+  };
 
   return (
     <>
@@ -92,7 +92,7 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
         <TextFeedback
           slug={slug}
           rating={rating}
-          // setRating={setRating}
+          handleCancel={handleCancel}
           createRating={createRating}
         />
       )}

@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
+import { AnyARecord } from 'dns';
 import React from 'react';
 import { MouseEvent, useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
@@ -11,15 +12,14 @@ type LMSfeedbackProps = {
   rating: number;
   slug: string;
   createRating: () => void;
-  // setRating: React.SetStateAction<number | null>;
+  handleCancel: any;
 };
 
 export default function TextFeedback({
   createRating,
-}: // setRating,
-LMSfeedbackProps) {
+  handleCancel,
+}: LMSfeedbackProps) {
   const [message, setMessage] = useState<string>('');
-  const [rating, setRating] = React.useState<number | any>();
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setMessage(event.target.value);
@@ -35,11 +35,6 @@ LMSfeedbackProps) {
     } catch (e) {
       ({ error: 'e.message' });
     }
-  };
-
-  const handleCancel = (event: MouseEvent<HTMLButtonElement>) => {
-    // setRating = React.useState<number | any>(null);
-    setRating(null);
   };
 
   return (
