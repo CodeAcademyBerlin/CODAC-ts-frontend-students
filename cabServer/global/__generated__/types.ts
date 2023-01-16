@@ -1355,6 +1355,7 @@ export type LmsFeedback = {
   __typename?: 'LmsFeedback';
   comments?: Maybe<Array<Maybe<ComponentCommentsComments>>>;
   message?: Maybe<Scalars['String']>;
+  username: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   issues?: Maybe<Array<Maybe<ComponentCommentsComments>>>;
   rating?: Maybe<Scalars['Int']>;

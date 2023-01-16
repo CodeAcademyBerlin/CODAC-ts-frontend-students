@@ -7,7 +7,6 @@ import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/comment
 import * as React from 'react';
 
 type LMSfeedbackProps = {
-  message: string;
   slug: string;
 };
 
@@ -15,6 +14,7 @@ const LmsComments = (props: LMSfeedbackProps) => {
   const { data, loading, error } = useGetLmsFeedbacksQuery();
   const lmsComments = data?.lmsFeedbacks?.data || [];
   console.log('comments', lmsComments);
+
   return (
     <>
       <Box
@@ -32,7 +32,7 @@ const LmsComments = (props: LMSfeedbackProps) => {
           <Box
             sx={{
               p: 5,
-              display: 'flex',
+              // display: 'flex',
               width: '50%',
             }}
             key={lmsComment.id}
@@ -41,13 +41,16 @@ const LmsComments = (props: LMSfeedbackProps) => {
               <Grid container wrap="nowrap" spacing={2}>
                 <Grid item>
                   <Avatar
-                    alt="Remy Sharp"
-                    // src={imgLink}
+                  // alt={username}
+
+                  // src={imgLink}
                   />
                 </Grid>
                 <Grid justifyContent="left" item xs zeroMinWidth>
                   <h4 style={{ margin: 0, textAlign: 'left' }}>
-                    Michel Michel
+                    {lmsComment.attributes?.comments?.map(
+                      (comment) => comment?.author?.data?.attributes?.username,
+                    )}
                   </h4>
                   <p style={{ textAlign: 'left' }}>
                     {lmsComment.attributes?.comments?.map(
@@ -56,7 +59,9 @@ const LmsComments = (props: LMSfeedbackProps) => {
                     ;
                   </p>
                   <p style={{ textAlign: 'left', color: 'gray' }}>
-                    posted 1 minute ago
+                    {lmsComment.attributes?.comments?.map(
+                      (comment) => comment?.timestamp,
+                    )}
                   </p>
                 </Grid>
               </Grid>
