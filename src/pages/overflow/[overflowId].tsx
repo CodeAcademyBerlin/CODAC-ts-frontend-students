@@ -182,8 +182,6 @@ const OverflowTopic = ({
                 <Box
                   component="span"
                   sx={{
-                    borderBottom: (theme) =>
-                      `1px solid ${theme.palette.divider}`,
                     width: '100%',
                     display: 'flex',
                     alignItems: 'center',
@@ -240,6 +238,8 @@ const OverflowTopic = ({
                 <Box
                   component="span"
                   sx={{
+                    borderBottom: (theme) =>
+                      `1px solid ${theme.palette.divider}`,
                     width: '100%',
                     display: 'flex',
                     alignItems: 'center',
@@ -250,7 +250,7 @@ const OverflowTopic = ({
                     style={{
                       margin: '10px 0px 10px 0px',
                       marginLeft: '20%',
-                      width: '70%',
+                      width: '60%',
                     }}
                   >
                     <Item>
@@ -298,7 +298,7 @@ const OverflowTopic = ({
               style={{
                 margin: '10px 0px 10px 0px',
                 marginLeft: '20%',
-                width: '70%',
+                width: '60%',
               }}
             >
               <TextField
