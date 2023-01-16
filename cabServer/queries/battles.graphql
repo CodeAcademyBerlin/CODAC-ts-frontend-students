@@ -9,6 +9,7 @@ query getVSBattles {
         option2
         option_1_voters {
           data {
+            id
             attributes {
               username
               email
@@ -17,6 +18,7 @@ query getVSBattles {
         }
         option_2_voters {
           data {
+            id
             attributes {
               username
               email

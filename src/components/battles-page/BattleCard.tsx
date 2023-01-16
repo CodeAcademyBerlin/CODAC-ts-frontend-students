@@ -45,7 +45,29 @@ const BattleCard = (props: BattleCardProps) => {
     setExpanded(!expanded);
   };
 
-  console.log('user', props.user);
+  const option1IsVoted = () => {
+    const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
+    if (
+      option1Voters?.filter((item) => item.id === props.user.id).length === 0
+    ) {
+      return false;
+    } else return true;
+  };
+
+  const option2IsVoted = () => {
+    const option2Voters = props.vsBattle.attributes?.option_2_voters?.data;
+    if (
+      option2Voters?.filter((item) => item.id === props.user.id).length === 0
+    ) {
+      return false;
+    } else return true;
+  };
+
+  const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
+  const option2Voters = props.vsBattle.attributes?.option_2_voters?.data;
+
+  // console.log('user', props.user);
+  console.log('props.vsBattle', props.vsBattle);
 
   return (
     <Card style={{ marginBottom: '2em' }}>
@@ -72,19 +94,79 @@ const BattleCard = (props: BattleCardProps) => {
         <Typography variant="h6" sx={{ marginBottom: 2.75 }}>
           {props.vsBattle.attributes?.title}
         </Typography>
-        <Typography variant="body2" sx={{ marginBottom: 6 }}>
-          voice your opinion
-        </Typography>
+        {props.user.id ? (
+          <Typography variant="body2" sx={{ marginBottom: 6 }}>
+            voice your opinion
+          </Typography>
+        ) : (
+          <Typography variant="body2" sx={{ marginBottom: 6 }}>
+            Log in to voice your opinion
+          </Typography>
+        )}
         <div>
+          {/* {option1Voters?.filter((item) => item.id === props.user.id).length ===
+          0 ? (
+            <Button
+              variant="contained"
+              sx={{ padding: (theme) => theme.spacing(1.75, 5.5) }}
+              onClick={() => {
+                props.handleVote(props.vsBattle.id!, 1);
+              }}
+            >
+              {props.vsBattle.attributes?.option1}
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              sx={{
+                padding: (theme) => theme.spacing(1.75, 5.5),
+              }}
+              color="secondary"
+              onClick={() => {
+                props.handleVote(props.vsBattle.id!, 1);
+              }}
+            >
+              {props.vsBattle.attributes?.option1}
+            </Button>
+          )}
+          {option2Voters?.filter((item) => item.id === props.user.id).length ===
+          0 ? (
+            <Button
+              variant="contained"
+              sx={{ padding: (theme) => theme.spacing(1.75, 5.5) }}
+              onClick={() => {
+                props.handleVote(props.vsBattle.id!, 1);
+              }}
+            >
+              {props.vsBattle.attributes?.option2}
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              sx={{
+                padding: (theme) => theme.spacing(1.75, 5.5),
+              }}
+              color="secondary"
+              onClick={() => {
+                props.handleVote(props.vsBattle.id!, 1);
+              }}
+            >
+              {props.vsBattle.attributes?.option2}
+            </Button>
+          )} */}
           <Button
             variant="contained"
-            sx={{ padding: (theme) => theme.spacing(1.75, 5.5) }}
+            sx={{
+              padding: (theme) => theme.spacing(1.75, 5.5),
+              marginLeft: '2em',
+            }}
             onClick={() => {
               props.handleVote(props.vsBattle.id!, 1);
             }}
           >
             {props.vsBattle.attributes?.option1}
           </Button>
+
           <Button
             variant="contained"
             sx={{
@@ -99,7 +181,7 @@ const BattleCard = (props: BattleCardProps) => {
           </Button>
         </div>
       </CardContent>
-      {props.user.id ? (
+      {props.user.id && (
         <div>
           <DenseTable
             option1={
@@ -118,8 +200,6 @@ const BattleCard = (props: BattleCardProps) => {
             <ChevronDoubleDown color="primary" />
           </ExpandMore>
         </div>
-      ) : (
-        <></>
       )}
     </Card>
   );

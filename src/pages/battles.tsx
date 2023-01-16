@@ -21,9 +21,9 @@ import {
 import BattleCard from '../components/battles-page/BattleCard';
 import { getToken, initializeApollo } from '../lib/apolloClient';
 
-type Props = {};
+// type Props = {};
 
-type VsBattles = VsBattle[];
+// type VsBattles = VsBattle[];
 
 function Battle(
   // { }: Props, // why was this here?? Agnita
@@ -49,7 +49,7 @@ function Battle(
 
   const vsBattles = data?.vsBattles?.data || [];
 
-  console.log('user', user);
+  // console.log('user', user);
 
   return (
     <div>
@@ -94,6 +94,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { data, error } = await client.query({ query: GetMeDocument });
 
     const user = data.me;
+    console.log('user', user);
     return {
       props: user,
     };
@@ -103,3 +104,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   }
 };
+
+// can also take user from auth context
