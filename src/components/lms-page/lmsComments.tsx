@@ -13,8 +13,8 @@ type LMSfeedbackProps = {
 
 const LmsComments = (props: LMSfeedbackProps) => {
   const { data, loading, error } = useGetLmsFeedbacksQuery();
-  const comments = data?.lmsFeedbacks?.data || [];
-  console.log('comments', comments);
+  const lmsComments = data?.lmsFeedbacks?.data || [];
+  console.log('comments', lmsComments);
   return (
     <>
       <Box
@@ -27,15 +27,15 @@ const LmsComments = (props: LMSfeedbackProps) => {
         <Typography variant="h5">Comments</Typography>
       </Box>
 
-      {comments &&
-        comments.map((comment) => (
+      {lmsComments &&
+        lmsComments.map((lmsComment) => (
           <Box
             sx={{
               p: 5,
               display: 'flex',
               width: '50%',
             }}
-            key={comment.id}
+            key={lmsComment.id}
           >
             <Paper style={{ padding: '40px 20px' }}>
               <Grid container wrap="nowrap" spacing={2}>
@@ -50,16 +50,10 @@ const LmsComments = (props: LMSfeedbackProps) => {
                     Michel Michel
                   </h4>
                   <p style={{ textAlign: 'left' }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean luctus ut est sed faucibus. Duis bibendum ac ex
-                    vehicula laoreet. Suspendisse congue vulputate lobortis.
-                    Pellentesque at interdum tortor. Quisque arcu quam,
-                    malesuada vel mauris et, posuere sagittis ipsum. Aliquam
-                    ultricies a ligula nec faucibus. In elit metus, efficitur
-                    lobortis nisi quis, molestie porttitor metus. Pellentesque
-                    et neque risus. Aliquam vulputate, mauris vitae tincidunt
-                    interdum, mauris mi vehicula urna, nec feugiat quam lectus
-                    vitae ex.{' '}
+                    {lmsComment.attributes?.comments?.map(
+                      (comment) => comment?.message,
+                    )}
+                    ;
                   </p>
                   <p style={{ textAlign: 'left', color: 'gray' }}>
                     posted 1 minute ago
