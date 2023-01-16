@@ -11,7 +11,7 @@ import TableRow, { TableRowProps } from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles'
 import TableCell, { TableCellProps, tableCellClasses } from '@mui/material/TableCell'
-import Avatar from '@mui/material/Avatar';
+import Avatar, { AvatarProps } from '@mui/material/Avatar';
 
 type Props = {}
 
@@ -36,20 +36,26 @@ const StyledTableRow = styled(TableRow)<TableRowProps>(({ theme }) => ({
     }
 }))
 
-// const createData = (name: string, calories: number, fat: number, carbs: number, protein: number) => {
-//     return { name, calories, fat, carbs, protein }
+const StyledAvatar = styled(Avatar)<AvatarProps>(({ theme }) => ({
+    color: theme.palette.success.main,
+    '&:hover, &.Mui-focusVisible': {
+        position: 'center',
+        width: 56,
+        height: 56
+    },
+}));
+
+
+// const AchievementTypeIcon = () => {
+//     if ({ achievementEntity.attributes.type } === "student") {
+//         return "🏅"
+//     }
+//     else {
+//         return "💫"
+//     };
 // }
 
-// const rows = [
-//     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//     createData('Eclair', 262, 16.0, 24, 6.0),
-//     createData('Cupcake', 305, 3.7, 67, 4.3),
-//     createData('Gingerbread', 356, 16.0, 49, 3.9)
-// ]
-
-
-const AchievementTable = ({ allAchievements }: { allAchievements?: AchievementEntity[] }) => {
+const AchievementTable = ({ allAchievements }: { allAchievements: AchievementEntity[] }) => {
     console.log('allAchievements', allAchievements)
 
     return (
@@ -57,24 +63,26 @@ const AchievementTable = ({ allAchievements }: { allAchievements?: AchievementEn
         <TableContainer component={Paper} >
             <Table sx={{ minWidth: 700 }} aria-label='customized table'>
                 <TableHead>
-                    <TableRow>
+                    <StyledTableRow>
                         <StyledTableCell align='center'>Badge</StyledTableCell>
                         <StyledTableCell align='center'>Name</StyledTableCell>
                         <StyledTableCell align='center'>How to get</StyledTableCell>
                         <StyledTableCell align='center'>Points</StyledTableCell>
                         <StyledTableCell align='center'>Type</StyledTableCell>
-                    </TableRow>
+                        {/* <StyledTableCell align='center'>Course</StyledTableCell> */}
+                    </StyledTableRow>
                 </TableHead>
                 {allAchievements.map((achievementEntity: AchievementEntity, i: number) =>
                     achievementEntity.attributes && <TableBody key={i}>
                         <StyledTableRow>
-                            <StyledTableCell><Avatar alt="AchievementBadge" src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""} /></StyledTableCell>
+                            <StyledTableCell><StyledAvatar sx={{ width: 24, height: 24 }} alt="AchievementBadge" src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""} /></StyledTableCell>
                             {/* <StyledTableCell><img src={achievementEntity.attributes?.badge?.data?.attributes?.url || ""}></img></StyledTableCell> */}
                             {/* <StyledTableCell component='th' scope='row'>{achievementEntity.attributes.badge.data.attributes.url || ""}</StyledTableCell> */}
                             <StyledTableCell align='left'>{achievementEntity.attributes.name || ""}</StyledTableCell>
                             <StyledTableCell align='left'>{achievementEntity.attributes.description || ""}</StyledTableCell>
                             <StyledTableCell align='center'>{achievementEntity.attributes.points || ""}</StyledTableCell>
-                            <StyledTableCell align='center'>{achievementEntity.attributes.type || ""}</StyledTableCell>
+                            {achievementEntity.attributes.type === "student" ? <StyledTableCell align='center'>🏅</StyledTableCell> : <StyledTableCell align='center'>💫</StyledTableCell>}
+                            {/* <StyledTableCell align='center'>{achievementEntity.attributes.course || ""}</StyledTableCell> */}
                         </StyledTableRow>
                     </TableBody>
                 )}
