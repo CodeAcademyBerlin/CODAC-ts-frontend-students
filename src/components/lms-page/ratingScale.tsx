@@ -47,7 +47,7 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
   // console.log('data', data);
   // console.log('error', error);
 
-  const handleCancel = (event: any) => {
+  const handleCancel = () => {
     setRating(null);
   };
 

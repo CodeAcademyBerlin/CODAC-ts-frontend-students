@@ -12,7 +12,7 @@ type LMSfeedbackProps = {
   rating: number;
   slug: string;
   createRating: () => void;
-  handleCancel: any;
+  handleCancel: () => void;
 };
 
 export default function TextFeedback({
