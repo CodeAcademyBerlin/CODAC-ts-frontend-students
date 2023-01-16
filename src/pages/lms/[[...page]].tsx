@@ -1,5 +1,7 @@
 import { Breadcrumbs, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
+import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/comments';
+import { useFeedbackQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import Head from 'next/head';
 import Link from 'next/link';
 import LmsComments from 'src/components/lms-page/lmsComments';
@@ -45,18 +47,15 @@ const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
       >
         <>
           <h1>{pageData.title}</h1>
-
           <LmsContentContainer
             content={pageData.contentHtml}
             next={pageData.next}
             prev={pageData.prev}
           />
           <Divider style={{ width: '75%' }} />
-
           <ContentRating slug={slug} />
-
           <Divider style={{ width: '75%' }} />
-          <LmsComments />
+          <LmsComments />;
         </>
       </Box>
     </>
