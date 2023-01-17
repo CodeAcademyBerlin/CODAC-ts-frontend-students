@@ -1,0 +1,21 @@
+query getAchievements {
+  achievements(sort: "id:asc", pagination:{pageSize:100}){
+    data {
+      id
+      attributes {
+        badge {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        name
+        description
+        points
+        type
+        course
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+mutation voteVsBattle($vsBattleId: ID!, $option: Int!) {
+  voteVsBattle(id: $vsBattleId, option: $option) {
+    title
+    description
+    option_1_voters {
+      data {
+        id
+        attributes {
+          email
+          username
+        }
+      }
+    }
+    option_2_voters {
+      data {
+        id
+        attributes {
+          email
+        }
+      }
+    }
+  }
+}

@@ -159,7 +159,7 @@ query MeQuery {
 
 <b>Note : `me` query requires JWT attached in headers!</b>
 
-### 📎 How to attach JWT in headers :
+### 📎 How to attach JWT in headers
 
 `authorization : Bearer YOUR_TOKEN`
 
@@ -492,9 +492,9 @@ Variables :
 
 ## 📤 🖼️ Upload a single image
 
-### ⚠️ Warning : Currently Strapi's GraphQL Playground does not support file/image upload. You can use other GraphQL client to test your GraphQL upload mutation.
+### ⚠️ Warning : Currently Strapi's GraphQL Playground does not support file/image upload. You can use other GraphQL client to test your GraphQL upload mutation
 
-One of the GraphQL clients I use is Altair. You can download it here : https://altair.sirmuel.design/#download
+One of the GraphQL clients I use is Altair. You can download it here : <https://altair.sirmuel.design/#download>
 
 Please create a new entry in your collection type API first ! Otherwise this will not be attached to your entry.
 Note : the `refId` is the ID of the entry you create in your collection type API.
