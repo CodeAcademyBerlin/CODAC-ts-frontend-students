@@ -1,3 +1,4 @@
+import { Tooltip, Zoom } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 // ** MUI Imports
@@ -94,39 +95,52 @@ const BattleCard = (props: BattleCardProps) => {
           </Typography>
         )}
         <div>
-          <Button
-            variant="contained"
-            sx={{
-              padding: (theme) => theme.spacing(1.75, 5.5),
-              marginLeft: '2em',
-            }}
-            onClick={() => {
-              if (props.user.id) {
-                props.handleVote(props.vsBattle.id!, 1);
-                console.log('onClick button');
-              }
-            }}
-            color={option1IsVoted() ? 'secondary' : 'primary'}
+          <Tooltip
+            title={props.user.id ? '' : 'Log in to vote'}
+            TransitionComponent={Zoom}
+            placement="top"
+            arrow
           >
-            {props.vsBattle.attributes?.option1}
-          </Button>
-
-          <Button
-            variant="contained"
-            sx={{
-              padding: (theme) => theme.spacing(1.75, 5.5),
-              marginLeft: '2em',
-            }}
-            onClick={() => {
-              if (props.user.id) {
-                props.handleVote(props.vsBattle.id!, 2);
-                console.log('onClick button');
-              }
-            }}
-            color={option2IsVoted() ? 'secondary' : 'primary'}
+            <Button
+              variant="contained"
+              sx={{
+                padding: (theme) => theme.spacing(1.75, 5.5),
+                marginLeft: '2em',
+              }}
+              onClick={() => {
+                if (props.user.id) {
+                  props.handleVote(props.vsBattle.id!, 1);
+                  console.log('onClick button');
+                }
+              }}
+              color={option1IsVoted() ? 'secondary' : 'primary'}
+            >
+              {props.vsBattle.attributes?.option1}
+            </Button>
+          </Tooltip>
+          <Tooltip
+            title={props.user.id ? '' : 'Log in to vote'}
+            TransitionComponent={Zoom}
+            placement="top"
+            arrow
           >
-            {props.vsBattle.attributes?.option2}
-          </Button>
+            <Button
+              variant="contained"
+              sx={{
+                padding: (theme) => theme.spacing(1.75, 5.5),
+                marginLeft: '2em',
+              }}
+              onClick={() => {
+                if (props.user.id) {
+                  props.handleVote(props.vsBattle.id!, 2);
+                  console.log('onClick button');
+                }
+              }}
+              color={option2IsVoted() ? 'secondary' : 'primary'}
+            >
+              {props.vsBattle.attributes?.option2}
+            </Button>
+          </Tooltip>
         </div>
       </CardContent>
       {props.user.id && (
