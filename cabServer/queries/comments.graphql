@@ -1,5 +1,5 @@
-query getLMSFeedbacks {
-  lmsFeedbacks(filters: { slug: { eq: "testtest" } }) {
+query getLMSFeedbacks($slug: String) {
+  lmsFeedbacks(filters: { slug: { eq: $slug } }) {
     data {
       id
       attributes {

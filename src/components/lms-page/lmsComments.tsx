@@ -59,8 +59,8 @@ const LmsComments = (props: LMSfeedbackProps) => {
                     ;
                   </p>
                   <p style={{ textAlign: 'left', color: 'gray' }}>
-                    {lmsComment.attributes?.comments?.map(
-                      (comment) => comment?.timestamp,
+                    {lmsComment.attributes?.comments?.map((comment) =>
+                      new Date(comment?.timestamp).toUTCString(),
                     )}
                   </p>
                 </Grid>

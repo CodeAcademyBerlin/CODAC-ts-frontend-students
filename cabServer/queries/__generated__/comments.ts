@@ -5,8 +5,8 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const GetLmsFeedbacksDocument = gql`
-    query getLMSFeedbacks {
-  lmsFeedbacks(filters: {slug: {eq: "testtest"}}) {
+    query getLMSFeedbacks($slug: String) {
+  lmsFeedbacks(filters: {slug: {eq: $slug}}) {
     data {
       id
       attributes {
@@ -41,6 +41,7 @@ export const GetLmsFeedbacksDocument = gql`
  * @example
  * const { data, loading, error } = useGetLmsFeedbacksQuery({
  *   variables: {
+ *      slug: // value for 'slug'
  *   },
  * });
  */
@@ -55,7 +56,9 @@ export function useGetLmsFeedbacksLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetLmsFeedbacksQueryHookResult = ReturnType<typeof useGetLmsFeedbacksQuery>;
 export type GetLmsFeedbacksLazyQueryHookResult = ReturnType<typeof useGetLmsFeedbacksLazyQuery>;
 export type GetLmsFeedbacksQueryResult = Apollo.QueryResult<GetLmsFeedbacksQuery, GetLmsFeedbacksQueryVariables>;
-export type GetLmsFeedbacksQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GetLmsFeedbacksQueryVariables = Types.Exact<{
+  slug?: Types.InputMaybe<Types.Scalars['String']>;
+}>;
 
 
 export type GetLmsFeedbacksQuery = { __typename?: 'Query', lmsFeedbacks?: { __typename?: 'LmsFeedbackEntityResponseCollection', data: Array<{ __typename?: 'LmsFeedbackEntity', id?: string | null, attributes?: { __typename?: 'LmsFeedback', slug: string, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, message?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null } | null } | null } | null> | null } | null }> } | null };
