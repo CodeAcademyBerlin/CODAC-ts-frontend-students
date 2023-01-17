@@ -60,6 +60,7 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
           flexDirection: 'column',
           alignItems: 'center',
           '& button': { m: 6 },
+          width: '75%',
         }}
       >
         <Typography fontSize={18} mt={2} gutterBottom>
