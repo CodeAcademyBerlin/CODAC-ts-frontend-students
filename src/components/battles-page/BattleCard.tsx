@@ -63,10 +63,7 @@ const BattleCard = (props: BattleCardProps) => {
     } else return true;
   };
 
-  const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
-  const option2Voters = props.vsBattle.attributes?.option_2_voters?.data;
-
-  // console.log('user', props.user);
+  console.log('user', props.user);
   console.log('props.vsBattle', props.vsBattle);
 
   return (
@@ -104,56 +101,6 @@ const BattleCard = (props: BattleCardProps) => {
           </Typography>
         )}
         <div>
-          {/* {option1Voters?.filter((item) => item.id === props.user.id).length ===
-          0 ? (
-            <Button
-              variant="contained"
-              sx={{ padding: (theme) => theme.spacing(1.75, 5.5) }}
-              onClick={() => {
-                props.handleVote(props.vsBattle.id!, 1);
-              }}
-            >
-              {props.vsBattle.attributes?.option1}
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              sx={{
-                padding: (theme) => theme.spacing(1.75, 5.5),
-              }}
-              color="secondary"
-              onClick={() => {
-                props.handleVote(props.vsBattle.id!, 1);
-              }}
-            >
-              {props.vsBattle.attributes?.option1}
-            </Button>
-          )}
-          {option2Voters?.filter((item) => item.id === props.user.id).length ===
-          0 ? (
-            <Button
-              variant="contained"
-              sx={{ padding: (theme) => theme.spacing(1.75, 5.5) }}
-              onClick={() => {
-                props.handleVote(props.vsBattle.id!, 1);
-              }}
-            >
-              {props.vsBattle.attributes?.option2}
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              sx={{
-                padding: (theme) => theme.spacing(1.75, 5.5),
-              }}
-              color="secondary"
-              onClick={() => {
-                props.handleVote(props.vsBattle.id!, 1);
-              }}
-            >
-              {props.vsBattle.attributes?.option2}
-            </Button>
-          )} */}
           <Button
             variant="contained"
             sx={{
@@ -161,12 +108,12 @@ const BattleCard = (props: BattleCardProps) => {
               marginLeft: '2em',
             }}
             onClick={() => {
-              props.user
-                ? () => {
-                    props.handleVote(props.vsBattle.id!, 1);
-                  }
-                : null;
+              if (props.user.id) {
+                props.handleVote(props.vsBattle.id!, 1);
+                console.log('onClick button');
+              }
             }}
+            color={option1IsVoted() ? 'secondary' : 'primary'}
           >
             {props.vsBattle.attributes?.option1}
           </Button>
@@ -178,12 +125,12 @@ const BattleCard = (props: BattleCardProps) => {
               marginLeft: '2em',
             }}
             onClick={() => {
-              props.user
-                ? () => {
-                    props.handleVote(props.vsBattle.id!, 2);
-                  }
-                : null;
+              if (props.user.id) {
+                props.handleVote(props.vsBattle.id!, 2);
+                console.log('onClick button');
+              }
             }}
+            color={option2IsVoted() ? 'secondary' : 'primary'}
           >
             {props.vsBattle.attributes?.option2}
           </Button>

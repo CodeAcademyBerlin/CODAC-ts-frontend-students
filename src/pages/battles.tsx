@@ -21,14 +21,7 @@ import {
 import BattleCard from '../components/battles-page/BattleCard';
 import { getToken, initializeApollo } from '../lib/apolloClient';
 
-// type Props = {};
-
-// type VsBattles = VsBattle[];
-
-function Battle(
-  // { }: Props, // why was this here?? Agnita
-  user: UsersPermissionsMe,
-) {
+function Battle(user: UsersPermissionsMe) {
   const { data, loading, error, refetch } = useGetVsBattlesQuery();
   const [voteVsBattleMutation, { data: mutationData, error: mutationError }] =
     useVoteVsBattleMutation();
@@ -105,4 +98,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 };
 
-// can also take user from auth context
+// can also take user from auth context // Agnita
