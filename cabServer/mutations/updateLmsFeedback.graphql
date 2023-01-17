@@ -1,0 +1,25 @@
+mutation updateLmsFeedback(
+  $id: ID!
+  $rating: Int
+  $comments: [ComponentCommentsCommentsInput]
+  $issues: [ComponentCommentsCommentsInput]
+  $slug: String!
+) {
+  updateLmsFeedback(
+    id: $id
+    data: { rating: $rating, comments: $comments, issues: $issues, slug: $slug }
+  ) {
+    data {
+      attributes {
+        rating
+        comments {
+          message
+        }
+        issues {
+          message
+        }
+        slug
+      }
+    }
+  }
+}
