@@ -6,7 +6,7 @@ const defaultOptions = {} as const;
 
 export const GetVsBattlesDocument = gql`
   query getVSBattles {
-    vsBattles {
+    vsBattles(sort: "createdAt:desc") {
       data {
         id
         attributes {
