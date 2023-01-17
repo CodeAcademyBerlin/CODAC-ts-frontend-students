@@ -46,7 +46,6 @@ const LmsComments = ({ slug }: LMSfeedbackProps) => {
                 <Grid item>
                   <Avatar
                   // alt={username}
-
                   // src={imgLink}
                   />
                 </Grid>
@@ -60,7 +59,6 @@ const LmsComments = ({ slug }: LMSfeedbackProps) => {
                     {lmsComment.attributes?.comments?.map(
                       (comment) => comment?.message,
                     )}
-                    ;
                   </p>
                   <p style={{ textAlign: 'left', color: 'gray' }}>
                     {lmsComment.attributes?.comments?.map((comment) =>

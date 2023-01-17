@@ -59,6 +59,7 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          '& button': { m: 6 },
         }}
       >
         <Typography fontSize={18} mt={2} gutterBottom>
@@ -87,18 +88,19 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
         {rating !== null && (
           <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
         )}
+
+        {rating !== null && rating < 3 && (
+          <TextFeedback
+            slug={slug}
+            rating={rating}
+            handleCancel={handleCancel}
+            createRating={createRating}
+          />
+        )}
+        {rating !== null && rating > 2 && (
+          <SubmitBtn slug={slug} rating={rating} createRating={createRating} />
+        )}
       </Box>
-      {rating !== null && rating < 3 && (
-        <TextFeedback
-          slug={slug}
-          rating={rating}
-          handleCancel={handleCancel}
-          createRating={createRating}
-        />
-      )}
-      {rating !== null && rating > 2 && (
-        <SubmitBtn slug={slug} rating={rating} createRating={createRating} />
-      )}
     </>
   );
 }

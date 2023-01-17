@@ -27,7 +27,7 @@ export default function TextFeedback({ createRating }: LMSfeedbackProps) {
 
   return (
     <Button onClick={handleSubmit} variant="contained" endIcon={<SendIcon />}>
-      Send your feedback
+      Submit
     </Button>
   );
 }
