@@ -1,10 +1,10 @@
 // ** MUI Imports
 import Grid from '@mui/material/Grid';
-import { NewsPostEntity } from 'cabServer/global/__generated__/types';
-import { GetNewsDocument } from 'cabServer/queries/__generated__/newspost';
 import { GetServerSideProps } from 'next/types';
 import React, { ChangeEvent, useState } from 'react';
 
+import { NewsPostEntity } from '../../cabServer/global/__generated__/types';
+import { GetNewsDocument } from '../../cabServer/queries/__generated__/news';
 import NewsCard from '../components/news-page/NewsCard';
 import SearchBar from '../components/news-page/SearchBar';
 import { initializeApollo } from '../lib/apolloClient';
