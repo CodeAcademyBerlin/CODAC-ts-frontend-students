@@ -25,9 +25,9 @@ const navigation: NavLink[] = [
     title: 'Community',
     path: '/community',
   },
-    {
+  {
     title: 'News',
-    path: '/news'
+    path: '/news',
   },
   {
     title: 'Jobs',
