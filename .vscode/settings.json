@@ -2,6 +2,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
+  "eslint.alwaysShowStatus": true,
   "files.eol": "\n",
   "cSpell.enableFiletypes": ["mdx"]
 }

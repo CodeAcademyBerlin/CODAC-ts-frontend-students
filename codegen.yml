@@ -1,9 +1,13 @@
 overwrite: true
-schema: "https://codac-364707.ey.r.appspot.com/graphql"
-documents: "cabServer/**/*.graphql"
+schema: 'https://codac-364707.ey.r.appspot.com/graphql'
+documents: 'cabServer/**/*.graphql'
 generates:
   cabServer/global/__generated__/types.ts:
-      - "typescript"
+    plugins:
+      - 'typescript'
+    config:
+    avoidOptionals: true
+    maybeValue: 'T'
   cabServer/global/__generated__:
     preset: near-operation-file
     presetConfig:
@@ -11,13 +15,13 @@ generates:
       baseTypesPath: types.ts
       extension: .ts
     plugins:
-      - "typescript-react-apollo"
-      - "typescript-operations"
+      - 'typescript-react-apollo'
+      - 'typescript-operations'
     config:
-          reactApolloVersion: 3
-          withHooks: true
-          withHOC: false
-          withComponent: false
+      reactApolloVersion: 3
+      withHooks: true
+      withHOC: false
+      withComponent: false
     hooks:
       afterAllFileWrite:
         - eslint --fix
