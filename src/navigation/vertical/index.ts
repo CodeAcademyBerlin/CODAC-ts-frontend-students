@@ -38,6 +38,10 @@ const navigation: NavLink[] = [
     title: 'Projects',
     path: '/projects',
   },
+  {
+    title: 'Achievements',
+    path: '/achievements',
+  },
 ];
 
 export default navigation;
