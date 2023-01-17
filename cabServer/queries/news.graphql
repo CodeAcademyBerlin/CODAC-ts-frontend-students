@@ -1,0 +1,36 @@
+query getNews {
+  newsPosts(sort: "updatedAt:desc") {
+    data {
+      attributes {
+        title
+        post
+        author {
+          data {
+            id
+            attributes {
+              username
+            }
+          }
+        }
+        likes {
+          data {
+            id
+            attributes {
+              username
+            }
+          }
+        }
+        createdAt
+        updatedAt
+        tags
+        image {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
