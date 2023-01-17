@@ -4,29 +4,40 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
+import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateLmsFeedback';
+import { identity } from 'lodash';
 import React from 'react';
 import { MouseEvent, useState } from 'react';
 import { toast } from 'react-toastify';
 
 type LMSfeedbackProps = {
   slug: string;
+  id: string;
   //   createRating: () => void;
   //   handleCancel: () => void;
 };
 
-export default function CreateComment({
-  slug,
-}: //   handleCancel,
-LMSfeedbackProps) {
+export default function CreateComment({ slug, id }: LMSfeedbackProps) {
   const [message, setMessage] = useState<string>('');
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setMessage(event.target.value);
   console.log('message:', message);
 
-  const [createComment, { data, loading, error }] =
-    useCreateLmsFeedbackMutation({
+  //   const [createComment, { data, loading, error }] =
+  //     useCreateLmsFeedbackMutation({
+  //       variables: {
+  //         slug: slug,
+  //         comments: {
+  //           message: message,
+  //         },
+  //       },
+  //     });
+
+  const [updateComment, { data, loading, error }] =
+    useUpdateLmsFeedbackMutation({
       variables: {
+        id: id,
         slug: slug,
         comments: {
           message: message,
@@ -41,7 +52,7 @@ LMSfeedbackProps) {
   const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      createComment();
+      updateComment();
       toast.success('Thank you for your feedback', {
         position: toast.POSITION.BOTTOM_RIGHT,
       });

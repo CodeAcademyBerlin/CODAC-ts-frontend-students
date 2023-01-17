@@ -38,13 +38,7 @@ const ShowComments = ({ slug }: LMSfeedbackProps) => {
           width: '50%',
         }}
       >
-        <CreateComment
-          slug={slug}
-          handleCancel={function (): void {
-            throw new Error('Function not implemented.');
-          }}
-        />
-        ;
+        <CreateComment slug={slug} id={''} />;
       </Box>
 
       {lmsComments &&
