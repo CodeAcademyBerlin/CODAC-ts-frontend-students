@@ -8,6 +8,7 @@ export const GetVsBattlesDocument = gql`
     query getVSBattles {
   vsBattles {
     data {
+      id
       attributes {
         title
         description
@@ -64,4 +65,4 @@ export type GetVsBattlesQueryResult = Apollo.QueryResult<GetVsBattlesQuery, GetV
 export type GetVsBattlesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetVsBattlesQuery = { __typename?: 'Query', vsBattles?: { __typename?: 'VsBattleEntityResponseCollection', data: Array<{ __typename?: 'VsBattleEntity', attributes?: { __typename?: 'VsBattle', title?: string | null, description?: string | null, option1?: string | null, option2?: string | null, option_1_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, email: string } | null }> } | null, option_2_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, email: string } | null }> } | null } | null }> } | null };
+export type GetVsBattlesQuery = { __typename?: 'Query', vsBattles?: { __typename?: 'VsBattleEntityResponseCollection', data: Array<{ __typename?: 'VsBattleEntity', id?: string | null, attributes?: { __typename?: 'VsBattle', title?: string | null, description?: string | null, option1?: string | null, option2?: string | null, option_1_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, email: string } | null }> } | null, option_2_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, email: string } | null }> } | null } | null }> } | null };

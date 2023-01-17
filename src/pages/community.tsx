@@ -133,7 +133,7 @@ function Community({
                     alt={mentor.attributes?.firstname || 'avatar'}
                     style={{ marginLeft: `-${i}em` }}
                     src={
-                      mentor.attributes.avatar?.data?.attributes?.url || 'logo'
+                      mentor.attributes.avatar?.data?.attributes?.url || logo
                     }
                     width={50}
                     height={50}
