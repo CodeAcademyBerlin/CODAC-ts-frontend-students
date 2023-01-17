@@ -39,8 +39,13 @@ const navigation: NavLink[] = [
     path: '/projects',
   },
   {
+    title: 'Achievements',
+    path: '/achievements',
+},
+{
     title: 'Overflow',
     path: '/overflow',
+
   },
 ];
 

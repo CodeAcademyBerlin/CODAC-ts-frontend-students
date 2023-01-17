@@ -38,6 +38,19 @@ query filterStudentByUserId($userId: ID) {
             }
           }
         }
+        achievements{
+          data{
+            attributes{
+              badge{
+                data{
+                  attributes{
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
         avatar {
           data {
             attributes {
