@@ -5,12 +5,14 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const FilterStudentByUserIdDocument = gql`
-    query filterStudentByUserId($userId: ID) {
-  students(filters: {user: {id: {eq: $userId}}}) {
+  query filterStudentByUserId($userId: ID) {
+  students(filters: { user: { id: { eq: $userId } } }) {
     data {
       attributes {
         firstname
         lastname
+        github
+        linkedin
         start_date
         end_date
         cohort {
@@ -43,16 +45,26 @@ export const FilterStudentByUserIdDocument = gql`
             }
           }
         }
-        achievements {
-          data {
-            attributes {
-              badge {
-                data {
-                  attributes {
+        achievements{
+          data{
+            attributes{
+              badge{
+                data{
+                  attributes{
                     url
                   }
                 }
               }
+            }
+          }
+        }
+        avatar {
+          data {
+            attributes {
+              url
+              alternativeText
+              name
+              caption
             }
           }
         }
