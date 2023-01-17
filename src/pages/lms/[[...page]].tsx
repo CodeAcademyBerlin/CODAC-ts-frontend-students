@@ -55,7 +55,7 @@ const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
           <Divider style={{ width: '75%' }} />
           <ContentRating slug={slug} />
           <Divider style={{ width: '75%' }} />
-          <LmsComments />;
+          <LmsComments slug={slug} />;
         </>
       </Box>
     </>

@@ -20,6 +20,7 @@ const LmsComments = ({ slug }: LMSfeedbackProps) => {
   console.log('comments', lmsComments);
 
   return (
+    lmsComments ? (
     <>
       <Box
         sx={{
@@ -31,49 +32,48 @@ const LmsComments = ({ slug }: LMSfeedbackProps) => {
         <Typography variant="h5">Comments</Typography>
       </Box>
 
-      {lmsComments &&
-        lmsComments.map((lmsComment) => (
-          <Box
-            sx={{
-              p: 5,
-              // display: 'flex',
-              width: '50%',
-            }}
-            key={lmsComment.id}
-          >
-            <Paper style={{ padding: '40px 20px' }}>
-              <Grid container wrap="nowrap" spacing={2}>
-                <Grid item>
-                  <Avatar
-                  // alt={username}
-                  // src={imgLink}
-                  />
+        {lmsComments &&
+          lmsComments.map((lmsComment) => (
+            <Box
+              sx={{
+                p: 5,
+                // display: 'flex',
+                width: '50%',
+              }}
+              key={lmsComment.id}
+            >
+              <Paper style={{ padding: '40px 20px' }}>
+                <Grid container wrap="nowrap" spacing={2}>
+                  <Grid item>
+                    <Avatar
+                    // alt={username}
+                    // src={imgLink}
+                    />
+                  </Grid>
+                  <Grid justifyContent="left" item xs zeroMinWidth>
+                    <h4 style={{ margin: 0, textAlign: 'left' }}>
+                      {lmsComment.attributes?.comments?.map(
+                        (comment) => comment?.author?.data?.attributes?.username,
+                      )}
+                    </h4>
+                    <p style={{ textAlign: 'left' }}>
+                      {lmsComment.attributes?.comments?.map(
+                        (comment) => comment?.message,
+                      )}
+                    </p>
+                    <p style={{ textAlign: 'left', color: 'gray' }}>
+                      {lmsComment.attributes?.comments?.map((comment) =>
+                        new Date(comment?.timestamp).toUTCString(),
+                      )}
+                    </p>
+                  </Grid>
                 </Grid>
-                <Grid justifyContent="left" item xs zeroMinWidth>
-                  <h4 style={{ margin: 0, textAlign: 'left' }}>
-                    {lmsComment.attributes?.comments?.map(
-                      (comment) => comment?.author?.data?.attributes?.username,
-                    )}
-                  </h4>
-                  <p style={{ textAlign: 'left' }}>
-                    {lmsComment.attributes?.comments?.map(
-                      (comment) => comment?.message,
-                    )}
-                  </p>
-                  <p style={{ textAlign: 'left', color: 'gray' }}>
-                    {lmsComment.attributes?.comments?.map((comment) =>
-                      new Date(comment?.timestamp).toUTCString(),
-                    )}
-                  </p>
-                </Grid>
-              </Grid>
-            </Paper>
-          </Box>
-        ))}
+              </Paper>
+            </Box>}
+      <Divider variant="fullWidth" style={{ margin: '30px 0' }} />  
+    </>)) : (
+        <p>no comments yet</p>)
 
-      <Divider variant="fullWidth" style={{ margin: '30px 0' }} />
-    </>
-  );
 };
 
 export default LmsComments;
