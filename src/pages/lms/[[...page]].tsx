@@ -4,13 +4,13 @@ import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/comment
 import { useFeedbackQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import Head from 'next/head';
 import Link from 'next/link';
-import LmsComments from 'src/components/lms-page/lmsComments';
+import ShowComments from 'src/components/lms-page/comments/showComments';
 import { getPaths } from 'src/lib/paths';
 
 import lmspages from '../../../public/assets/lmspages.json';
 import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
 // ** Custom Components
-import ContentRating from '../../components/lms-page/ratingScale';
+import ContentRating from '../../components/lms-page/ratingScale/ratingScale';
 import {
   LMS_ASSETS_PATH,
   LMS_CONTENT_PATH,
@@ -53,9 +53,9 @@ const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
             prev={pageData.prev}
           />
           <Divider style={{ width: '75%' }} />
-          <ContentRating slug={slug} />
+          <ContentRating slug={slug} message={''} />
           <Divider style={{ width: '75%' }} />
-          <LmsComments slug={slug} />;
+          <ShowComments slug={slug} />;
         </>
       </Box>
     </>

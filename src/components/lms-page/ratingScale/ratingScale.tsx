@@ -9,10 +9,10 @@ import { values } from 'lodash';
 import * as React from 'react';
 import { useEffect } from 'react';
 
+import SubmitBtn from './submitBtn';
 // ** Mutation
 // ** Custom Components
-import TextFeedback from '../../components/lms-page/textFeedback';
-import SubmitBtn from './submitBtn';
+import TextFeedback from './textFeedback';
 
 type LMSfeedbackProps = {
   slug: string;

@@ -10,7 +10,7 @@ type LMSfeedbackProps = {
   slug: string;
 };
 
-const LmsComments = ({ slug }: LMSfeedbackProps) => {
+const ShowComments = ({ slug }: LMSfeedbackProps) => {
   const { data, loading, error } = useGetLmsFeedbacksQuery({
     variables: {
       slug: slug,
@@ -78,4 +78,4 @@ const LmsComments = ({ slug }: LMSfeedbackProps) => {
   );
 };
 
-export default LmsComments;
+export default ShowComments;
