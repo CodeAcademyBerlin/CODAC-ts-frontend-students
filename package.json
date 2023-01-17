@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "yarn codegen && yarn lint --fix",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
