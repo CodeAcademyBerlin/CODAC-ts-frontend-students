@@ -1,26 +1,47 @@
+import React, { useState, ChangeEvent } from "react";
+
+
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
 
 import NewsCard from "../components/news-page/NewsCard"
+import SearchBar from "../components/news-page/SearchBar"
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { NewsPost, NewsPostEntity } from "../cabServer/global/__generated__/types"
 import { initializeApollo } from "../lib/apolloClient"
 import { GetNewsDocument } from "../cabServer/queries/__generated__/news";
 
 
-const News = ({ newsPosts}: { newsPosts: NewsPostEntity[]}) => {
+const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
+  
+  const [inputValue, setInputValue] = useState("");
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setInputValue(event.target.value);
+  }
+
+  let searchedResult = newsPosts?.filter((newsPost) => {
+    return (
+      newsPost?.attributes?.title!.toLowerCase().includes(inputValue.toLowerCase()) ||
+      newsPost?.attributes?.post!.toLowerCase().includes(inputValue.toLowerCase()) ||
+      newsPost?.attributes?.tags!.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  });
 
 console.log('newsPosts', newsPosts)
   return (
+    <div>
+    <SearchBar handleChange={handleChange} />
     <Grid container spacing={6} >
-
-      {newsPosts && newsPosts.map((newsPost, index: number) =>
+      {searchedResult && searchedResult.map((newsPost, index: number) =>
         <Grid item xs={12} sm={14} md={12} key={index}>
           <NewsCard newsPost={newsPost} />
         </Grid>)}
       
-    </Grid>)}
+      </Grid>
+    </div>
+  )
+}
 
       
 
