@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/comments';
 import * as React from 'react';
+import CreateComment from 'src/components/lms-page/comments/createComment';
 
 type LMSfeedbackProps = {
   slug: string;
@@ -24,11 +25,26 @@ const ShowComments = ({ slug }: LMSfeedbackProps) => {
       <Box
         sx={{
           p: 5,
-          display: 'flex',
+          // display: 'flex',
           width: '50%',
         }}
       >
         <Typography variant="h5">Comments</Typography>
+      </Box>
+      <Box
+        sx={{
+          p: 5,
+          display: 'flex',
+          width: '50%',
+        }}
+      >
+        <CreateComment
+          slug={slug}
+          handleCancel={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+        />
+        ;
       </Box>
 
       {lmsComments &&
@@ -54,6 +70,7 @@ const ShowComments = ({ slug }: LMSfeedbackProps) => {
                     {lmsComment.attributes?.comments?.map(
                       (comment) => comment?.author?.data?.attributes?.username,
                     )}
+                    : <p>Anonymous user</p>
                   </h4>
                   <p style={{ textAlign: 'left' }}>
                     {lmsComment.attributes?.comments?.map(

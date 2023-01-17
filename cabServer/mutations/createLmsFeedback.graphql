@@ -1,16 +1,22 @@
 mutation createLmsFeedback(
-  $rating: Int!
-  $slug: String!
+  $rating: Int
+  $comments: [ComponentCommentsCommentsInput]
   $issues: [ComponentCommentsCommentsInput]
+  $slug: String!
 ) {
-  createLmsFeedback(data: { rating: $rating, slug: $slug, issues: $issues }) {
+  createLmsFeedback(
+    data: { rating: $rating, comments: $comments, issues: $issues, slug: $slug }
+  ) {
     data {
       attributes {
         rating
-        slug
+        comments {
+          message
+        }
         issues {
           message
         }
+        slug
       }
     }
   }

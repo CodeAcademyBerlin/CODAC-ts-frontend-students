@@ -5,15 +5,20 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const CreateLmsFeedbackDocument = gql`
-    mutation createLmsFeedback($rating: Int!, $slug: String!, $issues: [ComponentCommentsCommentsInput]) {
-  createLmsFeedback(data: {rating: $rating, slug: $slug, issues: $issues}) {
+    mutation createLmsFeedback($rating: Int, $comments: [ComponentCommentsCommentsInput], $issues: [ComponentCommentsCommentsInput], $slug: String!) {
+  createLmsFeedback(
+    data: {rating: $rating, comments: $comments, issues: $issues, slug: $slug}
+  ) {
     data {
       attributes {
         rating
-        slug
+        comments {
+          message
+        }
         issues {
           message
         }
+        slug
       }
     }
   }
@@ -35,8 +40,9 @@ export type CreateLmsFeedbackMutationFn = Apollo.MutationFunction<CreateLmsFeedb
  * const [createLmsFeedbackMutation, { data, loading, error }] = useCreateLmsFeedbackMutation({
  *   variables: {
  *      rating: // value for 'rating'
- *      slug: // value for 'slug'
+ *      comments: // value for 'comments'
  *      issues: // value for 'issues'
+ *      slug: // value for 'slug'
  *   },
  * });
  */
@@ -48,10 +54,11 @@ export type CreateLmsFeedbackMutationHookResult = ReturnType<typeof useCreateLms
 export type CreateLmsFeedbackMutationResult = Apollo.MutationResult<CreateLmsFeedbackMutation>;
 export type CreateLmsFeedbackMutationOptions = Apollo.BaseMutationOptions<CreateLmsFeedbackMutation, CreateLmsFeedbackMutationVariables>;
 export type CreateLmsFeedbackMutationVariables = Types.Exact<{
-  rating: Types.Scalars['Int'];
-  slug: Types.Scalars['String'];
+  rating?: Types.InputMaybe<Types.Scalars['Int']>;
+  comments?: Types.InputMaybe<Array<Types.InputMaybe<Types.ComponentCommentsCommentsInput>> | Types.InputMaybe<Types.ComponentCommentsCommentsInput>>;
   issues?: Types.InputMaybe<Array<Types.InputMaybe<Types.ComponentCommentsCommentsInput>> | Types.InputMaybe<Types.ComponentCommentsCommentsInput>>;
+  slug: Types.Scalars['String'];
 }>;
 
 
-export type CreateLmsFeedbackMutation = { __typename?: 'Mutation', createLmsFeedback?: { __typename?: 'LmsFeedbackEntityResponse', data?: { __typename?: 'LmsFeedbackEntity', attributes?: { __typename?: 'LmsFeedback', rating?: number | null, slug: string, issues?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null } | null } | null } | null };
+export type CreateLmsFeedbackMutation = { __typename?: 'Mutation', createLmsFeedback?: { __typename?: 'LmsFeedbackEntityResponse', data?: { __typename?: 'LmsFeedbackEntity', attributes?: { __typename?: 'LmsFeedback', rating?: number | null, slug: string, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null, issues?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null } | null } | null } | null };
