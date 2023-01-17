@@ -14,7 +14,7 @@ return (
     <Paper
       component="form"
         sx={{ p: '4px 2px', display: 'flex', alignItems: 'center', width: 350 }}
-        elevation={3}
+        elevation={3} 
     >
       <InputBase
         sx={{ ml: 4, flex: 1 }}
