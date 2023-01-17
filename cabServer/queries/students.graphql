@@ -4,6 +4,8 @@ query filterStudentByUserId($userId: ID) {
       attributes {
         firstname
         lastname
+        github
+        linkedin
         start_date
         end_date
         cohort {
@@ -33,6 +35,16 @@ query filterStudentByUserId($userId: ID) {
           data {
             attributes {
               name
+            }
+          }
+        }
+        avatar {
+          data {
+            attributes {
+              url
+              alternativeText
+              name
+              caption
             }
           }
         }
