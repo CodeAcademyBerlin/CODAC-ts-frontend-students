@@ -5,12 +5,15 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const CreateLmsFeedbackDocument = gql`
-    mutation createLmsFeedback($rating: Int!, $slug: String!) {
-  createLmsFeedback(data: {rating: $rating, slug: $slug}) {
+    mutation createLmsFeedback($rating: Int!, $slug: String!, $issues: [ComponentCommentsCommentsInput]) {
+  createLmsFeedback(data: {rating: $rating, slug: $slug, issues: $issues}) {
     data {
       attributes {
         rating
         slug
+        issues {
+          message
+        }
       }
     }
   }
@@ -33,6 +36,7 @@ export type CreateLmsFeedbackMutationFn = Apollo.MutationFunction<CreateLmsFeedb
  *   variables: {
  *      rating: // value for 'rating'
  *      slug: // value for 'slug'
+ *      issues: // value for 'issues'
  *   },
  * });
  */
@@ -46,7 +50,8 @@ export type CreateLmsFeedbackMutationOptions = Apollo.BaseMutationOptions<Create
 export type CreateLmsFeedbackMutationVariables = Types.Exact<{
   rating: Types.Scalars['Int'];
   slug: Types.Scalars['String'];
+  issues?: Types.InputMaybe<Array<Types.InputMaybe<Types.ComponentCommentsCommentsInput>> | Types.InputMaybe<Types.ComponentCommentsCommentsInput>>;
 }>;
 
 
-export type CreateLmsFeedbackMutation = { __typename?: 'Mutation', createLmsFeedback?: { __typename?: 'LmsFeedbackEntityResponse', data?: { __typename?: 'LmsFeedbackEntity', attributes?: { __typename?: 'LmsFeedback', rating?: number | null, slug: string } | null } | null } | null };
+export type CreateLmsFeedbackMutation = { __typename?: 'Mutation', createLmsFeedback?: { __typename?: 'LmsFeedbackEntityResponse', data?: { __typename?: 'LmsFeedbackEntity', attributes?: { __typename?: 'LmsFeedback', rating?: number | null, slug: string, issues?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null } | null } | null } | null };

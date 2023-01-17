@@ -4,7 +4,7 @@ import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/lmsRating';
+import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
 import { values } from 'lodash';
 import * as React from 'react';
 import { useEffect } from 'react';
@@ -16,6 +16,7 @@ import SubmitBtn from './submitBtn';
 
 type LMSfeedbackProps = {
   slug: string;
+  message: string;
 };
 
 const labels: { [index: string]: string } = {
@@ -30,7 +31,7 @@ function getLabelText(rating: number) {
   return `${rating} Star${rating !== 1 ? 's' : ''}, ${labels[rating]}`;
 }
 
-export default function HoverRating({ slug }: LMSfeedbackProps) {
+export default function HoverRating({ slug, message }: LMSfeedbackProps) {
   // console.log("slug", slug);
   const [rating, setRating] = React.useState<number | any>(null);
   // console.log("rating", rating);
@@ -41,6 +42,9 @@ export default function HoverRating({ slug }: LMSfeedbackProps) {
       variables: {
         rating: rating,
         slug: slug,
+        issues: {
+          message: message,
+        },
       },
     },
   );

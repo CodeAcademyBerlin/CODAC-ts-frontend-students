@@ -1,0 +1,17 @@
+mutation createLmsFeedback(
+  $rating: Int!
+  $slug: String!
+  $issues: [ComponentCommentsCommentsInput]
+) {
+  createLmsFeedback(data: { rating: $rating, slug: $slug, issues: $issues }) {
+    data {
+      attributes {
+        rating
+        slug
+        issues {
+          message
+        }
+      }
+    }
+  }
+}
