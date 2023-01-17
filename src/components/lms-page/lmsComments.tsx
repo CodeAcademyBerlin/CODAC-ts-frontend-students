@@ -10,8 +10,12 @@ type LMSfeedbackProps = {
   slug: string;
 };
 
-const LmsComments = (props: LMSfeedbackProps) => {
-  const { data, loading, error } = useGetLmsFeedbacksQuery();
+const LmsComments = ({ slug }: LMSfeedbackProps) => {
+  const { data, loading, error } = useGetLmsFeedbacksQuery({
+    variables: {
+      slug: slug,
+    },
+  });
   const lmsComments = data?.lmsFeedbacks?.data || [];
   console.log('comments', lmsComments);
 
