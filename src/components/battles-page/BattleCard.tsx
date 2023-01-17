@@ -6,7 +6,6 @@ import CardContent from '@mui/material/CardContent';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import ChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
 import VoteOutline from 'mdi-material-ui/VoteOutline';
 import * as React from 'react';
 
@@ -15,8 +14,8 @@ import {
   UsersPermissionsMe,
   VsBattleEntity,
 } from '../../../cabServer/global/__generated__/types';
-import { useVoteVsBattleMutation } from '../../../cabServer/mutations/__generated__/battles';
 import DenseTable from './BattleTable';
+import ExpandComponent from './ExpandComponent';
 
 type BattleCardProps = {
   vsBattle: VsBattleEntity;
@@ -39,12 +38,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const BattleCard = (props: BattleCardProps) => {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   const option1IsVoted = () => {
     const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
     if (
@@ -146,14 +139,7 @@ const BattleCard = (props: BattleCardProps) => {
               props.vsBattle?.attributes?.option_2_voters?.data.length || 0
             }
           />
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ChevronDoubleDown color="primary" />
-          </ExpandMore>
+          <ExpandComponent />
         </div>
       )}
     </Card>
