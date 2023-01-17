@@ -161,7 +161,11 @@ const BattleCard = (props: BattleCardProps) => {
               marginLeft: '2em',
             }}
             onClick={() => {
-              props.handleVote(props.vsBattle.id!, 1);
+              props.user
+                ? () => {
+                    props.handleVote(props.vsBattle.id!, 1);
+                  }
+                : null;
             }}
           >
             {props.vsBattle.attributes?.option1}
@@ -174,7 +178,11 @@ const BattleCard = (props: BattleCardProps) => {
               marginLeft: '2em',
             }}
             onClick={() => {
-              props.handleVote(props.vsBattle.id!, 2);
+              props.user
+                ? () => {
+                    props.handleVote(props.vsBattle.id!, 2);
+                  }
+                : null;
             }}
           >
             {props.vsBattle.attributes?.option2}
