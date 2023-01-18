@@ -55,6 +55,7 @@ code[class*="language-"] {
 #dynamic-overflow-link{
   cursor: pointer;
   color: #26a69a;
+  margin: 5px;
 }
 
 #dynamic-overflow-link:hover{

@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 //import serverSideProps
-import React, { Key, useState } from 'react';
+import React, { useState } from 'react';
 
 //import types
 import { CodacOverflowEntity } from '../../../cabServer/global/__generated__/types';
@@ -15,8 +15,6 @@ import { CodacOverflowEntity } from '../../../cabServer/global/__generated__/typ
 import { GetCodacOverflowsDocument } from '../../../cabServer/queries/__generated__/overflow';
 //import for the Styled Link, which not refreshes
 import StyledLink from '../../components/common/StyledLink';
-//import auth to get the actual user information
-import { useAuth } from '../../hooks/useAuth';
 //import Apollo für ServerSideProps
 import { initializeApollo } from '../../lib/apolloClient';
 
@@ -34,9 +32,7 @@ const Overflow = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [result, setResult] = useState(data.codacOverflows.data);
-  const { user } = useAuth();
   const [searchedTopic, setSearchedTopic] = useState('');
-  console.log('user', user);
   console.log('result data', result);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -116,7 +112,7 @@ const Overflow = ({
           <StyledLink href={'overflow/newQuestion'}>
             <Button
               sx={{
-                mt: 3,
+                mt: 5,
                 ml: 1,
                 position: 'absolute',
                 top: '0',
@@ -148,14 +144,42 @@ const Overflow = ({
                   justifyContent: 'center',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  width: '70%',
-                  maxWidth: '70%',
+                  width: '90%',
+                  maxWidth: '90%',
+                  position: 'relative',
                 }}
               >
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '3px',
+                    right: '3px',
+                    padding: '3px 2px 3px 2px',
+                    backgroundColor: '#312D4B',
+                    borderRadius: '5px',
+                  }}
+                >
+                  {topic.attributes?.course}
+                </div>
                 <StyledLink href={`overflow/${topic.id}`}>
                   <h3 id="dynamic-overflow-link">{topic.attributes?.title}</h3>
                 </StyledLink>
-                {topic.attributes?.description}
+                <p
+                  style={{
+                    display: '-webkit-box',
+                    textAlign: 'left',
+                    padding: '0',
+                    margin: '0px 0px 0px 5px',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    WebkitLineClamp: '2',
+                    lineClamp: '2',
+                    WebkitBoxOrient: 'vertical',
+                    width: '95%',
+                  }}
+                >
+                  {topic.attributes?.description}
+                </p>
               </Item>
             ))}
         </Stack>
