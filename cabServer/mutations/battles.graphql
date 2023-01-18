@@ -2,6 +2,7 @@ mutation voteVsBattle($vsBattleId: ID!, $option: Int!) {
   voteVsBattle(id: $vsBattleId, option: $option) {
     title
     description
+    archived
     option_1_voters {
       data {
         id

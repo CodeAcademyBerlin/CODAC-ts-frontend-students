@@ -3,6 +3,7 @@ query getVSBattles {
     data {
       id
       attributes {
+        archived
         title
         description
         option1
@@ -12,6 +13,8 @@ query getVSBattles {
             attributes {
               username
               email
+              firstname
+              lastname
             }
           }
         }
@@ -20,6 +23,8 @@ query getVSBattles {
             attributes {
               username
               email
+              firstname
+              lastname
             }
           }
         }

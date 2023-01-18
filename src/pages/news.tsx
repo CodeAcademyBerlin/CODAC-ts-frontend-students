@@ -1,7 +1,7 @@
 // ** MUI Imports
 import Grid from '@mui/material/Grid';
 import { NewsPostEntity } from 'cabServer/global/__generated__/types';
-import { GetNewsDocument } from 'cabServer/queries/__generated__/newspost';
+import { GetNewsDocument } from 'cabServer/queries/__generated__/news';
 import { GetServerSideProps } from 'next/types';
 import React, { ChangeEvent, useState } from 'react';
 

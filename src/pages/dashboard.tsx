@@ -130,7 +130,7 @@ const Dashboard = ({
                   fontFamily: theme.typography.fontFamily,
                 }}
               >
-                Welcome {myStudent.firstname}, future{' '}
+                Welcome {myStudent?.user?.data?.attributes?.firstname}, future{' '}
                 {myStudent.main_course?.data?.attributes?.name === 'data3' &&
                   'Data Scientist'}
                 {myStudent.main_course?.data?.attributes?.name === 'webdev' &&

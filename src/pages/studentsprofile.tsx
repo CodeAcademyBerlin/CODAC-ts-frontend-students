@@ -36,7 +36,10 @@ const Studentprofile = ({
         >
           <Avatar
             sx={{ width: '160px', height: '160px' }}
-            src={studentProfile?.avatar?.data?.attributes?.url}
+            src={
+              studentProfile?.user?.data?.attributes?.avatar?.data?.attributes
+                ?.url
+            }
             alt=""
             sizes="width: 100%, height: 100%"
           />
@@ -48,7 +51,7 @@ const Studentprofile = ({
                 fontFamily: theme.typography.fontFamily,
               }}
             >
-              First name: {studentProfile.firstname}
+              First name: {studentProfile?.user?.data?.attributes?.firstname}
             </Typography>
             <Typography
               sx={{
@@ -56,7 +59,7 @@ const Studentprofile = ({
                 fontFamily: theme.typography.fontFamily,
               }}
             >
-              Last name: {studentProfile.lastname}
+              Last name: {studentProfile?.user?.data?.attributes?.lastname}
             </Typography>
           </Box>
         </Box>

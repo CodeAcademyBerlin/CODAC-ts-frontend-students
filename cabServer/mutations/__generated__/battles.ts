@@ -9,6 +9,7 @@ export const VoteVsBattleDocument = gql`
     voteVsBattle(id: $vsBattleId, option: $option) {
       title
       description
+      archived
       option_1_voters {
         data {
           id
@@ -84,6 +85,7 @@ export type VoteVsBattleMutation = {
     __typename?: 'VsBattle';
     title?: string | null;
     description?: string | null;
+    archived: boolean;
     option_1_voters?: {
       __typename?: 'UsersPermissionsUserRelationResponseCollection';
       data: Array<{
