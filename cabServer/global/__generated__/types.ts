@@ -166,7 +166,7 @@ export type CodacOverflow = {
   comments?: Maybe<Array<Maybe<ComponentCommentsComments>>>;
   course?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  data?: Maybe<Scalars['Date']>;
+  date?: Maybe<Scalars['Date']>;
   description?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
@@ -204,7 +204,7 @@ export type CodacOverflowFiltersInput = {
   comments?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
   course?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  data?: InputMaybe<DateFilterInput>;
+  date?: InputMaybe<DateFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<CodacOverflowFiltersInput>;
@@ -219,7 +219,7 @@ export type CodacOverflowInput = {
   author?: InputMaybe<Scalars['ID']>;
   comments?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsInput>>>;
   course?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['Date']>;
+  date?: InputMaybe<Scalars['Date']>;
   description?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
@@ -313,6 +313,7 @@ export type ComponentCommentsComments = {
   author?: Maybe<UsersPermissionsUserEntityResponse>;
   id: Scalars['ID'];
   message?: Maybe<Scalars['String']>;
+  rating?: Maybe<Scalars['Int']>;
   timestamp?: Maybe<Scalars['DateTime']>;
 };
 
@@ -322,6 +323,7 @@ export type ComponentCommentsCommentsFiltersInput = {
   message?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsFiltersInput>>>;
+  rating?: InputMaybe<IntFilterInput>;
   timestamp?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -329,6 +331,7 @@ export type ComponentCommentsCommentsInput = {
   author?: InputMaybe<Scalars['ID']>;
   id?: InputMaybe<Scalars['ID']>;
   message?: InputMaybe<Scalars['String']>;
+  rating?: InputMaybe<Scalars['Int']>;
   timestamp?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1364,12 +1367,9 @@ export type LmsFeedbackInput = {
 
 export type Mentor = {
   __typename?: 'Mentor';
-  avatar?: Maybe<UploadFileEntityResponse>;
   courses?: Maybe<CourseRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  firstname?: Maybe<Scalars['String']>;
   github?: Maybe<Scalars['String']>;
-  lastname?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
   specialization?: Maybe<Enum_Mentor_Specialization>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -1404,10 +1404,8 @@ export type MentorFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<MentorFiltersInput>>>;
   courses?: InputMaybe<CourseFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  firstname?: InputMaybe<StringFilterInput>;
   github?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
-  lastname?: InputMaybe<StringFilterInput>;
   linkedin?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<MentorFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<MentorFiltersInput>>>;
@@ -1417,11 +1415,8 @@ export type MentorFiltersInput = {
 };
 
 export type MentorInput = {
-  avatar?: InputMaybe<Scalars['ID']>;
   courses?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  firstname?: InputMaybe<Scalars['String']>;
   github?: InputMaybe<Scalars['String']>;
-  lastname?: InputMaybe<Scalars['String']>;
   linkedin?: InputMaybe<Scalars['String']>;
   specialization?: InputMaybe<Enum_Mentor_Specialization>;
   user?: InputMaybe<Scalars['ID']>;
@@ -1920,20 +1915,13 @@ export type NewsPost = {
   __typename?: 'NewsPost';
   author?: Maybe<UsersPermissionsUserEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  image?: Maybe<UploadFileRelationResponseCollection>;
+  image?: Maybe<UploadFileEntityResponse>;
   likes?: Maybe<UsersPermissionsUserRelationResponseCollection>;
   post?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   tags?: Maybe<Enum_Newspost_Tags>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-
-export type NewsPostImageArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -1977,7 +1965,7 @@ export type NewsPostFiltersInput = {
 
 export type NewsPostInput = {
   author?: InputMaybe<Scalars['ID']>;
-  image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  image?: InputMaybe<Scalars['ID']>;
   likes?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   post?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
@@ -2473,15 +2461,12 @@ export type Student = {
   SID?: Maybe<Scalars['String']>;
   achievements?: Maybe<AchievementRelationResponseCollection>;
   attendance?: Maybe<AttendanceEntityResponse>;
-  avatar?: Maybe<UploadFileEntityResponse>;
   cohort?: Maybe<CohortEntityResponse>;
   courses?: Maybe<CourseRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
   end_date?: Maybe<Scalars['Date']>;
-  firstname?: Maybe<Scalars['String']>;
   github?: Maybe<Scalars['String']>;
   job_center?: Maybe<Scalars['Boolean']>;
-  lastname?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
   main_course?: Maybe<CourseEntityResponse>;
   start_date?: Maybe<Scalars['Date']>;
@@ -2529,11 +2514,9 @@ export type StudentFiltersInput = {
   courses?: InputMaybe<CourseFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   end_date?: InputMaybe<DateFilterInput>;
-  firstname?: InputMaybe<StringFilterInput>;
   github?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   job_center?: InputMaybe<BooleanFilterInput>;
-  lastname?: InputMaybe<StringFilterInput>;
   linkedin?: InputMaybe<StringFilterInput>;
   main_course?: InputMaybe<CourseFiltersInput>;
   not?: InputMaybe<StudentFiltersInput>;
@@ -2547,14 +2530,11 @@ export type StudentInput = {
   SID?: InputMaybe<Scalars['String']>;
   achievements?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   attendance?: InputMaybe<Scalars['ID']>;
-  avatar?: InputMaybe<Scalars['ID']>;
   cohort?: InputMaybe<Scalars['ID']>;
   courses?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   end_date?: InputMaybe<Scalars['Date']>;
-  firstname?: InputMaybe<Scalars['String']>;
   github?: InputMaybe<Scalars['String']>;
   job_center?: InputMaybe<Scalars['Boolean']>;
-  lastname?: InputMaybe<Scalars['String']>;
   linkedin?: InputMaybe<Scalars['String']>;
   main_course?: InputMaybe<Scalars['ID']>;
   start_date?: InputMaybe<Scalars['Date']>;
@@ -2749,15 +2729,6 @@ export type UploadFolderRelationResponseCollection = {
   data: Array<UploadFolderEntity>;
 };
 
-export type UserData = {
-  __typename?: 'UserData';
-  avatar?: Maybe<Scalars['String']>;
-  firstname?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['ID']>;
-  lastname?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-};
-
 export type UsersPermissionsCreateRolePayload = {
   __typename?: 'UsersPermissionsCreateRolePayload';
   ok: Scalars['Boolean'];
@@ -2782,12 +2753,14 @@ export type UsersPermissionsLoginPayload = {
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
+  avatar?: Maybe<UploadFile>;
   blocked?: Maybe<Scalars['Boolean']>;
   confirmed?: Maybe<Scalars['Boolean']>;
   email?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
+  firstname?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
+  lastname?: Maybe<Scalars['String']>;
   role?: Maybe<UsersPermissionsMeRole>;
-  userData?: Maybe<UserData>;
   username: Scalars['String'];
 };
 
@@ -2911,10 +2884,13 @@ export type UsersPermissionsUpdateRolePayload = {
 
 export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
+  avatar?: Maybe<UploadFileEntityResponse>;
   blocked?: Maybe<Scalars['Boolean']>;
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  firstname: Scalars['String'];
+  lastname: Scalars['String'];
   mentor?: Maybe<MentorEntityResponse>;
   provider?: Maybe<Scalars['String']>;
   role?: Maybe<UsersPermissionsRoleEntityResponse>;
@@ -2947,7 +2923,9 @@ export type UsersPermissionsUserFiltersInput = {
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   email?: InputMaybe<StringFilterInput>;
+  firstname?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  lastname?: InputMaybe<StringFilterInput>;
   mentor?: InputMaybe<MentorFiltersInput>;
   not?: InputMaybe<UsersPermissionsUserFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
@@ -2961,10 +2939,13 @@ export type UsersPermissionsUserFiltersInput = {
 };
 
 export type UsersPermissionsUserInput = {
+  avatar?: InputMaybe<Scalars['ID']>;
   blocked?: InputMaybe<Scalars['Boolean']>;
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
   email?: InputMaybe<Scalars['String']>;
+  firstname?: InputMaybe<Scalars['String']>;
+  lastname?: InputMaybe<Scalars['String']>;
   mentor?: InputMaybe<Scalars['ID']>;
   password?: InputMaybe<Scalars['String']>;
   provider?: InputMaybe<Scalars['String']>;
@@ -2981,6 +2962,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
 
 export type VsBattle = {
   __typename?: 'VsBattle';
+  archived: Scalars['Boolean'];
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   option1?: Maybe<Scalars['String']>;
@@ -3025,6 +3007,7 @@ export type VsBattleEntityResponseCollection = {
 
 export type VsBattleFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<VsBattleFiltersInput>>>;
+  archived?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -3040,6 +3023,7 @@ export type VsBattleFiltersInput = {
 };
 
 export type VsBattleInput = {
+  archived?: InputMaybe<Scalars['Boolean']>;
   description?: InputMaybe<Scalars['String']>;
   option1?: InputMaybe<Scalars['String']>;
   option2?: InputMaybe<Scalars['String']>;

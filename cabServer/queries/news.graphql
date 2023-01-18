@@ -9,6 +9,23 @@ query getNews {
             id
             attributes {
               username
+              avatar {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    width
+                    height
+                    hash
+                    mime
+                    size
+                    previewUrl
+                    provider
+                    url
+                  }
+                }
+              }
             }
           }
         }
