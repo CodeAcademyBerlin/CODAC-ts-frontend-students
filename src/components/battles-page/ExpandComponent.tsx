@@ -40,6 +40,9 @@ function ExpandComponent(props: ExpandComponentProps) {
 
   const [expanded, setExpanded] = React.useState(false);
 
+  const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
+  const option2Voters = props.vsBattle.attributes?.option_2_voters?.data;
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -67,24 +70,60 @@ function ExpandComponent(props: ExpandComponentProps) {
               Voters
             </Typography>
           </Divider>
-          <Box>
+          <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
             <List dense={true}>
-              <ListItem>
-                <Avatar
-                  sx={{
-                    fontWeight: theme.typography.fontWeightBold,
-                    fontSize: 15,
-                    color: theme.palette.common.white,
-                    backgroundColor: theme.palette.primary.light,
-                    mr: 3,
-                  }}
-                >
-                  {' '}
-                  AJ
-                </Avatar>
-                <ListItemText></ListItemText>
-              </ListItem>
-              <Divider />
+              {option1Voters?.map((voter) => {
+                if (option1Voters) {
+                  return (
+                    <>
+                      <ListItem>
+                        <Avatar
+                          src={voter.attributes?.avatar?.data?.attributes?.url}
+                          sx={{
+                            fontWeight: theme.typography.fontWeightBold,
+                            fontSize: 15,
+                            color: theme.palette.common.white,
+                            backgroundColor: theme.palette.primary.light,
+                            mr: 3,
+                          }}
+                        ></Avatar>
+                        <ListItemText>
+                          {voter.attributes?.firstname}
+                          {''} {voter.attributes?.lastname}
+                        </ListItemText>
+                      </ListItem>
+                      <Divider />
+                    </>
+                  );
+                }
+              })}
+            </List>
+            <List dense={true}>
+              {option2Voters?.map((voter) => {
+                if (option2Voters) {
+                  return (
+                    <>
+                      <ListItem>
+                        <Avatar
+                          src={voter.attributes?.avatar?.data?.attributes?.url}
+                          sx={{
+                            fontWeight: theme.typography.fontWeightBold,
+                            fontSize: 15,
+                            color: theme.palette.common.white,
+                            backgroundColor: theme.palette.primary.light,
+                            mr: 3,
+                          }}
+                        ></Avatar>
+                        <ListItemText>
+                          {voter.attributes?.firstname}
+                          {''} {voter.attributes?.lastname}
+                        </ListItemText>
+                      </ListItem>
+                      <Divider />
+                    </>
+                  );
+                }
+              })}
             </List>
           </Box>
         </CardContent>

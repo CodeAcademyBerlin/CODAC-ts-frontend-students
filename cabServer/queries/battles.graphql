@@ -12,7 +12,15 @@ query getVSBattles {
             id
             attributes {
               username
-              email
+              firstname
+              lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }
@@ -21,7 +29,15 @@ query getVSBattles {
             id
             attributes {
               username
-              email
+              firstname
+              lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }
