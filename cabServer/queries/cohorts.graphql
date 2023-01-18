@@ -16,6 +16,7 @@ query getCohorts {
         }
         students {
           data {
+            id
             attributes {
               firstname
               lastname
