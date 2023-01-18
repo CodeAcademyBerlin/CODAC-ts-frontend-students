@@ -91,7 +91,6 @@ const Overflow = ({
         }}
       >
         <Box
-          component="form"
           sx={{
             '& .MuiTextField-root': { m: 3, width: '100%' },
             borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
@@ -101,8 +100,6 @@ const Overflow = ({
             justifyContent: 'center',
             position: 'relative',
           }}
-          noValidate
-          autoComplete="off"
         >
           <form onSubmit={handleSearch}>
             <TextField

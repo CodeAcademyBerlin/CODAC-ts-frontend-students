@@ -178,7 +178,16 @@ const OverflowTopic = ({
 
           {result.attributes?.comments?.length &&
             result.attributes?.comments?.map((eachComment) => (
-              <>
+              <div
+                key={eachComment?.id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  width: '100%',
+                }}
+              >
                 <Box
                   component="span"
                   sx={{
@@ -258,7 +267,7 @@ const OverflowTopic = ({
                     </Item>
                   </Stack>
                 </Box>
-              </>
+              </div>
             ))}
         </Paper>
       </Box>
