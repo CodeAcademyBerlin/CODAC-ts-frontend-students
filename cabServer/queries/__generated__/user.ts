@@ -15,12 +15,10 @@ export const GetMeDocument = gql`
     email
     id
     username
-    userData {
-      firstname
-      lastname
-      avatar
-      type
-      id
+    firstname
+    lastname
+    avatar {
+      url
     }
   }
 }
@@ -55,4 +53,4 @@ export type GetMeQueryResult = Apollo.QueryResult<GetMeQuery, GetMeQueryVariable
 export type GetMeQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetMeQuery = { __typename?: 'Query', me?: { __typename?: 'UsersPermissionsMe', id: string, email?: string | null, username: string, role?: { __typename?: 'UsersPermissionsMeRole', id: string, name: string } | null, userData?: { __typename?: 'UserData', firstname?: string | null, lastname?: string | null, avatar?: string | null, type?: string | null, id?: string | null } | null } | null };
+export type GetMeQuery = { __typename?: 'Query', me?: { __typename?: 'UsersPermissionsMe', id?: string | null, email?: string | null, username: string, firstname?: string | null, lastname?: string | null, role?: { __typename?: 'UsersPermissionsMeRole', id: string, name: string } | null, avatar?: { __typename?: 'UploadFile', url: string } | null } | null };

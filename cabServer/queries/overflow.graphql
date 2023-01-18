@@ -1,0 +1,74 @@
+query getCodacOverflows {
+  codacOverflows {
+    data {
+      id
+      attributes {
+        slug
+        title
+        description
+        date
+        author {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              avatar {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    width
+                    height
+                    hash
+                    mime
+                    size
+                    previewUrl
+                    provider
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        comments {
+          id
+          message
+          timestamp
+          author {
+            data {
+              id
+              attributes {
+                firstname
+                lastname
+                avatar {
+                  data {
+                    id
+                    attributes {
+                      name
+                      alternativeText
+                      width
+                      height
+                      hash
+                      mime
+                      size
+                      previewUrl
+                      provider
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        course
+        createdAt
+        updatedAt
+        publishedAt
+      }
+    }
+  }
+}

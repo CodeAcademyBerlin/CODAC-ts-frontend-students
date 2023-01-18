@@ -43,6 +43,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 const BattleCard = (props: BattleCardProps) => {
   useEffect(() => {}, [props.user]);
 
+  console.log('props.user on Battle card', props.user);
+  console.log('props.vsBattle', props.vsBattle);
+
   const option1IsVoted = () => {
     const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
     if (

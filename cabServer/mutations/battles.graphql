@@ -7,7 +7,6 @@ mutation voteVsBattle($vsBattleId: ID!, $option: Int!) {
         id
         attributes {
           email
-          username
         }
       }
     }
