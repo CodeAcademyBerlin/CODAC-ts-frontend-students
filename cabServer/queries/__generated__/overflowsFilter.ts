@@ -10,6 +10,7 @@ export const FilterCodacOverflowsDocument = gql`
     filters: {title: {contains: $title}}
     publicationState: LIVE
     pagination: {limit: 10}
+    sort: "createdAt:desc"
   ) {
     data {
       id

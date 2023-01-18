@@ -1,4 +1,5 @@
 // ** MUI Imports
+import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
@@ -33,7 +34,10 @@ const Overflow = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [result, setResult] = useState(data.codacOverflows.data);
   const [searchedTopic, setSearchedTopic] = useState('');
+  const theme = useTheme();
   console.log('result data', result);
+  console.log('theme', theme);
+  console.log('actual theme', theme.palette.mode);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -155,7 +159,8 @@ const Overflow = ({
                     top: '3px',
                     right: '3px',
                     padding: '3px 2px 3px 2px',
-                    backgroundColor: '#312D4B',
+                    backgroundColor:
+                      theme.palette.mode === 'dark' ? '#312D4B' : '',
                     borderRadius: '5px',
                   }}
                 >
