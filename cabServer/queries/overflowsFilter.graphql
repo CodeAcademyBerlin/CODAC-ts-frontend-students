@@ -1,0 +1,12 @@
+query filterCodacOverflows($title: String!){
+  codacOverflows(filters: {title: {contains: $title} }, publicationState: LIVE, pagination: {limit: 10}){
+    data{
+      id
+      attributes{
+        title
+        description
+        course
+      }
+    }
+  }
+}

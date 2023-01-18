@@ -101,7 +101,7 @@ const Overflow = ({
             <TextField
               id="outlined-search"
               value={searchedTopic}
-              label="Search for topics"
+              label="Search for topics..."
               name="search"
               type="search"
               onChange={(e) => {
