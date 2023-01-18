@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import VoteOutline from 'mdi-material-ui/VoteOutline';
 import * as React from 'react';
+import { useEffect } from 'react';
 
 // ** Icons Imports
 import {
@@ -21,7 +22,7 @@ import ExpandComponent from './ExpandComponent';
 type BattleCardProps = {
   vsBattle: VsBattleEntity;
   handleVote: (vsBattleId: string, option: number) => void;
-  user: UsersPermissionsMe;
+  user: UsersPermissionsMe | null;
 };
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -39,10 +40,12 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const BattleCard = (props: BattleCardProps) => {
+  useEffect(() => {}, [props.user]);
+
   const option1IsVoted = () => {
     const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
     if (
-      option1Voters?.filter((item) => item.id === props.user.id).length === 0
+      option1Voters?.filter((item) => item.id === props.user?.id).length === 0
     ) {
       return false;
     } else return true;
@@ -51,14 +54,11 @@ const BattleCard = (props: BattleCardProps) => {
   const option2IsVoted = () => {
     const option2Voters = props.vsBattle.attributes?.option_2_voters?.data;
     if (
-      option2Voters?.filter((item) => item.id === props.user.id).length === 0
+      option2Voters?.filter((item) => item.id === props.user?.id).length === 0
     ) {
       return false;
     } else return true;
   };
-
-  console.log('user', props.user);
-  console.log('props.vsBattle', props.vsBattle);
 
   return (
     <Card style={{ marginBottom: '2em' }}>
@@ -85,7 +85,7 @@ const BattleCard = (props: BattleCardProps) => {
         <Typography variant="h6" sx={{ marginBottom: 2.75 }}>
           {props.vsBattle.attributes?.title}
         </Typography>
-        {props.user.id ? (
+        {props.user?.id ? (
           <Typography variant="body2" sx={{ marginBottom: 6 }}>
             voice your opinion
           </Typography>
@@ -96,7 +96,7 @@ const BattleCard = (props: BattleCardProps) => {
         )}
         <div>
           <Tooltip
-            title={props.user.id ? '' : 'Log in to vote'}
+            title={props.user?.id ? '' : 'Log in to vote'}
             TransitionComponent={Zoom}
             placement="top"
             arrow
@@ -108,7 +108,7 @@ const BattleCard = (props: BattleCardProps) => {
                 marginLeft: '2em',
               }}
               onClick={() => {
-                if (props.user.id) {
+                if (props.user?.id) {
                   props.handleVote(props.vsBattle.id!, 1);
                   console.log('onClick button');
                 }
@@ -119,7 +119,7 @@ const BattleCard = (props: BattleCardProps) => {
             </Button>
           </Tooltip>
           <Tooltip
-            title={props.user.id ? '' : 'Log in to vote'}
+            title={props.user?.id ? '' : 'Log in to vote'}
             TransitionComponent={Zoom}
             placement="top"
             arrow
@@ -131,7 +131,7 @@ const BattleCard = (props: BattleCardProps) => {
                 marginLeft: '2em',
               }}
               onClick={() => {
-                if (props.user.id) {
+                if (props.user?.id) {
                   props.handleVote(props.vsBattle.id!, 2);
                   console.log('onClick button');
                 }
@@ -143,7 +143,7 @@ const BattleCard = (props: BattleCardProps) => {
           </Tooltip>
         </div>
       </CardContent>
-      {props.user.id && (
+      {props.user?.id && (
         <div>
           <DenseTable
             option1={

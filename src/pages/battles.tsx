@@ -2,7 +2,8 @@ import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/s
 import { GetMeDocument } from 'cabServer/queries/__generated__/user';
 import jwt_decode, { JwtPayload } from 'jwt-decode';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from 'src/contexts/authContext';
 import { JwtPayloadWithID } from 'src/types';
 
 import {
@@ -21,7 +22,9 @@ import {
 import BattleCard from '../components/battles-page/BattleCard';
 import { getToken, initializeApollo } from '../lib/apolloClient';
 
-function Battle(user: UsersPermissionsMe) {
+function Battle() {
+  // user: UsersPermissionsMe
+  const { user } = useContext(AuthContext);
   const { data, loading, error, refetch } = useGetVsBattlesQuery();
   const [voteVsBattleMutation, { data: mutationData, error: mutationError }] =
     useVoteVsBattleMutation();
@@ -41,8 +44,6 @@ function Battle(user: UsersPermissionsMe) {
   }, [mutationData]);
 
   const vsBattles = data?.vsBattles?.data || [];
-
-  // console.log('user', user);
 
   return (
     <div>
@@ -65,37 +66,3 @@ function Battle(user: UsersPermissionsMe) {
 }
 
 export default Battle;
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//   try {
-//     const client = initializeApollo(null, ctx.req);
-//     const { data, error } = await client.query({ query: GetVsBattlesDocument });
-
-//     return {
-//       props: data,
-//     };
-//   } catch (error) {
-//     return {
-//       props: { data: null },
-//     };
-//   }
-// };
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  try {
-    const client = initializeApollo(null, ctx.req);
-    const { data, error } = await client.query({ query: GetMeDocument });
-
-    const user = data.me;
-    console.log('user', user);
-    return {
-      props: user,
-    };
-  } catch (error) {
-    return {
-      props: { user: null },
-    };
-  }
-};
-
-// can also take user from auth context // Agnita
