@@ -73,10 +73,9 @@ const ShowComments = ({ slug }: LMSfeedbackProps) => {
                       )}
                     </p>
                     <p style={{ textAlign: 'left', color: 'gray' }}>
-                      {lmsComment.attributes?.createdAt}
-                      {/* {lmsComment.attributes?.comments?.map((comment) =>
+                      {lmsComment.attributes?.comments?.map((comment) =>
                         new Date(comment?.timestamp).toDateString(),
-                      )} */}
+                      )}
                     </p>
                   </Grid>
                 </Grid>

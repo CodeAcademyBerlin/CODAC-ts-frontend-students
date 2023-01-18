@@ -16,6 +16,7 @@ type LMSfeedbackProps = {
 
 export default function CreateComment({ slug, id }: LMSfeedbackProps) {
   const [message, setMessage] = useState<string>('');
+  const [timestamp, setTimestemp] = useState<number>();
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setMessage(event.target.value);
@@ -27,6 +28,7 @@ export default function CreateComment({ slug, id }: LMSfeedbackProps) {
         slug: slug,
         comments: {
           message: message,
+          timestamp: timestamp,
         },
       },
     });
@@ -46,9 +48,13 @@ export default function CreateComment({ slug, id }: LMSfeedbackProps) {
     setMessage('');
   };
 
+  let timestemp = Date.now();
+
   const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
+      setTimestemp(timestemp);
+      console.log('time', timestemp);
       createComment();
       setMessage('');
       toast.success('Thank you for your feedback', {

@@ -12,9 +12,11 @@ mutation createLmsFeedback(
         rating
         comments {
           message
+          timestamp
         }
         issues {
           message
+          timestamp
         }
         slug
       }
