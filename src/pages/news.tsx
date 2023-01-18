@@ -1,16 +1,20 @@
 // ** MUI Imports
+import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { GetServerSideProps } from 'next/types';
 import React, { ChangeEvent, useState } from 'react';
 
 import { NewsPostEntity } from '../../cabServer/global/__generated__/types';
 import { GetNewsDocument } from '../../cabServer/queries/__generated__/news';
+import StyledLink from '../components/common/StyledLink';
 import NewsCard from '../components/news-page/NewsCard';
 import SearchBar from '../components/news-page/SearchBar';
+import { useAuth } from '../hooks/useAuth';
 import { initializeApollo } from '../lib/apolloClient';
 
 const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
   const [inputValue, setInputValue] = useState('');
+  const { user } = useAuth();
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setInputValue(event.target.value);
@@ -33,7 +37,34 @@ const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
   console.log('newsPosts', newsPosts);
   return (
     <div>
-      <SearchBar handleChange={handleChange} />
+      {user ? (
+        <>
+          <Grid item xs={4} maxWidth={300}>
+            <StyledLink href={'/addnewspost'}>
+              <Button
+                sx={{
+                  mt: 16,
+                  ml: 1,
+                  position: 'absolute',
+                  top: '0',
+                  right: '20px',
+                }}
+                type="submit"
+                variant="contained"
+              >
+                Add News
+              </Button>
+            </StyledLink>
+          </Grid>
+          <br />
+          <br />
+        </>
+      ) : (
+        ' '
+      )}
+      <Grid item xs={12}>
+        <SearchBar handleChange={handleChange} />
+      </Grid>
       <Grid container spacing={6}>
         {searchedResult &&
           searchedResult.map((newsPost, index: number) => (
