@@ -13,8 +13,6 @@ import { toast } from 'react-toastify';
 type LMSfeedbackProps = {
   slug: string;
   id: string;
-  //   createRating: () => void;
-  //   handleCancel: () => void;
 };
 
 export default function CreateComment({ slug, id }: LMSfeedbackProps) {
@@ -24,26 +22,26 @@ export default function CreateComment({ slug, id }: LMSfeedbackProps) {
     setMessage(event.target.value);
   console.log('message:', message);
 
-  //   const [createComment, { data, loading, error }] =
-  //     useCreateLmsFeedbackMutation({
-  //       variables: {
-  //         slug: slug,
-  //         comments: {
-  //           message: message,
-  //         },
-  //       },
-  //     });
-
-  const [updateComment, { data, loading, error }] =
-    useUpdateLmsFeedbackMutation({
+  const [createComment, { data, loading, error }] =
+    useCreateLmsFeedbackMutation({
       variables: {
-        id: id,
         slug: slug,
         comments: {
           message: message,
         },
       },
     });
+
+  // const [updateComment, { data, loading, error }] =
+  //   useUpdateLmsFeedbackMutation({
+  //     variables: {
+  //       id: id,
+  //       slug: slug,
+  //       comments: {
+  //         message: message,
+  //       },
+  //     },
+  //   });
 
   const handleCancel = () => {
     setMessage('');
@@ -52,7 +50,8 @@ export default function CreateComment({ slug, id }: LMSfeedbackProps) {
   const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      updateComment();
+      createComment();
+      setMessage('');
       toast.success('Thank you for your feedback', {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
@@ -64,7 +63,7 @@ export default function CreateComment({ slug, id }: LMSfeedbackProps) {
   return (
     <Container>
       <Box component="form">
-        <Typography>Leave a comment (optional)</Typography>
+        <Typography>Leave a comment</Typography>
 
         <TextField
           autoFocus

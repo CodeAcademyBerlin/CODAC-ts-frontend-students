@@ -1,17 +1,11 @@
-import { valueToObjectRepresentation } from '@apollo/client/utilities';
 import StarIcon from '@mui/icons-material/Star';
-import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
-import { values } from 'lodash';
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
-import SubmitBtn from './submitBtn';
-// ** Mutation
-// ** Custom Components
 import TextFeedback from './textFeedback';
 
 type LMSfeedbackProps = {
@@ -48,11 +42,12 @@ export default function HoverRating({ slug, message }: LMSfeedbackProps) {
       },
     },
   );
-  // console.log('data', data);
-  // console.log('error', error);
 
-  const handleCancel = () => {
-    setRating(null);
+  // OPEN MODAL
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
   return (
@@ -76,6 +71,7 @@ export default function HoverRating({ slug, message }: LMSfeedbackProps) {
           value={rating}
           precision={1}
           getLabelText={getLabelText}
+          onClick={handleClickOpen}
           onChange={(
             event: any,
             newRating: React.SetStateAction<number | null>,
@@ -94,16 +90,15 @@ export default function HoverRating({ slug, message }: LMSfeedbackProps) {
           <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
         )}
 
-        {rating !== null && rating < 3 && (
+        {rating !== null && (
           <TextFeedback
             slug={slug}
             rating={rating}
-            handleCancel={handleCancel}
+            open={open}
+            setOpen={setOpen}
             createRating={createRating}
+            getLabelText={getLabelText}
           />
-        )}
-        {rating !== null && rating > 2 && (
-          <SubmitBtn slug={slug} rating={rating} createRating={createRating} />
         )}
       </Box>
     </>
