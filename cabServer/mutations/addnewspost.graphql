@@ -1,0 +1,59 @@
+mutation createNewsPost(
+  $title: String!
+  $post: String!
+  $author: ID!
+  $tags: ENUM_NEWSPOST_TAGS!
+  $image: ID!
+) {
+  createNewsPost(
+    data: {
+      title: $title
+      post: $post
+      image: $image
+      author: $author
+      tags: $tags
+    }
+  ) {
+    data {
+      id
+      attributes {
+        title
+        post
+        author {
+          data {
+            id
+            attributes {
+              username
+              avatar {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    width
+                    height
+                    hash
+                    mime
+                    size
+                    previewUrl
+                    provider
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        tags
+        image {
+          data {
+            id
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
