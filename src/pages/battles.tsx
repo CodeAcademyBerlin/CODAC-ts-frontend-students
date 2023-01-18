@@ -1,10 +1,10 @@
+import {
+  VsBattleEntity,
+  VsBattleEntityResponseCollection,
+} from 'cabServer/global/__generated__/types';
 import { GetServerSideProps } from 'next/types';
 import React, { useEffect, useState } from 'react';
 
-import {
-  VsBattle,
-  VsBattleEntity,
-} from '../../cabServer/global/__generated__/types';
 import {
   useVoteVsBattleMutation,
   VoteVsBattleDocument,
@@ -14,8 +14,6 @@ import BattleCard from '../components/battles-page/BattleCard';
 import { initializeApollo } from '../lib/apolloClient';
 
 type Props = {};
-
-type VsBattles = VsBattle[];
 
 function Battle({}: Props) {
   const { data, loading, error, refetch } = useGetVsBattlesQuery();
@@ -36,13 +34,13 @@ function Battle({}: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mutationData]);
 
-  const vsBattles = data?.vsBattles?.data || [];
+  const vsBattles: VsBattleEntity[] | null = data?.vsBattles?.data || null;
 
   return (
     <div>
       {vsBattles &&
         vsBattles.map((battle, index) => {
-          if (battle.attributes) {
+          if (battle?.attributes) {
             return (
               <div key={index}>
                 <BattleCard vsBattle={battle} handleVote={handleVote} />

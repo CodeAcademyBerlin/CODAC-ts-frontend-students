@@ -1,4 +1,4 @@
-query getNews {
+query getNewsPost {
   newsPosts {
     data {
       attributes {
@@ -11,10 +11,16 @@ query getNews {
               student {
                 data {
                   attributes {
-                    avatar {
+                    user {
                       data {
                         attributes {
-                          url
+                          avatar {
+                            data {
+                              attributes {
+                                url
+                              }
+                            }
+                          }
                         }
                       }
                     }

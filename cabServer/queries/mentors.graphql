@@ -2,12 +2,18 @@ query mentors {
   mentors {
     data {
       attributes {
-        firstname
-        lastname
-        avatar {
+        user {
           data {
             attributes {
-              url
+              firstname
+              lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }

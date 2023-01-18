@@ -214,22 +214,16 @@ const OverflowTopic = ({
                       >
                         <Avatar
                           alt={
-                            eachComment?.author?.data?.attributes?.student?.data
-                              ?.attributes?.firstname || ''
+                            eachComment?.author?.data?.attributes?.firstname ||
+                            ''
                           }
                           sx={{ width: 40, height: 40 }}
                           src={/* user.userData?.avatar ||  */ ''}
                         />
                       </Badge>
                       <h3 style={{ color: '#26a69a' }}>
-                        {
-                          // eslint-disable-next-line prettier/prettier
-                          eachComment?.author?.data?.attributes?.student?.data?.attributes?.firstname
-                        }{' '}
-                        {
-                          // eslint-disable-next-line prettier/prettier
-                          eachComment?.author?.data?.attributes?.student?.data?.attributes?.lastname
-                        }
+                        {eachComment?.author?.data?.attributes?.firstname}{' '}
+                        {eachComment?.author?.data?.attributes?.lastname}
                       </h3>
                     </Item>
                   </Stack>

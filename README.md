@@ -169,7 +169,6 @@ Close and restart VS code before testing again.
 ├── components # Home grown components organized in subfolder for every pages
 |   ├── page subfolder...
 ├── componentsDemo # DEMO components for pages (to be moved to components folder if used)
-├── content # Git submodule sourcing data for the LMS
 ├── context # React context providers
 │   ├── authContext # User Authentication
 │   ├── settingsContext # User Preferences (look & feel)

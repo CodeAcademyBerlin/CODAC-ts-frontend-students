@@ -185,12 +185,16 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
                           mr: 1.5,
                         }}
                       >
-                        {student.attributes?.firstname?.charAt(0)}
-                        {student.attributes?.lastname?.charAt(0)}
+                        {student.attributes?.user?.data?.attributes?.firstname?.charAt(
+                          0,
+                        )}
+                        {student.attributes?.user?.data?.attributes?.lastname?.charAt(
+                          0,
+                        )}
                       </Avatar>
                       <ListItemText>
-                        {student.attributes?.firstname}{' '}
-                        {student.attributes?.lastname}
+                        {student.attributes?.user?.data?.attributes?.firstname}{' '}
+                        {student.attributes?.user?.data?.attributes?.lastname}
                       </ListItemText>
                       {student.attributes?.main_course?.data?.attributes
                         ?.name && (

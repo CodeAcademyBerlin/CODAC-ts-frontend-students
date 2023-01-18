@@ -5,26 +5,24 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const GetMeDocument = gql`
-    query getMe {
-  me {
-    id
-    role {
+  query getMe {
+    me {
       id
-      name
-    }
-    email
-    id
-    username
-    userData {
+      role {
+        id
+        name
+      }
+      email
+      id
+      username
       firstname
       lastname
-      avatar
-      type
-      id
+      avatar {
+        url
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetMeQuery__
@@ -41,18 +39,46 @@ export const GetMeDocument = gql`
  *   },
  * });
  */
-export function useGetMeQuery(baseOptions?: Apollo.QueryHookOptions<GetMeQuery, GetMeQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetMeQuery, GetMeQueryVariables>(GetMeDocument, options);
-      }
-export function useGetMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMeQuery, GetMeQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetMeQuery, GetMeQueryVariables>(GetMeDocument, options);
-        }
+export function useGetMeQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetMeQuery, GetMeQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetMeQuery, GetMeQueryVariables>(
+    GetMeDocument,
+    options,
+  );
+}
+export function useGetMeLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetMeQuery, GetMeQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetMeQuery, GetMeQueryVariables>(
+    GetMeDocument,
+    options,
+  );
+}
 export type GetMeQueryHookResult = ReturnType<typeof useGetMeQuery>;
 export type GetMeLazyQueryHookResult = ReturnType<typeof useGetMeLazyQuery>;
-export type GetMeQueryResult = Apollo.QueryResult<GetMeQuery, GetMeQueryVariables>;
-export type GetMeQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GetMeQueryResult = Apollo.QueryResult<
+  GetMeQuery,
+  GetMeQueryVariables
+>;
+export type GetMeQueryVariables = Types.Exact<{ [key: string]: never }>;
 
-
-export type GetMeQuery = { __typename?: 'Query', me?: { __typename?: 'UsersPermissionsMe', id: string, email?: string | null, username: string, role?: { __typename?: 'UsersPermissionsMeRole', id: string, name: string } | null, userData?: { __typename?: 'UserData', firstname?: string | null, lastname?: string | null, avatar?: string | null, type?: string | null, id?: string | null } | null } | null };
+export type GetMeQuery = {
+  __typename?: 'Query';
+  me?: {
+    __typename?: 'UsersPermissionsMe';
+    id?: string | null;
+    email?: string | null;
+    username: string;
+    firstname?: string | null;
+    lastname?: string | null;
+    role?: {
+      __typename?: 'UsersPermissionsMeRole';
+      id: string;
+      name: string;
+    } | null;
+    avatar?: { __typename?: 'UploadFile'; url: string } | null;
+  } | null;
+};

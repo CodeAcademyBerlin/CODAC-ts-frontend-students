@@ -17,8 +17,6 @@ query getCohorts {
         students {
           data {
             attributes {
-              firstname
-              lastname
               start_date
               end_date
               main_course {
@@ -45,13 +43,19 @@ query getCohorts {
                   }
                 }
               }
-              avatar {
+              user {
                 data {
                   attributes {
-                    url
-                    alternativeText
-                    name
-                    caption
+                    avatar {
+                      data {
+                        attributes {
+                          url
+                          alternativeText
+                          name
+                          caption
+                        }
+                      }
+                    }
                   }
                 }
               }

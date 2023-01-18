@@ -130,17 +130,25 @@ function Community({
               return mentor.attributes ? (
                 <MentorsContent key={mentor.id}>
                   <Image
-                    alt={mentor.attributes?.firstname || 'avatar'}
+                    alt={
+                      mentor.attributes?.user?.data?.attributes?.firstname ||
+                      'avatar'
+                    }
                     style={{ marginLeft: `-${i}em` }}
                     src={
-                      mentor.attributes.avatar?.data?.attributes?.url || logo
+                      mentor.attributes.user?.data?.attributes?.avatar?.data
+                        ?.attributes?.url || logo
                     }
                     width={50}
                     height={50}
                     aria-owns={open ? 'mouse-over-popover' : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, mentor.attributes?.firstname || '')
+                      handlePopoverOpen(
+                        e,
+                        mentor.attributes?.user?.data?.attributes?.firstname ||
+                          '',
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -213,18 +221,26 @@ function Community({
                               width={50}
                               height={50}
                               src={
-                                student.attributes?.avatar?.data?.attributes
-                                  ?.url || logo
+                                student.attributes?.user?.data?.attributes
+                                  ?.avatar?.data?.attributes?.url || logo
                               }
                               alt={
-                                student.attributes?.firstname +
+                                student.attributes?.user?.data?.attributes
+                                  ?.firstname +
                                   ' ' +
-                                  student.attributes?.lastname || 'Student'
+                                  student.attributes?.user?.data?.attributes
+                                    ?.lastname || 'Student'
                               }
                             />
                             <p>
-                              {student.attributes?.firstname}{' '}
-                              {student.attributes?.lastname}
+                              {
+                                student.attributes?.user?.data?.attributes
+                                  ?.firstname
+                              }{' '}
+                              {
+                                student.attributes?.user?.data?.attributes
+                                  ?.lastname
+                              }
                             </p>
                           </div>
                           <p>Graduation: {student.attributes?.end_date}</p>

@@ -45,14 +45,12 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
           subheader={updatedDate}
         />
       </CardContent>
-      {newsPost.attributes?.image?.data?.map((oneimage, i: number) => (
-        <CardMedia
-          component={'img'}
-          height={'274'}
-          image={oneimage.attributes?.url || 'no image'}
-          key={i}
-        />
-      ))}
+      <CardMedia
+        component={'img'}
+        height={'274'}
+        image={newsPost?.attributes?.image?.data?.attributes?.url || 'no image'}
+      />
+
       <CardContent>
         <Box
           sx={{ mr: 1, mb: 2, ml: 1, display: 'flex', flexDirection: 'column' }}

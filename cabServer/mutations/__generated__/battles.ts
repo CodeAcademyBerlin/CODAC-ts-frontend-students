@@ -1,7 +1,7 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const VoteVsBattleDocument = gql`
@@ -9,6 +9,7 @@ export const VoteVsBattleDocument = gql`
     voteVsBattle(id: $vsBattleId, option: $option) {
       title
       description
+      archived
       option_1_voters {
         data {
           id
@@ -84,6 +85,7 @@ export type VoteVsBattleMutation = {
     __typename?: 'VsBattle';
     title?: string | null;
     description?: string | null;
+    archived: boolean;
     option_1_voters?: {
       __typename?: 'UsersPermissionsUserRelationResponseCollection';
       data: Array<{

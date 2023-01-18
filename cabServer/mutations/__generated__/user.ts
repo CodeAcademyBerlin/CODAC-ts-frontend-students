@@ -1,7 +1,7 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const LoginDocument = gql`
@@ -76,7 +76,7 @@ export type LoginMutation = {
     user: {
       __typename?: 'UsersPermissionsMe';
       username: string;
-      id: string;
+      id?: string | null;
       email?: string | null;
       role?: {
         __typename?: 'UsersPermissionsMeRole';

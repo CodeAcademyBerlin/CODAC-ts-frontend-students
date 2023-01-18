@@ -1,7 +1,7 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const GetCodacOverflowsDocument = gql`
@@ -13,34 +13,27 @@ export const GetCodacOverflowsDocument = gql`
           slug
           title
           description
-          data
+          date
           author {
             data {
               id
               attributes {
-                student {
+                firstname
+                lastname
+                avatar {
                   data {
                     id
                     attributes {
-                      firstname
-                      lastname
-                      avatar {
-                        data {
-                          id
-                          attributes {
-                            name
-                            alternativeText
-                            width
-                            height
-                            hash
-                            mime
-                            size
-                            previewUrl
-                            provider
-                            url
-                          }
-                        }
-                      }
+                      name
+                      alternativeText
+                      width
+                      height
+                      hash
+                      mime
+                      size
+                      previewUrl
+                      provider
+                      url
                     }
                   }
                 }
@@ -55,29 +48,22 @@ export const GetCodacOverflowsDocument = gql`
               data {
                 id
                 attributes {
-                  student {
+                  firstname
+                  lastname
+                  avatar {
                     data {
                       id
                       attributes {
-                        firstname
-                        lastname
-                        avatar {
-                          data {
-                            id
-                            attributes {
-                              name
-                              alternativeText
-                              width
-                              height
-                              hash
-                              mime
-                              size
-                              previewUrl
-                              provider
-                              url
-                            }
-                          }
-                        }
+                        name
+                        alternativeText
+                        width
+                        height
+                        hash
+                        mime
+                        size
+                        previewUrl
+                        provider
+                        url
                       }
                     }
                   }
@@ -160,7 +146,7 @@ export type GetCodacOverflowsQuery = {
         slug?: string | null;
         title?: string | null;
         description?: string | null;
-        data?: any | null;
+        date?: any | null;
         course?: string | null;
         createdAt?: any | null;
         updatedAt?: any | null;
@@ -172,35 +158,25 @@ export type GetCodacOverflowsQuery = {
             id?: string | null;
             attributes?: {
               __typename?: 'UsersPermissionsUser';
-              student?: {
-                __typename?: 'StudentEntityResponse';
+              firstname: string;
+              lastname: string;
+              avatar?: {
+                __typename?: 'UploadFileEntityResponse';
                 data?: {
-                  __typename?: 'StudentEntity';
+                  __typename?: 'UploadFileEntity';
                   id?: string | null;
                   attributes?: {
-                    __typename?: 'Student';
-                    firstname?: string | null;
-                    lastname?: string | null;
-                    avatar?: {
-                      __typename?: 'UploadFileEntityResponse';
-                      data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: {
-                          __typename?: 'UploadFile';
-                          name: string;
-                          alternativeText?: string | null;
-                          width?: number | null;
-                          height?: number | null;
-                          hash: string;
-                          mime: string;
-                          size: number;
-                          previewUrl?: string | null;
-                          provider: string;
-                          url: string;
-                        } | null;
-                      } | null;
-                    } | null;
+                    __typename?: 'UploadFile';
+                    name: string;
+                    alternativeText?: string | null;
+                    width?: number | null;
+                    height?: number | null;
+                    hash: string;
+                    mime: string;
+                    size: number;
+                    previewUrl?: string | null;
+                    provider: string;
+                    url: string;
                   } | null;
                 } | null;
               } | null;
@@ -219,35 +195,25 @@ export type GetCodacOverflowsQuery = {
               id?: string | null;
               attributes?: {
                 __typename?: 'UsersPermissionsUser';
-                student?: {
-                  __typename?: 'StudentEntityResponse';
+                firstname: string;
+                lastname: string;
+                avatar?: {
+                  __typename?: 'UploadFileEntityResponse';
                   data?: {
-                    __typename?: 'StudentEntity';
+                    __typename?: 'UploadFileEntity';
                     id?: string | null;
                     attributes?: {
-                      __typename?: 'Student';
-                      firstname?: string | null;
-                      lastname?: string | null;
-                      avatar?: {
-                        __typename?: 'UploadFileEntityResponse';
-                        data?: {
-                          __typename?: 'UploadFileEntity';
-                          id?: string | null;
-                          attributes?: {
-                            __typename?: 'UploadFile';
-                            name: string;
-                            alternativeText?: string | null;
-                            width?: number | null;
-                            height?: number | null;
-                            hash: string;
-                            mime: string;
-                            size: number;
-                            previewUrl?: string | null;
-                            provider: string;
-                            url: string;
-                          } | null;
-                        } | null;
-                      } | null;
+                      __typename?: 'UploadFile';
+                      name: string;
+                      alternativeText?: string | null;
+                      width?: number | null;
+                      height?: number | null;
+                      hash: string;
+                      mime: string;
+                      size: number;
+                      previewUrl?: string | null;
+                      provider: string;
+                      url: string;
                     } | null;
                   } | null;
                 } | null;
