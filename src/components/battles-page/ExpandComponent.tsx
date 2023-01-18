@@ -1,22 +1,28 @@
 import {
+  Avatar,
   Box,
   CardContent,
   Collapse,
   Divider,
   List,
+  ListItem,
+  ListItemText,
   Typography,
   useTheme,
 } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
+import { VsBattleEntity } from 'cabServer/global/__generated__/types';
 import ChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
-import React from 'react';
-
-import VotersList from './VotersList';
+import React, { ReactElement } from 'react';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
+
+type ExpandComponentProps = {
+  vsBattle: VsBattleEntity;
+};
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props;
@@ -29,7 +35,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-function ExpandComponent() {
+function ExpandComponent(props: ExpandComponentProps) {
   const theme = useTheme();
 
   const [expanded, setExpanded] = React.useState(false);
@@ -61,9 +67,25 @@ function ExpandComponent() {
               Voters
             </Typography>
           </Divider>
-          <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-            <VotersList></VotersList>
-            <VotersList></VotersList>
+          <Box>
+            <List dense={true}>
+              <ListItem>
+                <Avatar
+                  sx={{
+                    fontWeight: theme.typography.fontWeightBold,
+                    fontSize: 15,
+                    color: theme.palette.common.white,
+                    backgroundColor: theme.palette.primary.light,
+                    mr: 3,
+                  }}
+                >
+                  {' '}
+                  AJ
+                </Avatar>
+                <ListItemText></ListItemText>
+              </ListItem>
+              <Divider />
+            </List>
           </Box>
         </CardContent>
       </Collapse>

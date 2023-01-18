@@ -18,6 +18,7 @@ import {
 } from '../../../cabServer/global/__generated__/types';
 import DenseTable from './BattleTable';
 import ExpandComponent from './ExpandComponent';
+import VotersList from './VotersList';
 
 type BattleCardProps = {
   vsBattle: VsBattleEntity;
@@ -153,7 +154,7 @@ const BattleCard = (props: BattleCardProps) => {
               props.vsBattle?.attributes?.option_2_voters?.data.length || 0
             }
           />
-          <ExpandComponent />
+          <ExpandComponent vsBattle={props.vsBattle} />
         </div>
       )}
     </Card>
