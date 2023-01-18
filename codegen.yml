@@ -22,7 +22,7 @@ generates:
       withHooks: true
       withHOC: false
       withComponent: false
-    hooks:
-      afterAllFileWrite:
-        - eslint --fix
-        - prettier --write
+      hooks:
+        afterOneFileWrite:
+          - eslint --fix
+          - prettier --write

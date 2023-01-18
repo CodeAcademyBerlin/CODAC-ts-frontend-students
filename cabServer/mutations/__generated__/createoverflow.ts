@@ -1,7 +1,7 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const CreateCodacOverflowDocument = gql`
@@ -9,7 +9,7 @@ export const CreateCodacOverflowDocument = gql`
     $slug: String!
     $title: String!
     $description: String!
-    $data: Date!
+    $date: Date!
     $author: ID!
     $course: String!
     $publishedAt: DateTime!
@@ -19,7 +19,7 @@ export const CreateCodacOverflowDocument = gql`
         slug: $slug
         title: $title
         description: $description
-        data: $data
+        date: $date
         author: $author
         course: $course
         publishedAt: $publishedAt
@@ -31,34 +31,27 @@ export const CreateCodacOverflowDocument = gql`
           slug
           title
           description
-          data
+          date
           author {
             data {
               id
               attributes {
-                student {
+                firstname
+                lastname
+                avatar {
                   data {
                     id
                     attributes {
-                      firstname
-                      lastname
-                      avatar {
-                        data {
-                          id
-                          attributes {
-                            name
-                            alternativeText
-                            width
-                            height
-                            hash
-                            mime
-                            size
-                            previewUrl
-                            provider
-                            url
-                          }
-                        }
-                      }
+                      name
+                      alternativeText
+                      width
+                      height
+                      hash
+                      mime
+                      size
+                      previewUrl
+                      provider
+                      url
                     }
                   }
                 }
@@ -95,7 +88,7 @@ export type CreateCodacOverflowMutationFn = Apollo.MutationFunction<
  *      slug: // value for 'slug'
  *      title: // value for 'title'
  *      description: // value for 'description'
- *      data: // value for 'data'
+ *      date: // value for 'date'
  *      author: // value for 'author'
  *      course: // value for 'course'
  *      publishedAt: // value for 'publishedAt'
@@ -127,7 +120,7 @@ export type CreateCodacOverflowMutationVariables = Types.Exact<{
   slug: Types.Scalars['String'];
   title: Types.Scalars['String'];
   description: Types.Scalars['String'];
-  data: Types.Scalars['Date'];
+  date: Types.Scalars['Date'];
   author: Types.Scalars['ID'];
   course: Types.Scalars['String'];
   publishedAt: Types.Scalars['DateTime'];
@@ -145,7 +138,7 @@ export type CreateCodacOverflowMutation = {
         slug?: string | null;
         title?: string | null;
         description?: string | null;
-        data?: any | null;
+        date?: any | null;
         course?: string | null;
         createdAt?: any | null;
         updatedAt?: any | null;
@@ -157,35 +150,25 @@ export type CreateCodacOverflowMutation = {
             id?: string | null;
             attributes?: {
               __typename?: 'UsersPermissionsUser';
-              student?: {
-                __typename?: 'StudentEntityResponse';
+              firstname: string;
+              lastname: string;
+              avatar?: {
+                __typename?: 'UploadFileEntityResponse';
                 data?: {
-                  __typename?: 'StudentEntity';
+                  __typename?: 'UploadFileEntity';
                   id?: string | null;
                   attributes?: {
-                    __typename?: 'Student';
-                    firstname?: string | null;
-                    lastname?: string | null;
-                    avatar?: {
-                      __typename?: 'UploadFileEntityResponse';
-                      data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: {
-                          __typename?: 'UploadFile';
-                          name: string;
-                          alternativeText?: string | null;
-                          width?: number | null;
-                          height?: number | null;
-                          hash: string;
-                          mime: string;
-                          size: number;
-                          previewUrl?: string | null;
-                          provider: string;
-                          url: string;
-                        } | null;
-                      } | null;
-                    } | null;
+                    __typename?: 'UploadFile';
+                    name: string;
+                    alternativeText?: string | null;
+                    width?: number | null;
+                    height?: number | null;
+                    hash: string;
+                    mime: string;
+                    size: number;
+                    previewUrl?: string | null;
+                    provider: string;
+                    url: string;
                   } | null;
                 } | null;
               } | null;

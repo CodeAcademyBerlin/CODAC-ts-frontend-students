@@ -1,26 +1,26 @@
-import * as Types from '../../global/__generated__/types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const GetJobsDocument = gql`
-    query getJobs($date: DateTime) {
-  jobPosts(filters: {updatedAt: {gte: $date}}) {
-    data {
-      attributes {
-        url
-        position
-        company
-        field
-        createdAt
-        updatedAt
-        description
+  query getJobs($date: DateTime) {
+    jobPosts(filters: { updatedAt: { gte: $date } }) {
+      data {
+        attributes {
+          url
+          position
+          company
+          field
+          createdAt
+          updatedAt
+          description
+        }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetJobsQuery__
@@ -38,20 +38,53 @@ export const GetJobsDocument = gql`
  *   },
  * });
  */
-export function useGetJobsQuery(baseOptions?: Apollo.QueryHookOptions<GetJobsQuery, GetJobsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetJobsQuery, GetJobsQueryVariables>(GetJobsDocument, options);
-      }
-export function useGetJobsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetJobsQuery, GetJobsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetJobsQuery, GetJobsQueryVariables>(GetJobsDocument, options);
-        }
+export function useGetJobsQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetJobsQuery, GetJobsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetJobsQuery, GetJobsQueryVariables>(
+    GetJobsDocument,
+    options,
+  );
+}
+export function useGetJobsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetJobsQuery,
+    GetJobsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetJobsQuery, GetJobsQueryVariables>(
+    GetJobsDocument,
+    options,
+  );
+}
 export type GetJobsQueryHookResult = ReturnType<typeof useGetJobsQuery>;
 export type GetJobsLazyQueryHookResult = ReturnType<typeof useGetJobsLazyQuery>;
-export type GetJobsQueryResult = Apollo.QueryResult<GetJobsQuery, GetJobsQueryVariables>;
+export type GetJobsQueryResult = Apollo.QueryResult<
+  GetJobsQuery,
+  GetJobsQueryVariables
+>;
 export type GetJobsQueryVariables = Types.Exact<{
   date?: Types.InputMaybe<Types.Scalars['DateTime']>;
 }>;
 
-
-export type GetJobsQuery = { __typename?: 'Query', jobPosts?: { __typename?: 'JobPostEntityResponseCollection', data: Array<{ __typename?: 'JobPostEntity', attributes?: { __typename?: 'JobPost', url?: string | null, position?: string | null, company?: string | null, field?: Types.Enum_Jobpost_Field | null, createdAt?: any | null, updatedAt?: any | null, description?: string | null } | null }> } | null };
+export type GetJobsQuery = {
+  __typename?: 'Query';
+  jobPosts?: {
+    __typename?: 'JobPostEntityResponseCollection';
+    data: Array<{
+      __typename?: 'JobPostEntity';
+      attributes?: {
+        __typename?: 'JobPost';
+        url?: string | null;
+        position?: string | null;
+        company?: string | null;
+        field?: Types.Enum_Jobpost_Field | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        description?: string | null;
+      } | null;
+    }>;
+  } | null;
+};

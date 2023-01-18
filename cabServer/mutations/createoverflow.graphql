@@ -1,45 +1,56 @@
-mutation createCodacOverflow($slug: String!, $title: String!, $description: String!, $data: Date!, $author: ID!, $course: String!, $publishedAt: DateTime!) {
-  createCodacOverflow(data: { slug: $slug, title: $title, description: $description, data: $data, author: $author, course: $course, publishedAt: $publishedAt }) {
+mutation createCodacOverflow(
+  $slug: String!
+  $title: String!
+  $description: String!
+  $date: Date!
+  $author: ID!
+  $course: String!
+  $publishedAt: DateTime!
+) {
+  createCodacOverflow(
+    data: {
+      slug: $slug
+      title: $title
+      description: $description
+      date: $date
+      author: $author
+      course: $course
+      publishedAt: $publishedAt
+    }
+  ) {
     data {
       id
       attributes {
         slug
-              title
-              description
-              data
-              author{
-                data{
+        title
+        description
+        date
+        author {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              avatar {
+                data {
                   id
-                  attributes{
-                    student{
-                      data{
-                        id
-                        attributes{
-                          firstname
-                          lastname
-                          avatar{
-                            data{
-                              id
-                              attributes{
-                                name
-                                alternativeText
-                                width
-                                height
-                                hash
-                                mime
-                                size
-                                previewUrl
-                                provider
-                                url
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
+                  attributes {
+                    name
+                    alternativeText
+                    width
+                    height
+                    hash
+                    mime
+                    size
+                    previewUrl
+                    provider
+                    url
                   }
                 }
               }
+            }
+          }
+        }
         course
         createdAt
         updatedAt
