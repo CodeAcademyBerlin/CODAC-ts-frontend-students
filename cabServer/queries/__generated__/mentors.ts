@@ -9,12 +9,18 @@ export const MentorsDocument = gql`
   mentors {
     data {
       attributes {
-        firstname
-        lastname
-        avatar {
+        user {
           data {
             attributes {
-              url
+              firstname
+              lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }
@@ -61,4 +67,4 @@ export type MentorsQueryResult = Apollo.QueryResult<MentorsQuery, MentorsQueryVa
 export type MentorsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type MentorsQuery = { __typename?: 'Query', mentors?: { __typename?: 'MentorEntityResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', firstname?: string | null, lastname?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, courses?: { __typename?: 'CourseRelationResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null, description?: string | null } | null }> } | null } | null }> } | null };
+export type MentorsQuery = { __typename?: 'Query', mentors?: { __typename?: 'MentorEntityResponseCollection', data: Array<{ __typename?: 'MentorEntity', attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null, courses?: { __typename?: 'CourseRelationResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null, description?: string | null } | null }> } | null } | null }> } | null };

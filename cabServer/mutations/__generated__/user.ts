@@ -55,4 +55,4 @@ export type LoginMutationVariables = Types.Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UsersPermissionsLoginPayload', jwt?: string | null, user: { __typename?: 'UsersPermissionsMe', username: string, id: string, email?: string | null, role?: { __typename?: 'UsersPermissionsMeRole', type?: string | null, name: string, description?: string | null, id: string } | null } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UsersPermissionsLoginPayload', jwt?: string | null, user: { __typename?: 'UsersPermissionsMe', username: string, id?: string | null, email?: string | null, role?: { __typename?: 'UsersPermissionsMeRole', type?: string | null, name: string, description?: string | null, id: string } | null } } };

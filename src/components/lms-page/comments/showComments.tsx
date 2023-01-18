@@ -3,7 +3,7 @@ import { Avatar, Divider, Grid, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
-import { useFeedbackQuery } from 'cabServer/queries/__generated__/lmsFeedback';
+import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import * as React from 'react';
 import CreateComment from 'src/components/lms-page/comments/createComment';
 
@@ -12,7 +12,7 @@ type LMSfeedbackProps = {
 };
 
 const ShowComments = ({ slug }: LMSfeedbackProps) => {
-  const { data, loading, error } = useFeedbackQuery({
+  const { data, loading, error } = useGetLmsFeedbacksQuery({
     variables: {
       slug: slug,
     },
