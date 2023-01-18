@@ -1,14 +1,14 @@
-query feedback {
-  lmsFeedbacks {
+query getLMSFeedbacks($slug: String!) {
+  lmsFeedbacks(filters: { slug: { eq: $slug } }) {
     data {
       id
       attributes {
-        rating
         slug
         createdAt
         comments {
           id
           message
+          timestamp
           author {
             data {
               attributes {

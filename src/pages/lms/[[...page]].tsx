@@ -1,7 +1,5 @@
 import { Breadcrumbs, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/comments';
-import { useFeedbackQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import Head from 'next/head';
 import Link from 'next/link';
 import ShowComments from 'src/components/lms-page/comments/showComments';

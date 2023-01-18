@@ -3,7 +3,7 @@ import { Avatar, Divider, Grid, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
-import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/comments';
+import { useFeedbackQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import * as React from 'react';
 import CreateComment from 'src/components/lms-page/comments/createComment';
 
@@ -12,7 +12,7 @@ type LMSfeedbackProps = {
 };
 
 const ShowComments = ({ slug }: LMSfeedbackProps) => {
-  const { data, loading, error } = useGetLmsFeedbacksQuery({
+  const { data, loading, error } = useFeedbackQuery({
     variables: {
       slug: slug,
     },
@@ -73,9 +73,10 @@ const ShowComments = ({ slug }: LMSfeedbackProps) => {
                       )}
                     </p>
                     <p style={{ textAlign: 'left', color: 'gray' }}>
-                      {lmsComment.attributes?.comments?.map((comment) =>
-                        new Date(comment?.timestamp).toUTCString(),
-                      )}
+                      {lmsComment.attributes?.createdAt}
+                      {/* {lmsComment.attributes?.comments?.map((comment) =>
+                        new Date(comment?.timestamp).toDateString(),
+                      )} */}
                     </p>
                   </Grid>
                 </Grid>
