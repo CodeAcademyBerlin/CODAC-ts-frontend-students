@@ -349,7 +349,7 @@ export const getServerSideProps: GetServerSideProps<{
   try {
     const overflowId: string | string[] = ctx?.params?.overflowId || '';
     console.log('overflowId', overflowId);
-    const idNumber = 1;
+    const idNumber = +overflowId;
     const client = initializeApollo(null, ctx.req);
     const { data, error } = await client.query({
       query: CodacOverflowByIdDocument,
