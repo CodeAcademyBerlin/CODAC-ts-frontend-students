@@ -3,35 +3,37 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
+import {
+  ComponentCommentsCommentsInput,
+  LmsFeedback,
+  LmsFeedbackEntity,
+} from 'cabServer/global/__generated__/types';
 import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
+import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import { identity } from 'lodash';
-import React from 'react';
-import { MouseEvent, useState } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 type LMSfeedbackProps = {
   slug: string;
   id: string;
+  refetch: () => void;
+  lmsComments: LmsFeedbackEntity;
 };
 
-export default function CreateComment({ slug, id }: LMSfeedbackProps) {
+export default function CreateComment({
+  slug,
+  id,
+  refetch,
+  lmsComments,
+}: LMSfeedbackProps) {
   const [message, setMessage] = useState<string>('');
-  const [timestamp, setTimestemp] = useState<number>();
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setMessage(event.target.value);
-  console.log('message:', message);
 
   const [createComment, { data, loading, error }] =
-    useCreateLmsFeedbackMutation({
-      variables: {
-        slug: slug,
-        comments: {
-          message: message,
-          timestamp: timestamp,
-        },
-      },
-    });
+    useCreateLmsFeedbackMutation();
 
   // const [updateComment, { data, loading, error }] =
   //   useUpdateLmsFeedbackMutation({
@@ -48,22 +50,33 @@ export default function CreateComment({ slug, id }: LMSfeedbackProps) {
     setMessage('');
   };
 
-  let timestemp = Date.now();
-
   const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      setTimestemp(timestemp);
-      console.log('time', timestemp);
-      createComment();
+      const now = new Date();
+      createComment({
+        variables: {
+          slug: slug,
+          comments: {
+            message: message,
+            timestamp: now,
+          },
+        },
+      });
+      refetch();
       setMessage('');
-      toast.success('Thank you for your feedback', {
+      toast.success('Your comment has  been submitted', {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     } catch (e) {
       ({ error: 'e.message' });
     }
   };
+
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lmsComments]);
 
   return (
     <Container>

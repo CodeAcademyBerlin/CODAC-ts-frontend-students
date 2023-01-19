@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsFeedback';
-import * as React from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import CreateComment from 'src/components/lms-page/comments/createComment';
 
 type LMSfeedbackProps = {
@@ -12,13 +12,18 @@ type LMSfeedbackProps = {
 };
 
 const ShowComments = ({ slug }: LMSfeedbackProps) => {
-  const { data, loading, error } = useGetLmsFeedbacksQuery({
+  const { data, loading, error, refetch } = useGetLmsFeedbacksQuery({
     variables: {
       slug: slug,
     },
   });
   const lmsComments = data?.lmsFeedbacks?.data || [];
   console.log('comments', lmsComments);
+
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lmsComments]);
 
   return (
     lmsComments && (
@@ -39,7 +44,12 @@ const ShowComments = ({ slug }: LMSfeedbackProps) => {
             width: '50%',
           }}
         >
-          <CreateComment slug={slug} id={''} />
+          <CreateComment
+            slug={slug}
+            id={''}
+            refetch={refetch}
+            lmsComments={lmsComments}
+          />
         </Box>
 
         {lmsComments &&
