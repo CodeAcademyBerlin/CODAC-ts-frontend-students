@@ -89,7 +89,7 @@ const UserDropdown = () => {
             alt={user.username}
             onClick={handleDropdownOpen}
             sx={{ width: 40, height: 40 }}
-            src={user.userData?.avatar || ''}
+            src={user?.avatar?.url || ''}
           />
         </Badge>
         <Menu
@@ -109,7 +109,7 @@ const UserDropdown = () => {
               >
                 <Avatar
                   alt={user.username}
-                  src={user.userData?.avatar || ''}
+                  src={user?.avatar?.url || ''}
                   sx={{ width: '2.5rem', height: '2.5rem' }}
                 />
               </Badge>

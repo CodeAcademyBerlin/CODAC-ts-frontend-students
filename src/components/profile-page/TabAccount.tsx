@@ -50,7 +50,7 @@ const ResetButtonStyled = styled(Button)<ButtonProps>(({ theme }) => ({
 const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
   // ** State
   const [openAlert, setOpenAlert] = useState<boolean>(true);
-  const [imgSrc, setImgSrc] = useState<string>(user.userData?.avatar || '');
+  const [imgSrc, setImgSrc] = useState<string>(user?.avatar?.url || '');
   const [userState, setUserState] = useState<UsersPermissionsMe>(user);
 
   const onChange = (file: ChangeEvent) => {
@@ -114,15 +114,11 @@ const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
             <TextField
               fullWidth
               label="firstname"
-              value={userState.userData?.firstname}
+              value={userState.firstname}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="lastname"
-              value={userState.userData?.lastname}
-            />
+            <TextField fullWidth label="lastname" value={userState.lastname} />
           </Grid>
           {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
@@ -149,7 +145,6 @@ const TabAccount = ({ user }: { user: UsersPermissionsMe }) => {
           <Grid item xs={12} sm={6}>
             <TextField fullWidth label='Company' placeholder='ABC Pvt. Ltd.' defaultValue='ABC Pvt. Ltd.' />
           </Grid>
-
           {openAlert ? (
             <Grid item xs={12} sx={{ mb: 3 }}>
               <Alert
