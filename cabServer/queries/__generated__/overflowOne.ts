@@ -13,34 +13,27 @@ export const CodacOverflowByIdDocument = gql`
         slug
         title
         description
-        data
+        date
         author {
           data {
             id
             attributes {
-              student {
+              firstname
+              lastname
+              avatar {
                 data {
                   id
                   attributes {
-                    firstname
-                    lastname
-                    avatar {
-                      data {
-                        id
-                        attributes {
-                          name
-                          alternativeText
-                          width
-                          height
-                          hash
-                          mime
-                          size
-                          previewUrl
-                          provider
-                          url
-                        }
-                      }
-                    }
+                    name
+                    alternativeText
+                    width
+                    height
+                    hash
+                    mime
+                    size
+                    previewUrl
+                    provider
+                    url
                   }
                 }
               }
@@ -55,29 +48,22 @@ export const CodacOverflowByIdDocument = gql`
             data {
               id
               attributes {
-                student {
+                firstname
+                lastname
+                avatar {
                   data {
                     id
                     attributes {
-                      firstname
-                      lastname
-                      avatar {
-                        data {
-                          id
-                          attributes {
-                            name
-                            alternativeText
-                            width
-                            height
-                            hash
-                            mime
-                            size
-                            previewUrl
-                            provider
-                            url
-                          }
-                        }
-                      }
+                      name
+                      alternativeText
+                      width
+                      height
+                      hash
+                      mime
+                      size
+                      previewUrl
+                      provider
+                      url
                     }
                   }
                 }
@@ -127,4 +113,4 @@ export type CodacOverflowByIdQueryVariables = Types.Exact<{
 }>;
 
 
-export type CodacOverflowByIdQuery = { __typename?: 'Query', codacOverflow?: { __typename?: 'CodacOverflowEntityResponse', data?: { __typename?: 'CodacOverflowEntity', id?: string | null, attributes?: { __typename?: 'CodacOverflow', slug?: string | null, title?: string | null, description?: string | null, data?: any | null, course?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', student?: { __typename?: 'StudentEntityResponse', data?: { __typename?: 'StudentEntity', id?: string | null, attributes?: { __typename?: 'Student', firstname?: string | null, lastname?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string, url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, message?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', student?: { __typename?: 'StudentEntityResponse', data?: { __typename?: 'StudentEntity', id?: string | null, attributes?: { __typename?: 'Student', firstname?: string | null, lastname?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string, url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null> | null } | null } | null } | null };
+export type CodacOverflowByIdQuery = { __typename?: 'Query', codacOverflow?: { __typename?: 'CodacOverflowEntityResponse', data?: { __typename?: 'CodacOverflowEntity', id?: string | null, attributes?: { __typename?: 'CodacOverflow', slug?: string | null, title?: string | null, description?: string | null, date?: any | null, course?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string, url: string } | null } | null } | null } | null } | null } | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, message?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string, url: string } | null } | null } | null } | null } | null } | null } | null> | null } | null } | null } | null };

@@ -27,7 +27,6 @@ const AddNewsPost = (props: Props) => {
   //imports
   const router = useRouter();
   const { user } = useAuth();
-  console.log('news_user', user);
 
   const [newsPostMutuation, { data, loading, error }] =
     useCreateNewsPostMutation({
@@ -45,6 +44,7 @@ const AddNewsPost = (props: Props) => {
   ): void => setPost(event.target.value);
 
   const handleTagsChange = (event: SelectChangeEvent) => {
+    event.preventDefault();
     setTags(event.target.value as Enum_Newspost_Tags);
   };
 
@@ -93,7 +93,7 @@ const AddNewsPost = (props: Props) => {
               marginLeft: '10%',
             }}
           >
-            <h3 style={{ color: '#26a69a' }}>Add News Post</h3>
+            <h3 color="primary">Add News Post</h3>
           </Stack>
           <Box
             component="span"
