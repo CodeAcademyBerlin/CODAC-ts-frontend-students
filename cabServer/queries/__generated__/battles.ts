@@ -6,7 +6,7 @@ const defaultOptions = {} as const;
 
 export const GetVsBattlesDocument = gql`
     query getVSBattles {
-  vsBattles {
+  vsBattles(sort: "createdAt:desc") {
     data {
       id
       attributes {
@@ -17,21 +17,37 @@ export const GetVsBattlesDocument = gql`
         option2
         option_1_voters {
           data {
+            id
             attributes {
-              username
               email
+              username
               firstname
               lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }
         option_2_voters {
           data {
+            id
             attributes {
-              username
               email
+              username
               firstname
               lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }
@@ -70,4 +86,4 @@ export type GetVsBattlesQueryResult = Apollo.QueryResult<GetVsBattlesQuery, GetV
 export type GetVsBattlesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetVsBattlesQuery = { __typename?: 'Query', vsBattles?: { __typename?: 'VsBattleEntityResponseCollection', data: Array<{ __typename?: 'VsBattleEntity', id?: string | null, attributes?: { __typename?: 'VsBattle', archived: boolean, title?: string | null, description?: string | null, option1?: string | null, option2?: string | null, option_1_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, email: string, firstname: string, lastname: string } | null }> } | null, option_2_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, email: string, firstname: string, lastname: string } | null }> } | null } | null }> } | null };
+export type GetVsBattlesQuery = { __typename?: 'Query', vsBattles?: { __typename?: 'VsBattleEntityResponseCollection', data: Array<{ __typename?: 'VsBattleEntity', id?: string | null, attributes?: { __typename?: 'VsBattle', archived: boolean, title?: string | null, description?: string | null, option1?: string | null, option2?: string | null, option_1_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', email: string, username: string, firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null, option_2_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', email: string, username: string, firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null } | null }> } | null };

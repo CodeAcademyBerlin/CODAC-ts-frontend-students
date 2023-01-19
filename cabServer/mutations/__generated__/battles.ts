@@ -16,6 +16,15 @@ export const VoteVsBattleDocument = gql`
         attributes {
           email
           username
+          firstname
+          lastname
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }
@@ -24,6 +33,16 @@ export const VoteVsBattleDocument = gql`
         id
         attributes {
           email
+          username
+          firstname
+          lastname
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }
@@ -63,4 +82,4 @@ export type VoteVsBattleMutationVariables = Types.Exact<{
 }>;
 
 
-export type VoteVsBattleMutation = { __typename?: 'Mutation', voteVsBattle?: { __typename?: 'VsBattle', title?: string | null, description?: string | null, archived: boolean, option_1_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', email: string, username: string } | null }> } | null, option_2_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', email: string } | null }> } | null } | null };
+export type VoteVsBattleMutation = { __typename?: 'Mutation', voteVsBattle?: { __typename?: 'VsBattle', title?: string | null, description?: string | null, archived: boolean, option_1_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', email: string, username: string, firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null, option_2_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', email: string, username: string, firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null } | null };

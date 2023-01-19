@@ -9,6 +9,15 @@ mutation voteVsBattle($vsBattleId: ID!, $option: Int!) {
         attributes {
           email
           username
+          firstname
+          lastname
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }
@@ -17,6 +26,16 @@ mutation voteVsBattle($vsBattleId: ID!, $option: Int!) {
         id
         attributes {
           email
+          username
+          firstname
+          lastname
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }
