@@ -6,34 +6,27 @@ query CodacOverflowById($id: ID){
               slug
               title
               description
-              data
+              date
               author{
                 data{
                   id
                   attributes{
-                    student{
+                    firstname
+                    lastname
+                    avatar{
                       data{
                         id
                         attributes{
-                          firstname
-                          lastname
-                          avatar{
-                            data{
-                              id
-                              attributes{
-                                name
-                                alternativeText
-                                width
-                                height
-                                hash
-                                mime
-                                size
-                                previewUrl
-                                provider
-                                url
-                              }
-                            }
-                          }
+                          name
+                          alternativeText
+                          width
+                          height
+                          hash
+                          mime
+                          size
+                          previewUrl
+                          provider
+                          url
                         }
                       }
                     }
@@ -45,36 +38,29 @@ query CodacOverflowById($id: ID){
                 message
                 timestamp
                 author{
-                  	data{
-                      id
-                      attributes{
-                        student{
-                          data{
-                            id
-                            attributes{
-                              firstname
-                              lastname
-                              avatar{
-                                data{
-                                  id
-                                  attributes{
-                                    name
-                                    alternativeText
-                                    width
-                                    height
-                                    hash
-                                    mime
-                                    size
-                                    previewUrl
-                                    provider
-                                    url
-                                  }
-                                }
-                              }
-                            }
-                          }
+                  data{
+                    id
+                    attributes{
+                      firstname
+                      lastname
+                      avatar{
+                      data{
+                        id
+                        attributes{
+                          name
+                          alternativeText
+                          width
+                          height
+                          hash
+                          mime
+                          size
+                          previewUrl
+                          provider
+                          url
                         }
                       }
+                    }
+                    }
                   }
                 }
               }

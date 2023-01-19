@@ -4,8 +4,8 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
-export const GetNewsDocument = gql`
-    query getNews {
+export const GetNewsPostDocument = gql`
+    query getNewsPost {
   newsPosts {
     data {
       attributes {
@@ -18,10 +18,16 @@ export const GetNewsDocument = gql`
               student {
                 data {
                   attributes {
-                    avatar {
+                    user {
                       data {
                         attributes {
-                          url
+                          avatar {
+                            data {
+                              attributes {
+                                url
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -38,32 +44,32 @@ export const GetNewsDocument = gql`
     `;
 
 /**
- * __useGetNewsQuery__
+ * __useGetNewsPostQuery__
  *
- * To run a query within a React component, call `useGetNewsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetNewsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetNewsPostQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetNewsPostQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetNewsQuery({
+ * const { data, loading, error } = useGetNewsPostQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetNewsQuery(baseOptions?: Apollo.QueryHookOptions<GetNewsQuery, GetNewsQueryVariables>) {
+export function useGetNewsPostQuery(baseOptions?: Apollo.QueryHookOptions<GetNewsPostQuery, GetNewsPostQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetNewsQuery, GetNewsQueryVariables>(GetNewsDocument, options);
+        return Apollo.useQuery<GetNewsPostQuery, GetNewsPostQueryVariables>(GetNewsPostDocument, options);
       }
-export function useGetNewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNewsQuery, GetNewsQueryVariables>) {
+export function useGetNewsPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNewsPostQuery, GetNewsPostQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetNewsQuery, GetNewsQueryVariables>(GetNewsDocument, options);
+          return Apollo.useLazyQuery<GetNewsPostQuery, GetNewsPostQueryVariables>(GetNewsPostDocument, options);
         }
-export type GetNewsQueryHookResult = ReturnType<typeof useGetNewsQuery>;
-export type GetNewsLazyQueryHookResult = ReturnType<typeof useGetNewsLazyQuery>;
-export type GetNewsQueryResult = Apollo.QueryResult<GetNewsQuery, GetNewsQueryVariables>;
-export type GetNewsQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GetNewsPostQueryHookResult = ReturnType<typeof useGetNewsPostQuery>;
+export type GetNewsPostLazyQueryHookResult = ReturnType<typeof useGetNewsPostLazyQuery>;
+export type GetNewsPostQueryResult = Apollo.QueryResult<GetNewsPostQuery, GetNewsPostQueryVariables>;
+export type GetNewsPostQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetNewsQuery = { __typename?: 'Query', newsPosts?: { __typename?: 'NewsPostEntityResponseCollection', data: Array<{ __typename?: 'NewsPostEntity', attributes?: { __typename?: 'NewsPost', post?: string | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', email: string, student?: { __typename?: 'StudentEntityResponse', data?: { __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null }> } | null };
+export type GetNewsPostQuery = { __typename?: 'Query', newsPosts?: { __typename?: 'NewsPostEntityResponseCollection', data: Array<{ __typename?: 'NewsPostEntity', attributes?: { __typename?: 'NewsPost', post?: string | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', email: string, student?: { __typename?: 'StudentEntityResponse', data?: { __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null }> } | null };

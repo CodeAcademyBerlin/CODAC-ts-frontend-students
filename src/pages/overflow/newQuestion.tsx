@@ -57,7 +57,7 @@ const NewQuestion = (props: Props) => {
         slug: slug,
         title: title,
         description: description,
-        data: setDate,
+        date: setDate,
         author: user?.id || '',
         course: course,
         publishedAt: currentDate.toISOString(),

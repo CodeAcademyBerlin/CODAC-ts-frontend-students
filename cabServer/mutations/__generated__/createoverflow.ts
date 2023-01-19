@@ -5,9 +5,9 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const CreateCodacOverflowDocument = gql`
-    mutation createCodacOverflow($slug: String!, $title: String!, $description: String!, $data: Date!, $author: ID!, $course: String!, $publishedAt: DateTime!) {
+    mutation createCodacOverflow($slug: String!, $title: String!, $description: String!, $date: Date!, $author: ID!, $course: String!, $publishedAt: DateTime!) {
   createCodacOverflow(
-    data: {slug: $slug, title: $title, description: $description, data: $data, author: $author, course: $course, publishedAt: $publishedAt}
+    data: {slug: $slug, title: $title, description: $description, date: $date, author: $author, course: $course, publishedAt: $publishedAt}
   ) {
     data {
       id
@@ -15,34 +15,27 @@ export const CreateCodacOverflowDocument = gql`
         slug
         title
         description
-        data
+        date
         author {
           data {
             id
             attributes {
-              student {
+              firstname
+              lastname
+              avatar {
                 data {
                   id
                   attributes {
-                    firstname
-                    lastname
-                    avatar {
-                      data {
-                        id
-                        attributes {
-                          name
-                          alternativeText
-                          width
-                          height
-                          hash
-                          mime
-                          size
-                          previewUrl
-                          provider
-                          url
-                        }
-                      }
-                    }
+                    name
+                    alternativeText
+                    width
+                    height
+                    hash
+                    mime
+                    size
+                    previewUrl
+                    provider
+                    url
                   }
                 }
               }
@@ -76,7 +69,7 @@ export type CreateCodacOverflowMutationFn = Apollo.MutationFunction<CreateCodacO
  *      slug: // value for 'slug'
  *      title: // value for 'title'
  *      description: // value for 'description'
- *      data: // value for 'data'
+ *      date: // value for 'date'
  *      author: // value for 'author'
  *      course: // value for 'course'
  *      publishedAt: // value for 'publishedAt'
@@ -94,11 +87,11 @@ export type CreateCodacOverflowMutationVariables = Types.Exact<{
   slug: Types.Scalars['String'];
   title: Types.Scalars['String'];
   description: Types.Scalars['String'];
-  data: Types.Scalars['Date'];
+  date: Types.Scalars['Date'];
   author: Types.Scalars['ID'];
   course: Types.Scalars['String'];
   publishedAt: Types.Scalars['DateTime'];
 }>;
 
 
-export type CreateCodacOverflowMutation = { __typename?: 'Mutation', createCodacOverflow?: { __typename?: 'CodacOverflowEntityResponse', data?: { __typename?: 'CodacOverflowEntity', id?: string | null, attributes?: { __typename?: 'CodacOverflow', slug?: string | null, title?: string | null, description?: string | null, data?: any | null, course?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', student?: { __typename?: 'StudentEntityResponse', data?: { __typename?: 'StudentEntity', id?: string | null, attributes?: { __typename?: 'Student', firstname?: string | null, lastname?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string, url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null };
+export type CreateCodacOverflowMutation = { __typename?: 'Mutation', createCodacOverflow?: { __typename?: 'CodacOverflowEntityResponse', data?: { __typename?: 'CodacOverflowEntity', id?: string | null, attributes?: { __typename?: 'CodacOverflow', slug?: string | null, title?: string | null, description?: string | null, date?: any | null, course?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string, url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null };

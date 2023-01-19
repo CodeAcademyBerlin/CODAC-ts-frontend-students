@@ -1,39 +1,32 @@
-mutation createCodacOverflow($slug: String!, $title: String!, $description: String!, $data: Date!, $author: ID!, $course: String!, $publishedAt: DateTime!) {
-  createCodacOverflow(data: { slug: $slug, title: $title, description: $description, data: $data, author: $author, course: $course, publishedAt: $publishedAt }) {
+mutation createCodacOverflow($slug: String!, $title: String!, $description: String!, $date: Date!, $author: ID!, $course: String!, $publishedAt: DateTime!) {
+  createCodacOverflow(data: { slug: $slug, title: $title, description: $description, date: $date, author: $author, course: $course, publishedAt: $publishedAt }) {
     data {
       id
       attributes {
         slug
               title
               description
-              data
+              date
               author{
                 data{
                   id
                   attributes{
-                    student{
+                    firstname
+                    lastname
+                    avatar{
                       data{
                         id
                         attributes{
-                          firstname
-                          lastname
-                          avatar{
-                            data{
-                              id
-                              attributes{
-                                name
-                                alternativeText
-                                width
-                                height
-                                hash
-                                mime
-                                size
-                                previewUrl
-                                provider
-                                url
-                              }
-                            }
-                          }
+                          name
+                          alternativeText
+                          width
+                          height
+                          hash
+                          mime
+                          size
+                          previewUrl
+                          provider
+                          url
                         }
                       }
                     }
