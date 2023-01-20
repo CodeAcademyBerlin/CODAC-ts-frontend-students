@@ -44,25 +44,32 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
     setMessage('');
   };
 
-  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    try {
-      const now = new Date();
-      createComment({
-        variables: {
-          slug: slug,
-          comments: {
-            message: message,
-            timestamp: now,
+    // check if feedback for slug/ id exists:
+    if (lmsFeedback) {
+    } else {
+      try {
+        const now = new Date();
+
+        const res = await createComment({
+          variables: {
+            slug: slug,
+            comments: {
+              message: message,
+              timestamp: now,
+            },
           },
-        },
-      });
-      setMessage('');
-      toast.success('Your comment has  been submitted', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-    } catch (e) {
-      ({ error: 'e.message' });
+        });
+        console.log('res', res);
+        refetch();
+        setMessage('');
+        toast.success('Your comment has  been submitted', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      } catch (e) {
+        ({ error: 'e.message' });
+      }
     }
   };
 
@@ -84,69 +91,54 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
       >
         <Typography variant="h5">Comments</Typography>
       </Box>
-      <Box
-        sx={{
-          p: 5,
-          display: 'flex',
-          width: '50%',
-        }}
-      >
-        <Container>
-          <Box component="form">
-            <Typography>Leave a comment</Typography>
-            <TextField
-              autoFocus
-              multiline
-              rows={6}
-              margin="dense"
-              id="comment"
-              label="Your comment"
-              type="text"
-              fullWidth
-              variant="filled"
-              value={message}
-              onChange={handleChange}
-            />
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button
-                sx={{ mt: 3, ml: 1 }}
-                onClick={handleCancel}
-                type="submit"
-              >
-                Cancel
-              </Button>
-              <Button
-                onClick={handleSubmit}
-                sx={{ mt: 3, ml: 1 }}
-                type="submit"
-                variant="contained"
-              >
-                Send
-              </Button>
-            </Box>
+      <>
+        <Box
+          sx={{
+            p: 5,
+            display: 'flex',
+            width: '50%',
+          }}
+          component="form"
+        >
+          <Typography>Leave a comment</Typography>
+          <TextField
+            autoFocus
+            multiline
+            rows={6}
+            margin="dense"
+            id="comment"
+            label="Your comment"
+            type="text"
+            fullWidth
+            variant="filled"
+            value={message}
+            onChange={handleChange}
+          />
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button sx={{ mt: 3, ml: 1 }} onClick={handleCancel} type="submit">
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSubmit}
+              sx={{ mt: 3, ml: 1 }}
+              type="submit"
+              variant="contained"
+            >
+              Send
+            </Button>
           </Box>
-        </Container>
-      </Box>
-      <Box
-        sx={{
-          p: 5,
-          // display: 'flex',
-          width: '50%',
-        }}
-      >
-        <Typography variant="h5">Comments</Typography>
-      </Box>
-      lmsFeedbacks && (
+        </Box>
+      </>
       <>
         {lmsFeedback &&
-          lmsFeedback.comments.map((comment) => (
+          lmsFeedback.attributes?.comments?.map((comment) => (
             <Box
               sx={{
                 p: 5,
                 // display: 'flex',
                 width: '50%',
               }}
-              key={lmsComment.id}
+              key={comment?.id}
             >
               <Paper style={{ padding: '40px 20px' }}>
                 <Grid container wrap="nowrap" spacing={2}>
@@ -157,19 +149,21 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
                     />
                   </Grid>
                   <Grid justifyContent="left" item xs zeroMinWidth>
+                    lmsFeedback.attributes?.comments?.author? !== null (
                     <h4 style={{ margin: 0, textAlign: 'left' }}>
-                      {lmsComment.attributes?.comments?.map(
+                      {lmsFeedback.attributes?.comments?.map(
                         (comment) =>
                           comment?.author?.data?.attributes?.username,
                       )}
                     </h4>
+                    ) : (<p>anonymous user</p>)
                     <p style={{ textAlign: 'left' }}>
-                      {lmsComment.attributes?.comments?.map(
+                      {lmsFeedback.attributes?.comments?.map(
                         (comment) => comment?.message,
                       )}
                     </p>
                     <p style={{ textAlign: 'left', color: 'gray' }}>
-                      {lmsComment.attributes?.comments?.map((comment) =>
+                      {lmsFeedback.attributes?.comments?.map((comment) =>
                         new Date(comment?.timestamp).toDateString(),
                       )}
                     </p>

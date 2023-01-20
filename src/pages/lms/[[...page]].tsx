@@ -2,6 +2,7 @@ import { Breadcrumbs, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
+import CommentsParent from 'src/components/lms-page/comments/commentsParent';
 import ShowComments from 'src/components/lms-page/comments/showComments';
 import { getPaths } from 'src/lib/paths';
 
@@ -53,7 +54,7 @@ const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
           <Divider style={{ width: '75%' }} />
           <ContentRating slug={slug} message={''} />
           <Divider style={{ width: '75%' }} />
-          <ShowComments slug={slug} />
+          <CommentsParent slug={slug} />
         </>
       </Box>
     </>
