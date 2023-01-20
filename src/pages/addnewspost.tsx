@@ -1,6 +1,7 @@
 // ** MUI Imports
+import { styled, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import Button, { ButtonProps } from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,7 +11,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { useCreateNewsPostMutation } from 'cabServer/mutations/__generated__/newspost';
 import { useRouter } from 'next/router';
-import React, { MouseEvent, useState } from 'react';
+import React, { ChangeEvent, ElementType, MouseEvent, useState } from 'react';
 
 import { Enum_Newspost_Tags } from '../../cabServer/global/__generated__/types';
 import { useAuth } from '../hooks/useAuth';
@@ -21,13 +22,50 @@ const AddNewsPost = (props: Props) => {
   //States
   const [post, setPost] = useState<string>('');
   const [title, setTitle] = useState<string>('');
-  const [tags, setTags] = useState<Enum_Newspost_Tags>();
+  const [tags, setTags] = useState<Enum_Newspost_Tags>(Enum_Newspost_Tags.Cab);
   const [image, setImage] = useState<string>('');
+
+  const onImageChange = (file: ChangeEvent) => {
+    const reader = new FileReader();
+    const { files } = file.target as HTMLInputElement;
+    if (files && files.length !== 0) {
+      reader.onload = () => setImage(reader.result as string);
+      reader.readAsDataURL(files[0]);
+    }
+  };
+
+  //Upload Image Component
+  const ImgStyled = styled('img')(({ theme }) => ({
+    width: 120,
+    height: 120,
+    marginRight: theme.spacing(6.25),
+    borderRadius: theme.shape.borderRadius,
+  }));
+
+  const ButtonStyled = styled(Button)<
+    ButtonProps & { component?: ElementType; htmlFor?: string }
+  >(({ theme }) => ({
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      textAlign: 'center',
+    },
+  }));
+
+  const ResetButtonStyled = styled(Button)<ButtonProps>(({ theme }) => ({
+    marginLeft: theme.spacing(4.5),
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      marginLeft: 0,
+      textAlign: 'center',
+      marginTop: theme.spacing(4),
+    },
+  }));
 
   //imports
   const router = useRouter();
   const { user } = useAuth();
 
+  //editting the publishedAt date
   const currentDate = new Date();
   let year = currentDate.getFullYear();
   let month =
@@ -38,7 +76,6 @@ const AddNewsPost = (props: Props) => {
     currentDate.getDate() < 10
       ? '0' + currentDate.getDate()
       : currentDate.getDate();
-  let setDate = year + '-' + month + '-' + day;
 
   const [newsPostMutuation, { data, loading, error }] =
     useCreateNewsPostMutation({
@@ -181,16 +218,37 @@ const AddNewsPost = (props: Props) => {
                 value={post}
                 onChange={handlePostChange}
               />
-              <TextField
-                onChange={(e) => setImage(e.target.value)}
-                label="Image url"
-                multiline
-                fullWidth
-                variant="filled"
-                maxRows={2}
-                required
-                value={image}
-              />
+
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ImgStyled src={image} alt="news post cover image" />
+                <Box>
+                  <ButtonStyled
+                    component="label"
+                    variant="contained"
+                    htmlFor="account-settings-upload-image"
+                  >
+                    Upload image
+                    <input
+                      hidden
+                      type="file"
+                      onChange={onImageChange}
+                      accept="image/png, image/jpeg"
+                      id="account-settings-upload-image"
+                    />
+                  </ButtonStyled>
+                  <ResetButtonStyled
+                    color="error"
+                    variant="outlined"
+                    onClick={() => setImage('')}
+                  >
+                    Reset
+                  </ResetButtonStyled>
+                  <Typography variant="body2" sx={{ marginTop: 5 }}>
+                    Allowed PNG or JPEG. Max size of 800K.
+                  </Typography>
+                </Box>
+              </Box>
+
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button
                   onClick={handleSubmit}
