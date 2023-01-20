@@ -1,29 +1,17 @@
-import { Divider, IconButton, IconButtonProps, styled } from '@mui/material';
+import { Divider } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
-import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
-import { GetMeDocument } from 'cabServer/queries/__generated__/user';
-import jwt_decode, { JwtPayload } from 'jwt-decode';
-import { ChevronDoubleDown } from 'mdi-material-ui';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import React, { useContext, useEffect, useState } from 'react';
+import ExpandButton from 'src/components/common/ExpandButton';
 import { AuthContext } from 'src/contexts/authContext';
-import { JwtPayloadWithID } from 'src/types';
 
 import {
   UsersPermissionsMe,
   VsBattle,
   VsBattleEntity,
 } from '../../cabServer/global/__generated__/types';
-import {
-  useVoteVsBattleMutation,
-  VoteVsBattleDocument,
-} from '../../cabServer/mutations/__generated__/battles';
-import {
-  GetVsBattlesDocument,
-  useGetVsBattlesQuery,
-} from '../../cabServer/queries/__generated__/battles';
+import { useVoteVsBattleMutation } from '../../cabServer/mutations/__generated__/battles';
+import { useGetVsBattlesQuery } from '../../cabServer/queries/__generated__/battles';
 import BattleCard from '../components/battles-page/BattleCard';
-import { getToken, initializeApollo } from '../lib/apolloClient';
 
 function Battle() {
   // user: UsersPermissionsMe
@@ -32,21 +20,6 @@ function Battle() {
   const [voteVsBattleMutation, { data: mutationData, error: mutationError }] =
     useVoteVsBattleMutation();
   const [expanded, setExpanded] = React.useState(false);
-
-  interface ExpandMoreProps extends IconButtonProps {
-    expand: boolean;
-  }
-
-  const ExpandMore = styled((props: ExpandMoreProps) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  }));
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -88,14 +61,10 @@ function Battle() {
 
       <Divider>
         Archived{' '}
-        <ExpandMore
-          expand={expanded}
+        <ExpandButton
           onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ChevronDoubleDown color="primary" />
-        </ExpandMore>
+          expand={expanded}
+        ></ExpandButton>
       </Divider>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {vsBattles &&

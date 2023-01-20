@@ -4,8 +4,6 @@ import Button from '@mui/material/Button';
 // ** MUI Imports
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import VoteOutline from 'mdi-material-ui/VoteOutline';
 import * as React from 'react';
@@ -17,7 +15,7 @@ import {
   VsBattleEntity,
 } from '../../../cabServer/global/__generated__/types';
 import DenseTable from './BattleTable';
-import ExpandComponent from './ExpandComponent';
+import VotersList from './VotersList';
 
 type BattleCardProps = {
   vsBattle: VsBattleEntity;
@@ -83,7 +81,7 @@ const BattleCard = (props: BattleCardProps) => {
         </Typography>
         {props.user?.id ? (
           <Typography variant="body2" sx={{ marginBottom: 6 }}>
-            {archived() ? 'voice your opinion' : 'voting is closed'}
+            {archived() ? 'voice your opinion' : 'voting is now closed'}
           </Typography>
         ) : (
           <Typography variant="body2" sx={{ marginBottom: 6 }}>
@@ -157,7 +155,7 @@ const BattleCard = (props: BattleCardProps) => {
               props.vsBattle?.attributes?.option_2_voters?.data.length || 0
             }
           />
-          <ExpandComponent vsBattle={props.vsBattle} />
+          <VotersList vsBattle={props.vsBattle} />
         </Box>
       )}
       {/* </div> */}
