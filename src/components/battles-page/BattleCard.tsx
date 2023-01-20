@@ -152,15 +152,19 @@ const BattleCard = (props: BattleCardProps) => {
       </CardContent>
       {props.user?.id && (
         <div>
-          <DenseTable
-            option1={
-              props.vsBattle?.attributes?.option_1_voters?.data.length || 0
-            }
-            option2={
-              props.vsBattle?.attributes?.option_2_voters?.data.length || 0
-            }
-          />
-          <ExpandComponent vsBattle={props.vsBattle} />
+          {(option1IsVoted() || option2IsVoted()) && (
+            <>
+              <DenseTable
+                option1={
+                  props.vsBattle?.attributes?.option_1_voters?.data.length || 0
+                }
+                option2={
+                  props.vsBattle?.attributes?.option_2_voters?.data.length || 0
+                }
+              />
+              <ExpandComponent vsBattle={props.vsBattle} />
+            </>
+          )}
         </div>
       )}
     </Card>
