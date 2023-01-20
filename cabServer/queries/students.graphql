@@ -13,6 +13,7 @@ query filterStudentByUserId($userId: ID) {
             attributes {
               firstname
               lastname
+              email
               avatar {
                 data {
                   attributes {
