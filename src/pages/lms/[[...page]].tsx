@@ -9,7 +9,7 @@ import { getPaths } from 'src/lib/paths';
 import lmspages from '../../../public/assets/lmspages.json';
 import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
 // ** Custom Components
-import ContentRating from '../../components/lms-page/ratingScale/ratingScale';
+import ContentRating from '../../components/lms-page/ratings/ratingScale';
 import {
   LMS_ASSETS_PATH,
   LMS_CONTENT_PATH,

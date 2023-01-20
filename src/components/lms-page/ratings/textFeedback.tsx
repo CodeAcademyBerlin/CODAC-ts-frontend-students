@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
@@ -49,12 +50,19 @@ export default function TextFeedback({
     }
   };
 
+  // const label = (
+  //   <p>
+  //     Please take a moment to help us improve the content of this page. <br />
+  //     Write your feedback here or leave this field empty and click on ´Submit´.
+  //   </p>
+  // );
   return (
     <Dialog open={open} onClose={handleClose} fullWidth={true}>
       <DialogTitle>
         Is there anything else you would like to add? (optional)
       </DialogTitle>
       <DialogContent>
+        <DialogContentText>Your rating:</DialogContentText>
         <Rating getLabelText={getLabelText} value={rating} />
       </DialogContent>
       <TextField
@@ -63,7 +71,7 @@ export default function TextFeedback({
         rows={6}
         margin="dense"
         id="open_feedback"
-        label="Write your feedback here or leave this field empty and click on ´Submit´."
+        label="Write your feedback here or leave this field empty and click on ´Submit´"
         type="text"
         fullWidth
         variant="filled"
@@ -81,7 +89,7 @@ export default function TextFeedback({
           type="submit"
           variant="contained"
         >
-          Submit
+          Submit feedback
         </Button>
       </DialogActions>
     </Dialog>
