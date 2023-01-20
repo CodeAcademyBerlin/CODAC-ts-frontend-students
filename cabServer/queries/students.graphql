@@ -1,13 +1,28 @@
 query filterStudentByUserId($userId: ID) {
   students(filters: { user: { id: { eq: $userId } } }) {
     data {
+      id
       attributes {
-        firstname
-        lastname
         github
         linkedin
         start_date
         end_date
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
         cohort {
           data {
             attributes {
@@ -16,8 +31,6 @@ query filterStudentByUserId($userId: ID) {
               students {
                 data {
                   attributes {
-                    firstname
-                    lastname
                     main_course {
                       data {
                         attributes {
@@ -38,13 +51,16 @@ query filterStudentByUserId($userId: ID) {
             }
           }
         }
-        avatar {
+        achievements {
           data {
             attributes {
-              url
-              alternativeText
-              name
-              caption
+              badge {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }
