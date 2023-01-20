@@ -14,9 +14,6 @@ import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsFeed
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-// import CreateComment from './createComment';
-// import ShowComments from './showComments';
-
 type LMSfeedbackProps = {
   slug: string;
 };
@@ -29,7 +26,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
     },
   });
   const lmsFeedback = data?.lmsFeedbacks?.data[0];
-  console.log('comments', lmsFeedback);
+  // console.log('comments', lmsFeedback);
 
   // create first comment for a page
   const [createComment, { data: mutationData, error: mutationError }] =
@@ -51,35 +48,44 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     // check if feedback for slug/ id exists:
-    if (lmsFeedback) {
+    if (lmsFeedback?.id) {
       try {
+        const comArr = lmsFeedback.attributes?.comments;
+        console.log('comArr', comArr);
         const now = new Date();
         const id = lmsFeedback.id;
         const res = await updateComments({
           variables: {
             id: id,
-            comments: {
-              message: message,
-              timestamp: now,
-            },
+            comments: [
+              {
+                message: message,
+                timestamp: now,
+              },
+            ],
             slug: slug,
           },
         });
-        console.log('res', res);
+        refetch();
+        setMessage('');
+        toast.success('Your comment has  been submitted', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
       } catch (e) {
         ({ error: 'e.message' });
       }
     } else {
       try {
         const now = new Date();
-
         const res = await createComment({
           variables: {
             slug: slug,
-            comments: {
-              message: message,
-              timestamp: now,
-            },
+            comments: [
+              {
+                message: message,
+                timestamp: now,
+              },
+            ],
           },
         });
         // console.log('res', res);
@@ -99,10 +105,10 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lmsFeedback]);
+  console.log('feedback', lmsFeedback);
 
   return (
     <>
-      {' '}
       <Box
         sx={{
           p: 5,
@@ -168,14 +174,16 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
                     />
                   </Grid>
                   <Grid justifyContent="left" item xs zeroMinWidth>
-                    lmsFeedback.attributes?.comments?.author? !== null (
-                    <h4 style={{ margin: 0, textAlign: 'left' }}>
-                      {lmsFeedback.attributes?.comments?.map(
-                        (comment) =>
-                          comment?.author?.data?.attributes?.username,
-                      )}
-                    </h4>
-                    ) : (<p>anonymous user</p>)
+                    {comment?.author?.data ? (
+                      <h4 style={{ margin: 0, textAlign: 'left' }}>
+                        {comment?.author?.data?.attributes?.username}
+                      </h4>
+                    ) : (
+                      <h4 style={{ margin: 0, textAlign: 'left' }}>
+                        {'anonymous user'}
+                      </h4>
+                    )}
+
                     <p style={{ textAlign: 'left' }}>
                       {lmsFeedback.attributes?.comments?.map(
                         (comment) => comment?.message,
@@ -193,7 +201,6 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
           ))}
         {/* <Divider variant="fullWidth" style={{ margin: '30px 0' }} /> */}
       </>
-      )
     </>
   );
 };

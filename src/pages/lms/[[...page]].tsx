@@ -2,7 +2,7 @@ import { Breadcrumbs, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
-import CommentsParent from 'src/components/lms-page/comments/commentsParent';
+import CommentsParent from 'src/components/lms-page/comments';
 import ShowComments from 'src/components/lms-page/comments/showComments';
 import { getPaths } from 'src/lib/paths';
 
