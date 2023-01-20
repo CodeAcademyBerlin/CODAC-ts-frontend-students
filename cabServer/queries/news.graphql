@@ -1,6 +1,7 @@
 query getNews {
   newsPosts(sort: "updatedAt:desc") {
     data {
+      id
       attributes {
         title
         post
@@ -39,9 +40,11 @@ query getNews {
         }
         createdAt
         updatedAt
+        publishedAt
         tags
         image {
           data {
+            id
             attributes {
               url
             }

@@ -8,11 +8,11 @@ import Paper from '@mui/material/Paper';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import { useCreateNewsPostMutation } from 'cabServer/mutations/__generated__/newspost';
 import { useRouter } from 'next/router';
 import React, { MouseEvent, useState } from 'react';
 
 import { Enum_Newspost_Tags } from '../../cabServer/global/__generated__/types';
-import { useCreateNewsPostMutation } from '../../cabServer/mutations/__generated__/addnewspost';
 import { useAuth } from '../hooks/useAuth';
 
 type Props = {};
@@ -28,14 +28,27 @@ const AddNewsPost = (props: Props) => {
   const router = useRouter();
   const { user } = useAuth();
 
+  const currentDate = new Date();
+  let year = currentDate.getFullYear();
+  let month =
+    currentDate.getMonth() + 1 < 10
+      ? '0' + (currentDate.getMonth() + 1)
+      : currentDate.getMonth() + 1;
+  let day =
+    currentDate.getDate() < 10
+      ? '0' + currentDate.getDate()
+      : currentDate.getDate();
+  let setDate = year + '-' + month + '-' + day;
+
   const [newsPostMutuation, { data, loading, error }] =
     useCreateNewsPostMutation({
       variables: {
         title: title,
         post: post,
-        author: user?.id,
+        author: user?.id || '',
         tags: tags!,
         image: image,
+        publishedAt: currentDate.toISOString(),
       },
     });
 

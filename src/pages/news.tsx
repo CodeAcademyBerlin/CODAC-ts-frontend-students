@@ -34,7 +34,6 @@ const News = ({ newsPosts }: { newsPosts: NewsPostEntity[] }) => {
     );
   });
 
-  console.log('newsPosts', newsPosts);
   return (
     <div>
       {user ? (

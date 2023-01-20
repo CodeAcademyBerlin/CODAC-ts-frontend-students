@@ -4,6 +4,7 @@ mutation createNewsPost(
   $author: ID!
   $tags: ENUM_NEWSPOST_TAGS!
   $image: ID!
+  $publishedAt: DateTime!
 ) {
   createNewsPost(
     data: {
@@ -12,6 +13,7 @@ mutation createNewsPost(
       image: $image
       author: $author
       tags: $tags
+      publishedAt: $publishedAt
     }
   ) {
     data {
@@ -45,6 +47,7 @@ mutation createNewsPost(
           }
         }
         tags
+        publishedAt
         image {
           data {
             id
