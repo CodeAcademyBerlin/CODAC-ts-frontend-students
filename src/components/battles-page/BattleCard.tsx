@@ -51,6 +51,8 @@ const BattleCard = (props: BattleCardProps) => {
       option1Voters?.filter((item) => item.id === props.user?.id).length === 0
     ) {
       return false;
+    } else if (props.user === null) {
+      return false;
     } else return true;
   };
 
@@ -59,6 +61,8 @@ const BattleCard = (props: BattleCardProps) => {
     if (
       option2Voters?.filter((item) => item.id === props.user?.id).length === 0
     ) {
+      return false;
+    } else if (props.user === null) {
       return false;
     } else return true;
   };
