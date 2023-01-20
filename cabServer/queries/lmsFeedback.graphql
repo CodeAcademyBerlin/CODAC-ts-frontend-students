@@ -1,4 +1,4 @@
-query getLMSFeedbacks($slug: String!) {
+query getLMSFeedbacks($slug: String) {
   lmsFeedbacks(filters: { slug: { eq: $slug } }) {
     data {
       id
@@ -16,6 +16,12 @@ query getLMSFeedbacks($slug: String!) {
               }
             }
           }
+        }
+        issues {
+          id
+          message
+          timestamp
+          rating
         }
       }
     }

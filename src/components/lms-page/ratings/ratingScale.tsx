@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
+import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateLmsFeedback';
 import * as React from 'react';
 import { useState } from 'react';
 
@@ -30,20 +31,6 @@ export default function HoverRating({ slug, message }: LMSfeedbackProps) {
   const [rating, setRating] = React.useState<number | any>(null);
   // console.log("rating", rating);
   const [hover, setHover] = React.useState(-1);
-
-  const now = new Date();
-  const [createRating, { data, loading, error }] = useCreateLmsFeedbackMutation(
-    {
-      variables: {
-        slug: slug,
-        issues: {
-          message: message,
-          rating: rating,
-          timestamp: now,
-        },
-      },
-    },
-  );
 
   // OPEN MODAL
   const [open, setOpen] = useState(false);
@@ -98,7 +85,6 @@ export default function HoverRating({ slug, message }: LMSfeedbackProps) {
             rating={rating}
             open={open}
             setOpen={setOpen}
-            createRating={createRating}
             getLabelText={getLabelText}
           />
         )}

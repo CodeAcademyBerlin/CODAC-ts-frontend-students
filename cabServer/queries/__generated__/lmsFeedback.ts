@@ -5,7 +5,7 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const GetLmsFeedbacksDocument = gql`
-    query getLMSFeedbacks($slug: String!) {
+    query getLMSFeedbacks($slug: String) {
   lmsFeedbacks(filters: {slug: {eq: $slug}}) {
     data {
       id
@@ -23,6 +23,12 @@ export const GetLmsFeedbacksDocument = gql`
               }
             }
           }
+        }
+        issues {
+          id
+          message
+          timestamp
+          rating
         }
       }
     }
@@ -46,7 +52,7 @@ export const GetLmsFeedbacksDocument = gql`
  *   },
  * });
  */
-export function useGetLmsFeedbacksQuery(baseOptions: Apollo.QueryHookOptions<GetLmsFeedbacksQuery, GetLmsFeedbacksQueryVariables>) {
+export function useGetLmsFeedbacksQuery(baseOptions?: Apollo.QueryHookOptions<GetLmsFeedbacksQuery, GetLmsFeedbacksQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetLmsFeedbacksQuery, GetLmsFeedbacksQueryVariables>(GetLmsFeedbacksDocument, options);
       }
@@ -58,8 +64,8 @@ export type GetLmsFeedbacksQueryHookResult = ReturnType<typeof useGetLmsFeedback
 export type GetLmsFeedbacksLazyQueryHookResult = ReturnType<typeof useGetLmsFeedbacksLazyQuery>;
 export type GetLmsFeedbacksQueryResult = Apollo.QueryResult<GetLmsFeedbacksQuery, GetLmsFeedbacksQueryVariables>;
 export type GetLmsFeedbacksQueryVariables = Types.Exact<{
-  slug: Types.Scalars['String'];
+  slug?: Types.InputMaybe<Types.Scalars['String']>;
 }>;
 
 
-export type GetLmsFeedbacksQuery = { __typename?: 'Query', lmsFeedbacks?: { __typename?: 'LmsFeedbackEntityResponseCollection', data: Array<{ __typename?: 'LmsFeedbackEntity', id?: string | null, attributes?: { __typename?: 'LmsFeedback', slug: string, createdAt?: any | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, message?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null } | null } | null } | null> | null } | null }> } | null };
+export type GetLmsFeedbacksQuery = { __typename?: 'Query', lmsFeedbacks?: { __typename?: 'LmsFeedbackEntityResponseCollection', data: Array<{ __typename?: 'LmsFeedbackEntity', id?: string | null, attributes?: { __typename?: 'LmsFeedback', slug: string, createdAt?: any | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, message?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null } | null } | null } | null> | null, issues?: Array<{ __typename?: 'ComponentCommentsComments', id: string, message?: string | null, timestamp?: any | null, rating?: number | null } | null> | null } | null }> } | null };

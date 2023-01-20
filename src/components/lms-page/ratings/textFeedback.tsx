@@ -7,6 +7,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
+import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateLmsFeedback';
 import * as React from 'react';
 import { MouseEvent, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -14,7 +16,6 @@ import { toast } from 'react-toastify';
 type LMSfeedbackProps = {
   rating: number;
   slug: string;
-  createRating: () => void;
   open: any;
   setOpen: any;
   getLabelText: any;
@@ -22,10 +23,10 @@ type LMSfeedbackProps = {
 
 export default function TextFeedback({
   rating,
-  createRating,
   open,
   setOpen,
   getLabelText,
+  slug,
 }: LMSfeedbackProps) {
   const [message, setMessage] = useState<string>('');
 
@@ -37,19 +38,59 @@ export default function TextFeedback({
     setMessage(event.target.value);
   console.log('message:', message);
 
-  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    try {
-      createRating();
-      setOpen(false);
-      toast.success('Thank you for your feedback', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-    } catch (e) {
-      ({ error: 'e.message' });
+  const [createRating, { data, loading, error }] =
+    useCreateLmsFeedbackMutation();
+  const [updateRating, { data: updateData, error: updateError }] =
+    useUpdateLmsFeedbackMutation();
+
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
+    if (lmsFeedback?.id) {
+      try {
+        const now = new Date();
+        const id = lmsFeedback.id;
+        const res = updateRating({
+          variables: {
+            id: id,
+            comments: [
+              {
+                message: message,
+                timestamp: now,
+              },
+            ],
+            slug: slug,
+          },
+        });
+
+        setMessage('');
+        toast.success('Your comment has  been submitted', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      } catch (e) {
+        ({ error: 'e.message' });
+      }
+    } else {
+      try {
+        const now = new Date();
+        const res = createRating({
+          variables: {
+            slug: slug,
+            issues: {
+              message: message,
+              rating: rating,
+              timestamp: now,
+            },
+          },
+        });
+        // console.log('res', res);
+        setMessage('');
+        toast.success('Your feedback  been submitted', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      } catch (e) {
+        ({ error: 'e.message' });
+      }
     }
   };
-
   // const label = (
   //   <p>
   //     Please take a moment to help us improve the content of this page. <br />
