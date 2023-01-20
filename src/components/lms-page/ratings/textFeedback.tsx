@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
 import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateLmsFeedback';
+import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import * as React from 'react';
 import { MouseEvent, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -38,23 +39,35 @@ export default function TextFeedback({
     setMessage(event.target.value);
   console.log('message:', message);
 
-  const [createRating, { data, loading, error }] =
+  //  fetch existing data to check whether rating data exists
+  const { data, loading, error, refetch } = useGetLmsFeedbacksQuery({
+    variables: {
+      slug: slug,
+    },
+  });
+  const lmsFeedback = data?.lmsFeedbacks?.data[0];
+
+  //  function to create a new rating of page
+  const [createRating, { data: createData, error: createError }] =
     useCreateLmsFeedbackMutation();
+
+  //  function to update rating of page
   const [updateRating, { data: updateData, error: updateError }] =
     useUpdateLmsFeedbackMutation();
 
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
-    if (lmsFeedback?.id) {
+    // if (lmsFeedback?.id) {
       try {
         const now = new Date();
-        const id = lmsFeedback.id;
+        // const id = lmsFeedback.id;
         const res = updateRating({
           variables: {
-            id: id,
-            comments: [
+            // id: id,
+            issues: [
               {
                 message: message,
                 timestamp: now,
+                rating: rating
               },
             ],
             slug: slug,
