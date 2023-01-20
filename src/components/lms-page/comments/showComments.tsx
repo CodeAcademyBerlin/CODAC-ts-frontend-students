@@ -44,12 +44,12 @@ const ShowComments = ({ slug }: LMSfeedbackProps) => {
             width: '50%',
           }}
         >
-          <CreateComment
+          {/* <CreateComment
             slug={slug}
             id={''}
             refetch={refetch}
-            lmsComments={lmsComments}
-          />
+            // lmsComments={lmsComments}
+          /> */}
         </Box>
 
         {lmsComments &&
