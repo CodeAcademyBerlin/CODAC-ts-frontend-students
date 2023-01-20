@@ -1,4 +1,4 @@
-import { Tooltip, Zoom } from '@mui/material';
+import { Box, Tooltip, Zoom } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 // ** MUI Imports
@@ -24,26 +24,9 @@ type BattleCardProps = {
   handleVote: (vsBattleId: string, option: number) => void;
   user: UsersPermissionsMe | null;
 };
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 const BattleCard = (props: BattleCardProps) => {
   useEffect(() => {}, [props.user]);
-
-  console.log('props.user on Battle card', props.user);
-  console.log('props.vsBattle', props.vsBattle);
 
   const option1IsVoted = () => {
     const option1Voters = props.vsBattle.attributes?.option_1_voters?.data;
@@ -65,6 +48,12 @@ const BattleCard = (props: BattleCardProps) => {
     } else if (props.user === null) {
       return false;
     } else return true;
+  };
+
+  const archived = () => {
+    if (props.vsBattle.attributes?.archived === false) {
+      return true;
+    } else return false;
   };
 
   return (
@@ -94,7 +83,7 @@ const BattleCard = (props: BattleCardProps) => {
         </Typography>
         {props.user?.id ? (
           <Typography variant="body2" sx={{ marginBottom: 6 }}>
-            voice your opinion
+            {archived() ? 'voice your opinion' : 'voting is closed'}
           </Typography>
         ) : (
           <Typography variant="body2" sx={{ marginBottom: 6 }}>
@@ -115,7 +104,7 @@ const BattleCard = (props: BattleCardProps) => {
                 marginLeft: '2em',
               }}
               onClick={() => {
-                if (props.user?.id) {
+                if (props.user?.id && archived()) {
                   props.handleVote(props.vsBattle.id!, 1);
                   console.log('onClick button');
                 }
@@ -138,7 +127,7 @@ const BattleCard = (props: BattleCardProps) => {
                 marginLeft: '2em',
               }}
               onClick={() => {
-                if (props.user?.id) {
+                if (props.user?.id && archived()) {
                   props.handleVote(props.vsBattle.id!, 2);
                   console.log('onClick button');
                 }
@@ -150,23 +139,29 @@ const BattleCard = (props: BattleCardProps) => {
           </Tooltip>
         </div>
       </CardContent>
-      {props.user?.id && (
-        <div>
-          {(option1IsVoted() || option2IsVoted()) && (
-            <>
-              <DenseTable
-                option1={
-                  props.vsBattle?.attributes?.option_1_voters?.data.length || 0
-                }
-                option2={
-                  props.vsBattle?.attributes?.option_2_voters?.data.length || 0
-                }
-              />
-              <ExpandComponent vsBattle={props.vsBattle} />
-            </>
-          )}
-        </div>
+      {/* {props.user?.id && ( */}
+      {/* <div> */}
+      {(option1IsVoted() || option2IsVoted()) && (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+          }}
+        >
+          <DenseTable
+            option1={
+              props.vsBattle?.attributes?.option_1_voters?.data.length || 0
+            }
+            option2={
+              props.vsBattle?.attributes?.option_2_voters?.data.length || 0
+            }
+          />
+          <ExpandComponent vsBattle={props.vsBattle} />
+        </Box>
       )}
+      {/* </div> */}
+      {/* )} */}
     </Card>
   );
 };

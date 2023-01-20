@@ -1,6 +1,9 @@
+import { Divider, IconButton, IconButtonProps, styled } from '@mui/material';
+import Collapse from '@mui/material/Collapse';
 import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
 import { GetMeDocument } from 'cabServer/queries/__generated__/user';
 import jwt_decode, { JwtPayload } from 'jwt-decode';
+import { ChevronDoubleDown } from 'mdi-material-ui';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from 'src/contexts/authContext';
@@ -28,6 +31,26 @@ function Battle() {
   const { data, loading, error, refetch } = useGetVsBattlesQuery();
   const [voteVsBattleMutation, { data: mutationData, error: mutationError }] =
     useVoteVsBattleMutation();
+  const [expanded, setExpanded] = React.useState(false);
+
+  interface ExpandMoreProps extends IconButtonProps {
+    expand: boolean;
+  }
+
+  const ExpandMore = styled((props: ExpandMoreProps) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({
+    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  }));
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   const handleVote = (vsBattleId: string, option: number) => {
     voteVsBattleMutation({
@@ -49,7 +72,8 @@ function Battle() {
     <div>
       {vsBattles &&
         vsBattles.map((battle, index) => {
-          if (battle?.attributes) {
+          if (battle?.attributes?.archived === false) {
+            console.log('battle', battle);
             return (
               <div key={index}>
                 <BattleCard
@@ -61,6 +85,34 @@ function Battle() {
             );
           }
         })}
+
+      <Divider>
+        Archived{' '}
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ChevronDoubleDown color="primary" />
+        </ExpandMore>
+      </Divider>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        {vsBattles &&
+          vsBattles.map((battle, index) => {
+            if (battle?.attributes?.archived === true) {
+              return (
+                <div key={index}>
+                  <BattleCard
+                    vsBattle={battle}
+                    handleVote={handleVote}
+                    user={user}
+                  />
+                </div>
+              );
+            }
+          })}
+      </Collapse>
     </div>
   );
 }

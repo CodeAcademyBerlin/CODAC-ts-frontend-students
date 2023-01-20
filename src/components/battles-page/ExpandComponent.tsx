@@ -46,6 +46,7 @@ function ExpandComponent(props: ExpandComponentProps) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   return (
     <Box>
       <ExpandMore
@@ -76,7 +77,7 @@ function ExpandComponent(props: ExpandComponentProps) {
                 if (option1Voters) {
                   return (
                     <>
-                      <ListItem>
+                      <ListItem sx={{ lineHeight: 1 }}>
                         <Avatar
                           src={
                             voter.attributes?.avatar?.data?.attributes?.url ||
@@ -88,6 +89,8 @@ function ExpandComponent(props: ExpandComponentProps) {
                             color: theme.palette.common.white,
                             backgroundColor: theme.palette.primary.light,
                             mr: 3,
+                            height: 20,
+                            width: 20,
                           }}
                         ></Avatar>
                         <ListItemText>
@@ -95,7 +98,7 @@ function ExpandComponent(props: ExpandComponentProps) {
                           {''} {voter.attributes?.lastname}
                         </ListItemText>
                       </ListItem>
-                      <Divider />
+                      <Divider sx={{ margin: 0 }} />
                     </>
                   );
                 }
@@ -114,10 +117,11 @@ function ExpandComponent(props: ExpandComponentProps) {
                           }
                           sx={{
                             fontWeight: theme.typography.fontWeightBold,
-                            fontSize: 15,
                             color: theme.palette.common.white,
                             backgroundColor: theme.palette.primary.light,
                             mr: 3,
+                            height: 20,
+                            width: 20,
                           }}
                         ></Avatar>
                         <ListItemText>
@@ -125,7 +129,7 @@ function ExpandComponent(props: ExpandComponentProps) {
                           {''} {voter.attributes?.lastname}
                         </ListItemText>
                       </ListItem>
-                      <Divider />
+                      <Divider sx={{ margin: 0 }} />
                     </>
                   );
                 }
