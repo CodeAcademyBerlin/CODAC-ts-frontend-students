@@ -31,13 +31,15 @@ export default function HoverRating({ slug, message }: LMSfeedbackProps) {
   // console.log("rating", rating);
   const [hover, setHover] = React.useState(-1);
 
+  const now = new Date();
   const [createRating, { data, loading, error }] = useCreateLmsFeedbackMutation(
     {
       variables: {
-        rating: rating,
         slug: slug,
         issues: {
           message: message,
+          rating: rating,
+          timestamp: now,
         },
       },
     },

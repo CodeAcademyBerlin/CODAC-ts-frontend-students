@@ -5,14 +5,13 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const UpdateLmsFeedbackDocument = gql`
-    mutation updateLmsFeedback($id: ID!, $rating: Int, $comments: [ComponentCommentsCommentsInput], $issues: [ComponentCommentsCommentsInput], $slug: String!) {
+    mutation updateLmsFeedback($id: ID!, $comments: [ComponentCommentsCommentsInput], $issues: [ComponentCommentsCommentsInput], $slug: String!) {
   updateLmsFeedback(
     id: $id
-    data: {rating: $rating, comments: $comments, issues: $issues, slug: $slug}
+    data: {comments: $comments, issues: $issues, slug: $slug}
   ) {
     data {
       attributes {
-        rating
         comments {
           id
           timestamp
@@ -46,7 +45,6 @@ export type UpdateLmsFeedbackMutationFn = Apollo.MutationFunction<UpdateLmsFeedb
  * const [updateLmsFeedbackMutation, { data, loading, error }] = useUpdateLmsFeedbackMutation({
  *   variables: {
  *      id: // value for 'id'
- *      rating: // value for 'rating'
  *      comments: // value for 'comments'
  *      issues: // value for 'issues'
  *      slug: // value for 'slug'
@@ -62,11 +60,10 @@ export type UpdateLmsFeedbackMutationResult = Apollo.MutationResult<UpdateLmsFee
 export type UpdateLmsFeedbackMutationOptions = Apollo.BaseMutationOptions<UpdateLmsFeedbackMutation, UpdateLmsFeedbackMutationVariables>;
 export type UpdateLmsFeedbackMutationVariables = Types.Exact<{
   id: Types.Scalars['ID'];
-  rating?: Types.InputMaybe<Types.Scalars['Int']>;
   comments?: Types.InputMaybe<Array<Types.InputMaybe<Types.ComponentCommentsCommentsInput>> | Types.InputMaybe<Types.ComponentCommentsCommentsInput>>;
   issues?: Types.InputMaybe<Array<Types.InputMaybe<Types.ComponentCommentsCommentsInput>> | Types.InputMaybe<Types.ComponentCommentsCommentsInput>>;
   slug: Types.Scalars['String'];
 }>;
 
 
-export type UpdateLmsFeedbackMutation = { __typename?: 'Mutation', updateLmsFeedback?: { __typename?: 'LmsFeedbackEntityResponse', data?: { __typename?: 'LmsFeedbackEntity', attributes?: { __typename?: 'LmsFeedback', rating?: number | null, slug: string, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, timestamp?: any | null, message?: string | null } | null> | null, issues?: Array<{ __typename?: 'ComponentCommentsComments', id: string, timestamp?: any | null, message?: string | null, rating?: number | null } | null> | null } | null } | null } | null };
+export type UpdateLmsFeedbackMutation = { __typename?: 'Mutation', updateLmsFeedback?: { __typename?: 'LmsFeedbackEntityResponse', data?: { __typename?: 'LmsFeedbackEntity', attributes?: { __typename?: 'LmsFeedback', slug: string, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, timestamp?: any | null, message?: string | null } | null> | null, issues?: Array<{ __typename?: 'ComponentCommentsComments', id: string, timestamp?: any | null, message?: string | null, rating?: number | null } | null> | null } | null } | null } | null };
