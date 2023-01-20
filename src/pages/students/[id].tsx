@@ -3,8 +3,6 @@ import Card from '@mui/material/Card';
 import { Student } from 'cabServer/global/__generated__/types';
 import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
 import { GetServerSideProps } from 'next/types';
-// eslint-disable-next-line import/no-unresolved
-import StudentsProfile from 'src/components/profile-page/studentsprofile';
 import { initializeApollo } from 'src/lib/apolloClient';
 
 const Students = (data: any) => {
@@ -15,7 +13,7 @@ const Students = (data: any) => {
   return (
     <Container
       sx={{
-        height: { xs: '460px', sm: 'auto' },
+        height: { xs: '260px', sm: 'auto' },
       }}
     >
       <Card
@@ -31,9 +29,8 @@ const Students = (data: any) => {
           sx={{
             display: 'flex',
             flexDirections: 'row',
-            justifyContent: 'space-around',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
-            height: '28%',
           }}
         >
           <Avatar
@@ -69,7 +66,7 @@ const Students = (data: any) => {
           sx={{
             display: 'flex',
             flexDirections: 'row',
-            justifyContent: 'space-around',
+            justifyContent: 'space-evenly',
             // padding: '0.5em',
             // margin: '0',
           }}
@@ -120,9 +117,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       query: FilterStudentByUserIdDocument,
       variables: { userId: id },
     });
-
     const student = data.students.data[0];
-    console.log('student', student);
     return {
       props: { student },
     };
