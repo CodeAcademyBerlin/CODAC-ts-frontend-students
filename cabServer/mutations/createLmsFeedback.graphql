@@ -9,7 +9,6 @@ mutation createLmsFeedback(
   ) {
     data {
       attributes {
-        rating
         comments {
           message
           timestamp
@@ -17,6 +16,7 @@ mutation createLmsFeedback(
         issues {
           message
           timestamp
+          rating
         }
         slug
       }

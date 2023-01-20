@@ -11,7 +11,6 @@ export const CreateLmsFeedbackDocument = gql`
   ) {
     data {
       attributes {
-        rating
         comments {
           message
           timestamp
@@ -19,6 +18,7 @@ export const CreateLmsFeedbackDocument = gql`
         issues {
           message
           timestamp
+          rating
         }
         slug
       }
@@ -63,4 +63,4 @@ export type CreateLmsFeedbackMutationVariables = Types.Exact<{
 }>;
 
 
-export type CreateLmsFeedbackMutation = { __typename?: 'Mutation', createLmsFeedback?: { __typename?: 'LmsFeedbackEntityResponse', data?: { __typename?: 'LmsFeedbackEntity', attributes?: { __typename?: 'LmsFeedback', rating?: number | null, slug: string, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null, timestamp?: any | null } | null> | null, issues?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null, timestamp?: any | null } | null> | null } | null } | null } | null };
+export type CreateLmsFeedbackMutation = { __typename?: 'Mutation', createLmsFeedback?: { __typename?: 'LmsFeedbackEntityResponse', data?: { __typename?: 'LmsFeedbackEntity', attributes?: { __typename?: 'LmsFeedback', slug: string, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null, timestamp?: any | null } | null> | null, issues?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null, timestamp?: any | null, rating?: number | null } | null> | null } | null } | null } | null };
