@@ -118,11 +118,6 @@ function Community({
 
   const open = Boolean(anchorEl);
 
-  // const router = useRouter();
-  // const query = router.query;
-
-  // const id = query.id;
-
   return (
     <>
       {/* <BrandText variant='h3' sx={{ fontSize: 80 }}>Codacommunity</BrandText> */}
@@ -136,51 +131,57 @@ function Community({
             {mentors.map((mentor: MentorEntity, i: Number) => {
               return mentor.attributes ? (
                 <MentorsContent key={mentor.id}>
-                  <Image
-                    alt={
-                      mentor.attributes?.user?.data?.attributes?.firstname ||
-                      'avatar'
-                    }
-                    style={{ marginLeft: `-${i}em` }}
-                    src={
-                      mentor.attributes?.user?.data?.attributes?.avatar?.data
-                        ?.attributes?.url || logo
-                    }
-                    width={50}
-                    height={50}
-                    aria-owns={open ? 'mouse-over-popover' : undefined}
-                    aria-haspopup="true"
-                    onMouseEnter={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        mentor.attributes?.user?.data?.attributes?.firstname ||
-                          '',
-                      )
-                    }
-                    onMouseLeave={handlePopoverClose}
-                  />
-                  <Popover
-                    id="mouse-over-popover"
-                    sx={{
-                      pointerEvents: 'none',
-                    }}
-                    open={open}
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'center',
-                    }}
-                    onClose={handlePopoverClose}
-                    disableRestoreFocus
+                  <Link
+                    className="noDeco"
+                    href={'/mentors/' + mentor.id}
+                    key={mentor.id}
                   >
-                    <p style={{ padding: '0.5em', margin: 0 }}>
-                      {popoverContent}
-                    </p>
-                  </Popover>
+                    <Image
+                      alt={
+                        mentor.attributes?.user?.data?.attributes?.firstname ||
+                        'avatar'
+                      }
+                      style={{ marginLeft: `-${i}em` }}
+                      src={
+                        mentor.attributes?.user?.data?.attributes?.avatar?.data
+                          ?.attributes?.url || logo
+                      }
+                      width={50}
+                      height={50}
+                      aria-owns={open ? 'mouse-over-popover' : undefined}
+                      aria-haspopup="true"
+                      onMouseEnter={(e) =>
+                        handlePopoverOpen(
+                          e,
+                          mentor.attributes?.user?.data?.attributes
+                            ?.firstname || '',
+                        )
+                      }
+                      onMouseLeave={handlePopoverClose}
+                    />
+                    <Popover
+                      id="mouse-over-popover"
+                      sx={{
+                        pointerEvents: 'none',
+                      }}
+                      open={open}
+                      anchorEl={anchorEl}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }}
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                      }}
+                      onClose={handlePopoverClose}
+                      disableRestoreFocus
+                    >
+                      <p style={{ padding: '0.5em', margin: 0 }}>
+                        {popoverContent}
+                      </p>
+                    </Popover>
+                  </Link>
                 </MentorsContent>
               ) : null;
             })}
