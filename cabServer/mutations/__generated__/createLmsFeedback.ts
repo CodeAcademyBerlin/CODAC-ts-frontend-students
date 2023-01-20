@@ -5,10 +5,8 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const CreateLmsFeedbackDocument = gql`
-    mutation createLmsFeedback($rating: Int, $comments: [ComponentCommentsCommentsInput], $issues: [ComponentCommentsCommentsInput], $slug: String!) {
-  createLmsFeedback(
-    data: {rating: $rating, comments: $comments, issues: $issues, slug: $slug}
-  ) {
+    mutation createLmsFeedback($comments: [ComponentCommentsCommentsInput], $issues: [ComponentCommentsCommentsInput], $slug: String!) {
+  createLmsFeedback(data: {comments: $comments, issues: $issues, slug: $slug}) {
     data {
       attributes {
         comments {
@@ -41,7 +39,6 @@ export type CreateLmsFeedbackMutationFn = Apollo.MutationFunction<CreateLmsFeedb
  * @example
  * const [createLmsFeedbackMutation, { data, loading, error }] = useCreateLmsFeedbackMutation({
  *   variables: {
- *      rating: // value for 'rating'
  *      comments: // value for 'comments'
  *      issues: // value for 'issues'
  *      slug: // value for 'slug'
@@ -56,7 +53,6 @@ export type CreateLmsFeedbackMutationHookResult = ReturnType<typeof useCreateLms
 export type CreateLmsFeedbackMutationResult = Apollo.MutationResult<CreateLmsFeedbackMutation>;
 export type CreateLmsFeedbackMutationOptions = Apollo.BaseMutationOptions<CreateLmsFeedbackMutation, CreateLmsFeedbackMutationVariables>;
 export type CreateLmsFeedbackMutationVariables = Types.Exact<{
-  rating?: Types.InputMaybe<Types.Scalars['Int']>;
   comments?: Types.InputMaybe<Array<Types.InputMaybe<Types.ComponentCommentsCommentsInput>> | Types.InputMaybe<Types.ComponentCommentsCommentsInput>>;
   issues?: Types.InputMaybe<Array<Types.InputMaybe<Types.ComponentCommentsCommentsInput>> | Types.InputMaybe<Types.ComponentCommentsCommentsInput>>;
   slug: Types.Scalars['String'];
