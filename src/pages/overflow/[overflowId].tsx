@@ -15,6 +15,7 @@ import {
   NextApiRequest,
 } from 'next/types';
 import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import OverflowAnswers from 'src/components/overflow/OverflowAnswers';
 
 //import types
 import { CodacOverflowEntity } from '../../../cabServer/global/__generated__/types';
@@ -176,99 +177,7 @@ const OverflowTopic = ({
             </h3>
           </Box>
 
-          {result.attributes?.comments?.length &&
-            result.attributes?.comments?.map((eachComment) => (
-              <div
-                key={eachComment?.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  width: '100%',
-                }}
-              >
-                <Box
-                  component="span"
-                  sx={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-start',
-                  }}
-                >
-                  <Stack
-                    style={{
-                      margin: '10px 0px 10px 0px',
-                      marginLeft: '20%',
-                    }}
-                  >
-                    <Item
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        gap: '10px',
-                        padding: '5px',
-                      }}
-                    >
-                      <Badge
-                        overlap="circular"
-                        sx={{ ml: 2, cursor: 'pointer' }}
-                        anchorOrigin={{
-                          vertical: 'bottom',
-                          horizontal: 'right',
-                        }}
-                      >
-                        <Avatar
-                          alt={
-                            eachComment?.author?.data?.attributes?.firstname ||
-                            ''
-                          }
-                          sx={{ width: 40, height: 40 }}
-                          src={/* user.userData?.avatar ||  */ ''}
-                        />
-                      </Badge>
-                      <h3 style={{ color: '#26a69a' }}>
-                        {
-                          // eslint-disable-next-line prettier/prettier
-                          eachComment?.author?.data?.attributes?.firstname
-                        }{' '}
-                        {
-                          // eslint-disable-next-line prettier/prettier
-                          eachComment?.author?.data?.attributes?.lastname
-                        }
-                      </h3>
-                    </Item>
-                  </Stack>
-                </Box>
-
-                <Box
-                  component="span"
-                  sx={{
-                    borderBottom: (theme) =>
-                      `1px solid ${theme.palette.divider}`,
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-start',
-                  }}
-                >
-                  <Stack
-                    style={{
-                      margin: '10px 0px 10px 0px',
-                      marginLeft: '20%',
-                      width: '60%',
-                    }}
-                  >
-                    <Item>
-                      <p id="overflow-text-style">{eachComment?.message!}</p>
-                    </Item>
-                  </Stack>
-                </Box>
-              </div>
-            ))}
+          <OverflowAnswers result={result} />
         </Paper>
       </Box>
 
