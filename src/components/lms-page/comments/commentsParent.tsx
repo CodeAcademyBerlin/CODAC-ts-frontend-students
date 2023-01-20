@@ -9,10 +9,10 @@ import {
   Typography,
 } from '@mui/material';
 import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
+import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateLmsFeedback';
 import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import lms from 'src/pages/lms/[[...page]]';
 
 // import CreateComment from './createComment';
 // import ShowComments from './showComments';
@@ -31,9 +31,13 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
   const lmsFeedback = data?.lmsFeedbacks?.data[0];
   console.log('comments', lmsFeedback);
 
-  // creating a comment
+  // create first comment for a page
   const [createComment, { data: mutationData, error: mutationError }] =
     useCreateLmsFeedbackMutation();
+
+  // add comments to a page
+  const [updateComments, { data: updateData, error: updateError }] =
+    useUpdateLmsFeedbackMutation();
 
   const [message, setMessage] = useState<string>('');
 
@@ -48,6 +52,23 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
     event.preventDefault();
     // check if feedback for slug/ id exists:
     if (lmsFeedback) {
+      try {
+        const now = new Date();
+        const id = lmsFeedback.id;
+        const res = await updateComments({
+          variables: {
+            id: id,
+            comments: {
+              message: message,
+              timestamp: now,
+            },
+            slug: slug,
+          },
+        });
+        console.log('res', res);
+      } catch (e) {
+        ({ error: 'e.message' });
+      }
     } else {
       try {
         const now = new Date();
@@ -61,7 +82,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
             },
           },
         });
-        console.log('res', res);
+        // console.log('res', res);
         refetch();
         setMessage('');
         toast.success('Your comment has  been submitted', {
@@ -91,44 +112,42 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
       >
         <Typography variant="h5">Comments</Typography>
       </Box>
-      <>
-        <Box
-          sx={{
-            p: 5,
-            display: 'flex',
-            width: '50%',
-          }}
-          component="form"
-        >
-          <Typography>Leave a comment</Typography>
-          <TextField
-            autoFocus
-            multiline
-            rows={6}
-            margin="dense"
-            id="comment"
-            label="Your comment"
-            type="text"
-            fullWidth
-            variant="filled"
-            value={message}
-            onChange={handleChange}
-          />
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button sx={{ mt: 3, ml: 1 }} onClick={handleCancel} type="submit">
-              Cancel
-            </Button>
-            <Button
-              onClick={handleSubmit}
-              sx={{ mt: 3, ml: 1 }}
-              type="submit"
-              variant="contained"
-            >
-              Send
-            </Button>
-          </Box>
+      <Box
+        sx={{
+          p: 5,
+          // display: 'flex',
+          width: '50%',
+        }}
+        component="form"
+      >
+        <Typography>Leave a comment</Typography>
+        <TextField
+          autoFocus
+          multiline
+          rows={6}
+          margin="dense"
+          id="comment"
+          label="Your comment"
+          type="text"
+          fullWidth
+          variant="filled"
+          value={message}
+          onChange={handleChange}
+        />
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button sx={{ mt: 3, ml: 1 }} onClick={handleCancel} type="submit">
+            Cancel
+          </Button>
+          <Button
+            onClick={handleSubmit}
+            sx={{ mt: 3, ml: 1 }}
+            type="submit"
+            variant="contained"
+          >
+            Send
+          </Button>
         </Box>
-      </>
+      </Box>
       <>
         {lmsFeedback &&
           lmsFeedback.attributes?.comments?.map((comment) => (
