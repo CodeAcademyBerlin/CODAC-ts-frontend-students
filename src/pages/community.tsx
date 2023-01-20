@@ -208,7 +208,7 @@ function Community({
                       width={50}
                       height={50}
                       src={
-                        cohort.attributes.logo?.data?.attributes?.url || 'logo'
+                        cohort.attributes.logo?.data?.attributes?.url || logo
                       }
                       alt={cohort.attributes.name || 'Cohort'}
                     />
@@ -240,14 +240,18 @@ function Community({
                               }
                             />
                             <Link
-                              href={'/students/' + student?.id}
-                              key={student?.id}
+                              className="noDeco"
+                              href={
+                                '/students/' +
+                                student?.attributes?.user?.data?.id
+                              }
+                              key={student?.attributes?.user?.data?.id}
                             >
                               <p>
                                 {
                                   student.attributes?.user?.data?.attributes
                                     ?.firstname
-                                }
+                                }{' '}
                                 {
                                   student.attributes?.user?.data?.attributes
                                     ?.lastname
