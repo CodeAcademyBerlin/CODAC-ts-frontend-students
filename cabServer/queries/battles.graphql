@@ -20,6 +20,11 @@ query getVSBattles {
                 data {
                   attributes {
                     url
+                    hash
+                    mime
+                    name
+                    provider
+                    size
                   }
                 }
               }
@@ -38,6 +43,11 @@ query getVSBattles {
                 data {
                   attributes {
                     url
+                    hash
+                    mime
+                    name
+                    provider
+                    size
                   }
                 }
               }
