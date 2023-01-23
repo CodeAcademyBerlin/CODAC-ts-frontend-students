@@ -2,36 +2,35 @@ import { Avatar, Box, Container, Typography, useTheme } from '@mui/material';
 import Card from '@mui/material/Card';
 import { Student } from 'cabServer/global/__generated__/types';
 import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
-import Image from 'next/image';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
+import { GetServerSideProps } from 'next/types';
+import { initializeApollo } from 'src/lib/apolloClient';
 
-import logo from '../../public/assets/logo.png';
-import { initializeApollo } from '../lib/apolloClient';
-
-const Studentprofile = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Students = (data: any) => {
   const theme = useTheme();
-  const studentProfile: Student = data && data.students.data[0].attributes;
 
-  console.log('studentprofile', data);
+  const studentProfile: Student = data && data.student.attributes;
 
   return (
-    <Container>
+    <Container
+      sx={{
+        height: { xs: '260px', sm: 'auto' },
+      }}
+    >
       <Card
         sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-around',
           height: '100vh',
-          width: 'auto',
-          backgroundColor: theme.palette.background.default,
+          backgroundColor: 'white',
         }}
       >
         <Box
           sx={{
             display: 'flex',
             flexDirections: 'row',
-            justifyContent: 'space-around',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
-            height: '28%',
           }}
         >
           <Avatar
@@ -40,26 +39,26 @@ const Studentprofile = ({
               studentProfile?.user?.data?.attributes?.avatar?.data?.attributes
                 ?.url
             }
-            alt=""
+            alt={studentProfile.user?.data?.attributes?.firstname}
             sizes="width: 100%, height: 100%"
           />
 
           <Box>
             <Typography
               sx={{
-                fontStyle: theme.typography.h4,
                 fontFamily: theme.typography.fontFamily,
+                fontStyle: theme.typography.h4,
               }}
             >
-              First name: {studentProfile?.user?.data?.attributes?.firstname}
+              {studentProfile?.user?.data?.attributes?.firstname}
             </Typography>
             <Typography
               sx={{
-                fontStyle: theme.typography.h4,
                 fontFamily: theme.typography.fontFamily,
+                fontStyle: theme.typography.h4,
               }}
             >
-              Last name: {studentProfile?.user?.data?.attributes?.lastname}
+              {studentProfile?.user?.data?.attributes?.lastname}
             </Typography>
           </Box>
         </Box>
@@ -67,36 +66,35 @@ const Studentprofile = ({
           sx={{
             display: 'flex',
             flexDirections: 'row',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            height: '48%',
-            padding: '0.5em',
-            margin: '0',
+            justifyContent: 'space-evenly',
           }}
         >
-          <Box
-            sx={{
-              height: '24%',
-            }}
-          >
-            <Typography variant="h4" fontFamily="helvetica">
+          <Box>
+            <Typography
+              sx={{
+                fontFamily: theme.typography.fontFamily,
+                fontStyle: theme.typography.h4,
+              }}
+            >
               Bootcamp Details
             </Typography>
             <p>Cohort: {studentProfile?.cohort?.data?.attributes?.name}</p>
-            <p>Course: {studentProfile.main_course?.data?.attributes?.name}</p>
-            <p>Start date: {studentProfile.start_date}</p>
-            <p>End date: {studentProfile.end_date}</p>
+            <p>Course: {studentProfile?.main_course?.data?.attributes?.name}</p>
+            <p>Start date: {studentProfile?.start_date}</p>
+            <p>End date: {studentProfile?.end_date}</p>
           </Box>
-          <Box
-            sx={{
-              height: '24%',
-            }}
-          >
-            <Typography variant="h4" fontFamily="helvetica">
+          <Box>
+            <Typography
+              sx={{
+                fontFamily: theme.typography.fontFamily,
+                fontStyle: theme.typography.h4,
+              }}
+            >
               Contact Details
             </Typography>
-            <p>Email: </p>
-            <p>Github: {studentProfile?.github || 'https://github.com'}</p>
+            <p>Email: {studentProfile?.user?.data?.attributes?.email}</p>
+            <p>Github: {studentProfile?.github || 'https://github.com'} </p>
+
             <p>
               Linkedin: {studentProfile?.linkedin || 'https://linkedin.com'}
             </p>
@@ -106,19 +104,20 @@ const Studentprofile = ({
     </Container>
   );
 };
-
-export default Studentprofile;
+export default Students;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const client = initializeApollo(null, ctx.req);
-
+    const id = ctx.params?.id;
+    console.log('ctxparams', ctx.params);
     const { data } = await client.query({
       query: FilterStudentByUserIdDocument,
-      variables: { userId: 7 },
+      variables: { userId: id },
     });
+    const student = data.students.data[0];
     return {
-      props: { data },
+      props: { student },
     };
   } catch (error) {
     console.log(error);
