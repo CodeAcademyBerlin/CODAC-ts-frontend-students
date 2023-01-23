@@ -1,7 +1,7 @@
-import * as Types from '../../global/__generated__/types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const GetCohortsDocument = gql`
@@ -21,27 +21,28 @@ export const GetCohortsDocument = gql`
               }
             }
           }
-          students {
-            data {
-              attributes {
-                start_date
-                end_date
-                main_course {
-                  data {
-                    attributes {
-                      name
-                      achievements {
-                        data {
-                          attributes {
-                            name
-                            badge {
-                              data {
-                                attributes {
-                                  url
-                                  name
-                                  alternativeText
-                                  caption
-                                }
+        }
+        students {
+          data {
+            id
+            attributes {
+              start_date
+              end_date
+              main_course {
+                data {
+                  attributes {
+                    name
+                    achievements {
+                      data {
+                        attributes {
+                          name
+                          badge {
+                            data {
+                              attributes {
+                                url
+                                name
+                                alternativeText
+                                caption
                               }
                             }
                           }
@@ -50,17 +51,20 @@ export const GetCohortsDocument = gql`
                     }
                   }
                 }
-                user {
-                  data {
-                    attributes {
-                      avatar {
-                        data {
-                          attributes {
-                            url
-                            alternativeText
-                            name
-                            caption
-                          }
+              }
+              user {
+                data {
+                  id
+                  attributes {
+                    firstname
+                    lastname
+                    avatar {
+                      data {
+                        attributes {
+                          url
+                          alternativeText
+                          name
+                          caption
                         }
                       }
                     }
@@ -151,6 +155,7 @@ export type GetCohortsQuery = {
           __typename?: 'StudentRelationResponseCollection';
           data: Array<{
             __typename?: 'StudentEntity';
+            id?: string | null;
             attributes?: {
               __typename?: 'Student';
               start_date?: any | null;
@@ -192,8 +197,11 @@ export type GetCohortsQuery = {
                 __typename?: 'UsersPermissionsUserEntityResponse';
                 data?: {
                   __typename?: 'UsersPermissionsUserEntity';
+                  id?: string | null;
                   attributes?: {
                     __typename?: 'UsersPermissionsUser';
+                    firstname: string;
+                    lastname: string;
                     avatar?: {
                       __typename?: 'UploadFileEntityResponse';
                       data?: {

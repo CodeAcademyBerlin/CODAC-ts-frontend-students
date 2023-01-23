@@ -16,6 +16,7 @@ query getCohorts {
         }
         students {
           data {
+            id
             attributes {
               start_date
               end_date
@@ -45,7 +46,11 @@ query getCohorts {
               }
               user {
                 data {
+                  id
                   attributes {
+                    firstname
+                    lastname
+
                     avatar {
                       data {
                         attributes {

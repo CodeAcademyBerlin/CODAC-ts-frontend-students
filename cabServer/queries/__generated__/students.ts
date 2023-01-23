@@ -1,31 +1,48 @@
-import * as Types from '../../global/__generated__/types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const FilterStudentByUserIdDocument = gql`
-  query filterStudentByUserId($userId: ID) {
-    students(filters: { user: { id: { eq: $userId } } }) {
-      data {
-        attributes {
-          github
-          linkedin
-          start_date
-          end_date
-          cohort {
-            data {
-              attributes {
-                name
-                start_date
-                students {
-                  data {
-                    attributes {
-                      main_course {
-                        data {
-                          attributes {
-                            name
-                          }
+    query filterStudentByUserId($userId: ID) {
+  students(filters: {user: {id: {eq: $userId}}}) {
+    data {
+      id
+      attributes {
+        github
+        linkedin
+        start_date
+        end_date
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+              students {
+                data {
+                  attributes {
+                    main_course {
+                      data {
+                        attributes {
+                          name
                         }
                       }
                     }
@@ -41,14 +58,14 @@ export const FilterStudentByUserIdDocument = gql`
               }
             }
           }
-          achievements {
-            data {
-              attributes {
-                badge {
-                  data {
-                    attributes {
-                      url
-                    }
+        }
+        achievements {
+          data {
+            attributes {
+              badge {
+                data {
+                  attributes {
+                    url
                   }
                 }
               }
@@ -120,12 +137,36 @@ export type FilterStudentByUserIdQuery = {
     __typename?: 'StudentEntityResponseCollection';
     data: Array<{
       __typename?: 'StudentEntity';
+      id?: string | null;
       attributes?: {
         __typename?: 'Student';
         github?: string | null;
         linkedin?: string | null;
         start_date?: any | null;
         end_date?: any | null;
+        user?: {
+          __typename?: 'UsersPermissionsUserEntityResponse';
+          data?: {
+            __typename?: 'UsersPermissionsUserEntity';
+            id?: string | null;
+            attributes?: {
+              __typename?: 'UsersPermissionsUser';
+              firstname: string;
+              lastname: string;
+              email: string;
+              avatar?: {
+                __typename?: 'UploadFileEntityResponse';
+                data?: {
+                  __typename?: 'UploadFileEntity';
+                  attributes?: {
+                    __typename?: 'UploadFile';
+                    url: string;
+                  } | null;
+                } | null;
+              } | null;
+            } | null;
+          } | null;
+        } | null;
         cohort?: {
           __typename?: 'CohortEntityResponse';
           data?: {

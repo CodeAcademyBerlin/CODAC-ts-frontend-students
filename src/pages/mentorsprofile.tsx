@@ -1,20 +1,21 @@
 import { Avatar, Box, Container, Typography, useTheme } from '@mui/material';
 import Card from '@mui/material/Card';
-import { Student } from 'cabServer/global/__generated__/types';
-import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
-import Image from 'next/image';
+import { Mentor } from 'cabServer/global/__generated__/types';
+import {
+  MentorsDocument,
+  useMentorsQuery,
+} from 'cabServer/queries/__generated__/mentors';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 
 import logo from '../../public/assets/logo.png';
 import { initializeApollo } from '../lib/apolloClient';
 
-const Studentprofile = ({
+const Mentorprofile = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const theme = useTheme();
-  const studentProfile: Student = data && data.students.data[0].attributes;
-
-  console.log('studentprofile', data);
+  const mentorProfile: Mentor = data && data.mentors.data[0].attributes;
+  console.log('mentorProfile', data);
 
   return (
     <Container>
@@ -34,7 +35,7 @@ const Studentprofile = ({
             height: '28%',
           }}
         >
-          <Avatar
+          {/* <Avatar
             sx={{ width: '160px', height: '160px' }}
             src={
               studentProfile?.user?.data?.attributes?.avatar?.data?.attributes
@@ -63,6 +64,25 @@ const Studentprofile = ({
             </Typography>
           </Box>
         </Box>
+        <Box>
+          <Typography
+            sx={{
+              fontStyle: theme.typography.h4,
+              fontFamily: theme.typography.fontFamily,
+            }}
+          >
+            First name: {mentorProfile.firstname}
+          </Typography>
+          <Typography
+            sx={{
+              fontStyle: theme.typography.h4,
+              fontFamily: theme.typography.fontFamily,
+            }}
+          >
+            Last name: {mentorProfile.lastname}
+          </Typography>
+        </Box>
+
         <Box
           sx={{
             display: 'flex',
@@ -80,12 +100,13 @@ const Studentprofile = ({
             }}
           >
             <Typography variant="h4" fontFamily="helvetica">
-              Bootcamp Details
+              Courses
             </Typography>
-            <p>Cohort: {studentProfile?.cohort?.data?.attributes?.name}</p>
-            <p>Course: {studentProfile.main_course?.data?.attributes?.name}</p>
-            <p>Start date: {studentProfile.start_date}</p>
-            <p>End date: {studentProfile.end_date}</p>
+            <p>Course: {mentorProfile.courses?.data[0].attributes?.name} </p>
+            <p>
+              About course:
+              {mentorProfile.courses?.data[0].attributes?.description}
+            </p>
           </Box>
           <Box
             sx={{
@@ -96,10 +117,8 @@ const Studentprofile = ({
               Contact Details
             </Typography>
             <p>Email: </p>
-            <p>Github: {studentProfile?.github || 'https://github.com'}</p>
-            <p>
-              Linkedin: {studentProfile?.linkedin || 'https://linkedin.com'}
-            </p>
+            <p>Github: {mentorProfile?.github || 'https://github.com'}</p>
+            <p>Linkedin: {mentorProfile?.linkedin || 'https://linkedin.com'}</p>
           </Box>
         </Box>
       </Card>
@@ -107,15 +126,15 @@ const Studentprofile = ({
   );
 };
 
-export default Studentprofile;
+export default Mentorprofile;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const client = initializeApollo(null, ctx.req);
 
     const { data } = await client.query({
-      query: FilterStudentByUserIdDocument,
-      variables: { userId: 7 },
+      query: MentorsDocument,
+      variables: { userId: 3 },
     });
     return {
       props: { data },

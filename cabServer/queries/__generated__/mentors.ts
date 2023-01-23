@@ -1,24 +1,26 @@
-import * as Types from '../../global/__generated__/types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const MentorsDocument = gql`
-  query mentors {
-    mentors {
-      data {
-        attributes {
-          user {
-            data {
-              attributes {
-                firstname
-                lastname
-                avatar {
-                  data {
-                    attributes {
-                      url
-                    }
+    query mentors {
+  mentors {
+    data {
+      id
+      attributes {
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
                   }
                 }
               }
@@ -88,16 +90,19 @@ export type MentorsQuery = {
     __typename?: 'MentorEntityResponseCollection';
     data: Array<{
       __typename?: 'MentorEntity';
+      id?: string | null;
       attributes?: {
         __typename?: 'Mentor';
         user?: {
           __typename?: 'UsersPermissionsUserEntityResponse';
           data?: {
             __typename?: 'UsersPermissionsUserEntity';
+            id?: string | null;
             attributes?: {
               __typename?: 'UsersPermissionsUser';
               firstname: string;
               lastname: string;
+              email: string;
               avatar?: {
                 __typename?: 'UploadFileEntityResponse';
                 data?: {
