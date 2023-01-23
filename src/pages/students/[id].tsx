@@ -39,7 +39,7 @@ const Students = (data: any) => {
               studentProfile?.user?.data?.attributes?.avatar?.data?.attributes
                 ?.url
             }
-            alt=""
+            alt={studentProfile.user?.data?.attributes?.firstname}
             sizes="width: 100%, height: 100%"
           />
 
@@ -67,8 +67,6 @@ const Students = (data: any) => {
             display: 'flex',
             flexDirections: 'row',
             justifyContent: 'space-evenly',
-            // padding: '0.5em',
-            // margin: '0',
           }}
         >
           <Box>
