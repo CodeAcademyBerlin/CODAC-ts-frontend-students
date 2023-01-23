@@ -1,12 +1,15 @@
 query mentors {
   mentors {
     data {
+      id
       attributes {
         user {
           data {
+            id
             attributes {
               firstname
               lastname
+              email
               avatar {
                 data {
                   attributes {
@@ -17,6 +20,7 @@ query mentors {
             }
           }
         }
+
         courses {
           data {
             attributes {
