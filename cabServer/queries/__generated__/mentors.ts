@@ -1,26 +1,27 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const MentorsDocument = gql`
-    query mentors {
-  mentors {
-    data {
-      id
-      attributes {
-        user {
-          data {
-            id
-            attributes {
-              firstname
-              lastname
-              email
-              avatar {
-                data {
-                  attributes {
-                    url
+  query mentors {
+    mentors {
+      data {
+        id
+        attributes {
+          user {
+            data {
+              id
+              attributes {
+                firstname
+                lastname
+                email
+                avatar {
+                  data {
+                    attributes {
+                      url
+                    }
                   }
                 }
               }

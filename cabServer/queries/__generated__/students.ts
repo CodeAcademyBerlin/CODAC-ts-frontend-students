@@ -1,48 +1,49 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const FilterStudentByUserIdDocument = gql`
-    query filterStudentByUserId($userId: ID) {
-  students(filters: {user: {id: {eq: $userId}}}) {
-    data {
-      id
-      attributes {
-        github
-        linkedin
-        start_date
-        end_date
-        user {
-          data {
-            id
-            attributes {
-              firstname
-              lastname
-              email
-              avatar {
-                data {
-                  attributes {
-                    url
+  query filterStudentByUserId($userId: ID) {
+    students(filters: { user: { id: { eq: $userId } } }) {
+      data {
+        id
+        attributes {
+          github
+          linkedin
+          start_date
+          end_date
+          user {
+            data {
+              id
+              attributes {
+                firstname
+                lastname
+                email
+                avatar {
+                  data {
+                    attributes {
+                      url
+                    }
                   }
                 }
               }
             }
           }
-        }
-        cohort {
-          data {
-            attributes {
-              name
-              start_date
-              students {
-                data {
-                  attributes {
-                    main_course {
-                      data {
-                        attributes {
-                          name
+          cohort {
+            data {
+              attributes {
+                name
+                start_date
+                students {
+                  data {
+                    attributes {
+                      main_course {
+                        data {
+                          attributes {
+                            name
+                          }
                         }
                       }
                     }
@@ -53,19 +54,20 @@ export const FilterStudentByUserIdDocument = gql`
           }
           main_course {
             data {
+              id
               attributes {
                 name
               }
             }
           }
-        }
-        achievements {
-          data {
-            attributes {
-              badge {
-                data {
-                  attributes {
-                    url
+          achievements {
+            data {
+              attributes {
+                badge {
+                  data {
+                    attributes {
+                      url
+                    }
                   }
                 }
               }
@@ -201,6 +203,7 @@ export type FilterStudentByUserIdQuery = {
           __typename?: 'CourseEntityResponse';
           data?: {
             __typename?: 'CourseEntity';
+            id?: string | null;
             attributes?: { __typename?: 'Course'; name?: string | null } | null;
           } | null;
         } | null;

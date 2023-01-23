@@ -1,22 +1,25 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const GetMeDocument = gql`
   query getMe {
     me {
       id
-      name
-    }
-    email
-    id
-    username
-    firstname
-    lastname
-    avatar {
-      url
+      role {
+        id
+        name
+      }
+      email
+      id
+      username
+      firstname
+      lastname
+      avatar {
+        url
+      }
     }
   }
 `;

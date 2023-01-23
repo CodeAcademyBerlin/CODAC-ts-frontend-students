@@ -43,9 +43,9 @@ const Mentorprofile = ({
             }
             alt=""
             sizes="width: 100%, height: 100%"
-          />
+          /> */}
 
-          <Box>
+          {/* <Box>
             <Typography
               sx={{
                 fontStyle: theme.typography.h4,
@@ -62,9 +62,9 @@ const Mentorprofile = ({
             >
               Last name: {studentProfile?.user?.data?.attributes?.lastname}
             </Typography>
-          </Box>
+          </Box> */}
         </Box>
-        <Box>
+        {/* <Box>
           <Typography
             sx={{
               fontStyle: theme.typography.h4,
@@ -81,7 +81,7 @@ const Mentorprofile = ({
           >
             Last name: {mentorProfile.lastname}
           </Typography>
-        </Box>
+        </Box> */}
 
         <Box
           sx={{
