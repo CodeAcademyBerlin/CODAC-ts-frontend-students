@@ -47,6 +47,7 @@ query filterStudentByUserId($userId: ID) {
         }
         main_course {
           data {
+            id
             attributes {
               name
             }
