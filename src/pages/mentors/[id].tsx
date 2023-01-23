@@ -5,8 +5,6 @@ import { MentorsDocument } from 'cabServer/queries/__generated__/mentors';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import { initializeApollo } from 'src/lib/apolloClient';
 
-import logo from '../../../public/assets/logo.png';
-
 const Mentorprofile = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
