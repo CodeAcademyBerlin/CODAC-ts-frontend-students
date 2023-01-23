@@ -1,4 +1,4 @@
-import { Divider } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import React, { useContext, useEffect, useState } from 'react';
 import ExpandButton from 'src/components/common/ExpandButton';
@@ -58,14 +58,15 @@ function Battle() {
             );
           }
         })}
-
-      <Divider>
-        Archived{' '}
-        <ExpandButton
-          onClick={handleExpandClick}
-          expand={expanded}
-        ></ExpandButton>
-      </Divider>
+      <Box>
+        <Divider>
+          Archived{' '}
+          <ExpandButton
+            onClick={handleExpandClick}
+            expand={expanded}
+          ></ExpandButton>
+        </Divider>
+      </Box>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {vsBattles &&
           vsBattles.map((battle, index) => {
