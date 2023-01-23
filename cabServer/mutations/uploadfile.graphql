@@ -1,0 +1,7 @@
+# mutation ($file: Upload!) {
+#   upload(file: $file) {
+#     data {
+#       id
+#     }
+#   }
+# }
