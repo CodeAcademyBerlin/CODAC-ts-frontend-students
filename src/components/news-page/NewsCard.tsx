@@ -17,7 +17,7 @@ import { NewsPostEntity } from '../../../cabServer/global/__generated__/types';
 import { useAuth } from '../../hooks/useAuth';
 
 const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
-  console.log('news post component', newsPost);
+  // console.log('news post component', newsPost);
 
   const updatedDate: String = new Date(
     newsPost.attributes?.updatedAt,

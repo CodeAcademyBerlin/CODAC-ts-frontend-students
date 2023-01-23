@@ -1,7 +1,6 @@
 // ** MUI Imports
-import { styled, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import Button, { ButtonProps } from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import { useCreateNewsPostMutation } from 'cabServer/mutations/__generated__/newspost';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, ElementType, MouseEvent, useState } from 'react';
+import UploadFile from 'src/components/common/UploadFile';
 
 import { Enum_Newspost_Tags } from '../../cabServer/global/__generated__/types';
 import { useAuth } from '../hooks/useAuth';
@@ -23,43 +23,7 @@ const AddNewsPost = (props: Props) => {
   const [post, setPost] = useState<string>('');
   const [title, setTitle] = useState<string>('');
   const [tags, setTags] = useState<Enum_Newspost_Tags>(Enum_Newspost_Tags.Cab);
-  const [image, setImage] = useState<string>('');
-
-  const onImageChange = (file: ChangeEvent) => {
-    const reader = new FileReader();
-    const { files } = file.target as HTMLInputElement;
-    if (files && files.length !== 0) {
-      reader.onload = () => setImage(reader.result as string);
-      reader.readAsDataURL(files[0]);
-    }
-  };
-
-  //Upload Image Component
-  const ImgStyled = styled('img')(({ theme }) => ({
-    width: 120,
-    height: 120,
-    marginRight: theme.spacing(6.25),
-    borderRadius: theme.shape.borderRadius,
-  }));
-
-  const ButtonStyled = styled(Button)<
-    ButtonProps & { component?: ElementType; htmlFor?: string }
-  >(({ theme }) => ({
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-      textAlign: 'center',
-    },
-  }));
-
-  const ResetButtonStyled = styled(Button)<ButtonProps>(({ theme }) => ({
-    marginLeft: theme.spacing(4.5),
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-      marginLeft: 0,
-      textAlign: 'center',
-      marginTop: theme.spacing(4),
-    },
-  }));
+  const [fileId, setFileId] = useState<string>('');
 
   //imports
   const router = useRouter();
@@ -84,7 +48,7 @@ const AddNewsPost = (props: Props) => {
         post: post,
         author: user?.id || '',
         tags: tags!,
-        image: image,
+        image: fileId,
         publishedAt: currentDate.toISOString(),
       },
     });
@@ -101,11 +65,9 @@ const AddNewsPost = (props: Props) => {
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
+      console.log('fileid', fileId);
       const { data } = await newsPostMutuation();
       if (data) {
-        /* const { login } = data; */
-        console.log('data', data);
-        /* onLoginSucces(login, values.rememberMe); */
         router.push('/news');
       }
     } catch (e) {
@@ -218,37 +180,7 @@ const AddNewsPost = (props: Props) => {
                 value={post}
                 onChange={handlePostChange}
               />
-
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <ImgStyled src={image} alt="news post cover image" />
-                <Box>
-                  <ButtonStyled
-                    component="label"
-                    variant="contained"
-                    htmlFor="account-settings-upload-image"
-                  >
-                    Upload image
-                    <input
-                      hidden
-                      type="file"
-                      onChange={onImageChange}
-                      accept="image/png, image/jpeg"
-                      id="account-settings-upload-image"
-                    />
-                  </ButtonStyled>
-                  <ResetButtonStyled
-                    color="error"
-                    variant="outlined"
-                    onClick={() => setImage('')}
-                  >
-                    Reset
-                  </ResetButtonStyled>
-                  <Typography variant="body2" sx={{ marginTop: 5 }}>
-                    Allowed PNG or JPEG. Max size of 800K.
-                  </Typography>
-                </Box>
-              </Box>
-
+              <UploadFile setFileId={setFileId} />
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button
                   onClick={handleSubmit}
