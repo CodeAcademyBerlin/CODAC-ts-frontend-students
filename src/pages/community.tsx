@@ -6,7 +6,6 @@ import { styled } from '@mui/material/styles';
 import { ArrowDown, Box } from 'mdi-material-ui';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import React from 'react';
 
