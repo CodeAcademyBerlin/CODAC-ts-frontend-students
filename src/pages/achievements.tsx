@@ -40,7 +40,6 @@ const Achievements = ({
   const [check, setCheck] = useState(true);
   const allAchievements = data?.achievements?.data;
   const uniqueFields: Data = [];
-  console.log('allAchievements', allAchievements);
 
   const handleClick = (e: React.MouseEvent<Element, MouseEvent>) => {
     const target = e.target as HTMLButtonElement;

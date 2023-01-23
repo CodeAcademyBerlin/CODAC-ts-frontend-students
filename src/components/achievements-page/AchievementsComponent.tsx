@@ -24,7 +24,6 @@ const AchievementsComponent = ({
 }: {
   achievements: AchievementEntity[];
 }) => {
-  console.log('achievements', achievements);
   const theme = useTheme();
   const [collapse, setCollapse] = React.useState<boolean>(true);
 
@@ -32,18 +31,13 @@ const AchievementsComponent = ({
     setCollapse((current) => !current);
   };
 
-  function WrappedIcon(props: IconProps) {
-    return <Icon {...props} />;
-  }
-  WrappedIcon.muiName = 'Icon';
-
   return (
-    <Box mt={4}>
+    <Box mt={4} flexWrap="wrap">
       <Card
         sx={{
           maxWidth: '18rem',
           borderRadius: 3,
-          borderStyle: 'solid',
+          borderStyle: 'none',
           borderWidth: 2,
           borderColor: theme.palette.background.default,
           pt: 1,
@@ -69,7 +63,7 @@ const AchievementsComponent = ({
             >
               <Typography
                 sx={{
-                  fontStyle: theme.typography.subtitle2,
+                  fontStyle: theme.typography.subtitle1,
                   fontVariant: 'all-small-caps',
                 }}
               >
@@ -84,14 +78,15 @@ const AchievementsComponent = ({
           </Box>
           <CardMedia
             sx={{
-              ml: '10px',
               borderRadius: 0,
-              borderStyle: 'none',
-              borderWidth: 2,
+              borderStyle: 'solid none',
+              borderWidth: 1.5,
               display: 'flex',
+              alignItems: 'center',
               flexWrap: 'wrap',
-              height: 1,
-              width: 'auto',
+              height: 'auto',
+              width: 1,
+              padding: 1,
             }}
           >
             {collapse ? (
@@ -111,11 +106,18 @@ const AchievementsComponent = ({
                   )}
               </AvatarGroup>
             ) : (
-              <AvatarGroup max={20}>
+              <AvatarGroup
+                max={20}
+                sx={{
+                  flexWrap: 'wrap',
+                  padding: 1,
+                  justifyContent: 'center',
+                  ml: 2,
+                }}
+              >
                 {achievements &&
                   achievements.map(
                     (achievementEntity: AchievementEntity, i: number) => (
-                      // <WrappedIcon>
                       <Avatar
                         key={achievementEntity.id}
                         alt="AchievementBadge"
@@ -125,7 +127,6 @@ const AchievementsComponent = ({
                         }
                       ></Avatar>
                     ),
-                    // </WrappedIcon>
                   )}
               </AvatarGroup>
             )}
