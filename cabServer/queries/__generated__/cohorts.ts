@@ -5,20 +5,19 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const GetCohortsDocument = gql`
-  query getCohorts {
-    cohorts {
-      data {
-        attributes {
-          name
-          start_date
-          logo {
-            data {
-              attributes {
-                url
-                alternativeText
-                caption
-                previewUrl
-              }
+    query getCohorts {
+  cohorts {
+    data {
+      attributes {
+        name
+        start_date
+        logo {
+          data {
+            attributes {
+              url
+              alternativeText
+              caption
+              previewUrl
             }
           }
           students {
@@ -43,6 +42,7 @@ export const GetCohortsDocument = gql`
                                   alternativeText
                                   caption
                                 }
+
                               }
                             }
                           }
@@ -77,7 +77,8 @@ export const GetCohortsDocument = gql`
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useGetCohortsQuery__
@@ -94,39 +95,19 @@ export const GetCohortsDocument = gql`
  *   },
  * });
  */
-export function useGetCohortsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetCohortsQuery,
-    GetCohortsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetCohortsQuery, GetCohortsQueryVariables>(
-    GetCohortsDocument,
-    options,
-  );
-}
-export function useGetCohortsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetCohortsQuery,
-    GetCohortsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetCohortsQuery, GetCohortsQueryVariables>(
-    GetCohortsDocument,
-    options,
-  );
-}
+export function useGetCohortsQuery(baseOptions?: Apollo.QueryHookOptions<GetCohortsQuery, GetCohortsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCohortsQuery, GetCohortsQueryVariables>(GetCohortsDocument, options);
+      }
+export function useGetCohortsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCohortsQuery, GetCohortsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCohortsQuery, GetCohortsQueryVariables>(GetCohortsDocument, options);
+        }
 export type GetCohortsQueryHookResult = ReturnType<typeof useGetCohortsQuery>;
-export type GetCohortsLazyQueryHookResult = ReturnType<
-  typeof useGetCohortsLazyQuery
->;
-export type GetCohortsQueryResult = Apollo.QueryResult<
-  GetCohortsQuery,
-  GetCohortsQueryVariables
->;
-export type GetCohortsQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type GetCohortsLazyQueryHookResult = ReturnType<typeof useGetCohortsLazyQuery>;
+export type GetCohortsQueryResult = Apollo.QueryResult<GetCohortsQuery, GetCohortsQueryVariables>;
+export type GetCohortsQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
 
 export type GetCohortsQuery = {
   __typename?: 'Query';
@@ -225,3 +206,4 @@ export type GetCohortsQuery = {
     }>;
   } | null;
 };
+

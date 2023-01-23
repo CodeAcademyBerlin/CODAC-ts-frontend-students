@@ -5,27 +5,26 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const GetNewsPostDocument = gql`
-  query getNewsPost {
-    newsPosts {
-      data {
-        attributes {
-          post
-          post
-          author {
-            data {
-              attributes {
-                email
-                student {
-                  data {
-                    attributes {
-                      user {
-                        data {
-                          attributes {
-                            avatar {
-                              data {
-                                attributes {
-                                  url
-                                }
+    query getNewsPost {
+  newsPosts {
+    data {
+      attributes {
+        post
+        post
+        author {
+          data {
+            attributes {
+              email
+              student {
+                data {
+                  attributes {
+                    user {
+                      data {
+                        attributes {
+                          avatar {
+                            data {
+                              attributes {
+                                url
                               }
                             }
                           }
@@ -41,7 +40,8 @@ export const GetNewsPostDocument = gql`
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useGetNewsPostQuery__
@@ -58,88 +58,18 @@ export const GetNewsPostDocument = gql`
  *   },
  * });
  */
-export function useGetNewsPostQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetNewsPostQuery,
-    GetNewsPostQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetNewsPostQuery, GetNewsPostQueryVariables>(
-    GetNewsPostDocument,
-    options,
-  );
-}
-export function useGetNewsPostLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetNewsPostQuery,
-    GetNewsPostQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetNewsPostQuery, GetNewsPostQueryVariables>(
-    GetNewsPostDocument,
-    options,
-  );
-}
+export function useGetNewsPostQuery(baseOptions?: Apollo.QueryHookOptions<GetNewsPostQuery, GetNewsPostQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetNewsPostQuery, GetNewsPostQueryVariables>(GetNewsPostDocument, options);
+      }
+export function useGetNewsPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNewsPostQuery, GetNewsPostQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetNewsPostQuery, GetNewsPostQueryVariables>(GetNewsPostDocument, options);
+        }
 export type GetNewsPostQueryHookResult = ReturnType<typeof useGetNewsPostQuery>;
-export type GetNewsPostLazyQueryHookResult = ReturnType<
-  typeof useGetNewsPostLazyQuery
->;
-export type GetNewsPostQueryResult = Apollo.QueryResult<
-  GetNewsPostQuery,
-  GetNewsPostQueryVariables
->;
-export type GetNewsPostQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type GetNewsPostLazyQueryHookResult = ReturnType<typeof useGetNewsPostLazyQuery>;
+export type GetNewsPostQueryResult = Apollo.QueryResult<GetNewsPostQuery, GetNewsPostQueryVariables>;
+export type GetNewsPostQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export type GetNewsPostQuery = {
-  __typename?: 'Query';
-  newsPosts?: {
-    __typename?: 'NewsPostEntityResponseCollection';
-    data: Array<{
-      __typename?: 'NewsPostEntity';
-      attributes?: {
-        __typename?: 'NewsPost';
-        post?: string | null;
-        author?: {
-          __typename?: 'UsersPermissionsUserEntityResponse';
-          data?: {
-            __typename?: 'UsersPermissionsUserEntity';
-            attributes?: {
-              __typename?: 'UsersPermissionsUser';
-              email: string;
-              student?: {
-                __typename?: 'StudentEntityResponse';
-                data?: {
-                  __typename?: 'StudentEntity';
-                  attributes?: {
-                    __typename?: 'Student';
-                    user?: {
-                      __typename?: 'UsersPermissionsUserEntityResponse';
-                      data?: {
-                        __typename?: 'UsersPermissionsUserEntity';
-                        attributes?: {
-                          __typename?: 'UsersPermissionsUser';
-                          avatar?: {
-                            __typename?: 'UploadFileEntityResponse';
-                            data?: {
-                              __typename?: 'UploadFileEntity';
-                              attributes?: {
-                                __typename?: 'UploadFile';
-                                url: string;
-                              } | null;
-                            } | null;
-                          } | null;
-                        } | null;
-                      } | null;
-                    } | null;
-                  } | null;
-                } | null;
-              } | null;
-            } | null;
-          } | null;
-        } | null;
-      } | null;
-    }>;
-  } | null;
-};
+
+export type GetNewsPostQuery = { __typename?: 'Query', newsPosts?: { __typename?: 'NewsPostEntityResponseCollection', data: Array<{ __typename?: 'NewsPostEntity', attributes?: { __typename?: 'NewsPost', post?: string | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', email: string, student?: { __typename?: 'StudentEntityResponse', data?: { __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null } | null }> } | null };

@@ -6,7 +6,7 @@ const defaultOptions = {} as const;
 
 export const GetVsBattlesDocument = gql`
   query getVSBattles {
-    vsBattles {
+    vsBattles(sort: "createdAt:desc") {
       data {
         id
         attributes {
@@ -17,21 +17,47 @@ export const GetVsBattlesDocument = gql`
           option2
           option_1_voters {
             data {
+              id
               attributes {
-                username
                 email
+                username
                 firstname
                 lastname
+                avatar {
+                  data {
+                    attributes {
+                      url
+                      hash
+                      mime
+                      name
+                      provider
+                      size
+                    }
+                  }
+                }
               }
             }
           }
           option_2_voters {
             data {
+              id
               attributes {
-                username
                 email
+                username
                 firstname
                 lastname
+                avatar {
+                  data {
+                    attributes {
+                      url
+                      hash
+                      mime
+                      name
+                      provider
+                      size
+                    }
+                  }
+                }
               }
             }
           }
@@ -110,12 +136,28 @@ export type GetVsBattlesQuery = {
           __typename?: 'UsersPermissionsUserRelationResponseCollection';
           data: Array<{
             __typename?: 'UsersPermissionsUserEntity';
+            id?: string | null;
             attributes?: {
               __typename?: 'UsersPermissionsUser';
-              username: string;
               email: string;
+              username: string;
               firstname: string;
               lastname: string;
+              avatar?: {
+                __typename?: 'UploadFileEntityResponse';
+                data?: {
+                  __typename?: 'UploadFileEntity';
+                  attributes?: {
+                    __typename?: 'UploadFile';
+                    url: string;
+                    hash: string;
+                    mime: string;
+                    name: string;
+                    provider: string;
+                    size: number;
+                  } | null;
+                } | null;
+              } | null;
             } | null;
           }>;
         } | null;
@@ -123,12 +165,28 @@ export type GetVsBattlesQuery = {
           __typename?: 'UsersPermissionsUserRelationResponseCollection';
           data: Array<{
             __typename?: 'UsersPermissionsUserEntity';
+            id?: string | null;
             attributes?: {
               __typename?: 'UsersPermissionsUser';
-              username: string;
               email: string;
+              username: string;
               firstname: string;
               lastname: string;
+              avatar?: {
+                __typename?: 'UploadFileEntityResponse';
+                data?: {
+                  __typename?: 'UploadFileEntity';
+                  attributes?: {
+                    __typename?: 'UploadFile';
+                    url: string;
+                    hash: string;
+                    mime: string;
+                    name: string;
+                    provider: string;
+                    size: number;
+                  } | null;
+                } | null;
+              } | null;
             } | null;
           }>;
         } | null;

@@ -5,9 +5,6 @@ generates:
   cabServer/global/__generated__/types.ts:
     plugins:
       - 'typescript'
-    config:
-    avoidOptionals: true
-    maybeValue: 'T'
   cabServer/global/__generated__:
     preset: near-operation-file
     presetConfig:
