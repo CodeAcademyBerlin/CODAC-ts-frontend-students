@@ -1,0 +1,6 @@
+mutation addCODACOverflowComment($codacOverflowId: ID!, $comment: String!){
+  addCODACOverflowComment(codacOverflowId: $codacOverflowId, comment: $comment){
+		success
+    message
+  }
+}

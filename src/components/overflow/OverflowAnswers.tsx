@@ -76,7 +76,10 @@ const OverflowAnswers = ({ result }: CommentsProps) => {
                         eachComment?.author?.data?.attributes?.firstname || ''
                       }
                       sx={{ width: 40, height: 40 }}
-                      src={/* user.userData?.avatar ||  */ ''}
+                      src={
+                        eachComment?.author?.data?.attributes?.avatar?.data
+                          ?.attributes?.url || ''
+                      }
                     />
                   </Badge>
                   <h3 style={{ color: '#26a69a' }}>

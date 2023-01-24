@@ -7,24 +7,21 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import { IncomingMessage } from 'http';
+//import useRouter
+import { useRouter } from 'next/router';
 //import serverSideProps
-import {
-  GetServerSideProps,
-  InferGetServerSidePropsType,
-  NextApiRequest,
-} from 'next/types';
-import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
+import React, { MouseEvent, useState } from 'react';
 import OverflowAnswers from 'src/components/overflow/OverflowAnswers';
 
 //import types
 import { CodacOverflowEntity } from '../../../cabServer/global/__generated__/types';
-//import types
-import { CodacOverflow } from '../../../cabServer/global/__generated__/types';
-//import types
-import { ComponentCommentsComments } from '../../../cabServer/global/__generated__/types';
+//import Mutation
+import { useAddCodacOverflowCommentMutation } from '../../../cabServer/mutations/__generated__/addOverflowComment';
 //import generated query
 import { CodacOverflowByIdDocument } from '../../../cabServer/queries/__generated__/overflowOne';
+//import auth to get the actual user information
+import { useAuth } from '../../hooks/useAuth';
 //import Apollo für ServerSideProps
 import { initializeApollo } from '../../lib/apolloClient';
 
@@ -40,17 +37,37 @@ const Item = styled(Paper)(({ theme }) => ({
 const OverflowTopic = ({
   codacOverflow,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const router = useRouter();
   const [result, setResult] = useState(codacOverflow);
   const [message, setMessage] = useState<string>('');
+  const { user } = useAuth();
   console.log('result data', result);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setMessage(event.target.value);
-  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
+
+  const [addOverflowCommentMutation, { data, loading, error }] =
+    useAddCodacOverflowCommentMutation({
+      variables: {
+        codacOverflowId: result?.id || '',
+        comment: message,
+      },
+    });
+
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      console.log('It works to send a message');
-      console.log('message:', message);
+      const { data } = await addOverflowCommentMutation();
+
+      if (data) {
+        console.log('data', data);
+        refreshData();
+      }
+
       setMessage('');
     } catch (e) {
       ({ error: 'e.message' });

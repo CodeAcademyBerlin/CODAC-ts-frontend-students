@@ -16,6 +16,7 @@ query getCohorts {
         }
         students {
           data {
+            id
             attributes {
               start_date
               end_date
@@ -23,29 +24,16 @@ query getCohorts {
                 data {
                   attributes {
                     name
-                    achievements {
-                      data {
-                        attributes {
-                          name
-                          badge {
-                            data {
-                              attributes {
-                                url
-                                name
-                                alternativeText
-                                caption
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
               user {
                 data {
+                  id
                   attributes {
+                    firstname
+                    lastname
+
                     avatar {
                       data {
                         attributes {
