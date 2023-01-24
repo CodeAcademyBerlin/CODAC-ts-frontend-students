@@ -45,7 +45,7 @@ const UploadFile = ({ setFileId }: UploadFileProps) => {
     const file = await e.target.files[0];
     const form = new FormData();
     form.append('files', file);
-    console.log('file', file);
+    // console.log('file', file);
     if (file) {
       const response = await fetch(
         'https://codac-364707.ey.r.appspot.com/api/upload',
@@ -55,10 +55,10 @@ const UploadFile = ({ setFileId }: UploadFileProps) => {
           headers: myHeaders,
         },
       );
-      console.log('response', response);
+      // console.log('response', response);
       const result = await response.json();
       setFileId(result[0].id);
-      console.log('result', result);
+      // console.log('result', result);
       setUploadedFile(result[0].url);
     }
   }
