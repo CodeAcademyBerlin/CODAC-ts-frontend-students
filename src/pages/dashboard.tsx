@@ -119,7 +119,8 @@ const Dashboard = ({
   console.log('achievements', achievements);
   if (myStudent)
     return (
-      <ApexChartWrapper>
+      // <ApexChartWrapper>
+      <div>
         <Grid container spacing={6}>
           <Grid item xs={12}>
             {myStudent.main_course?.data?.attributes?.name && (
@@ -158,7 +159,8 @@ const Dashboard = ({
 
           {/* {user.role.name === "Student" && <ProgressBar />} */}
         </Grid>
-      </ApexChartWrapper>
+      </div>
+      //</ApexChartWrapper>
     );
 };
 

@@ -1,5 +1,8 @@
+import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import { Box, Divider } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import React, { useContext, useEffect, useState } from 'react';
 import ExpandButton from 'src/components/common/ExpandButton';
 import { AuthContext } from 'src/contexts/authContext';
@@ -34,6 +37,15 @@ function Battle() {
     });
   };
 
+  const [alignment, setAlignment] = React.useState<string | null>('left');
+
+  const handleAlignment = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string | null,
+  ) => {
+    setAlignment(newAlignment);
+  };
+
   useEffect(() => {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,6 +55,18 @@ function Battle() {
 
   return (
     <div>
+      <ToggleButtonGroup
+        value={alignment}
+        exclusive
+        onChange={handleAlignment}
+        aria-label="text alignment"
+        size="small"
+        sx={{ marginBottom: '10px' }}
+      >
+        <ToggleButton value="left" aria-label="left aligned">
+          <DonutLargeIcon fontSize="small" />
+        </ToggleButton>
+      </ToggleButtonGroup>
       {vsBattles &&
         vsBattles.map((battle, index) => {
           if (battle?.attributes?.archived === false) {
@@ -60,7 +84,7 @@ function Battle() {
         })}
       <Box>
         <Divider>
-          Archived{' '}
+          Archive{' '}
           <ExpandButton
             onClick={handleExpandClick}
             expand={expanded}
