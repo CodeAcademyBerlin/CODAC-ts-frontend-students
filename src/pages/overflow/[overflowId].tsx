@@ -119,7 +119,7 @@ const OverflowTopic = ({
                   style={{
                     margin: '10px 0px 10px 0px',
                     marginLeft: '20%',
-                    width: '70%',
+                    width: '60%',
                   }}
                 >
                   <Item>

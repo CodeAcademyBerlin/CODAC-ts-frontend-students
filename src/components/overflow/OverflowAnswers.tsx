@@ -118,7 +118,7 @@ const OverflowAnswers = ({ result }: CommentsProps) => {
           </div>
         ))
       ) : (
-        <p>No Answers have been given so far.</p>
+        <p style={{ marginLeft: '20%' }}>No Answers have been given so far.</p>
       )}
     </>
   );
