@@ -60,14 +60,14 @@ export const FilterStudentByUserIdDocument = gql`
               }
             }
           }
-        }
-        achievements {
-          data {
-            attributes {
-              badge {
-                data {
-                  attributes {
-                    url
+          achievements {
+            data {
+              attributes {
+                badge {
+                  data {
+                    attributes {
+                      url
+                    }
                   }
                 }
               }
@@ -77,8 +77,7 @@ export const FilterStudentByUserIdDocument = gql`
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useFilterStudentByUserIdQuery__
@@ -96,21 +95,43 @@ export const FilterStudentByUserIdDocument = gql`
  *   },
  * });
  */
-export function useFilterStudentByUserIdQuery(baseOptions?: Apollo.QueryHookOptions<FilterStudentByUserIdQuery, FilterStudentByUserIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FilterStudentByUserIdQuery, FilterStudentByUserIdQueryVariables>(FilterStudentByUserIdDocument, options);
-      }
-export function useFilterStudentByUserIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FilterStudentByUserIdQuery, FilterStudentByUserIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FilterStudentByUserIdQuery, FilterStudentByUserIdQueryVariables>(FilterStudentByUserIdDocument, options);
-        }
-export type FilterStudentByUserIdQueryHookResult = ReturnType<typeof useFilterStudentByUserIdQuery>;
-export type FilterStudentByUserIdLazyQueryHookResult = ReturnType<typeof useFilterStudentByUserIdLazyQuery>;
-export type FilterStudentByUserIdQueryResult = Apollo.QueryResult<FilterStudentByUserIdQuery, FilterStudentByUserIdQueryVariables>;
+export function useFilterStudentByUserIdQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    FilterStudentByUserIdQuery,
+    FilterStudentByUserIdQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FilterStudentByUserIdQuery,
+    FilterStudentByUserIdQueryVariables
+  >(FilterStudentByUserIdDocument, options);
+}
+export function useFilterStudentByUserIdLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FilterStudentByUserIdQuery,
+    FilterStudentByUserIdQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FilterStudentByUserIdQuery,
+    FilterStudentByUserIdQueryVariables
+  >(FilterStudentByUserIdDocument, options);
+}
+export type FilterStudentByUserIdQueryHookResult = ReturnType<
+  typeof useFilterStudentByUserIdQuery
+>;
+export type FilterStudentByUserIdLazyQueryHookResult = ReturnType<
+  typeof useFilterStudentByUserIdLazyQuery
+>;
+export type FilterStudentByUserIdQueryResult = Apollo.QueryResult<
+  FilterStudentByUserIdQuery,
+  FilterStudentByUserIdQueryVariables
+>;
 export type FilterStudentByUserIdQueryVariables = Types.Exact<{
   userId?: Types.InputMaybe<Types.Scalars['ID']>;
 }>;
-
 
 export type FilterStudentByUserIdQuery = {
   __typename?: 'Query';
@@ -209,4 +230,3 @@ export type FilterStudentByUserIdQuery = {
     }>;
   } | null;
 };
-

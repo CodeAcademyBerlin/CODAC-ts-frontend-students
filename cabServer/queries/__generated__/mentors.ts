@@ -5,7 +5,6 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const MentorsDocument = gql`
-
   query mentors {
     mentors {
       data {
@@ -28,20 +27,19 @@ export const MentorsDocument = gql`
               }
             }
           }
-        }
-        courses {
-          data {
-            attributes {
-              name
-              description
+          courses {
+            data {
+              attributes {
+                name
+                description
+              }
             }
           }
         }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useMentorsQuery__
@@ -58,20 +56,34 @@ export const MentorsDocument = gql`
  *   },
  * });
  */
-export function useMentorsQuery(baseOptions?: Apollo.QueryHookOptions<MentorsQuery, MentorsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MentorsQuery, MentorsQueryVariables>(MentorsDocument, options);
-      }
-export function useMentorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MentorsQuery, MentorsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MentorsQuery, MentorsQueryVariables>(MentorsDocument, options);
-        }
+export function useMentorsQuery(
+  baseOptions?: Apollo.QueryHookOptions<MentorsQuery, MentorsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<MentorsQuery, MentorsQueryVariables>(
+    MentorsDocument,
+    options,
+  );
+}
+export function useMentorsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    MentorsQuery,
+    MentorsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<MentorsQuery, MentorsQueryVariables>(
+    MentorsDocument,
+    options,
+  );
+}
 export type MentorsQueryHookResult = ReturnType<typeof useMentorsQuery>;
 export type MentorsLazyQueryHookResult = ReturnType<typeof useMentorsLazyQuery>;
-export type MentorsQueryResult = Apollo.QueryResult<MentorsQuery, MentorsQueryVariables>;
-export type MentorsQueryVariables = Types.Exact<{ [key: string]: never; }>;
-
-
+export type MentorsQueryResult = Apollo.QueryResult<
+  MentorsQuery,
+  MentorsQueryVariables
+>;
+export type MentorsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type MentorsQuery = {
   __typename?: 'Query';
@@ -120,4 +132,3 @@ export type MentorsQuery = {
     }>;
   } | null;
 };
-
