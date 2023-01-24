@@ -13,6 +13,13 @@ query getLMSFeedbacks($slug: String) {
             data {
               attributes {
                 username
+                avatar {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
               }
             }
           }

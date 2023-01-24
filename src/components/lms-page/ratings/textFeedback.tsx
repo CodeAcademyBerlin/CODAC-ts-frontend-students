@@ -56,18 +56,18 @@ export default function TextFeedback({
     useUpdateLmsFeedbackMutation();
 
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
-    // if (lmsFeedback?.id) {
+    if (lmsFeedback?.id) {
       try {
         const now = new Date();
-        // const id = lmsFeedback.id;
+        const id = lmsFeedback.id;
         const res = updateRating({
           variables: {
-            // id: id,
+            id: id,
             issues: [
               {
                 message: message,
                 timestamp: now,
-                rating: rating
+                rating: rating,
               },
             ],
             slug: slug,
@@ -75,6 +75,7 @@ export default function TextFeedback({
         });
 
         setMessage('');
+        setOpen(false);
         toast.success('Your comment has  been submitted', {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
@@ -96,6 +97,7 @@ export default function TextFeedback({
         });
         // console.log('res', res);
         setMessage('');
+        setOpen(false);
         toast.success('Your feedback  been submitted', {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
