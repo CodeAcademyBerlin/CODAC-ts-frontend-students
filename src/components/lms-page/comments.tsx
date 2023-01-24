@@ -168,7 +168,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
               <Paper style={{ padding: '40px 20px' }}>
                 <Grid container wrap="nowrap" spacing={2}>
                   <Grid item>
-                    {comment?.author?.data && (
+                    {comment?.author?.data ? (
                       <Avatar
                         alt={comment?.author?.data?.attributes?.username}
                         src={
@@ -176,6 +176,8 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
                             ?.attributes?.url
                         }
                       />
+                    ) : (
+                      <Avatar></Avatar>
                     )}
                   </Grid>
                   <Grid justifyContent="left" item xs zeroMinWidth>
