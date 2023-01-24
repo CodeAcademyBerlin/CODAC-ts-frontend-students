@@ -65,7 +65,7 @@ const AddNewsPost = (props: Props) => {
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      console.log('fileid', fileId);
+      // console.log('fileid', fileId);
       const { data } = await newsPostMutuation();
       if (data) {
         router.push('/news');
