@@ -331,6 +331,7 @@ export type ComponentCommentsComments = {
   author?: Maybe<UsersPermissionsUserEntityResponse>;
   id: Scalars['ID'];
   message?: Maybe<Scalars['String']>;
+  rating?: Maybe<Scalars['Int']>;
   timestamp?: Maybe<Scalars['DateTime']>;
 };
 
@@ -340,6 +341,7 @@ export type ComponentCommentsCommentsFiltersInput = {
   message?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentCommentsCommentsFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentCommentsCommentsFiltersInput>>>;
+  rating?: InputMaybe<IntFilterInput>;
   timestamp?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -347,6 +349,7 @@ export type ComponentCommentsCommentsInput = {
   author?: InputMaybe<Scalars['ID']>;
   id?: InputMaybe<Scalars['ID']>;
   message?: InputMaybe<Scalars['String']>;
+  rating?: InputMaybe<Scalars['Int']>;
   timestamp?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -366,12 +369,16 @@ export type ComponentElementsFeatureColumn = {
 
 export type ComponentElementsFeatureColumnFiltersInput = {
   and?: InputMaybe<
+    
     Array<InputMaybe<ComponentElementsFeatureColumnFiltersInput>>
+  
   >;
   description?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentElementsFeatureColumnFiltersInput>;
   or?: InputMaybe<
+    
     Array<InputMaybe<ComponentElementsFeatureColumnFiltersInput>>
+  
   >;
   title?: InputMaybe<StringFilterInput>;
 };
@@ -416,12 +423,16 @@ export type ComponentElementsFooterSectionLinksArgs = {
 
 export type ComponentElementsFooterSectionFiltersInput = {
   and?: InputMaybe<
+    
     Array<InputMaybe<ComponentElementsFooterSectionFiltersInput>>
+  
   >;
   links?: InputMaybe<ComponentLinksLinkFiltersInput>;
   not?: InputMaybe<ComponentElementsFooterSectionFiltersInput>;
   or?: InputMaybe<
+    
     Array<InputMaybe<ComponentElementsFooterSectionFiltersInput>>
+  
   >;
   title?: InputMaybe<StringFilterInput>;
 };
@@ -891,43 +902,43 @@ export type DateTimeFilterInput = {
 
 export enum Enum_Achievement_Type {
   Additional = 'additional',
-  Student = 'student',
+  Student = 'student',,
 }
 
 export enum Enum_Componentelementsnotificationbanner_Type {
   Alert = 'alert',
   Info = 'info',
-  Warning = 'warning',
+  Warning = 'warning',,
 }
 
 export enum Enum_Componentlinksbuttonlink_Type {
   Primary = 'primary',
-  Secondary = 'secondary',
+  Secondary = 'secondary',,
 }
 
 export enum Enum_Componentlinksbutton_Type {
   Primary = 'primary',
-  Secondary = 'secondary',
+  Secondary = 'secondary',,
 }
 
 export enum Enum_Componentmetametadata_Twittercardtype {
   App = 'app',
   Player = 'player',
   Summary = 'summary',
-  SummaryLargeImage = 'summary_large_image',
+  SummaryLargeImage = 'summary_large_image',,
 }
 
 export enum Enum_Jobpost_Field {
   DataScience = 'Data_Science',
   Other = 'Other',
-  WebDevelopment = 'Web_Development',
+  WebDevelopment = 'Web_Development',,
 }
 
 export enum Enum_Lead_Cablifecycle {
   Confirmed = 'Confirmed',
   Lead = 'Lead',
   Out = 'Out',
-  Student = 'Student',
+  Student = 'Student',,
 }
 
 export enum Enum_Lead_Marketingfunnel {
@@ -940,20 +951,20 @@ export enum Enum_Lead_Marketingfunnel {
   Other = 'other',
   Switchup = 'switchup',
   Undefined = 'undefined',
-  Wdb = 'wdb',
+  Wdb = 'wdb',,
 }
 
 export enum Enum_Mentor_Specialization {
   All = 'all',
   Data = 'data',
-  Web = 'web',
+  Web = 'web',,
 }
 
 export enum Enum_Newspost_Tags {
   Cab = 'CAB',
   Data = 'data',
   Leisure = 'leisure',
-  Web = 'web',
+  Web = 'web',,
 }
 
 export type EmailDesignerEmailTemplate = {
@@ -2101,15 +2112,25 @@ export type PageLocalizationsArgs = {
 };
 
 export type PageContentSectionsDynamicZone =
+  |
   | ComponentSectionsBottomActions
+ 
   | ComponentSectionsFeatureColumnsGroup
+ 
   | ComponentSectionsFeatureRowsGroup
+ 
   | ComponentSectionsHero
+ 
   | ComponentSectionsLargeVideo
+ 
   | ComponentSectionsLeadForm
+ 
   | ComponentSectionsPricing
+ 
   | ComponentSectionsRichText
+ 
   | ComponentSectionsTestimonialsGroup
+ 
   | Error;
 
 export type PageEntity = {
@@ -2146,7 +2167,9 @@ export type PageFiltersInput = {
 
 export type PageInput = {
   contentSections?: InputMaybe<
+    
     Array<Scalars['PageContentSectionsDynamicZoneInput']>
+  
   >;
   metadata?: InputMaybe<ComponentMetaMetadataInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
@@ -2176,7 +2199,7 @@ export type PaginationArg = {
 
 export enum PublicationState {
   Live = 'LIVE',
-  Preview = 'PREVIEW',
+  Preview = 'PREVIEW',,
 }
 
 export type Query = {
@@ -2827,6 +2850,7 @@ export type UsersPermissionsLoginPayload = {
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
   avatar?: Maybe<UploadFile>;
+  avatar?: Maybe<UploadFile>;
   blocked?: Maybe<Scalars['Boolean']>;
   confirmed?: Maybe<Scalars['Boolean']>;
   email?: Maybe<Scalars['String']>;
@@ -2956,10 +2980,13 @@ export type UsersPermissionsUpdateRolePayload = {
 export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
   avatar?: Maybe<UploadFileEntityResponse>;
+  avatar?: Maybe<UploadFileEntityResponse>;
   blocked?: Maybe<Scalars['Boolean']>;
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  firstname: Scalars['String'];
+  lastname: Scalars['String'];
   firstname: Scalars['String'];
   lastname: Scalars['String'];
   mentor?: Maybe<MentorEntityResponse>;
@@ -2995,7 +3022,9 @@ export type UsersPermissionsUserFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   email?: InputMaybe<StringFilterInput>;
   firstname?: InputMaybe<StringFilterInput>;
+  firstname?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  lastname?: InputMaybe<StringFilterInput>;
   lastname?: InputMaybe<StringFilterInput>;
   mentor?: InputMaybe<MentorFiltersInput>;
   not?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -3011,10 +3040,13 @@ export type UsersPermissionsUserFiltersInput = {
 
 export type UsersPermissionsUserInput = {
   avatar?: InputMaybe<Scalars['ID']>;
+  avatar?: InputMaybe<Scalars['ID']>;
   blocked?: InputMaybe<Scalars['Boolean']>;
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
   email?: InputMaybe<Scalars['String']>;
+  firstname?: InputMaybe<Scalars['String']>;
+  lastname?: InputMaybe<Scalars['String']>;
   firstname?: InputMaybe<Scalars['String']>;
   lastname?: InputMaybe<Scalars['String']>;
   mentor?: InputMaybe<Scalars['ID']>;
@@ -3033,6 +3065,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
 
 export type VsBattle = {
   __typename?: 'VsBattle';
+  archived: Scalars['Boolean'];
   archived: Scalars['Boolean'];
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
@@ -3077,6 +3110,7 @@ export type VsBattleEntityResponseCollection = {
 export type VsBattleFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<VsBattleFiltersInput>>>;
   archived?: InputMaybe<BooleanFilterInput>;
+  archived?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -3092,6 +3126,7 @@ export type VsBattleFiltersInput = {
 };
 
 export type VsBattleInput = {
+  archived?: InputMaybe<Scalars['Boolean']>;
   archived?: InputMaybe<Scalars['Boolean']>;
   description?: InputMaybe<Scalars['String']>;
   option1?: InputMaybe<Scalars['String']>;

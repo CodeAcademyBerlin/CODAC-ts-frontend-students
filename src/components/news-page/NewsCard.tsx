@@ -9,15 +9,15 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { NewsPostEntity } from 'cabServer/global/__generated__/types';
 import ThumbUp from 'mdi-material-ui/ThumbUp';
 import ThumbUpOutline from 'mdi-material-ui/ThumbUpOutline';
-import { useContext } from 'react';
+import React from 'react';
 
-import { AuthContext } from '../../contexts/authContext';
+import { NewsPostEntity } from '../../../cabServer/global/__generated__/types';
+import { useAuth } from '../../hooks/useAuth';
 
 const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
-  console.log('news post component', newsPost);
+  // console.log('news post component', newsPost);
 
   const updatedDate: String = new Date(
     newsPost.attributes?.updatedAt,
@@ -27,7 +27,7 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
     year: '2-digit',
   });
 
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   return (
     <Card sx={{ position: 'relative' }}>
@@ -40,7 +40,15 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
           />
         </Stack>
         <CardHeader
-          avatar={<Avatar color="primary">U</Avatar>}
+          avatar={
+            <Avatar
+              srcSet={
+                newsPost.attributes?.author?.data?.attributes?.avatar?.data
+                  ?.attributes?.url
+              }
+              aria-label=""
+            />
+          }
           title={newsPost.attributes?.author?.data?.attributes?.username}
           subheader={updatedDate}
         />
@@ -48,9 +56,8 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
       <CardMedia
         component={'img'}
         height={'274'}
-        image={newsPost?.attributes?.image?.data?.attributes?.url || 'no image'}
+        image={newsPost.attributes?.image?.data?.attributes?.url || 'no image'}
       />
-
       <CardContent>
         <Box
           sx={{ mr: 1, mb: 2, ml: 1, display: 'flex', flexDirection: 'column' }}
@@ -61,9 +68,13 @@ const ProjectCard = ({ newsPost }: { newsPost: NewsPostEntity }) => {
             {newsPost.attributes?.post}
           </Typography>{' '}
           <br />
-          <Stack direction="row" justifyContent="right">
-            <ThumbUpOutline fontSize="small" />
-          </Stack>
+          {user ? (
+            <Stack direction="row" justifyContent="right">
+              <ThumbUpOutline fontSize="small" />
+            </Stack>
+          ) : (
+            ''
+          )}
           {/* show likes if likes exist */}
           {newsPost.attributes?.likes?.data &&
           newsPost.attributes?.likes?.data?.length > 0 ? (

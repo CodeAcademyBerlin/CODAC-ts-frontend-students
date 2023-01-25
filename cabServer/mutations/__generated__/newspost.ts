@@ -2,43 +2,37 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 
 import * as Types from '../../global/__generated__/types';
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
-export const CreateCodacOverflowDocument = gql`
-  mutation createCodacOverflow(
-    $slug: String!
+export const CreateNewsPostDocument = gql`
+  mutation createNewsPost(
     $title: String!
-    $description: String!
-    $date: Date!
+    $post: String!
     $author: ID!
-    $course: String!
+    $tags: ENUM_NEWSPOST_TAGS!
+    $image: ID!
     $publishedAt: DateTime!
   ) {
-    createCodacOverflow(
+    createNewsPost(
       data: {
-        slug: $slug
         title: $title
-        description: $description
-        date: $date
+        post: $post
+        image: $image
         author: $author
-        course: $course
+        tags: $tags
         publishedAt: $publishedAt
       }
     ) {
       data {
         id
         attributes {
-          slug
           title
-          description
-          date
+          post
           author {
             data {
               id
               attributes {
-                firstname
-                lastname
+                username
                 avatar {
                   data {
                     id
@@ -59,90 +53,90 @@ export const CreateCodacOverflowDocument = gql`
               }
             }
           }
-          course
-          createdAt
-          updatedAt
+          tags
           publishedAt
+          image {
+            data {
+              id
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }
   }
 `;
-export type CreateCodacOverflowMutationFn = Apollo.MutationFunction<
-  CreateCodacOverflowMutation,
-  CreateCodacOverflowMutationVariables
+export type CreateNewsPostMutationFn = Apollo.MutationFunction<
+  CreateNewsPostMutation,
+  CreateNewsPostMutationVariables
 >;
 
 /**
- * __useCreateCodacOverflowMutation__
+ * __useCreateNewsPostMutation__
  *
- * To run a mutation, you first call `useCreateCodacOverflowMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateCodacOverflowMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateNewsPostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateNewsPostMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createCodacOverflowMutation, { data, loading, error }] = useCreateCodacOverflowMutation({
+ * const [createNewsPostMutation, { data, loading, error }] = useCreateNewsPostMutation({
  *   variables: {
- *      slug: // value for 'slug'
  *      title: // value for 'title'
- *      description: // value for 'description'
- *      date: // value for 'date'
+ *      post: // value for 'post'
  *      author: // value for 'author'
- *      course: // value for 'course'
+ *      tags: // value for 'tags'
+ *      image: // value for 'image'
  *      publishedAt: // value for 'publishedAt'
  *   },
  * });
  */
-export function useCreateCodacOverflowMutation(
+export function useCreateNewsPostMutation(
   baseOptions?: Apollo.MutationHookOptions<
-    CreateCodacOverflowMutation,
-    CreateCodacOverflowMutationVariables
+    CreateNewsPostMutation,
+    CreateNewsPostMutationVariables
   >,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useMutation<
-    CreateCodacOverflowMutation,
-    CreateCodacOverflowMutationVariables
-  >(CreateCodacOverflowDocument, options);
+    CreateNewsPostMutation,
+    CreateNewsPostMutationVariables
+  >(CreateNewsPostDocument, options);
 }
-export type CreateCodacOverflowMutationHookResult = ReturnType<
-  typeof useCreateCodacOverflowMutation
+export type CreateNewsPostMutationHookResult = ReturnType<
+  typeof useCreateNewsPostMutation
 >;
-export type CreateCodacOverflowMutationResult =
-  Apollo.MutationResult<CreateCodacOverflowMutation>;
-export type CreateCodacOverflowMutationOptions = Apollo.BaseMutationOptions<
-  CreateCodacOverflowMutation,
-  CreateCodacOverflowMutationVariables
+export type CreateNewsPostMutationResult =
+  Apollo.MutationResult<CreateNewsPostMutation>;
+export type CreateNewsPostMutationOptions = Apollo.BaseMutationOptions<
+  CreateNewsPostMutation,
+  CreateNewsPostMutationVariables
 >;
-export type CreateCodacOverflowMutationVariables = Types.Exact<{
-  slug: Types.Scalars['String'];
+export type CreateNewsPostMutationVariables = Types.Exact<{
   title: Types.Scalars['String'];
-  description: Types.Scalars['String'];
-  date: Types.Scalars['Date'];
+  post: Types.Scalars['String'];
   author: Types.Scalars['ID'];
-  course: Types.Scalars['String'];
+  tags: Types.Enum_Newspost_Tags;
+  image: Types.Scalars['ID'];
   publishedAt: Types.Scalars['DateTime'];
 }>;
 
-export type CreateCodacOverflowMutation = {
+export type CreateNewsPostMutation = {
   __typename?: 'Mutation';
-  createCodacOverflow?: {
-    __typename?: 'CodacOverflowEntityResponse';
+  createNewsPost?: {
+    __typename?: 'NewsPostEntityResponse';
     data?: {
-      __typename?: 'CodacOverflowEntity';
+      __typename?: 'NewsPostEntity';
       id?: string | null;
       attributes?: {
-        __typename?: 'CodacOverflow';
-        slug?: string | null;
+        __typename?: 'NewsPost';
         title?: string | null;
-        description?: string | null;
-        date?: any | null;
-        course?: string | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
+        post?: string | null;
+        tags?: Types.Enum_Newspost_Tags | null;
         publishedAt?: any | null;
         author?: {
           __typename?: 'UsersPermissionsUserEntityResponse';
@@ -151,8 +145,7 @@ export type CreateCodacOverflowMutation = {
             id?: string | null;
             attributes?: {
               __typename?: 'UsersPermissionsUser';
-              firstname: string;
-              lastname: string;
+              username: string;
               avatar?: {
                 __typename?: 'UploadFileEntityResponse';
                 data?: {
@@ -174,6 +167,14 @@ export type CreateCodacOverflowMutation = {
                 } | null;
               } | null;
             } | null;
+          } | null;
+        } | null;
+        image?: {
+          __typename?: 'UploadFileEntityResponse';
+          data?: {
+            __typename?: 'UploadFileEntity';
+            id?: string | null;
+            attributes?: { __typename?: 'UploadFile'; url: string } | null;
           } | null;
         } | null;
       } | null;
