@@ -296,6 +296,12 @@ Lucas Dupias - lucas@codeacademyberlin.com
 
 ## Acknowledgments
 
+- January 2023 - **Orange Pumas** Cohort
+
+- [Antje](https://github.com/AntjeInTech2022)
+
+  - Lms page: added rating and commenting features
+
 - December 2022 - **Neon Narwhals** Cohort
 
   - [Alberto](https://github.com/BetoCarrillo)

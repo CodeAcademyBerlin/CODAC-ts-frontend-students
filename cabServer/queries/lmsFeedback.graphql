@@ -24,12 +24,6 @@ query getLMSFeedbacks($slug: String) {
             }
           }
         }
-        issues {
-          id
-          message
-          timestamp
-          rating
-        }
       }
     }
   }
