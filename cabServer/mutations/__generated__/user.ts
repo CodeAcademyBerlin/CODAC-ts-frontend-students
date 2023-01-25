@@ -5,27 +5,24 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const LoginDocument = gql`
-  mutation login($email: String!, $password: String!) {
-    login(input: { identifier: $email, password: $password }) {
-      jwt
-      user {
-        username
+    mutation login($email: String!, $password: String!) {
+  login(input: {identifier: $email, password: $password}) {
+    jwt
+    user {
+      username
+      id
+      email
+      role {
+        type
+        name
+        description
         id
-        email
-        role {
-          type
-          name
-          description
-          id
-        }
       }
     }
   }
-`;
-export type LoginMutationFn = Apollo.MutationFunction<
-  LoginMutation,
-  LoginMutationVariables
->;
+}
+    `;
+export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
 
 /**
  * __useLoginMutation__
@@ -45,46 +42,17 @@ export type LoginMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useLoginMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    LoginMutation,
-    LoginMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<LoginMutation, LoginMutationVariables>(
-    LoginDocument,
-    options,
-  );
-}
+export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginMutation, LoginMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, options);
+      }
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
-export type LoginMutationOptions = Apollo.BaseMutationOptions<
-  LoginMutation,
-  LoginMutationVariables
->;
+export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
 export type LoginMutationVariables = Types.Exact<{
   email: Types.Scalars['String'];
   password: Types.Scalars['String'];
 }>;
 
-export type LoginMutation = {
-  __typename?: 'Mutation';
-  login: {
-    __typename?: 'UsersPermissionsLoginPayload';
-    jwt?: string | null;
-    user: {
-      __typename?: 'UsersPermissionsMe';
-      username: string;
-      id?: string | null;
-      email?: string | null;
-      role?: {
-        __typename?: 'UsersPermissionsMeRole';
-        type?: string | null;
-        name: string;
-        description?: string | null;
-        id: string;
-      } | null;
-    };
-  };
-};
+
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UsersPermissionsLoginPayload', jwt?: string | null, user: { __typename?: 'UsersPermissionsMe', username: string, id?: string | null, email?: string | null, role?: { __typename?: 'UsersPermissionsMeRole', type?: string | null, name: string, description?: string | null, id: string } | null } } };

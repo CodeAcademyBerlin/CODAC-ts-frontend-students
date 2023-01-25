@@ -1,0 +1,31 @@
+query getLMSFeedbacks($slug: String) {
+  lmsFeedbacks(filters: { slug: { eq: $slug } }) {
+    data {
+      id
+      attributes {
+        slug
+        createdAt
+        updatedAt
+        comments {
+          id
+          message
+          timestamp
+          author {
+            data {
+              attributes {
+                username
+                avatar {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
