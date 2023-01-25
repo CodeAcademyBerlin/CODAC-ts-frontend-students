@@ -1,5 +1,5 @@
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
-import { Box, Divider } from '@mui/material';
+import { Box, Divider, Tooltip, Zoom } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -23,6 +23,11 @@ function Battle() {
   const [voteVsBattleMutation, { data: mutationData, error: mutationError }] =
     useVoteVsBattleMutation();
   const [expanded, setExpanded] = React.useState(false);
+  const [showChart, setShowChart] = React.useState(false);
+
+  const handleShowChart = () => {
+    setShowChart(!showChart);
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -55,18 +60,29 @@ function Battle() {
 
   return (
     <div>
-      <ToggleButtonGroup
-        value={alignment}
-        exclusive
-        onChange={handleAlignment}
-        aria-label="text alignment"
-        size="small"
-        sx={{ marginBottom: '10px' }}
+      <Tooltip
+        title={showChart ? 'Show pie chart' : 'Show pie numbers'}
+        TransitionComponent={Zoom}
+        placement="top"
+        arrow
       >
-        <ToggleButton value="left" aria-label="left aligned">
-          <DonutLargeIcon fontSize="small" />
-        </ToggleButton>
-      </ToggleButtonGroup>
+        <ToggleButtonGroup
+          value={alignment}
+          exclusive
+          onChange={handleAlignment}
+          aria-label="text alignment"
+          size="small"
+          sx={{ marginBottom: '10px' }}
+        >
+          <ToggleButton
+            value="left"
+            aria-label="left aligned"
+            onClick={handleShowChart}
+          >
+            <DonutLargeIcon fontSize="small" />
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Tooltip>
       {vsBattles &&
         vsBattles.map((battle, index) => {
           if (battle?.attributes?.archived === false) {
@@ -77,6 +93,7 @@ function Battle() {
                   vsBattle={battle}
                   handleVote={handleVote}
                   user={user}
+                  showChart={showChart}
                 />
               </div>
             );
@@ -101,6 +118,7 @@ function Battle() {
                     vsBattle={battle}
                     handleVote={handleVote}
                     user={user}
+                    showChart={showChart}
                   />
                 </div>
               );

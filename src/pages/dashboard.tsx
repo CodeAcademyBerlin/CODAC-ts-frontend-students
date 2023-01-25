@@ -102,7 +102,7 @@ import AchievementsComponent from '../components/achievements-page/AchievementsC
 import CohortCard from '../components/cohort/CohortCard';
 import OpenAiImage from '../components/common/OpenAiImage';
 import ProgressBar from '../components/dashboard/ProgressBar';
-import ApexChartWrapper from '../components/libs/react-apexcharts';
+import ApexChartWrapper from '../components/libs/react-apexcharts/wrapper';
 import { getToken, initializeApollo } from '../lib/apolloClient';
 import { JwtPayloadWithID } from '../types';
 
@@ -119,46 +119,46 @@ const Dashboard = ({
   console.log('achievements', achievements);
   if (myStudent)
     return (
-      // <ApexChartWrapper>
-      <Grid container spacing={6}>
-        <Grid item xs={12}>
-          {myStudent.main_course?.data?.attributes?.name && (
-            <Typography
-              sx={{
-                fontStyle: theme.typography.h4,
-                fontWeight: theme.typography.fontWeightBold,
-                fontFamily: theme.typography.fontFamily,
-              }}
-            >
-              Welcome {myStudent?.user?.data?.attributes?.firstname}, future{' '}
-              {myStudent.main_course?.data?.attributes?.name === 'data3' &&
-                'Data Scientist'}
-              {myStudent.main_course?.data?.attributes?.name === 'webdev' &&
-                'Web Developer'}{' '}
-              <span role="img" aria-label="rocket">
-                🚀
-              </span>
-            </Typography>
-          )}
-        </Grid>
-        <Grid item xs={12}>
-          <ProgressBar student={myStudent} />
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          {myStudent?.cohort?.data?.attributes && (
-            <CohortCard cohort={myStudent.cohort.data.attributes} />
-          )}
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <OpenAiImage />
-          {achievements && (
-            <AchievementsComponent achievements={achievements} />
-          )}
-        </Grid>
+      <ApexChartWrapper>
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
+            {myStudent.main_course?.data?.attributes?.name && (
+              <Typography
+                sx={{
+                  fontStyle: theme.typography.h4,
+                  fontWeight: theme.typography.fontWeightBold,
+                  fontFamily: theme.typography.fontFamily,
+                }}
+              >
+                Welcome {myStudent?.user?.data?.attributes?.firstname}, future{' '}
+                {myStudent.main_course?.data?.attributes?.name === 'data3' &&
+                  'Data Scientist'}
+                {myStudent.main_course?.data?.attributes?.name === 'webdev' &&
+                  'Web Developer'}{' '}
+                <span role="img" aria-label="rocket">
+                  🚀
+                </span>
+              </Typography>
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            <ProgressBar student={myStudent} />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            {myStudent?.cohort?.data?.attributes && (
+              <CohortCard cohort={myStudent.cohort.data.attributes} />
+            )}
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <OpenAiImage />
+            {achievements && (
+              <AchievementsComponent achievements={achievements} />
+            )}
+          </Grid>
 
-        {/* {user.role.name === "Student" && <ProgressBar />} */}
-      </Grid>
-      // </ApexChartWrapper>
+          {/* {user.role.name === "Student" && <ProgressBar />} */}
+        </Grid>
+      </ApexChartWrapper>
     );
 };
 

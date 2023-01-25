@@ -1,4 +1,4 @@
-import { Box, Tooltip, Zoom } from '@mui/material';
+import { Box, Tooltip, useTheme, Zoom } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 // ** MUI Imports
@@ -9,13 +9,14 @@ import { ApexOptions } from 'apexcharts';
 import VoteOutline from 'mdi-material-ui/VoteOutline';
 import * as React from 'react';
 import { useEffect } from 'react';
-import ReactApexChart from 'react-apexcharts';
 
 // ** Icons Imports
 import {
   UsersPermissionsMe,
   VsBattleEntity,
 } from '../../../cabServer/global/__generated__/types';
+import ReactApexcharts from '../libs/react-apexcharts/dynamicimport';
+import ApexChartWrapper from '../libs/react-apexcharts/wrapper';
 import DenseTable from './BattleTable';
 import VotersList from './VotersList';
 
@@ -23,9 +24,11 @@ type BattleCardProps = {
   vsBattle: VsBattleEntity;
   handleVote: (vsBattleId: string, option: number) => void;
   user: UsersPermissionsMe | null;
+  showChart: boolean;
 };
 
 const BattleCard = (props: BattleCardProps) => {
+  const theme = useTheme();
   useEffect(() => {}, [props.user]);
 
   const option1IsVoted = () => {
@@ -59,30 +62,35 @@ const BattleCard = (props: BattleCardProps) => {
   const option1voters =
     props.vsBattle?.attributes?.option_1_voters?.data.length || 0;
   const option2voters =
-    props.vsBattle?.attributes?.option_1_voters?.data.length || 0;
+    props.vsBattle?.attributes?.option_2_voters?.data.length || 0;
   const option1title = props.vsBattle?.attributes?.option1!;
   const option2title = props.vsBattle?.attributes?.option2!;
+  const color1 = theme.palette.primary.main;
+  const color2 = theme.palette.secondary.main;
+  console.log(color1);
 
   const series: ApexOptions['series'] = [option1voters, option2voters];
+
   const options: ApexOptions = {
-    chart: {
-      width: 250,
-      type: 'pie',
-    },
+    // chart: {
+    //   width: 250,
+    //   type: 'donut',
+    // },
+    colors: [color1, color2],
     labels: [option1title, option2title],
-    responsive: [
-      {
-        breakpoint: 200,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: 'bottom',
-          },
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 200,
+    //     options: {
+    //       // chart: {
+    //       //   width: 200,
+    //       // },
+    //       // legend: {
+    //       //   position: 'bottom',
+    //       // },
+    //     },
+    //   },
+    // ],
   };
 
   return (
@@ -178,22 +186,31 @@ const BattleCard = (props: BattleCardProps) => {
             flexDirection: 'column',
           }}
         >
-          <DenseTable
-            option1={
-              props.vsBattle?.attributes?.option_1_voters?.data.length || 0
-            }
-            option2={
-              props.vsBattle?.attributes?.option_2_voters?.data.length || 0
-            }
-          />
-          <Box id="chart" sx={{ display: 'flex', justifyContent: 'center' }}>
-            <ReactApexChart
-              type="pie"
-              options={options}
-              series={series}
-              width={250}
-            ></ReactApexChart>
-          </Box>
+          {props.showChart ? (
+            <DenseTable
+              option1={
+                props.vsBattle?.attributes?.option_1_voters?.data.length || 0
+              }
+              option2={
+                props.vsBattle?.attributes?.option_2_voters?.data.length || 0
+              }
+            />
+          ) : (
+            <ApexChartWrapper>
+              <Box
+                id="chart"
+                sx={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <ReactApexcharts
+                  type="donut"
+                  options={options}
+                  series={series}
+                  width={250}
+                  height={'100%'}
+                ></ReactApexcharts>
+              </Box>
+            </ApexChartWrapper>
+          )}
           <VotersList vsBattle={props.vsBattle} />
         </Box>
       )}
