@@ -8,9 +8,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
-import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateLmsFeedback';
-import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsFeedback';
+// import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLmsFeedback';
+// import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateLmsFeedback';
+// import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsFeedback';
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
