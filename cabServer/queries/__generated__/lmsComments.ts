@@ -13,6 +13,11 @@ export const GetLmsFeedbacksDocument = gql`
         slug
         createdAt
         updatedAt
+        feedbacks {
+          id
+          message
+          rating
+        }
         comments {
           id
           message
@@ -70,4 +75,4 @@ export type GetLmsFeedbacksQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetLmsFeedbacksQuery = { __typename?: 'Query', lmsFeedbacks?: { __typename?: 'LmsFeedbackEntityResponseCollection', data: Array<{ __typename?: 'LmsFeedbackEntity', id?: string | null, attributes?: { __typename?: 'LmsFeedback', slug: string, createdAt?: any | null, updatedAt?: any | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, message?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null> | null } | null }> } | null };
+export type GetLmsFeedbacksQuery = { __typename?: 'Query', lmsFeedbacks?: { __typename?: 'LmsFeedbackEntityResponseCollection', data: Array<{ __typename?: 'LmsFeedbackEntity', id?: string | null, attributes?: { __typename?: 'LmsFeedback', slug: string, createdAt?: any | null, updatedAt?: any | null, feedbacks?: Array<{ __typename?: 'ComponentFeedbackFeedback', id: string, message?: string | null, rating?: number | null } | null> | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', id: string, message?: string | null, timestamp?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', username: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null> | null } | null }> } | null };

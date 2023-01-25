@@ -6,6 +6,11 @@ query getLMSFeedbacks($slug: String) {
         slug
         createdAt
         updatedAt
+        feedbacks {
+          id
+          message
+          rating
+        }
         comments {
           id
           message
