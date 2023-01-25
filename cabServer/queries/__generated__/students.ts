@@ -1,7 +1,7 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const FilterStudentByUserIdDocument = gql`
@@ -61,12 +61,14 @@ export const FilterStudentByUserIdDocument = gql`
             }
           }
           achievements {
-            data {
-              attributes {
-                badge {
-                  data {
-                    attributes {
-                      url
+            achievement {
+              data {
+                attributes {
+                  badge {
+                    data {
+                      attributes {
+                        url
+                      }
                     }
                   }
                 }
@@ -207,25 +209,28 @@ export type FilterStudentByUserIdQuery = {
             attributes?: { __typename?: 'Course'; name?: string | null } | null;
           } | null;
         } | null;
-        achievements?: {
-          __typename?: 'AchievementRelationResponseCollection';
-          data: Array<{
-            __typename?: 'AchievementEntity';
-            attributes?: {
-              __typename?: 'Achievement';
-              badge?: {
-                __typename?: 'UploadFileEntityResponse';
-                data?: {
-                  __typename?: 'UploadFileEntity';
-                  attributes?: {
-                    __typename?: 'UploadFile';
-                    url: string;
+        achievements?: Array<{
+          __typename?: 'ComponentAchievementAchievement';
+          achievement?: {
+            __typename?: 'AchievementEntityResponse';
+            data?: {
+              __typename?: 'AchievementEntity';
+              attributes?: {
+                __typename?: 'Achievement';
+                badge?: {
+                  __typename?: 'UploadFileEntityResponse';
+                  data?: {
+                    __typename?: 'UploadFileEntity';
+                    attributes?: {
+                      __typename?: 'UploadFile';
+                      url: string;
+                    } | null;
                   } | null;
                 } | null;
               } | null;
             } | null;
-          }>;
-        } | null;
+          } | null;
+        } | null> | null;
       } | null;
     }>;
   } | null;

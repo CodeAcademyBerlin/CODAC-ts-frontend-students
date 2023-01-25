@@ -46,11 +46,11 @@ const Achievements = ({
     const target = e.target as HTMLButtonElement;
     const value = target.value;
     const result: Data = [];
-    allAchievements.map((achievementEntity: AchievementEntity, i: index) => {
-      if (achievementEntity.attributes?.course?.includes(value)) {
-        result.push(achievementEntity);
-      }
-    });
+    // allAchievements.map((achievementEntity: AchievementEntity, i: index) => {
+    //   if (achievementEntity.attributes?.course?.includes(value)) {
+    //     result.push(achievementEntity);
+    //   }
+    // });
     if (target.value === '') {
       setCheck(!check);
     } else {

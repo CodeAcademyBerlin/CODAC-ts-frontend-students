@@ -1,5 +1,5 @@
 query getAchievements {
-  achievements(sort: "id:asc", pagination:{pageSize:100}){
+  achievements(sort: "id:asc", pagination: { pageSize: 100 }) {
     data {
       id
       attributes {
@@ -14,7 +14,13 @@ query getAchievements {
         description
         points
         type
-        course
+        course {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
       }
     }
   }

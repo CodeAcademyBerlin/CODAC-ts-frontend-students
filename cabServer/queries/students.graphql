@@ -54,12 +54,14 @@ query filterStudentByUserId($userId: ID) {
           }
         }
         achievements {
-          data {
-            attributes {
-              badge {
-                data {
-                  attributes {
-                    url
+          achievement {
+            data {
+              attributes {
+                badge {
+                  data {
+                    attributes {
+                      url
+                    }
                   }
                 }
               }

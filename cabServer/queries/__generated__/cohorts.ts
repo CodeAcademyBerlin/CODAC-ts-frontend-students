@@ -1,7 +1,7 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const GetCohortsDocument = gql`
@@ -31,23 +31,6 @@ export const GetCohortsDocument = gql`
                   data {
                     attributes {
                       name
-                      achievements {
-                        data {
-                          attributes {
-                            name
-                            badge {
-                              data {
-                                attributes {
-                                  url
-                                  name
-                                  alternativeText
-                                  caption
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
                     }
                   }
                 }
@@ -167,29 +150,6 @@ export type GetCohortsQuery = {
                   attributes?: {
                     __typename?: 'Course';
                     name?: string | null;
-                    achievements?: {
-                      __typename?: 'AchievementRelationResponseCollection';
-                      data: Array<{
-                        __typename?: 'AchievementEntity';
-                        attributes?: {
-                          __typename?: 'Achievement';
-                          name?: string | null;
-                          badge?: {
-                            __typename?: 'UploadFileEntityResponse';
-                            data?: {
-                              __typename?: 'UploadFileEntity';
-                              attributes?: {
-                                __typename?: 'UploadFile';
-                                url: string;
-                                name: string;
-                                alternativeText?: string | null;
-                                caption?: string | null;
-                              } | null;
-                            } | null;
-                          } | null;
-                        } | null;
-                      }>;
-                    } | null;
                   } | null;
                 } | null;
               } | null;
