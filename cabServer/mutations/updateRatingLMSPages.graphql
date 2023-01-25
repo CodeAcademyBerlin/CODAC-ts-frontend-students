@@ -1,0 +1,7 @@
+mutation updateLMSFeedback($lmsFeedbackId: ID!,$feedbackId:ID! $comment: String!, $rating: Int!) {
+  updateLMSfeedback(lmsFeedbackId:$lmsFeedbackId, feedbackId:$feedbackId, comment: $comment, rating: $rating, 
+  ){
+      success
+      message
+    }
+  }

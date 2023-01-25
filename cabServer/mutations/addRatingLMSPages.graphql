@@ -1,0 +1,7 @@
+mutation addRating($lmsFeedbackId: ID!, $comment: String!, $rating: Int!) {
+  addLMSfeedback(lmsFeedbackId:$lmsFeedbackId , comment: $comment, rating: $rating
+  ){
+      success
+      message
+    }
+  }

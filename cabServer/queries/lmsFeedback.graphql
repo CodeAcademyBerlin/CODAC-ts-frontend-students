@@ -5,6 +5,7 @@ query getLMSFeedbacks($slug: String) {
       attributes {
         slug
         createdAt
+        updatedAt
         comments {
           id
           message
