@@ -1,6 +1,7 @@
 import { Avatar, Box, Container, Typography, useTheme } from '@mui/material';
 import Card from '@mui/material/Card';
 import { Mentor } from 'cabServer/global/__generated__/types';
+import { GetMentorByIdDocument } from 'cabServer/queries/__generated__/mentorById';
 import { MentorsDocument } from 'cabServer/queries/__generated__/mentors';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import { initializeApollo } from 'src/lib/apolloClient';
@@ -9,8 +10,7 @@ const Mentorprofile = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const theme = useTheme();
-  const mentorProfile: Mentor = data && data.mentors.data[0].attributes;
-  console.log('mentorProfile', data);
+  const mentorProfile: Mentor = data && data?.mentor?.data?.attributes;
 
   return (
     <Container
@@ -114,11 +114,11 @@ export default Mentorprofile;
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const client = initializeApollo(null, ctx.req);
-    const id = ctx.params?.id;
-    console.log('mentorctxparams', ctx.params);
+    const id = ctx?.params?.id;
+    console.log('mentorctxparams', ctx?.params?.id);
     const { data } = await client.query({
-      query: MentorsDocument,
-      variables: { userId: id },
+      query: GetMentorByIdDocument,
+      variables: { id },
     });
 
     return {

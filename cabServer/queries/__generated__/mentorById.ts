@@ -4,9 +4,9 @@ import * as Apollo from '@apollo/client';
 import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
-export const MentorsDocument = gql`
-  query mentors {
-    mentors {
+export const GetMentorByIdDocument = gql`
+  query getMentorByID($id: ID) {
+    mentor(id: $id) {
       data {
         id
         attributes {
@@ -42,54 +42,64 @@ export const MentorsDocument = gql`
 `;
 
 /**
- * __useMentorsQuery__
+ * __useGetMentorByIdQuery__
  *
- * To run a query within a React component, call `useMentorsQuery` and pass it any options that fit your needs.
- * When your component renders, `useMentorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetMentorByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMentorByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useMentorsQuery({
+ * const { data, loading, error } = useGetMentorByIdQuery({
  *   variables: {
+ *      id: // value for 'id'
  *   },
  * });
  */
-export function useMentorsQuery(
-  baseOptions?: Apollo.QueryHookOptions<MentorsQuery, MentorsQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<MentorsQuery, MentorsQueryVariables>(
-    MentorsDocument,
-    options,
-  );
-}
-export function useMentorsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    MentorsQuery,
-    MentorsQueryVariables
+export function useGetMentorByIdQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetMentorByIdQuery,
+    GetMentorByIdQueryVariables
   >,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<MentorsQuery, MentorsQueryVariables>(
-    MentorsDocument,
+  return Apollo.useQuery<GetMentorByIdQuery, GetMentorByIdQueryVariables>(
+    GetMentorByIdDocument,
     options,
   );
 }
-export type MentorsQueryHookResult = ReturnType<typeof useMentorsQuery>;
-export type MentorsLazyQueryHookResult = ReturnType<typeof useMentorsLazyQuery>;
-export type MentorsQueryResult = Apollo.QueryResult<
-  MentorsQuery,
-  MentorsQueryVariables
+export function useGetMentorByIdLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetMentorByIdQuery,
+    GetMentorByIdQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetMentorByIdQuery, GetMentorByIdQueryVariables>(
+    GetMentorByIdDocument,
+    options,
+  );
+}
+export type GetMentorByIdQueryHookResult = ReturnType<
+  typeof useGetMentorByIdQuery
 >;
-export type MentorsQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type GetMentorByIdLazyQueryHookResult = ReturnType<
+  typeof useGetMentorByIdLazyQuery
+>;
+export type GetMentorByIdQueryResult = Apollo.QueryResult<
+  GetMentorByIdQuery,
+  GetMentorByIdQueryVariables
+>;
+export type GetMentorByIdQueryVariables = Types.Exact<{
+  id?: Types.InputMaybe<Types.Scalars['ID']>;
+}>;
 
-export type MentorsQuery = {
+export type GetMentorByIdQuery = {
   __typename?: 'Query';
-  mentors?: {
-    __typename?: 'MentorEntityResponseCollection';
-    data: Array<{
+  mentor?: {
+    __typename?: 'MentorEntityResponse';
+    data?: {
       __typename?: 'MentorEntity';
       id?: string | null;
       attributes?: {
@@ -129,6 +139,6 @@ export type MentorsQuery = {
           }>;
         } | null;
       } | null;
-    }>;
+    } | null;
   } | null;
 };
