@@ -33,6 +33,7 @@
     "@types/node": "18.11.9",
     "@types/react": "^18.0.26",
     "@types/react-dom": "18.0.8",
+    "apexcharts": "^3.36.3",
     "apexcharts-clevision": "^3.28.5",
     "apollo-link-context": "^1.0.20",
     "apollo-upload-client": "^17.0.0",

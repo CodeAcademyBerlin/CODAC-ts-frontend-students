@@ -5,9 +5,11 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { ApexOptions } from 'apexcharts';
 import VoteOutline from 'mdi-material-ui/VoteOutline';
 import * as React from 'react';
 import { useEffect } from 'react';
+import ReactApexChart from 'react-apexcharts';
 
 // ** Icons Imports
 import {
@@ -52,6 +54,35 @@ const BattleCard = (props: BattleCardProps) => {
     if (props.vsBattle.attributes?.archived === false) {
       return true;
     } else return false;
+  };
+
+  const option1voters =
+    props.vsBattle?.attributes?.option_1_voters?.data.length || 0;
+  const option2voters =
+    props.vsBattle?.attributes?.option_1_voters?.data.length || 0;
+  const option1title = props.vsBattle?.attributes?.option1!;
+  const option2title = props.vsBattle?.attributes?.option2!;
+
+  const series: ApexOptions['series'] = [option1voters, option2voters];
+  const options: ApexOptions = {
+    chart: {
+      width: 250,
+      type: 'pie',
+    },
+    labels: [option1title, option2title],
+    responsive: [
+      {
+        breakpoint: 200,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    ],
   };
 
   return (
@@ -155,6 +186,14 @@ const BattleCard = (props: BattleCardProps) => {
               props.vsBattle?.attributes?.option_2_voters?.data.length || 0
             }
           />
+          <Box id="chart" sx={{ display: 'flex', justifyContent: 'center' }}>
+            <ReactApexChart
+              type="pie"
+              options={options}
+              series={series}
+              width={250}
+            ></ReactApexChart>
+          </Box>
           <VotersList vsBattle={props.vsBattle} />
         </Box>
       )}
