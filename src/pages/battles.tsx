@@ -1,10 +1,11 @@
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
-import { Box, Divider, Tooltip, Zoom } from '@mui/material';
+import { Box, Button, Divider, Tooltip, Zoom } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import React, { useContext, useEffect, useState } from 'react';
 import ExpandButton from 'src/components/common/ExpandButton';
+import StyledLink from 'src/components/common/StyledLink';
 import { AuthContext } from 'src/contexts/authContext';
 
 import {
@@ -60,29 +61,39 @@ function Battle() {
 
   return (
     <div>
-      <Tooltip
-        title={showChart ? 'Show pie chart' : 'Show pie numbers'}
-        TransitionComponent={Zoom}
-        placement="top"
-        arrow
+      <Box
+        sx={{
+          marginBottom: '10px',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
       >
-        <ToggleButtonGroup
-          value={alignment}
-          exclusive
-          onChange={handleAlignment}
-          aria-label="text alignment"
-          size="small"
-          sx={{ marginBottom: '10px' }}
+        <Tooltip
+          title={showChart ? 'Show pie chart' : 'Show numbers'}
+          TransitionComponent={Zoom}
+          placement="top"
+          arrow
         >
-          <ToggleButton
-            value="left"
-            aria-label="left aligned"
-            onClick={handleShowChart}
+          <ToggleButtonGroup
+            value={alignment}
+            exclusive
+            onChange={handleAlignment}
+            aria-label="text alignment"
+            size="small"
           >
-            <DonutLargeIcon fontSize="small" />
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Tooltip>
+            <ToggleButton
+              value="left"
+              aria-label="left aligned"
+              onClick={handleShowChart}
+            >
+              <DonutLargeIcon fontSize="small" />
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Tooltip>
+        <StyledLink href={'/addnewbattle'}>
+          <Button variant="contained">Add Battle</Button>
+        </StyledLink>
+      </Box>
       {vsBattles &&
         vsBattles.map((battle, index) => {
           if (battle?.attributes?.archived === false) {

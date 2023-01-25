@@ -1,27 +1,44 @@
-import * as Types from '../../global/__generated__/types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const CreateVsBattleDocument = gql`
-    mutation createVsBattle($option1: String!, $option2: String!, $title: String!, $description: String!, $archived: Boolean!, $publishedAt: DateTime) {
-  createVsBattle(
-    data: {option1: $option1, option2: $option2, title: $title, description: $description, archived: $archived, publishedAt: $publishedAt}
+  mutation createVsBattle(
+    $option1: String!
+    $option2: String!
+    $title: String!
+    $description: String!
+    $archived: Boolean!
+    $publishedAt: DateTime
   ) {
-    data {
-      id
-      attributes {
-        option1
-        option2
-        description
-        title
+    createVsBattle(
+      data: {
+        option1: $option1
+        option2: $option2
+        title: $title
+        description: $description
+        archived: $archived
+        publishedAt: $publishedAt
+      }
+    ) {
+      data {
+        id
+        attributes {
+          option1
+          option2
+          description
+          title
+        }
       }
     }
   }
-}
-    `;
-export type CreateVsBattleMutationFn = Apollo.MutationFunction<CreateVsBattleMutation, CreateVsBattleMutationVariables>;
+`;
+export type CreateVsBattleMutationFn = Apollo.MutationFunction<
+  CreateVsBattleMutation,
+  CreateVsBattleMutationVariables
+>;
 
 /**
  * __useCreateVsBattleMutation__
@@ -45,13 +62,27 @@ export type CreateVsBattleMutationFn = Apollo.MutationFunction<CreateVsBattleMut
  *   },
  * });
  */
-export function useCreateVsBattleMutation(baseOptions?: Apollo.MutationHookOptions<CreateVsBattleMutation, CreateVsBattleMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateVsBattleMutation, CreateVsBattleMutationVariables>(CreateVsBattleDocument, options);
-      }
-export type CreateVsBattleMutationHookResult = ReturnType<typeof useCreateVsBattleMutation>;
-export type CreateVsBattleMutationResult = Apollo.MutationResult<CreateVsBattleMutation>;
-export type CreateVsBattleMutationOptions = Apollo.BaseMutationOptions<CreateVsBattleMutation, CreateVsBattleMutationVariables>;
+export function useCreateVsBattleMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateVsBattleMutation,
+    CreateVsBattleMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateVsBattleMutation,
+    CreateVsBattleMutationVariables
+  >(CreateVsBattleDocument, options);
+}
+export type CreateVsBattleMutationHookResult = ReturnType<
+  typeof useCreateVsBattleMutation
+>;
+export type CreateVsBattleMutationResult =
+  Apollo.MutationResult<CreateVsBattleMutation>;
+export type CreateVsBattleMutationOptions = Apollo.BaseMutationOptions<
+  CreateVsBattleMutation,
+  CreateVsBattleMutationVariables
+>;
 export type CreateVsBattleMutationVariables = Types.Exact<{
   option1: Types.Scalars['String'];
   option2: Types.Scalars['String'];
@@ -61,5 +92,20 @@ export type CreateVsBattleMutationVariables = Types.Exact<{
   publishedAt?: Types.InputMaybe<Types.Scalars['DateTime']>;
 }>;
 
-
-export type CreateVsBattleMutation = { __typename?: 'Mutation', createVsBattle?: { __typename?: 'VsBattleEntityResponse', data?: { __typename?: 'VsBattleEntity', id?: string | null, attributes?: { __typename?: 'VsBattle', option1?: string | null, option2?: string | null, description?: string | null, title?: string | null } | null } | null } | null };
+export type CreateVsBattleMutation = {
+  __typename?: 'Mutation';
+  createVsBattle?: {
+    __typename?: 'VsBattleEntityResponse';
+    data?: {
+      __typename?: 'VsBattleEntity';
+      id?: string | null;
+      attributes?: {
+        __typename?: 'VsBattle';
+        option1?: string | null;
+        option2?: string | null;
+        description?: string | null;
+        title?: string | null;
+      } | null;
+    } | null;
+  } | null;
+};
