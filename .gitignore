@@ -1,8 +1,8 @@
 package-lock.json
 
-/__generated__/
-cabServer/queries/__generated__/
-cabServer/mutations/__generated__/
+# /__generated__/
+# cabServer/queries/__generated__/
+# cabServer/mutations/__generated__/
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 .env
 .env/local
