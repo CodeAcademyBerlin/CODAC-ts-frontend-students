@@ -39,7 +39,7 @@ function AddNewBattle() {
   };
 
   return (
-    <div>
+    <form onSubmit={handleAddBattle}>
       <Box
         sx={{
           display: 'flex',
@@ -94,11 +94,11 @@ function AddNewBattle() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </Box>
-        <Button variant="contained" type="submit" onClick={handleAddBattle}>
+        <Button variant="contained" type="submit">
           ADD BATTLE
         </Button>
       </Box>
-    </div>
+    </form>
   );
 }
 
