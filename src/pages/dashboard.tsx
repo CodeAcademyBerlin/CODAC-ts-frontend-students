@@ -102,7 +102,7 @@ import AchievementsComponent from '../components/achievements-page/AchievementsC
 import CohortCard from '../components/cohort/CohortCard';
 import OpenAiImage from '../components/common/OpenAiImage';
 import ProgressBar from '../components/dashboard/ProgressBar';
-import ApexChartWrapper from '../components/libs/react-apexcharts';
+import ApexChartWrapper from '../components/libs/react-apexcharts/wrapper';
 import { getToken, initializeApollo } from '../lib/apolloClient';
 import { JwtPayloadWithID } from '../types';
 
