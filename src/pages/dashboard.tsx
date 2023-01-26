@@ -91,13 +91,16 @@
 import { Divider, Typography, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import {
+  Achievement,
   AchievementEntity,
+  ComponentAchievementAchievement,
   Student,
 } from 'cabServer/global/__generated__/types';
 import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
 import jwt_decode, { JwtPayload } from 'jwt-decode';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 
+import Achievements from '../components/achievements-page/Achievements';
 import AchievementsComponent from '../components/achievements-page/AchievementsComponent';
 import CohortCard from '../components/cohort/CohortCard';
 import OpenAiImage from '../components/common/OpenAiImage';
@@ -114,8 +117,8 @@ const Dashboard = ({
   console.log(data);
   const theme = useTheme();
   const myStudent: Student = data && data.students.data[0].attributes;
-  const achievements: AchievementEntity[] =
-    data && data?.students?.data[0].attributes.achievements.data;
+  console.log('myStudent', myStudent);
+  const achievements = myStudent && myStudent.achievements;
   console.log('achievements', achievements);
   if (myStudent)
     return (
@@ -154,8 +157,8 @@ const Dashboard = ({
             {achievements && (
               <AchievementsComponent achievements={achievements} />
             )}
+            {/* <Achievements student={myStudent} achievements={achievements} /> */}
           </Grid>
-
           {/* {user.role.name === "Student" && <ProgressBar />} */}
         </Grid>
       </ApexChartWrapper>

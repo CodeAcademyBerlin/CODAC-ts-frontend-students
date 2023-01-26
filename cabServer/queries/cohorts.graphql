@@ -23,23 +23,6 @@ query getCohorts {
                 data {
                   attributes {
                     name
-                    achievements {
-                      data {
-                        attributes {
-                          name
-                          badge {
-                            data {
-                              attributes {
-                                url
-                                name
-                                alternativeText
-                                caption
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }

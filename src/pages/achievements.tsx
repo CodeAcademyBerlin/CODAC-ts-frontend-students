@@ -46,7 +46,12 @@ const Achievements = ({
     const value = target.value;
     const result: Data = [];
     allAchievements.map((achievementEntity: AchievementEntity, i: index) => {
-      if (achievementEntity.attributes?.course?.includes(value)) {
+      if (
+        achievementEntity?.attributes?.course?.data?.attributes?.name &&
+        achievementEntity?.attributes?.course?.data?.attributes?.name.includes(
+          value,
+        )
+      ) {
         result.push(achievementEntity);
       }
     });
@@ -98,10 +103,14 @@ const Achievements = ({
                   (achievementEntity: AchievementEntity, i: index) => {
                     if (
                       !uniqueFields?.includes(
-                        achievementEntity.attributes?.course,
+                        achievementEntity?.attributes?.course?.data?.attributes
+                          ?.name,
                       )
                     ) {
-                      uniqueFields.push(achievementEntity.attributes?.course);
+                      uniqueFields.push(
+                        achievementEntity?.attributes?.course?.data?.attributes
+                          ?.name,
+                      );
                     }
                   },
                 )}
