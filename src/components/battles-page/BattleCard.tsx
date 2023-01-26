@@ -65,9 +65,8 @@ const BattleCard = (props: BattleCardProps) => {
     props.vsBattle?.attributes?.option_2_voters?.data.length || 0;
   const option1title = props.vsBattle?.attributes?.option1!;
   const option2title = props.vsBattle?.attributes?.option2!;
-  const color1 = theme.palette.primary.main;
-  const color2 = theme.palette.secondary.main;
-  console.log(color1);
+  const color1 = theme.palette.info.light;
+  const color2 = theme.palette.info.dark;
 
   const series: ApexOptions['series'] = [option1voters, option2voters];
 
@@ -78,6 +77,12 @@ const BattleCard = (props: BattleCardProps) => {
     // },
     colors: [color1, color2],
     labels: [option1title, option2title],
+    legend: {
+      position: 'bottom',
+    },
+    dataLabels: {
+      enabled: false,
+    },
     // responsive: [
     //   {
     //     breakpoint: 200,

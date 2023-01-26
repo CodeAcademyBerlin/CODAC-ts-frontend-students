@@ -36,7 +36,6 @@ function AddNewBattle() {
         publishedAt: currentDate.toISOString(),
       },
     });
-    router.push('/battles');
   };
 
   return (
