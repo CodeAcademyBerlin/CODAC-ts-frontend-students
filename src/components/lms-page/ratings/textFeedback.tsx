@@ -55,79 +55,79 @@ export default function TextFeedback({
   const [updateRating, { data: updateData, error: updateError }] =
     useUpdateLmsFeedbackMutation();
 
-  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
-    //CASE 1: update rating if lmsFeedback?.id and if feedbacks?.id exist
-    if (lmsFeedback?.id && lmsFeedback?.attributes?.feedbacks?.id) {
-      try {
-        // const now = new Date();
-        const id = lmsFeedback.id;
-        const feedbackId = lmsFeedback.attributes.feedbacks.id;
-        const res = updateRating({
-          variables: {
-            lmsFeedbackId: id,
-            feedbackId: feedbackId,
-            comment: message,
-            rating: rating,
-          },
-        });
-        if (success === true) {
-          setMessage('');
-          setOpen(false);
-          toast.success('message', {
-            position: toast.POSITION.BOTTOM_RIGHT,
-          });
-        }
-      } catch (e) {
-        ({ error: 'e.message' });
-      }
-    } else {
-          //CASE 2: update rating if lmsFeedback?.id exists but no feedbacks?.id 
-         if (lmsFeedback?.id && lmsFeedback?.attributes?.feedbacks?.id === null) {
-      try {
-        const id = lmsFeedback?.id;
-        const res = createRating({
-          variables: {
-            lmsFeedbackId: id,
-            comment: message,
-            rating: rating,
-            //   timestamp: now,
-          },
-        });
-        // console.log('res', res);
-        setMessage('');
-        setOpen(false);
-        toast.success(message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-      } catch (e) {
-        // ({ error: 'e.message' });
-        toast.error(message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-      }  else {
-          //CASE 3: there is no lmsFeedback?.id 
-      try {
-        const res = createRating({
-          variables: {
-            comment: message,
-            rating: rating,
-            //   timestamp: now,
-          },
-        });
-        // console.log('res', res);
-        setMessage('');
-        setOpen(false);
-        toast.success(message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-      } catch (e) {
-        // ({ error: 'e.message' });
-        toast.error(message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-      }
-    }
-  };
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {};
+  //CASE 1: update rating if lmsFeedback?.id and if feedbacks?.id exist
+  // if (lmsFeedback?.id && lmsFeedback?.attributes?.feedbacks?.id) {
+  //   try {
+  //     // const now = new Date();
+  //     const id = lmsFeedback.id;
+  //     const feedbackId = lmsFeedback.attributes.feedbacks.id;
+  //     const res = updateRating({
+  //       variables: {
+  //         lmsFeedbackId: id,
+  //         feedbackId: feedbackId,
+  //         comment: message,
+  //         rating: rating,
+  //       },
+  //     });
+  //     if (success === true) {
+  //       setMessage('');
+  //       setOpen(false);
+  //       toast.success('message', {
+  //         position: toast.POSITION.BOTTOM_RIGHT,
+  //       });
+  //     }
+  //   } catch (e) {
+  //     ({ error: 'e.message' });
+  //   }
+  // } else {
+  //       //CASE 2: update rating if lmsFeedback?.id exists but no feedbacks?.id
+  //      if (lmsFeedback?.id && lmsFeedback?.attributes?.feedbacks?.id === null) {
+  //   try {
+  //     const id = lmsFeedback?.id;
+  //     const res = createRating({
+  //       variables: {
+  //         lmsFeedbackId: id,
+  //         comment: message,
+  //         rating: rating,
+  //         //   timestamp: now,
+  //       },
+  //     });
+  //     // console.log('res', res);
+  //     setMessage('');
+  //     setOpen(false);
+  //     toast.success(message, {
+  //       position: toast.POSITION.BOTTOM_RIGHT,
+  //     });
+  //   } catch (e) {
+  //     // ({ error: 'e.message' });
+  //     toast.error(message, {
+  //       position: toast.POSITION.BOTTOM_RIGHT,
+  //     });
+  //   }  else {
+  //       //CASE 3: there is no lmsFeedback?.id
+  //   try {
+  //     const res = createRating({
+  //       variables: {
+  //         comment: message,
+  //         rating: rating,
+  //         //   timestamp: now,
+  //       },
+  //     });
+  //     // console.log('res', res);
+  //     setMessage('');
+  //     setOpen(false);
+  //     toast.success(message, {
+  //       position: toast.POSITION.BOTTOM_RIGHT,
+  //     });
+  //   } catch (e) {
+  //     // ({ error: 'e.message' });
+  //     toast.error(message, {
+  //       position: toast.POSITION.BOTTOM_RIGHT,
+  //     });
+  //   }
+  // }
+  // };
   // const label = (
   //   <p>
   //     Please take a moment to help us improve the content of this page. <br />

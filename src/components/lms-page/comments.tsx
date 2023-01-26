@@ -11,15 +11,8 @@ import {
 import { useAddCommentMutation } from 'cabServer/mutations/__generated__/addCommentLMSPages';
 import { useUpdateLmsFeedbackCommentMutation } from 'cabServer/mutations/__generated__/updateCommentLMSPages';
 import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsComments';
-import { Trumpet } from 'mdi-material-ui';
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-
-//  * const [addCommentMutation, { data, loading, error }] = useAddCommentMutation({
-//  *   variables: {
-//  *      lmsFeedbackId: // value for 'lmsFeedbackId'
-//  *      comment: // value for 'comment'
-//  *   },
 
 type LMSfeedbackProps = {
   slug: string;
@@ -55,62 +48,68 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     // CASE  1: if feedback for slug/id && commentId exists then updateComment:
-      if (lmsFeedback?.id && lmsFeedback.attributes?.comments.id ) {
-      try { 
-          const id = lmsFeedback.id;
-          const commentId = lmsFeedback.attributes?.comments.id;
-        const res = await updateComments({
+    if (lmsFeedback?.id) {
+      try {
+        const id = lmsFeedback.id;
+        const { data } = await createComment({
           variables: {
             lmsFeedbackId: id,
-            commentId: commentId ,
             comment: message,
           },
-        })
-        //   const { success, message } = await res.json();
-        //   return { success, message };
-        //   if (success === true) {
-        refetch();
-        setMessage('');
-        toast.success(message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
         });
-        //   }
-      } catch (e) {
-        ({ error: 'e.message' });
+        //   const result = await res.json();
+        console.log('data', data);
+        if (data) {
+          const response = data.addLMSfeedbackComment;
+
+          if (response?.success) {
+            console.log('response', response);
+
+            toast.success(response?.message, {
+              position: toast.POSITION.BOTTOM_RIGHT,
+            });
+            refetch();
           }
-      }
-    // CASE  2: if feedback for slug/ id exists but no comment.id yet, then createComment():
-    else if (lmsFeedback?.id && lmsFeedback.attributes?.comments.id === null) {
-         try {
-        const id = lmsFeedback.id;
-          const res = await createComment({
-          variables: {
-            lmsFeedbackId: id,
-              comment: message
-          },
-        });
-         } catch (e) {
-               ({ error: 'e.message' });
-         }
-     } // CASE  3: feedback for slug/ id doesnt exists:
-     else {
-        try {
-          const res = await createComment({
-          variables: {
-              comment: message
-          },
-        });
-        //   if (success === true) {
-        refetch();
-        setMessage('');
-        toast.success('message', {
+        }
+      } catch (e: any) {
+        toast.error(e.errors[0].message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
-                 //   }
-      } catch (e) {
-        ({ error: 'e.message' });
       }
-  }
+    }
+  };
+  // CASE  2: if feedback for slug/ id exists but no comment.id yet, then createComment():
+  // else if (lmsFeedback?.id && !lmsFeedback.attributes?.comments.id) {
+  //      try {
+  //     const id = lmsFeedback.id;
+  //       const res = await createComment({
+  //       variables: {
+  //         lmsFeedbackId: id,
+  //           comment: message
+  //       },
+  //     });
+  //      } catch (e) {
+  //            ({ error: 'e.message' });
+  //      }
+  //  } // CASE  3: feedback for slug/ id doesnt exists:
+  //      else {
+  //         try {
+  //           const res = await createComment({
+  //           variables: {
+  //               comment: message
+  //           },
+  //         });
+  //         //   if (success === true) {
+  //         refetch();
+  //         setMessage('');
+  //         toast.success('message', {
+  //           position: toast.POSITION.BOTTOM_RIGHT,
+  //         });
+  //                  //   }
+  //       } catch (e) {
+  //         ({ error: 'e.message' });
+  //       }
+  //   }
 
   // refetch comments
   useEffect(() => {
@@ -157,6 +156,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
             Cancel
           </Button>
           <Button
+            //   onClick={() => handleSubmit()}
             onClick={handleSubmit}
             sx={{ mt: 3, ml: 1 }}
             type="submit"
