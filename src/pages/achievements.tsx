@@ -40,17 +40,21 @@ const Achievements = ({
   const [check, setCheck] = useState(true);
   const allAchievements = data?.achievements?.data;
   const uniqueFields: Data = [];
-  console.log('allAchievements', allAchievements);
 
   const handleClick = (e: React.MouseEvent<Element, MouseEvent>) => {
     const target = e.target as HTMLButtonElement;
     const value = target.value;
     const result: Data = [];
-    // allAchievements.map((achievementEntity: AchievementEntity, i: index) => {
-    //   if (achievementEntity.attributes?.course?.includes(value)) {
-    //     result.push(achievementEntity);
-    //   }
-    // });
+    allAchievements.map((achievementEntity: AchievementEntity, i: index) => {
+      if (
+        achievementEntity?.attributes?.course?.data?.attributes?.name &&
+        achievementEntity?.attributes?.course?.data?.attributes?.name.includes(
+          value,
+        )
+      ) {
+        result.push(achievementEntity);
+      }
+    });
     if (target.value === '') {
       setCheck(!check);
     } else {
@@ -99,10 +103,14 @@ const Achievements = ({
                   (achievementEntity: AchievementEntity, i: index) => {
                     if (
                       !uniqueFields?.includes(
-                        achievementEntity.attributes?.course,
+                        achievementEntity?.attributes?.course?.data?.attributes
+                          ?.name,
                       )
                     ) {
-                      uniqueFields.push(achievementEntity.attributes?.course);
+                      uniqueFields.push(
+                        achievementEntity?.attributes?.course?.data?.attributes
+                          ?.name,
+                      );
                     }
                   },
                 )}

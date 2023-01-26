@@ -61,8 +61,6 @@ const AchievementTable = ({
 }: {
   allAchievements: AchievementEntity[];
 }) => {
-  console.log('allAchievements', allAchievements);
-
   return (
     allAchievements && (
       <TableContainer component={Paper}>
