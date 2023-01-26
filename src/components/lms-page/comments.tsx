@@ -78,38 +78,6 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
       }
     }
   };
-  // CASE  2: if feedback for slug/ id exists but no comment.id yet, then createComment():
-  // else if (lmsFeedback?.id && !lmsFeedback.attributes?.comments.id) {
-  //      try {
-  //     const id = lmsFeedback.id;
-  //       const res = await createComment({
-  //       variables: {
-  //         lmsFeedbackId: id,
-  //           comment: message
-  //       },
-  //     });
-  //      } catch (e) {
-  //            ({ error: 'e.message' });
-  //      }
-  //  } // CASE  3: feedback for slug/ id doesnt exists:
-  //      else {
-  //         try {
-  //           const res = await createComment({
-  //           variables: {
-  //               comment: message
-  //           },
-  //         });
-  //         //   if (success === true) {
-  //         refetch();
-  //         setMessage('');
-  //         toast.success('message', {
-  //           position: toast.POSITION.BOTTOM_RIGHT,
-  //         });
-  //                  //   }
-  //       } catch (e) {
-  //         ({ error: 'e.message' });
-  //       }
-  //   }
 
   // refetch comments
   useEffect(() => {
@@ -156,7 +124,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
             Cancel
           </Button>
           <Button
-            //   onClick={() => handleSubmit()}
+            // onClick={() => handleSubmit()}
             onClick={handleSubmit}
             sx={{ mt: 3, ml: 1 }}
             type="submit"
