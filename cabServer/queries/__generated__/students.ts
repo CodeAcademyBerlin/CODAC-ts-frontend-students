@@ -8,29 +8,31 @@ export const FilterStudentByUserIdDocument = gql`
   query filterStudentByUserId($userId: ID) {
     students(filters: { user: { id: { eq: $userId } } }) {
       data {
-        id
         attributes {
-          github
-          linkedin
-          start_date
-          end_date
-          user {
-            data {
-              id
-              attributes {
-                firstname
-                lastname
-                email
-                avatar {
-                  data {
-                    attributes {
-                      url
+          achievements {
+            unlocked
+            unlockedOn
+            achievement {
+              data {
+                attributes {
+                  name
+                  course_date
+                  points
+                  badge {
+                    data {
+                      attributes {
+                        url
+                      }
                     }
                   }
                 }
               }
             }
           }
+          github
+          linkedin
+          start_date
+          end_date
           cohort {
             data {
               attributes {
@@ -54,24 +56,8 @@ export const FilterStudentByUserIdDocument = gql`
           }
           main_course {
             data {
-              id
               attributes {
                 name
-              }
-            }
-          }
-          achievements {
-            achievement {
-              data {
-                attributes {
-                  badge {
-                    data {
-                      attributes {
-                        url
-                      }
-                    }
-                  }
-                }
               }
             }
           }
@@ -141,36 +127,39 @@ export type FilterStudentByUserIdQuery = {
     __typename?: 'StudentEntityResponseCollection';
     data: Array<{
       __typename?: 'StudentEntity';
-      id?: string | null;
       attributes?: {
         __typename?: 'Student';
         github?: string | null;
         linkedin?: string | null;
         start_date?: any | null;
         end_date?: any | null;
-        user?: {
-          __typename?: 'UsersPermissionsUserEntityResponse';
-          data?: {
-            __typename?: 'UsersPermissionsUserEntity';
-            id?: string | null;
-            attributes?: {
-              __typename?: 'UsersPermissionsUser';
-              firstname: string;
-              lastname: string;
-              email: string;
-              avatar?: {
-                __typename?: 'UploadFileEntityResponse';
-                data?: {
-                  __typename?: 'UploadFileEntity';
-                  attributes?: {
-                    __typename?: 'UploadFile';
-                    url: string;
+        achievements?: Array<{
+          __typename?: 'ComponentAchievementAchievement';
+          unlocked?: boolean | null;
+          unlockedOn?: any | null;
+          achievement?: {
+            __typename?: 'AchievementEntityResponse';
+            data?: {
+              __typename?: 'AchievementEntity';
+              attributes?: {
+                __typename?: 'Achievement';
+                name?: string | null;
+                course_date?: number | null;
+                points?: number | null;
+                badge?: {
+                  __typename?: 'UploadFileEntityResponse';
+                  data?: {
+                    __typename?: 'UploadFileEntity';
+                    attributes?: {
+                      __typename?: 'UploadFile';
+                      url: string;
+                    } | null;
                   } | null;
                 } | null;
               } | null;
             } | null;
           } | null;
-        } | null;
+        } | null> | null;
         cohort?: {
           __typename?: 'CohortEntityResponse';
           data?: {
@@ -205,32 +194,9 @@ export type FilterStudentByUserIdQuery = {
           __typename?: 'CourseEntityResponse';
           data?: {
             __typename?: 'CourseEntity';
-            id?: string | null;
             attributes?: { __typename?: 'Course'; name?: string | null } | null;
           } | null;
         } | null;
-        achievements?: Array<{
-          __typename?: 'ComponentAchievementAchievement';
-          achievement?: {
-            __typename?: 'AchievementEntityResponse';
-            data?: {
-              __typename?: 'AchievementEntity';
-              attributes?: {
-                __typename?: 'Achievement';
-                badge?: {
-                  __typename?: 'UploadFileEntityResponse';
-                  data?: {
-                    __typename?: 'UploadFileEntity';
-                    attributes?: {
-                      __typename?: 'UploadFile';
-                      url: string;
-                    } | null;
-                  } | null;
-                } | null;
-              } | null;
-            } | null;
-          } | null;
-        } | null> | null;
       } | null;
     }>;
   } | null;
