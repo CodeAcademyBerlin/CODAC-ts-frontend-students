@@ -1,74 +1,12 @@
 query getCodacOverflows {
-  codacOverflows {
-    data {
-      id
-      attributes {
-        slug
-        title
-        description
-        date
-        author {
-          data {
+  codacOverflows(sort: "createdAt:desc"){
+        data{
             id
-            attributes {
-              firstname
-              lastname
-              avatar {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    width
-                    height
-                    hash
-                    mime
-                    size
-                    previewUrl
-                    provider
-                    url
-                  }
-                }
-              }
+            attributes{
+              title
+              description
+              course
             }
-          }
         }
-        comments {
-          id
-          message
-          timestamp
-          author {
-            data {
-              id
-              attributes {
-                firstname
-                lastname
-                avatar {
-                  data {
-                    id
-                    attributes {
-                      name
-                      alternativeText
-                      width
-                      height
-                      hash
-                      mime
-                      size
-                      previewUrl
-                      provider
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        course
-        createdAt
-        updatedAt
-        publishedAt
-      }
     }
-  }
 }

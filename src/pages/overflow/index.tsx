@@ -1,24 +1,16 @@
 // ** MUI Imports
+import { useTheme } from '@mui/material';
+import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 //import serverSideProps
-import React, { Key, useState } from 'react';
+import React, { useState } from 'react';
+import ShowOverflow from 'src/components/overflow/ShowOverflow';
 
-//import types
-import { CodacOverflowEntity } from '../../../cabServer/global/__generated__/types';
-//import generated query
-import { GetCodacOverflowsDocument } from '../../../cabServer/queries/__generated__/overflow';
 //import for the Styled Link, which not refreshes
 import StyledLink from '../../components/common/StyledLink';
-//import auth to get the actual user information
-import { useAuth } from '../../hooks/useAuth';
-//import Apollo für ServerSideProps
-import { initializeApollo } from '../../lib/apolloClient';
 
 //Paper Styling from MUI
 const Item = styled(Paper)(({ theme }) => ({
@@ -30,20 +22,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 //Main Component Overflow
-const Overflow = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [result, setResult] = useState(data.codacOverflows.data);
-  const { user } = useAuth();
-  const [searchedTopic, setSearchedTopic] = useState('');
-  console.log('user', user);
-  console.log('result data', result);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('searchedTopic', searchedTopic);
-  };
-
+const Overflow = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -91,35 +71,20 @@ const Overflow = ({
         }}
       >
         <Box
-          component="form"
           sx={{
             '& .MuiTextField-root': { m: 3, width: '100%' },
-            borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
             width: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             position: 'relative',
+            marginTop: '5px',
           }}
-          noValidate
-          autoComplete="off"
         >
-          <form onSubmit={handleSearch}>
-            <TextField
-              id="outlined-search"
-              value={searchedTopic}
-              label="Search for topics"
-              name="search"
-              type="search"
-              onChange={(e) => {
-                setSearchedTopic(e.target.value);
-              }}
-            />
-          </form>
           <StyledLink href={'overflow/newQuestion'}>
             <Button
               sx={{
-                mt: 3,
+                mt: 2,
                 ml: 1,
                 position: 'absolute',
                 top: '0',
@@ -133,56 +98,10 @@ const Overflow = ({
           </StyledLink>
         </Box>
 
-        <Stack
-          spacing={2}
-          style={{
-            margin: '10px 0px 10px 0px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {result &&
-            result.map((topic: CodacOverflowEntity) => (
-              <Item
-                key={topic.id}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  width: '70%',
-                  maxWidth: '70%',
-                }}
-              >
-                <StyledLink href={`overflow/${topic.id}`}>
-                  <h3 id="dynamic-overflow-link">{topic.attributes?.title}</h3>
-                </StyledLink>
-                {topic.attributes?.description}
-              </Item>
-            ))}
-        </Stack>
+        <ShowOverflow />
       </Paper>
     </Box>
   );
 };
 
 export default Overflow;
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  try {
-    const client = initializeApollo(null, ctx.req);
-    const { data, error } = await client.query({
-      query: GetCodacOverflowsDocument,
-    });
-    console.log('Fetch was successful, see success:', data);
-    return {
-      props: { data },
-    };
-  } catch (error) {
-    console.log('Fetch was not successful, see error:', error);
-    return {
-      props: { data: null },
-    };
-  }
-};

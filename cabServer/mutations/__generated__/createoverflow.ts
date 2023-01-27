@@ -1,7 +1,7 @@
-import * as Types from '../../global/__generated__/types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const CreateCodacOverflowDocument = gql`
@@ -9,6 +9,7 @@ export const CreateCodacOverflowDocument = gql`
   createCodacOverflow(
     data: {slug: $slug, title: $title, description: $description, date: $date, author: $author, course: $course, publishedAt: $publishedAt}
   ) {
+
     data {
       id
       attributes {
@@ -94,4 +95,11 @@ export type CreateCodacOverflowMutationVariables = Types.Exact<{
 }>;
 
 
-export type CreateCodacOverflowMutation = { __typename?: 'Mutation', createCodacOverflow?: { __typename?: 'CodacOverflowEntityResponse', data?: { __typename?: 'CodacOverflowEntity', id?: string | null, attributes?: { __typename?: 'CodacOverflow', slug?: string | null, title?: string | null, description?: string | null, date?: any | null, course?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname: string, lastname: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string, url: string } | null } | null } | null } | null } | null } | null } | null } | null } | null };
+export type CreateCodacOverflowMutation = {
+  __typename?: 'Mutation';
+  createCodacOverflow?: {
+    __typename?: 'CodacOverflowEntityResponse';
+    data?: { __typename?: 'CodacOverflowEntity'; id?: string | null } | null;
+  } | null;
+};
+
