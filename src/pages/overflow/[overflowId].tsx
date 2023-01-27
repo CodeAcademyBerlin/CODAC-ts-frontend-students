@@ -20,8 +20,6 @@ import { CodacOverflowEntity } from '../../../cabServer/global/__generated__/typ
 import { useAddCodacOverflowCommentMutation } from '../../../cabServer/mutations/__generated__/addOverflowComment';
 //import generated query
 import { CodacOverflowByIdDocument } from '../../../cabServer/queries/__generated__/overflowOne';
-//import auth to get the actual user information
-import { useAuth } from '../../hooks/useAuth';
 //import Apollo für ServerSideProps
 import { initializeApollo } from '../../lib/apolloClient';
 
@@ -40,7 +38,6 @@ const OverflowTopic = ({
   const router = useRouter();
   const [result, setResult] = useState(codacOverflow);
   const [message, setMessage] = useState<string>('');
-  const { user } = useAuth();
   console.log('result data', result);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void =>

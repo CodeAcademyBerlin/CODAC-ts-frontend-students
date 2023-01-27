@@ -29,7 +29,6 @@ export type Achievement = {
   name?: Maybe<Scalars['String']>;
   points?: Maybe<Scalars['Int']>;
   type?: Maybe<Enum_Achievement_Type>;
-  unlocked?: Maybe<Scalars['Boolean']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -62,7 +61,6 @@ export type AchievementFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<AchievementFiltersInput>>>;
   points?: InputMaybe<IntFilterInput>;
   type?: InputMaybe<StringFilterInput>;
-  unlocked?: InputMaybe<BooleanFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -74,12 +72,6 @@ export type AchievementInput = {
   name?: InputMaybe<Scalars['String']>;
   points?: InputMaybe<Scalars['Int']>;
   type?: InputMaybe<Enum_Achievement_Type>;
-  unlocked?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type AchievementRelationResponseCollection = {
-  __typename?: 'AchievementRelationResponseCollection';
-  data: Array<AchievementEntity>;
 };
 
 export type Attendance = {
@@ -284,10 +276,26 @@ export type CohortInput = {
 
 export type ComponentAchievementAchievement = {
   __typename?: 'ComponentAchievementAchievement';
+  achievement?: Maybe<AchievementEntityResponse>;
   id: Scalars['ID'];
-  image?: Maybe<UploadFileEntityResponse>;
-  name?: Maybe<Scalars['String']>;
-  points?: Maybe<Scalars['Int']>;
+  unlocked?: Maybe<Scalars['Boolean']>;
+  unlockedOn?: Maybe<Scalars['DateTime']>;
+};
+
+export type ComponentAchievementAchievementFiltersInput = {
+  achievement?: InputMaybe<AchievementFiltersInput>;
+  and?: InputMaybe<Array<InputMaybe<ComponentAchievementAchievementFiltersInput>>>;
+  not?: InputMaybe<ComponentAchievementAchievementFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentAchievementAchievementFiltersInput>>>;
+  unlocked?: InputMaybe<BooleanFilterInput>;
+  unlockedOn?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ComponentAchievementAchievementInput = {
+  achievement?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+  unlocked?: InputMaybe<Scalars['Boolean']>;
+  unlockedOn?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ComponentAttendanceAttendanceDay = {
@@ -1453,6 +1461,8 @@ export type MentorInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Add achievement on a student */
+  addAchievement?: Maybe<GenericServerResponse>;
   /** Add comment on a codac overflow item */
   addCODACOverflowComment?: Maybe<GenericServerResponse>;
   /** Add feedback on a lms item */
@@ -1523,6 +1533,10 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  /** Add achievement on a student */
+  unlockAchievement?: Maybe<GenericServerResponse>;
+  /** Add achievement on a student */
+  unlockAchievements?: Maybe<GenericServerResponse>;
   updateAchievement?: Maybe<AchievementEntityResponse>;
   updateAttendance?: Maybe<AttendanceEntityResponse>;
   /** Update comment on a codac overflow item */
@@ -1558,6 +1572,12 @@ export type Mutation = {
    * and removes the vote on the other option if present. It will remove the vote if voting the same option is voted again
    */
   voteVsBattle?: Maybe<VsBattle>;
+};
+
+
+export type MutationAddAchievementArgs = {
+  achievementId: Scalars['ID'];
+  studentId: Scalars['ID'];
 };
 
 
@@ -1854,6 +1874,18 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUnlockAchievementArgs = {
+  achievementId: Scalars['ID'];
+  studentId: Scalars['ID'];
+};
+
+
+export type MutationUnlockAchievementsArgs = {
+  achievementIds?: InputMaybe<Array<Scalars['ID']>>;
+  studentId: Scalars['ID'];
+};
+
+
 export type MutationUpdateAchievementArgs = {
   data: AchievementInput;
   id: Scalars['ID'];
@@ -1925,7 +1957,7 @@ export type MutationUpdateLmSfeedbackArgs = {
 
 export type MutationUpdateLmSfeedbackCommentArgs = {
   comment: Scalars['String'];
-  feedbackId: Scalars['ID'];
+  commentId: Scalars['ID'];
   lmsFeedbackId: Scalars['ID'];
 };
 
@@ -2565,7 +2597,7 @@ export type StringFilterInput = {
 export type Student = {
   __typename?: 'Student';
   SID?: Maybe<Scalars['String']>;
-  achievements?: Maybe<AchievementRelationResponseCollection>;
+  achievements?: Maybe<Array<Maybe<ComponentAchievementAchievement>>>;
   attendance?: Maybe<AttendanceEntityResponse>;
   cohort?: Maybe<CohortEntityResponse>;
   courses?: Maybe<CourseRelationResponseCollection>;
@@ -2582,7 +2614,7 @@ export type Student = {
 
 
 export type StudentAchievementsArgs = {
-  filters?: InputMaybe<AchievementFiltersInput>;
+  filters?: InputMaybe<ComponentAchievementAchievementFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -2613,7 +2645,7 @@ export type StudentEntityResponseCollection = {
 
 export type StudentFiltersInput = {
   SID?: InputMaybe<StringFilterInput>;
-  achievements?: InputMaybe<AchievementFiltersInput>;
+  achievements?: InputMaybe<ComponentAchievementAchievementFiltersInput>;
   and?: InputMaybe<Array<InputMaybe<StudentFiltersInput>>>;
   attendance?: InputMaybe<AttendanceFiltersInput>;
   cohort?: InputMaybe<CohortFiltersInput>;
@@ -2634,7 +2666,7 @@ export type StudentFiltersInput = {
 
 export type StudentInput = {
   SID?: InputMaybe<Scalars['String']>;
-  achievements?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  achievements?: InputMaybe<Array<InputMaybe<ComponentAchievementAchievementInput>>>;
   attendance?: InputMaybe<Scalars['ID']>;
   cohort?: InputMaybe<Scalars['ID']>;
   courses?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;

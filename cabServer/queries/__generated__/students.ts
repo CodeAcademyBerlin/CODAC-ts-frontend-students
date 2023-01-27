@@ -8,11 +8,29 @@ export const FilterStudentByUserIdDocument = gql`
     query filterStudentByUserId($userId: ID) {
   students(filters: {user: {id: {eq: $userId}}}) {
     data {
+      id
       attributes {
         github
         linkedin
         start_date
         end_date
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
         cohort {
           data {
             attributes {
@@ -36,21 +54,9 @@ export const FilterStudentByUserIdDocument = gql`
         }
         main_course {
           data {
+            id
             attributes {
               name
-            }
-          }
-        }
-        achievements {
-          data {
-            attributes {
-              badge {
-                data {
-                  attributes {
-                    url
-                  }
-                }
-              }
             }
           }
         }
@@ -92,4 +98,4 @@ export type FilterStudentByUserIdQueryVariables = Types.Exact<{
 }>;
 
 
-export type FilterStudentByUserIdQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', github?: string | null, linkedin?: string | null, start_date?: any | null, end_date?: any | null, cohort?: { __typename?: 'CohortEntityResponse', data?: { __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null, start_date?: any | null, students?: { __typename?: 'StudentRelationResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null } | null }> } | null } | null } | null } | null, main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null, achievements?: { __typename?: 'AchievementRelationResponseCollection', data: Array<{ __typename?: 'AchievementEntity', attributes?: { __typename?: 'Achievement', badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null } | null }> } | null };
+export type FilterStudentByUserIdQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', id?: string | null, attributes?: { __typename?: 'Student', github?: string | null, linkedin?: string | null, start_date?: any | null, end_date?: any | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname: string, lastname: string, email: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null, cohort?: { __typename?: 'CohortEntityResponse', data?: { __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null, start_date?: any | null, students?: { __typename?: 'StudentRelationResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null } | null }> } | null } | null } | null } | null, main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', id?: string | null, attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null } | null }> } | null };
