@@ -29,6 +29,23 @@ export const FilterStudentByUserIdDocument = gql`
               }
             }
           }
+          user {
+            data {
+              id
+              attributes {
+                firstname
+                lastname
+                email
+                avatar {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
           github
           linkedin
           start_date
@@ -160,6 +177,29 @@ export type FilterStudentByUserIdQuery = {
             } | null;
           } | null;
         } | null> | null;
+        user?: {
+          __typename?: 'UsersPermissionsUserEntityResponse';
+          data?: {
+            __typename?: 'UsersPermissionsUserEntity';
+            id?: string | null;
+            attributes?: {
+              __typename?: 'UsersPermissionsUser';
+              firstname: string;
+              lastname: string;
+              email: string;
+              avatar?: {
+                __typename?: 'UploadFileEntityResponse';
+                data?: {
+                  __typename?: 'UploadFileEntity';
+                  attributes?: {
+                    __typename?: 'UploadFile';
+                    url: string;
+                  } | null;
+                } | null;
+              } | null;
+            } | null;
+          } | null;
+        } | null;
         cohort?: {
           __typename?: 'CohortEntityResponse';
           data?: {
