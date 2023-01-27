@@ -119,6 +119,6 @@ This is then used to filter the achievements to unlock, the achievements that me
 
 This route is called on Login, so that when a student logs in their achievements are always up to date.
 
-<!-- <Link href="/congrats">
+<Link href="/congrats">
   <p>?</p>
-</Link> -->
+</Link>
