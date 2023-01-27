@@ -9,7 +9,7 @@ const Students = (data: any) => {
   const theme = useTheme();
 
   const studentProfile: Student = data && data.student.attributes;
-
+  console.log('studentProfile', studentProfile);
   return (
     <Container
       sx={{

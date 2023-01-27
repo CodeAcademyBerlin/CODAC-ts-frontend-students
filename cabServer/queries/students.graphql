@@ -22,6 +22,23 @@ query filterStudentByUserId($userId: ID) {
             }
           }
         }
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
         github
         linkedin
         start_date
