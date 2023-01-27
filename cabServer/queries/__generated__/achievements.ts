@@ -5,34 +5,34 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const GetAchievementsDocument = gql`
-  query getAchievements {
-    achievements(sort: "id:asc", pagination: { pageSize: 100 }) {
-      data {
-        id
-        attributes {
-          badge {
-            data {
-              attributes {
-                url
-              }
+    query getAchievements {
+  achievements(sort: "id:asc", pagination: {pageSize: 100}) {
+    data {
+      id
+      attributes {
+        badge {
+          data {
+            attributes {
+              url
             }
           }
-          name
-          description
-          points
-          type
-          course {
-            data {
-              attributes {
-                name
-              }
+        }
+        name
+        description
+        points
+        type
+        course {
+          data {
+            attributes {
+              name
             }
           }
         }
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useGetAchievementsQuery__
@@ -49,72 +49,18 @@ export const GetAchievementsDocument = gql`
  *   },
  * });
  */
-export function useGetAchievementsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetAchievementsQuery,
-    GetAchievementsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetAchievementsQuery, GetAchievementsQueryVariables>(
-    GetAchievementsDocument,
-    options,
-  );
-}
-export function useGetAchievementsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetAchievementsQuery,
-    GetAchievementsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetAchievementsQuery,
-    GetAchievementsQueryVariables
-  >(GetAchievementsDocument, options);
-}
-export type GetAchievementsQueryHookResult = ReturnType<
-  typeof useGetAchievementsQuery
->;
-export type GetAchievementsLazyQueryHookResult = ReturnType<
-  typeof useGetAchievementsLazyQuery
->;
-export type GetAchievementsQueryResult = Apollo.QueryResult<
-  GetAchievementsQuery,
-  GetAchievementsQueryVariables
->;
-export type GetAchievementsQueryVariables = Types.Exact<{
-  [key: string]: never;
-}>;
+export function useGetAchievementsQuery(baseOptions?: Apollo.QueryHookOptions<GetAchievementsQuery, GetAchievementsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAchievementsQuery, GetAchievementsQueryVariables>(GetAchievementsDocument, options);
+      }
+export function useGetAchievementsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAchievementsQuery, GetAchievementsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAchievementsQuery, GetAchievementsQueryVariables>(GetAchievementsDocument, options);
+        }
+export type GetAchievementsQueryHookResult = ReturnType<typeof useGetAchievementsQuery>;
+export type GetAchievementsLazyQueryHookResult = ReturnType<typeof useGetAchievementsLazyQuery>;
+export type GetAchievementsQueryResult = Apollo.QueryResult<GetAchievementsQuery, GetAchievementsQueryVariables>;
+export type GetAchievementsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export type GetAchievementsQuery = {
-  __typename?: 'Query';
-  achievements?: {
-    __typename?: 'AchievementEntityResponseCollection';
-    data: Array<{
-      __typename?: 'AchievementEntity';
-      id?: string | null;
-      attributes?: {
-        __typename?: 'Achievement';
-        name?: string | null;
-        description?: string | null;
-        points?: number | null;
-        type?: Types.Enum_Achievement_Type | null;
-        badge?: {
-          __typename?: 'UploadFileEntityResponse';
-          data?: {
-            __typename?: 'UploadFileEntity';
-            attributes?: { __typename?: 'UploadFile'; url: string } | null;
-          } | null;
-        } | null;
-        course?: {
-          __typename?: 'CourseEntityResponse';
-          data?: {
-            __typename?: 'CourseEntity';
-            attributes?: { __typename?: 'Course'; name?: string | null } | null;
-          } | null;
-        } | null;
-      } | null;
-    }>;
-  } | null;
-};
+
+export type GetAchievementsQuery = { __typename?: 'Query', achievements?: { __typename?: 'AchievementEntityResponseCollection', data: Array<{ __typename?: 'AchievementEntity', id?: string | null, attributes?: { __typename?: 'Achievement', name?: string | null, description?: string | null, points?: number | null, type?: Types.Enum_Achievement_Type | null, badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null, course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null } | null }> } | null };
