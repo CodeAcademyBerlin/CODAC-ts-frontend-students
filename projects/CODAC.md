@@ -59,7 +59,7 @@ image: /assets/screenshot.png
 
 - The HTML is generated in advance, on a server, instead of having it all done by JavaScript on the user's device.
 - This means that the HTML of the page is generated on a server for each request. The generated HTML, JSON data, and JavaScript instructions to make the page interactive are then sent to the client.
-- In order to redirect view the page of a specific user, I used dynamic routes which on click will redirect you from a community page to a profile of a student or a mentor. The matched path parameter will be sent as a query parameter to the page, and it will be merged with the other query parameters. In this case it was students or mentors id.
+- In order to view the page of a specific user, I used dynamic routes which on click will redirect you from a community page to a profile of a student or a mentor. The matched path parameter will be sent as a query parameter to the page, and it will be merged with the other query parameters. In this case it was students or mentors id.
 
 <BrandText variant="h4">Katia</BrandText>
 
