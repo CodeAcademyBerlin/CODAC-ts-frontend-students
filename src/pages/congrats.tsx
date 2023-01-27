@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React, { useEffect } from 'react';
 
 import { BrandText } from '../components/common/BrandStyle';
+import ParticlesComp from '../components/common/Particles/Particles';
 import { useSettings } from '../hooks/useSettings';
 
 function Congrats() {
@@ -21,16 +22,20 @@ function Congrats() {
       justifyContent="center"
     >
       <Grid item xs={12} sx={{ paddingBottom: 4 }}>
-        <BrandText variant="h2">Congratulation Neon Narwhals!</BrandText>
+        <BrandText variant="h2">Congratulation Orange Pumas!</BrandText>
       </Grid>
       <Grid item xs={12} sx={{ paddingBottom: 4 }}>
         <Image
-          src="/assets/narwhals.png"
+          src="/assets/pumas.png"
           width={500}
           height={500}
           alt="Narwhals"
         />
       </Grid>
+      <Grid item xs={12} sx={{ paddingBottom: 4 }}>
+        <BrandText variant="h3">Happy Coding!</BrandText>
+      </Grid>
+      <ParticlesComp type="confetti" />
     </Grid>
   );
 }
