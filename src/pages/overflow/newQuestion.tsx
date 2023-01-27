@@ -91,29 +91,10 @@ const NewQuestion = (props: Props) => {
       const { data } = await overflowMutation();
 
       if (data) {
-        /* const { login } = data; */
         console.log('data', data);
-        /* onLoginSucces(login, values.rememberMe); */
-        router.push('/overflow');
+        router.push(`/overflow/${data.createCodacOverflow?.data?.id}`);
       }
 
-      /* const currentDate = new Date();
-      let year = currentDate.getFullYear();
-      let month =
-        currentDate.getMonth() + 1 < 10
-          ? '0' + (currentDate.getMonth() + 1)
-          : currentDate.getMonth() + 1;
-      let day =
-        currentDate.getDate() < 10
-          ? '0' + currentDate.getDate()
-          : currentDate.getDate();
-      console.log('course:', course);
-      console.log('title:', title);
-      console.log('description:', description);
-      console.log('slug:', slug);
-      console.log('date:', year + '-' + month + '-' + day);
-      console.log('author ID', user?.id);
-      console.log('currentDate', currentDate.toISOString()); */
       setDescription('');
     } catch (e) {
       ({ error: 'e.message' });

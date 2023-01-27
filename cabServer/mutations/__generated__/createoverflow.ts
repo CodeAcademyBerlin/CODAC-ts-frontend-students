@@ -1,7 +1,7 @@
-import * as Types from '../../global/__generated__/types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const CreateCodacOverflowDocument = gql`
@@ -27,42 +27,6 @@ export const CreateCodacOverflowDocument = gql`
     ) {
       data {
         id
-        attributes {
-          slug
-          title
-          description
-          date
-          author {
-            data {
-              id
-              attributes {
-                firstname
-                lastname
-                avatar {
-                  data {
-                    id
-                    attributes {
-                      name
-                      alternativeText
-                      width
-                      height
-                      hash
-                      mime
-                      size
-                      previewUrl
-                      provider
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
-          course
-          createdAt
-          updatedAt
-          publishedAt
-        }
       }
     }
   }
@@ -130,52 +94,6 @@ export type CreateCodacOverflowMutation = {
   __typename?: 'Mutation';
   createCodacOverflow?: {
     __typename?: 'CodacOverflowEntityResponse';
-    data?: {
-      __typename?: 'CodacOverflowEntity';
-      id?: string | null;
-      attributes?: {
-        __typename?: 'CodacOverflow';
-        slug?: string | null;
-        title?: string | null;
-        description?: string | null;
-        date?: any | null;
-        course?: string | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        publishedAt?: any | null;
-        author?: {
-          __typename?: 'UsersPermissionsUserEntityResponse';
-          data?: {
-            __typename?: 'UsersPermissionsUserEntity';
-            id?: string | null;
-            attributes?: {
-              __typename?: 'UsersPermissionsUser';
-              firstname: string;
-              lastname: string;
-              avatar?: {
-                __typename?: 'UploadFileEntityResponse';
-                data?: {
-                  __typename?: 'UploadFileEntity';
-                  id?: string | null;
-                  attributes?: {
-                    __typename?: 'UploadFile';
-                    name: string;
-                    alternativeText?: string | null;
-                    width?: number | null;
-                    height?: number | null;
-                    hash: string;
-                    mime: string;
-                    size: number;
-                    previewUrl?: string | null;
-                    provider: string;
-                    url: string;
-                  } | null;
-                } | null;
-              } | null;
-            } | null;
-          } | null;
-        } | null;
-      } | null;
-    } | null;
+    data?: { __typename?: 'CodacOverflowEntity'; id?: string | null } | null;
   } | null;
 };
