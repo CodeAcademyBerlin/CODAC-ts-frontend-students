@@ -19,7 +19,19 @@ generates:
       withHooks: true
       withHOC: false
       withComponent: false
-      hooks:
-        afterOneFileWrite:
-          - eslint --fix
-          - prettier --write
+  # cabServer/__generated__/page.tsx:
+  #   config:
+  #     reactApolloVersion: 3
+  #     withHooks: true
+  #     documentMode: external
+  #     importDocumentNodeExternallyFrom: ./operations
+  #   preset: import-types
+  #   presetConfig:
+  #     typesPath: ./graphql
+  #   plugins:
+  #     - graphql-codegen-apollo-next-ssr
+  # # Format files
+# hooks:
+#   afterAllFileWrite:
+#     - prettier --write
+#     - eslint --fix

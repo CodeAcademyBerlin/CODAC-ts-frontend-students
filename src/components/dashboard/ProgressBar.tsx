@@ -111,3 +111,7 @@ const ProgressBar = ({ student }: { student: Student }) => {
 };
 
 export default ProgressBar;
+
+// const ProgressBarStandolne = () => {
+
+// }
