@@ -118,9 +118,9 @@ const Dashboard = ({
   const theme = useTheme();
   const myStudent: Student = data && data.students.data[0].attributes;
   console.log('myStudent', myStudent);
-  const achievements = myStudent && myStudent.achievements;
+  const achievements = (myStudent && myStudent?.achievements) || null;
   console.log('achievements', achievements);
-  if (myStudent)
+  if (myStudent && achievements)
     return (
       <ApexChartWrapper>
         <Grid container spacing={6}>
@@ -153,7 +153,8 @@ const Dashboard = ({
             )}
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <OpenAiImage />
+            {/* <OpenAiImage /> */}
+
             {achievements && (
               <AchievementsComponent achievements={achievements} />
             )}

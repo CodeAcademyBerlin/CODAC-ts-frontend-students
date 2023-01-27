@@ -1523,14 +1523,6 @@ export type Mutation = {
   addLMSfeedback?: Maybe<GenericServerResponse>;
   /** Add comment on a lms feedback item */
   addLMSfeedbackComment?: Maybe<GenericServerResponse>;
-  /** Add achievement on a student */
-  addAchievement?: Maybe<GenericServerResponse>;
-  /** Add comment on a codac overflow item */
-  addCODACOverflowComment?: Maybe<GenericServerResponse>;
-  /** Add feedback on a lms item */
-  addLMSfeedback?: Maybe<GenericServerResponse>;
-  /** Add comment on a lms feedback item */
-  addLMSfeedbackComment?: Maybe<GenericServerResponse>;
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAchievement?: Maybe<AchievementEntityResponse>;
@@ -1560,18 +1552,12 @@ export type Mutation = {
   deleteAttendance?: Maybe<AttendanceEntityResponse>;
   /** Add comment on a codac overflow item */
   deleteCODACOverflowComment?: Maybe<GenericServerResponse>;
-  /** Add comment on a codac overflow item */
-  deleteCODACOverflowComment?: Maybe<GenericServerResponse>;
   deleteCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
   deleteCohort?: Maybe<CohortEntityResponse>;
   deleteCourse?: Maybe<CourseEntityResponse>;
   deleteEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
   deleteHoliday?: Maybe<HolidayEntityResponse>;
   deleteJobPost?: Maybe<JobPostEntityResponse>;
-  /** Delete feedback on a lms feedback item */
-  deleteLMSfeedback?: Maybe<GenericServerResponse>;
-  /** Delete comment on a lms feedback item */
-  deleteLMSfeedbackComment?: Maybe<GenericServerResponse>;
   /** Delete feedback on a lms feedback item */
   deleteLMSfeedback?: Maybe<GenericServerResponse>;
   /** Delete comment on a lms feedback item */
@@ -1640,27 +1626,6 @@ export type Mutation = {
    * and removes the vote on the other option if present. It will remove the vote if voting the same option is voted again
    */
   voteVsBattle?: Maybe<VsBattle>;
-};
-
-export type MutationAddAchievementArgs = {
-  achievementId: Scalars['ID'];
-  studentId: Scalars['ID'];
-};
-
-export type MutationAddCodacOverflowCommentArgs = {
-  codacOverflowId: Scalars['ID'];
-  comment: Scalars['String'];
-};
-
-export type MutationAddLmSfeedbackArgs = {
-  comment: Scalars['String'];
-  lmsFeedbackId: Scalars['ID'];
-  rating: Scalars['Int'];
-};
-
-export type MutationAddLmSfeedbackCommentArgs = {
-  comment: Scalars['String'];
-  lmsFeedbackId: Scalars['ID'];
 };
 
 export type MutationAddAchievementArgs = {
@@ -1790,11 +1755,6 @@ export type MutationDeleteCodacOverflowCommentArgs = {
   commentId: Scalars['ID'];
 };
 
-export type MutationDeleteCodacOverflowCommentArgs = {
-  codacOverflowId: Scalars['ID'];
-  commentId: Scalars['ID'];
-};
-
 export type MutationDeleteCodacOverflowArgs = {
   id: Scalars['ID'];
 };
@@ -1817,16 +1777,6 @@ export type MutationDeleteHolidayArgs = {
 
 export type MutationDeleteJobPostArgs = {
   id: Scalars['ID'];
-};
-
-export type MutationDeleteLmSfeedbackArgs = {
-  feedbackId: Scalars['ID'];
-  lmsFeedbackId: Scalars['ID'];
-};
-
-export type MutationDeleteLmSfeedbackCommentArgs = {
-  commentId: Scalars['ID'];
-  lmsFeedbackId: Scalars['ID'];
 };
 
 export type MutationDeleteLmSfeedbackArgs = {
@@ -1931,16 +1881,6 @@ export type MutationUnlockAchievementsArgs = {
   studentId: Scalars['ID'];
 };
 
-export type MutationUnlockAchievementArgs = {
-  achievementId: Scalars['ID'];
-  studentId: Scalars['ID'];
-};
-
-export type MutationUnlockAchievementsArgs = {
-  achievementIds?: InputMaybe<Array<Scalars['ID']>>;
-  studentId: Scalars['ID'];
-};
-
 export type MutationUpdateAchievementArgs = {
   data: AchievementInput;
   id: Scalars['ID'];
@@ -1949,12 +1889,6 @@ export type MutationUpdateAchievementArgs = {
 export type MutationUpdateAttendanceArgs = {
   data: AttendanceInput;
   id: Scalars['ID'];
-};
-
-export type MutationUpdateCodacOverflowCommentArgs = {
-  codacOverflowId: Scalars['ID'];
-  comment: Scalars['String'];
-  commentId: Scalars['ID'];
 };
 
 export type MutationUpdateCodacOverflowCommentArgs = {
@@ -1996,19 +1930,6 @@ export type MutationUpdateHolidayArgs = {
 export type MutationUpdateJobPostArgs = {
   data: JobPostInput;
   id: Scalars['ID'];
-};
-
-export type MutationUpdateLmSfeedbackArgs = {
-  comment: Scalars['String'];
-  feedbackId: Scalars['ID'];
-  lmsFeedbackId: Scalars['ID'];
-  rating: Scalars['Int'];
-};
-
-export type MutationUpdateLmSfeedbackCommentArgs = {
-  comment: Scalars['String'];
-  commentId: Scalars['ID'];
-  lmsFeedbackId: Scalars['ID'];
 };
 
 export type MutationUpdateLmSfeedbackArgs = {

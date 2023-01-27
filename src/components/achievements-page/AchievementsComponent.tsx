@@ -17,39 +17,39 @@ import {
   AchievementEntity,
   AchievementEntityResponse,
   ComponentAchievementAchievement,
+  Maybe,
 } from 'cabServer/global/__generated__/types';
 import ChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
 import DotsHorizontalCircleOutline from 'mdi-material-ui/DotsHorizontalCircleOutline';
 import React, { useEffect, useState } from 'react';
 
-type Props = {};
-
 const AchievementsComponent = ({
   achievements,
 }: {
-  achievements: ComponentAchievementAchievement[];
+  achievements: Maybe<ComponentAchievementAchievement>[];
 }) => {
   const theme = useTheme();
   const [collapse, setCollapse] = React.useState<boolean>(true);
   const [unlockedAchievements, setUnlockedAchievements] = useState<
-    ComponentAchievementAchievement[]
+    Maybe<ComponentAchievementAchievement>[]
   >([]);
   const [lockedAchievements, setLockedAchievements] = useState<
-    ComponentAchievementAchievement[]
+    Maybe<ComponentAchievementAchievement>[]
   >([]);
   const [points, setPoints] = useState<number>(0);
 
   useEffect(() => {
-    const unlockedAchievementsArray = achievements.filter((achievement) =>
-      Boolean(achievement.unlocked),
-    );
-    setUnlockedAchievements(unlockedAchievementsArray),
+    const unlockedAchievementsArray =
+      achievements?.filter((achievement) => Boolean(achievement?.unlocked)) ||
+      [];
+    unlockedAchievementsArray &&
+      setUnlockedAchievements(unlockedAchievementsArray),
       console.log('unlockedAchievements', unlockedAchievements);
 
-    const lockedAchievementsArray = achievements.filter((achievement) =>
-      Boolean(!achievement.unlocked),
-    );
-    setLockedAchievements(lockedAchievementsArray),
+    const lockedAchievementsArray =
+      achievements?.filter((achievement) => Boolean(!achievement?.unlocked)) ||
+      [];
+    lockedAchievementsArray && setLockedAchievements(lockedAchievementsArray),
       console.log('lockedAchievements', lockedAchievements);
 
     const sumPoints = () => {
@@ -129,15 +129,17 @@ const AchievementsComponent = ({
           >
             {collapse ? (
               <AvatarGroup max={5}>
-                {unlockedAchievements &&
+                {unlockedAchievements?.length &&
                   unlockedAchievements.map(
-                    (achievementEntity: AchievementEntity, i: number) => (
+                    (
+                      achievementEntity: ComponentAchievementAchievement | null,
+                    ) => (
                       <Avatar
-                        key={achievementEntity.id}
+                        key={achievementEntity?.id}
                         alt="AchievementBadge"
                         src={
-                          achievementEntity.achievement?.data?.attributes?.badge
-                            ?.data?.attributes?.url || ''
+                          achievementEntity?.achievement?.data?.attributes
+                            ?.badge?.data?.attributes?.url || ''
                         }
                       ></Avatar>
                     ),
@@ -155,13 +157,15 @@ const AchievementsComponent = ({
               >
                 {unlockedAchievements &&
                   unlockedAchievements.map(
-                    (achievementEntity: AchievementEntity, i: number) => (
+                    (
+                      achievementEntity: ComponentAchievementAchievement | null,
+                    ) => (
                       <Avatar
-                        key={achievementEntity.id}
+                        key={achievementEntity?.id}
                         alt="AchievementBadge"
                         src={
-                          achievementEntity.achievement?.data?.attributes?.badge
-                            ?.data?.attributes?.url || ''
+                          achievementEntity?.achievement?.data?.attributes
+                            ?.badge?.data?.attributes?.url || ''
                         }
                       ></Avatar>
                     ),
