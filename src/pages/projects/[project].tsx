@@ -17,6 +17,7 @@ import { getPageMdx, mdxFilesPaths } from '../../lib/markdown';
 import { PageData } from '../lms/lms';
 
 const Projects = ({ pageData }: { pageData: PageData }) => {
+  console.log('pageData', pageData);
   return (
     <Box
       sx={{
@@ -37,7 +38,6 @@ export const getStaticProps = async ({
 }: {
   params: { project: string };
 }) => {
-  console.log('project', params.project);
   const pageData = await getPageMdx(params.project, PROJECTS_PATH, '/assets/');
 
   return { props: { pageData } };
