@@ -25,3 +25,34 @@ query getAchievements {
     }
   }
 }
+
+query studentachievements($userid: ID!) {
+  students(filters: { user: { id: { eq: $userid } } }) {
+    data {
+      id
+      attributes {
+        start_date
+        achievements {
+          unlocked
+          unlockedOn
+          achievement {
+            data {
+              id
+              attributes {
+                name
+                course_date
+                badge {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
