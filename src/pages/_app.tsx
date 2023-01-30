@@ -2,6 +2,7 @@
 // import 'react-perfect-scrollbar/dist/css/styles.css'
 // ** Global css styles
 import '../styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { ApolloProvider } from '@apollo/client';
 import type { EmotionCache } from '@emotion/cache';
@@ -17,6 +18,7 @@ import Router from 'next/router';
 // // ** Loader Import
 import NProgress from 'nprogress';
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import favicon from '../../public/favicon.ico';
 import { AuthProvider } from '../contexts/authContext';
@@ -84,36 +86,39 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
   // const getLayout = Component.getLayout ?? ((page) => <MainLayout loading={loading} >{page}</MainLayout>)
 
   return (
-    <ApolloProvider client={apolloClient}>
-      <AuthProvider>
-        <CacheProvider value={emotionCache}>
-          <CssBaseline />
-          <Head>
-            <title>CODAC</title>
-            <meta
-              name="Code Academy Berlin Community App"
-              content={`CODAC – Code Academy Berlin Community App`}
-            />
-            <link rel="shortcut icon" href={favicon.src} />
-            <meta
-              name="viewport"
-              content="initial-scale=1, width=device-width"
-            />
-          </Head>
-          <SettingsProvider>
-            <SettingsConsumer>
-              {({ settings }) => {
-                return (
-                  <ThemeComponent settings={settings}>
-                    {getLayout(<Component {...pageProps} />, loading)}
-                  </ThemeComponent>
-                );
-              }}
-            </SettingsConsumer>
-          </SettingsProvider>
-        </CacheProvider>
-      </AuthProvider>
-    </ApolloProvider>
+    <>
+      <ToastContainer />
+      <ApolloProvider client={apolloClient}>
+        <AuthProvider>
+          <CacheProvider value={emotionCache}>
+            <CssBaseline />
+            <Head>
+              <title>CODAC</title>
+              <meta
+                name="Code Academy Berlin Community App"
+                content={`CODAC – Code Academy Berlin Community App`}
+              />
+              <link rel="shortcut icon" href={favicon.src} />
+              <meta
+                name="viewport"
+                content="initial-scale=1, width=device-width"
+              />
+            </Head>
+            <SettingsProvider>
+              <SettingsConsumer>
+                {({ settings }) => {
+                  return (
+                    <ThemeComponent settings={settings}>
+                      {getLayout(<Component {...pageProps} />, loading)}
+                    </ThemeComponent>
+                  );
+                }}
+              </SettingsConsumer>
+            </SettingsProvider>
+          </CacheProvider>
+        </AuthProvider>
+      </ApolloProvider>
+    </>
   );
 };
 
