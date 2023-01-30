@@ -9,10 +9,11 @@ import {
   Typography,
 } from '@mui/material';
 import { useAddCommentMutation } from 'cabServer/mutations/__generated__/addCommentLMSPages';
-import { useUpdateLmsFeedbackCommentMutation } from 'cabServer/mutations/__generated__/updateCommentLMSPages';
+// import { useUpdateLmsFeedbackCommentMutation } from 'cabServer/mutations/__generated__/updateCommentLMSPages';
 import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsComments';
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLMSFeedback';
 
 type LMSfeedbackProps = {
   slug: string;
@@ -29,12 +30,16 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
   // console.log('comments', lmsFeedback);
 
   // create first comment for a page
-  const [createComment, { data: mutationData, error: mutationError }] =
+  const [createComment, { data:  creatData, error: createError}] =
+    useCreateLmsFeedbackMutation();
+
+  // create comment for a page with existing ID for slug
+  const [addComment, { data: mutationData, error: mutationError }] =
     useAddCommentMutation();
 
-  // add comments to a page
-  const [updateComments, { data: updateData, error: updateError }] =
-    useUpdateLmsFeedbackCommentMutation();
+  // update a comment:
+  //   const [updateComments, { data: updateData, error: updateError }] =
+  //     useUpdateLmsFeedbackCommentMutation();
 
   const [message, setMessage] = useState<string>('');
 
@@ -47,21 +52,20 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
 
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    // CASE  1: if feedback for slug/id && commentId exists then updateComment:
+    // CASE  1: if feedback for slug/id exists then addComment:
     if (lmsFeedback?.id) {
       try {
         const id = lmsFeedback.id;
-        const { data } = await createComment({
+        const { data } = await addComment({
           variables: {
             lmsFeedbackId: id,
             comment: message,
           },
         });
-        //   const result = await res.json();
+
         console.log('data', data);
         if (data) {
           const response = data.addLMSfeedbackComment;
-
           if (response?.success) {
             console.log('response', response);
 
@@ -76,6 +80,23 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       }
+    } else {
+      // CASE  2: if no feedback for slug/id exists then createComment:
+      try {
+       const { data } = await createComment({
+          variables: {
+           message: message,
+            slug: slug
+          },
+        });
+    setMessage('');
+            toast.success('Your comment has  been submitted', {
+              position: toast.POSITION.BOTTOM_RIGHT,
+            });
+      } catch (e) {
+        ({ error: 'e.message' });
+      }
+    }
     }
   };
 

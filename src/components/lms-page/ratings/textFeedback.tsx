@@ -8,7 +8,8 @@ import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useAddRatingMutation } from 'cabServer/mutations/__generated__/addRatingLMSPages';
-import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateRatingLMSPages';
+import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLMSFeedback';
+// import { useUpdateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/updateRatingLMSPages';
 import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsComments';
 import * as React from 'react';
 import { MouseEvent, useState } from 'react';
@@ -49,91 +50,56 @@ export default function TextFeedback({
 
   //  function to create a new rating of page
   const [createRating, { data: createData, error: createError }] =
+    useCreateLmsFeedbackMutation();
+
+  // author can update/change his rating:
+  const [addRating, { data: updateData, error: updateError }] =
     useAddRatingMutation();
 
-  //  function to update rating of page
-  const [updateRating, { data: updateData, error: updateError }] =
-    useUpdateLmsFeedbackMutation();
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
+    // CASE  1: if rating for slug/id exists then addRating:
+    if (lmsFeedback?.id) {
+      try {
+        const id = lmsFeedback.id;
+        const res = addRating({
+          variables: {
+            lmsFeedbackId: id,
+            comment: message,
+            rating: rating,
+          },
+        });
+        setMessage('');
+        setOpen(false);
+        toast.success('Your comment has  been submitted', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      } catch (e) {
+        ({ error: 'e.message' });
+      }
+      // CASE  2: if no rating for slug/id exists then createRating:
+    } else {
+      try {
+        const res = createRating({
+          variables: {
+            feedbacks: {
+              comment: message,
+              rating: rating,
+            },
+            slug: slug,
+          },
+        });
+        // console.log('res', res);
+        setMessage('');
+        setOpen(false);
+        toast.success('Your feedback  been submitted', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      } catch (e) {
+        ({ error: 'e.message' });
+      }
+    }
+  };
 
-  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {};
-  //CASE 1: update rating if lmsFeedback?.id and if feedbacks?.id exist
-  // if (lmsFeedback?.id && lmsFeedback?.attributes?.feedbacks?.id) {
-  //   try {
-  //     // const now = new Date();
-  //     const id = lmsFeedback.id;
-  //     const feedbackId = lmsFeedback.attributes.feedbacks.id;
-  //     const res = updateRating({
-  //       variables: {
-  //         lmsFeedbackId: id,
-  //         feedbackId: feedbackId,
-  //         comment: message,
-  //         rating: rating,
-  //       },
-  //     });
-  //     if (success === true) {
-  //       setMessage('');
-  //       setOpen(false);
-  //       toast.success('message', {
-  //         position: toast.POSITION.BOTTOM_RIGHT,
-  //       });
-  //     }
-  //   } catch (e) {
-  //     ({ error: 'e.message' });
-  //   }
-  // } else {
-  //       //CASE 2: update rating if lmsFeedback?.id exists but no feedbacks?.id
-  //      if (lmsFeedback?.id && lmsFeedback?.attributes?.feedbacks?.id === null) {
-  //   try {
-  //     const id = lmsFeedback?.id;
-  //     const res = createRating({
-  //       variables: {
-  //         lmsFeedbackId: id,
-  //         comment: message,
-  //         rating: rating,
-  //         //   timestamp: now,
-  //       },
-  //     });
-  //     // console.log('res', res);
-  //     setMessage('');
-  //     setOpen(false);
-  //     toast.success(message, {
-  //       position: toast.POSITION.BOTTOM_RIGHT,
-  //     });
-  //   } catch (e) {
-  //     // ({ error: 'e.message' });
-  //     toast.error(message, {
-  //       position: toast.POSITION.BOTTOM_RIGHT,
-  //     });
-  //   }  else {
-  //       //CASE 3: there is no lmsFeedback?.id
-  //   try {
-  //     const res = createRating({
-  //       variables: {
-  //         comment: message,
-  //         rating: rating,
-  //         //   timestamp: now,
-  //       },
-  //     });
-  //     // console.log('res', res);
-  //     setMessage('');
-  //     setOpen(false);
-  //     toast.success(message, {
-  //       position: toast.POSITION.BOTTOM_RIGHT,
-  //     });
-  //   } catch (e) {
-  //     // ({ error: 'e.message' });
-  //     toast.error(message, {
-  //       position: toast.POSITION.BOTTOM_RIGHT,
-  //     });
-  //   }
-  // }
-  // };
-  // const label = (
-  //   <p>
-  //     Please take a moment to help us improve the content of this page. <br />
-  //     Write your feedback here or leave this field empty and click on ´Submit´.
-  //   </p>
-  // );
   return (
     <Dialog open={open} onClose={handleClose} fullWidth={true}>
       <DialogTitle>
