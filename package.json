@@ -58,6 +58,7 @@
     "react-particles": "^2.6.0",
     "react-perfect-scrollbar": "^1.5.8",
     "react-popper": "^2.3.0",
+    "react-toastify": "^9.1.1",
     "rehype-img-size": "^1.0.1",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
