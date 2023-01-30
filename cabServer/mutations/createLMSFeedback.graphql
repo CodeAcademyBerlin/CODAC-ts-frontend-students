@@ -1,0 +1,45 @@
+mutation createLMSFeedback(
+  $slug: String
+  $comments: [ComponentCommentsCommentsInput]
+  $feedbacks: [ComponentFeedbackFeedbackInput]
+) {
+  createLmsFeedback(
+    data: { comments: $comments, slug: $slug, feedbacks: $feedbacks }
+  ) {
+    data {
+      id
+      attributes {
+        slug
+        createdAt
+        updatedAt
+        comments {
+          message
+          timestamp
+          id
+          author {
+            data {
+              id
+              attributes {
+                username
+              }
+            }
+          }
+        }
+        feedbacks {
+          message
+          rating
+          timestamp
+          id
+          author {
+            data {
+              id
+              attributes {
+                username
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
