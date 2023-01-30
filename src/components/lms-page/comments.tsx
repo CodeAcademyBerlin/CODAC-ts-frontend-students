@@ -9,11 +9,11 @@ import {
   Typography,
 } from '@mui/material';
 import { useAddCommentMutation } from 'cabServer/mutations/__generated__/addCommentLMSPages';
+import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLMSFeedback';
 // import { useUpdateLmsFeedbackCommentMutation } from 'cabServer/mutations/__generated__/updateCommentLMSPages';
 import { useGetLmsFeedbacksQuery } from 'cabServer/queries/__generated__/lmsComments';
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useCreateLmsFeedbackMutation } from 'cabServer/mutations/__generated__/createLMSFeedback';
 
 type LMSfeedbackProps = {
   slug: string;
@@ -30,7 +30,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
   // console.log('comments', lmsFeedback);
 
   // create first comment for a page
-  const [createComment, { data:  creatData, error: createError}] =
+  const [createComment, { data: creatData, error: createError }] =
     useCreateLmsFeedbackMutation();
 
   // create comment for a page with existing ID for slug
@@ -83,29 +83,22 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
     } else {
       // CASE  2: if no feedback for slug/id exists then createComment:
       try {
-       const { data } = await createComment({
+        const { data } = await createComment({
           variables: {
-           message: message,
-            slug: slug
+            comments: { message: message },
+            slug: slug,
           },
         });
-    setMessage('');
-            toast.success('Your comment has  been submitted', {
-              position: toast.POSITION.BOTTOM_RIGHT,
-            });
+        setMessage('');
+        toast.success('Your comment has  been submitted', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+        refetch();
       } catch (e) {
         ({ error: 'e.message' });
       }
     }
-    }
   };
-
-  // refetch comments
-  useEffect(() => {
-    refetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lmsFeedback]);
-  console.log('feedback', lmsFeedback);
 
   return (
     <>

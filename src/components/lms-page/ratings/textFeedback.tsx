@@ -70,7 +70,7 @@ export default function TextFeedback({
         });
         setMessage('');
         setOpen(false);
-        toast.success('Your comment has  been submitted', {
+        toast.success('Your feedback has  been submitted', {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       } catch (e) {
@@ -82,7 +82,7 @@ export default function TextFeedback({
         const res = createRating({
           variables: {
             feedbacks: {
-              comment: message,
+              message: message,
               rating: rating,
             },
             slug: slug,
