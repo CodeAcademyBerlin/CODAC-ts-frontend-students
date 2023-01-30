@@ -186,14 +186,16 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
                     )}
 
                     <p style={{ textAlign: 'left' }}>
-                      {lmsFeedback.attributes?.comments?.map(
+                      {comment?.message}
+                      {/* {lmsFeedback.attributes?.comments?.map(
                         (comment) => comment?.message,
-                      )}
+                      )} */}
                     </p>
                     <p style={{ textAlign: 'left', color: 'gray' }}>
-                      {lmsFeedback.attributes?.comments?.map((comment) =>
+                      {new Date(comment?.timestamp).toDateString()}
+                      {/* {lmsFeedback.attributes?.comments?.map((comment) =>
                         new Date(comment?.timestamp).toDateString(),
-                      )}
+                      )} */}
                     </p>
                   </Grid>
                 </Grid>
