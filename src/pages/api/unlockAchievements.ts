@@ -1,7 +1,7 @@
 import { UnlockAchievementsDocument } from 'cabServer/mutations/__generated__/achievements';
 import {
   GetAchievementsDocument,
-  StudentachievementsDocument,
+  StudentAchievementsDocument,
 } from 'cabServer/queries/__generated__/achievements';
 import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
 import { request } from 'http';
@@ -19,9 +19,9 @@ const unlockAchievements: NextApiHandler = async (req, res) => {
   try {
     const client = initializeApollo(null, req);
     const { data } = await client.query({
-      query: StudentachievementsDocument,
+      query: StudentAchievementsDocument,
       variables: {
-        userid: req.body.userid,
+        userId: req.body.userid,
       },
     });
     const student = data.students.data[0];

@@ -1,7 +1,7 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const GetAchievementsDocument = gql`
@@ -13,6 +13,16 @@ export const GetAchievementsDocument = gql`
           badge {
             data {
               attributes {
+                url
+                name
+                alternativeText
+                width
+                height
+                hash
+                mime
+                size
+                previewUrl
+                provider
                 url
               }
             }
@@ -83,14 +93,15 @@ export type GetAchievementsQueryResult = Apollo.QueryResult<
   GetAchievementsQuery,
   GetAchievementsQueryVariables
 >;
-export const StudentachievementsDocument = gql`
-  query studentachievements($userid: ID!) {
-    students(filters: { user: { id: { eq: $userid } } }) {
+export const StudentAchievementsDocument = gql`
+  query studentAchievements($userId: ID) {
+    students(filters: { user: { id: { eq: $userId } } }) {
       data {
         id
         attributes {
           start_date
           achievements {
+            id
             unlocked
             unlockedOn
             achievement {
@@ -102,6 +113,16 @@ export const StudentachievementsDocument = gql`
                   badge {
                     data {
                       attributes {
+                        url
+                        name
+                        alternativeText
+                        width
+                        height
+                        hash
+                        mime
+                        size
+                        previewUrl
+                        provider
                         url
                       }
                     }
@@ -117,54 +138,54 @@ export const StudentachievementsDocument = gql`
 `;
 
 /**
- * __useStudentachievementsQuery__
+ * __useStudentAchievementsQuery__
  *
- * To run a query within a React component, call `useStudentachievementsQuery` and pass it any options that fit your needs.
- * When your component renders, `useStudentachievementsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useStudentAchievementsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStudentAchievementsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useStudentachievementsQuery({
+ * const { data, loading, error } = useStudentAchievementsQuery({
  *   variables: {
- *      userid: // value for 'userid'
+ *      userId: // value for 'userId'
  *   },
  * });
  */
-export function useStudentachievementsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    StudentachievementsQuery,
-    StudentachievementsQueryVariables
+export function useStudentAchievementsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    StudentAchievementsQuery,
+    StudentAchievementsQueryVariables
   >,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<
-    StudentachievementsQuery,
-    StudentachievementsQueryVariables
-  >(StudentachievementsDocument, options);
+    StudentAchievementsQuery,
+    StudentAchievementsQueryVariables
+  >(StudentAchievementsDocument, options);
 }
-export function useStudentachievementsLazyQuery(
+export function useStudentAchievementsLazyQuery(
   baseOptions?: Apollo.LazyQueryHookOptions<
-    StudentachievementsQuery,
-    StudentachievementsQueryVariables
+    StudentAchievementsQuery,
+    StudentAchievementsQueryVariables
   >,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useLazyQuery<
-    StudentachievementsQuery,
-    StudentachievementsQueryVariables
-  >(StudentachievementsDocument, options);
+    StudentAchievementsQuery,
+    StudentAchievementsQueryVariables
+  >(StudentAchievementsDocument, options);
 }
-export type StudentachievementsQueryHookResult = ReturnType<
-  typeof useStudentachievementsQuery
+export type StudentAchievementsQueryHookResult = ReturnType<
+  typeof useStudentAchievementsQuery
 >;
-export type StudentachievementsLazyQueryHookResult = ReturnType<
-  typeof useStudentachievementsLazyQuery
+export type StudentAchievementsLazyQueryHookResult = ReturnType<
+  typeof useStudentAchievementsLazyQuery
 >;
-export type StudentachievementsQueryResult = Apollo.QueryResult<
-  StudentachievementsQuery,
-  StudentachievementsQueryVariables
+export type StudentAchievementsQueryResult = Apollo.QueryResult<
+  StudentAchievementsQuery,
+  StudentAchievementsQueryVariables
 >;
 export type GetAchievementsQueryVariables = Types.Exact<{
   [key: string]: never;
@@ -187,7 +208,19 @@ export type GetAchievementsQuery = {
           __typename?: 'UploadFileEntityResponse';
           data?: {
             __typename?: 'UploadFileEntity';
-            attributes?: { __typename?: 'UploadFile'; url: string } | null;
+            attributes?: {
+              __typename?: 'UploadFile';
+              url: string;
+              name: string;
+              alternativeText?: string | null;
+              width?: number | null;
+              height?: number | null;
+              hash: string;
+              mime: string;
+              size: number;
+              previewUrl?: string | null;
+              provider: string;
+            } | null;
           } | null;
         } | null;
         course?: {
@@ -202,11 +235,11 @@ export type GetAchievementsQuery = {
   } | null;
 };
 
-export type StudentachievementsQueryVariables = Types.Exact<{
-  userid: Types.Scalars['ID'];
+export type StudentAchievementsQueryVariables = Types.Exact<{
+  userId?: Types.InputMaybe<Types.Scalars['ID']>;
 }>;
 
-export type StudentachievementsQuery = {
+export type StudentAchievementsQuery = {
   __typename?: 'Query';
   students?: {
     __typename?: 'StudentEntityResponseCollection';
@@ -218,6 +251,7 @@ export type StudentachievementsQuery = {
         start_date?: any | null;
         achievements?: Array<{
           __typename?: 'ComponentAchievementAchievement';
+          id: string;
           unlocked?: boolean | null;
           unlockedOn?: any | null;
           achievement?: {
@@ -236,6 +270,15 @@ export type StudentachievementsQuery = {
                     attributes?: {
                       __typename?: 'UploadFile';
                       url: string;
+                      name: string;
+                      alternativeText?: string | null;
+                      width?: number | null;
+                      height?: number | null;
+                      hash: string;
+                      mime: string;
+                      size: number;
+                      previewUrl?: string | null;
+                      provider: string;
                     } | null;
                   } | null;
                 } | null;

@@ -7,6 +7,16 @@ query getAchievements {
           data {
             attributes {
               url
+              name
+              alternativeText
+              width
+              height
+              hash
+              mime
+              size
+              previewUrl
+              provider
+              url
             }
           }
         }
@@ -26,13 +36,14 @@ query getAchievements {
   }
 }
 
-query studentachievements($userid: ID!) {
-  students(filters: { user: { id: { eq: $userid } } }) {
+query studentAchievements($userId: ID) {
+  students(filters: { user: { id: { eq: $userId } } }) {
     data {
       id
       attributes {
         start_date
         achievements {
+          id
           unlocked
           unlockedOn
           achievement {
@@ -44,6 +55,16 @@ query studentachievements($userid: ID!) {
                 badge {
                   data {
                     attributes {
+                      url
+                      name
+                      alternativeText
+                      width
+                      height
+                      hash
+                      mime
+                      size
+                      previewUrl
+                      provider
                       url
                     }
                   }

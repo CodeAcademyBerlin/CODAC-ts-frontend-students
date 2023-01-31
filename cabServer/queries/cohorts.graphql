@@ -54,3 +54,33 @@ query getCohorts {
     }
   }
 }
+query studentCohort($userId: ID) {
+  students(filters: { user: { id: { eq: $userId } } }) {
+    data {
+      id
+      attributes {
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+              students {
+                data {
+                  attributes {
+                    main_course {
+                      data {
+                        attributes {
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

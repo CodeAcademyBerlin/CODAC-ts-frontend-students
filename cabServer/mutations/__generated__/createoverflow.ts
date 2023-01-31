@@ -1,7 +1,7 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const CreateCodacOverflowDocument = gql`
@@ -25,20 +25,8 @@ export const CreateCodacOverflowDocument = gql`
         publishedAt: $publishedAt
       }
     ) {
-      createCodacOverflow(
-        data: {
-          slug: $slug
-          title: $title
-          description: $description
-          date: $date
-          author: $author
-          course: $course
-          publishedAt: $publishedAt
-        }
-      ) {
-        data {
-          id
-        }
+      data {
+        id
       }
     }
   }
