@@ -6,6 +6,7 @@ metaDescription: 'Web Development course'
 access: web
 prev: 'web/Module-1/Project-1'
 next: 'web/Module-1/Project-1/Sprint-2'
+tags: ['html', 'css', 'preattier', 'beautify', 'project-1', 'sprint-1']
 ---
 
 ## Epic 1: Introduction to HTML and CSS
