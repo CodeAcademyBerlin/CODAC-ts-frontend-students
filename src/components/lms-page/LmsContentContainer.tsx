@@ -7,6 +7,8 @@ import React, { useEffect } from 'react';
 
 import mdxComponents from '../../components/mdx';
 import styles from '../../styles/LmsContentContainer.module.css';
+import LmsSearchBar from '../lms-search/LmsSearchBar';
+import SearchResults from '../lms-search/SearchResults';
 
 export const LmsContent = styled('div')`
   max-width: 50%;
@@ -122,6 +124,7 @@ function LmsContentContainer({
 
   return (
     <LmsContent>
+      <LmsSearchBar />
       <MDXRemote {...content} components={mdxComponents} />
       <div
         style={{
