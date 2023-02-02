@@ -22,6 +22,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.1",
     "@apollo/link-error": "^2.0.0-beta.3",
+    "@asseinfo/react-kanban": "^2.2.0",
     "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
