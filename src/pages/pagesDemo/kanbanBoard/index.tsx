@@ -2,11 +2,11 @@ import { Divider, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/material/styles';
 import axios from 'axios';
 import React, { useEffect } from 'react';
+import { BoardsList } from 'src/componentsDemo/kanban-board/BoardColumn';
 // import { getTasks } from '../redux/actions/tasks';
 // import { connect } from 'react-redux';
 import { BoardFooter } from 'src/componentsDemo/kanban-board/BoardFooter';
 import { BoardHeader } from 'src/componentsDemo/kanban-board/BoardHeader';
-import { BoardsList } from 'src/componentsDemo/kanban-board/BoardList';
 
 const url = '/db.json';
 
