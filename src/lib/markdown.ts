@@ -55,7 +55,6 @@ export async function getPageMdx(
 }
 export async function getFrontmatters(dir: string) {
   const filePaths = mdxFilesPaths(dir);
-  console.log(filePaths);
   const frontmatters = filePaths.map((filePath) => {
     const fullPath = path.join(dir, filePath);
     const content = fs.readFileSync(fullPath, 'utf8');
