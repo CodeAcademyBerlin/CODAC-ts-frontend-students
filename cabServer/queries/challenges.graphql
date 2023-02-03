@@ -1,0 +1,9 @@
+query getChallenges {
+  codingChallenges {
+    data {
+      attributes {
+        title
+      }
+    }
+  }
+}
