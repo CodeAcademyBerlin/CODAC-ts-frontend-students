@@ -39,7 +39,7 @@ export async function getPageMdx(
   const mdxSource = await serialize(contentHtml, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
-      development: false,
+      // development: false,
       //   remarkPlugins: [],
       // rehypePlugins: [[imageSize, { dir: "public" }]],
       // },
