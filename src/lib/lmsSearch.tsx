@@ -3,9 +3,14 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 
-interface frontMatter {
+export interface frontMatter {
     path: string,
-    data: object,
+    data: {
+        title: string,
+        metaTitle: string,
+        metaDescription: string,
+        access: string
+    },
     tags: string[]
 }
 

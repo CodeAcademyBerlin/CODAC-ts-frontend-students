@@ -14,6 +14,7 @@ tags:
     'froggy-game',
     'git',
     'github',
+    'module-1',
     'project-1',
     'sprint-2',
   ]

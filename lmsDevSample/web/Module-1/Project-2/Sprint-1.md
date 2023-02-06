@@ -6,6 +6,16 @@ metaDescription: 'Web Development course'
 access: web
 prev: 'web/Module-1/Project-2'
 next: 'web/Module-1/Project-2/Sprint-2'
+tags:
+  [
+    'js-excercise',
+    'js-excercises',
+    'javascript-exercise',
+    'javascript-exercises',
+    'project-2',
+    'module-1',
+    'sprint-1',
+  ]
 ---
 
 ## Epic 1: JavaScript Basics

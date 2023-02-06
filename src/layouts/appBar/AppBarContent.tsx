@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Magnify from 'mdi-material-ui/Magnify';
 import Link from 'next/link';
+import LmsSearchBar from 'src/components/lms-search/LmsSearchBar';
 
 import { Settings } from '../../contexts/settingsContext';
 import NotificationDropdown from '../auth/NotificationDropdown';
@@ -34,6 +35,7 @@ const AppBarContent = () => {
         className="actions-left"
         sx={{ mr: 2, display: 'flex', alignItems: 'center' }}
       >
+        <LmsSearchBar />
         {/* Search bar
         <TextField
           size='small'

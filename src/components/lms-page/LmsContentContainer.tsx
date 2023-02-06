@@ -124,7 +124,6 @@ function LmsContentContainer({
 
   return (
     <LmsContent>
-      <LmsSearchBar />
       <MDXRemote {...content} components={mdxComponents} />
       <div
         style={{

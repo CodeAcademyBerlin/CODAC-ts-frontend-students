@@ -4,11 +4,10 @@ import React, { useState } from 'react';
 import styles from './search.module.css';
 
 interface SearchInputProps {
-    state: Array<string>,
     setState: React.Dispatch<React.SetStateAction<Array<string>>>,
 }
 
-export default function SearchInput({ state, setState }: SearchInputProps) {
+export default function SearchInput({ setState }: SearchInputProps) {
     const [keyword, setKeyword] = useState<string>("");
     let prova: string;
 
@@ -17,8 +16,8 @@ export default function SearchInput({ state, setState }: SearchInputProps) {
     };
     const keyDown = (e: any) => {
         if (e.key === "Enter" && keyword !== "") {
-            prova = keyword;
-            setState(old => [...old, prova]);
+            prova = keyword.toLocaleLowerCase().replace(' ', '-');
+            setState(current => [...current, prova]);
             setKeyword("")
         };
     };

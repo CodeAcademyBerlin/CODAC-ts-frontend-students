@@ -5,45 +5,33 @@ import React, { useState } from 'react';
 import Keywords from './Keywords';
 import styles from './search.module.css';
 import SearchInput from './SearchInput';
-import SearchResults from './SearchResults';
 
 function LmsSearchBar() {
     const [keywordArray, setKeywordArray] = useState<Array<string>>([]);
     const router = useRouter();
+    const [filter, setFilter] = useState<string>("general");
 
-    const filterInputs = () => {
-        var myHeaders = new Headers();
-        // myHeaders.append("input", keywordArray.toString());
-        // myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    const radioHandler = (e: any) => {
+        setFilter(e.target.value);
+    };
 
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("input", keywordArray.toString());
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded
-        };
-
-        fetch("https://localhost:3000/api/lms-search", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-    }
+    const goToResults = () => {
+        const keywords: string = keywordArray.toString().replace(',', '_');
+        router.push(`/lms/search/${filter}-${keywords}`);
+    };
 
     return (
         <>
             <div>
-                {/* <SearchInput state={keywordArray} setState={setKeywordArray} /><button className={styles.searchButton} onClick={() => { router.push("./SearchResults"); }}>Go</button> */}
-                <SearchInput state={keywordArray} setState={setKeywordArray} /><button className={styles.searchButton} onClick={filterInputs}>Go</button>
-
+                <SearchInput setState={setKeywordArray} /><button className={styles.searchButton} onClick={goToResults}>Go</button>
                 {keywordArray.length > 0 && <Keywords keywordArray={keywordArray} setKeywordArray={setKeywordArray} />}
                 <div>
-                    <input type="checkbox" name="webdev" id="webdev" />Web Dev
-                    <input type="checkbox" name="data" id="data" />Data
+                    <input type="radio" name="filter" id="general" value="general" onChange={radioHandler} />General
+                    <input type="radio" name="filter" id="web" value="web" onChange={radioHandler} />Web Dev
+                    <input type="radio" name="filter" id="data" value="data" onChange={radioHandler} />Data
+                    <input type="radio" name="filter" id="carrer" value="carrer" onChange={radioHandler} />Carrer
                 </div>
             </div>
-            <SearchResults />
         </>
     );
 }

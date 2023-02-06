@@ -50,3 +50,49 @@
     float: right;
     cursor: pointer;
 }
+
+.resultDiv {
+    height: 100px;
+    width: 700px;
+    margin-left: 10px;
+    border: 2px solid #26a69a;
+    background-color: #26a69a;
+    border-radius: 15px 6px;
+    padding-left: 10px;
+    line-height: 15px;
+}
+.resultDiv > h1{
+    font-size: large;
+    color: #F4F5FA;
+}
+.resultDiv > h3{
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: medium;
+    color: #F4F5FA;
+}
+.resultDiv > p{
+    margin-left: 40px;
+    font-size: small;
+    color: #F4F5FA;
+}
+
+.tagsDiv{
+    height: 100px;
+    padding: 10px;
+    background-color: #26a69a;
+    font-size: small;
+    font-style: oblique;
+    width: fit-content;
+    color: #F4F5FA;
+    font-weight: bold;
+    border-radius: 6px 15px;
+    text-align: center;
+}
+
+.flexDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}

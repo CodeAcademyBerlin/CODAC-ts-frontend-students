@@ -4,14 +4,15 @@ import { filterInputs, getAllFrontmatters } from 'src/lib/lmsSearch';
 
 export default async function searchInput(req: any, res: any) {
   const { input, filter } = req.body;
-  // let input = ['html', 'css']
-  // console.log(req.body)
-  // const input2 = input.parse();
-  console.log(input)
-  const frontMatters = await getAllFrontmatters(LMS_CONTENT_PATH);
+  const inputArray = input.split('_');
+  let filterSet = ""
+  if (filter !== "general") {
+    filterSet = filter;
+  };
+  const frontMatters = await getAllFrontmatters(LMS_CONTENT_PATH, filterSet);
   const filteredMatters: Array<any> = [];
   for (let i = 0; i < frontMatters.items.length; i++){
-    const inputs = filterInputs(frontMatters.items[i], input);
+    const inputs = filterInputs(frontMatters.items[i], inputArray);
     if (inputs) {
       filteredMatters.push(inputs);
     };
