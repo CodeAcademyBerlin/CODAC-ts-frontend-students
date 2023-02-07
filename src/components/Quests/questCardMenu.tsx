@@ -3,10 +3,10 @@ import { ReactEventHandler, useRef } from 'react';
 
 import styles from './quests.module.css';
 
-const QuestCard = () => {
+const QuestCardMenu = () => {
   const parent = useRef(null);
   const handleOpenQuest = (e: React.BaseSyntheticEvent) => {
-    console.log(e.target.par);
+    console.log('this is the openQuest', e.target);
   };
   const handleClick = () => {
     console.log(parent);
@@ -47,4 +47,4 @@ const QuestCard = () => {
   );
 };
 
-export default QuestCard;
+export default QuestCardMenu;

@@ -1,7 +1,7 @@
-import QuestCard from 'src/components/Quests/questCard';
+import QuestCardMenu from 'src/components/Quests/questCardMenu';
 
 const Quests = () => {
-  return <QuestCard />;
+  return <QuestCardMenu />;
 };
 
 export default Quests;

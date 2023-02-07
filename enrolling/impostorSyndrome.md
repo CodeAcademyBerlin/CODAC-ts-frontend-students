@@ -1,3 +1,10 @@
+---
+name: Imposter syndrome
+description:
+github_username: CodeAcademyBerlin
+github_repo: CODAC-ts-frontend-students
+---
+
 # The Imposter Syndrome
 
 <hr>
