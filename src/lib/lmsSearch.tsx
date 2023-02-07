@@ -37,7 +37,7 @@ export function filterInputs(frontMatter: frontMatter, input: string[]) {
     };
 };
 
-export async function getAllFrontmatters(dir: string, subDirPath?: string) {
+export async function getAllFrontmatters(dir: string, subDirPath: string) {
     const items: Array<frontMatter> = [];
 
     const getFilesRecursively = (relativeDir: string) => {
@@ -66,7 +66,7 @@ export async function getAllFrontmatters(dir: string, subDirPath?: string) {
             }
         });
     };
-    getFilesRecursively(subDirPath || '');
+    getFilesRecursively(subDirPath);
 
     return { items };
 };

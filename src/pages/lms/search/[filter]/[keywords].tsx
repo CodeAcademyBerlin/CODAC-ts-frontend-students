@@ -28,7 +28,7 @@ export default function SearchResults() {
         fetch("/api/lms-search", requestOptions)
             .then(response => response.json())
             .then(result => {
-                setSearchResults(result.filteredMatters);
+                setSearchResults(result.filteredMatters.sort((a: frontMatter, b: frontMatter) => b.tags.length - a.tags.length));
                 console.log(result.filteredMatters);
             })
             .catch(error => console.log('error', error));
@@ -46,11 +46,10 @@ export default function SearchResults() {
     return (
         <>
             <LmsContent>
-
                 <h1>Search Results</h1>
                 <p className=''>TAGS</p>
                 {searchResults?.map((result: frontMatter, index: number) => {
-                    return <SearchResult key={index} result={result} />
+                    return <SearchResult key={index} index={index} result={result} />
                 })}
                 {searchResults?.length === 0 && <p>No results found :(</p>}
             </LmsContent>

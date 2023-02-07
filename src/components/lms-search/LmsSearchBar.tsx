@@ -17,7 +17,7 @@ function LmsSearchBar() {
 
     const goToResults = () => {
         const keywords: string = keywordArray.toString().replace(',', '_');
-        router.push(`/lms/search/${filter}-${keywords}`);
+        router.push(`/lms/search/${filter}/${keywords}`);
     };
 
     return (

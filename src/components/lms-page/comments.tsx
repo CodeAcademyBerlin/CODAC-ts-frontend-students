@@ -121,7 +121,7 @@ const CommentsParent = ({ slug }: LMSfeedbackProps) => {
       >
         <Typography>Leave a comment</Typography>
         <TextField
-          autoFocus
+          // autoFocus
           multiline
           rows={6}
           margin="dense"
