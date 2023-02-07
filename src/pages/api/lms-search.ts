@@ -4,11 +4,12 @@ import { filterInputs, getAllFrontmatters } from 'src/lib/lmsSearch';
 
 export default async function searchInput(req: any, res: any) {
   const { input, filter } = req.body;
-  const inputArray = input.split('_');
+  const inputArray = input.split(',');
   let filterSet = "";
   if (filter !== "general") {
     filterSet = filter;
   };
+  
   try {
     const frontMatters = await getAllFrontmatters(LMS_CONTENT_PATH, filterSet);
     const filteredMatters: Array<any> = [];
@@ -20,6 +21,6 @@ export default async function searchInput(req: any, res: any) {
     };
     res.status(200).json({ filteredMatters });
   } catch (error) {
-    res.status(500).json({ error: error });
+    console.log('error', error);
   };
 }

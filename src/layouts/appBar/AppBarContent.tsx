@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Magnify from 'mdi-material-ui/Magnify';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import LmsSearchBar from 'src/components/lms-search/LmsSearchBar';
 
 import { Settings } from '../../contexts/settingsContext';
@@ -22,6 +23,7 @@ const AppBarContent = () => {
   const hiddenSm = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('sm'),
   );
+  const router = useRouter();
   return (
     <Box
       sx={{
@@ -35,7 +37,8 @@ const AppBarContent = () => {
         className="actions-left"
         sx={{ mr: 2, display: 'flex', alignItems: 'center' }}
       >
-        <LmsSearchBar />
+        {router.asPath.includes('/lms/') && <LmsSearchBar />}
+        {router.asPath.includes('/search/') && <LmsSearchBar />}
         {/* Search bar
         <TextField
           size='small'

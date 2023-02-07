@@ -11,8 +11,6 @@ interface SearchResultProps {
 }
 
 export default function SearchResult({ index, result }: SearchResultProps) {
-
-    console.log(index)
     return (
         <>
             <div className={styles.flexDiv}>

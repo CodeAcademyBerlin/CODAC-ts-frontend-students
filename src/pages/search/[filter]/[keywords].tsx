@@ -10,10 +10,12 @@ import { frontMatter } from 'src/lib/lmsSearch';
 export default function SearchResults() {
 
     const [searchResults, setSearchResults] = useState<Array<frontMatter> | null>(null);
+    const [show, setShow] = useState<boolean>(false);
     const router = useRouter();
     const { keywords, filter } = router.query;
 
     const filterInputs = () => {
+        setShow(false);
         var myHeaders = new Headers();
         var urlencoded = new URLSearchParams();
         urlencoded.append("input", `${keywords}`);
@@ -29,12 +31,16 @@ export default function SearchResults() {
             .then(response => response.json())
             .then(result => {
                 setSearchResults(result.filteredMatters.sort((a: frontMatter, b: frontMatter) => b.tags.length - a.tags.length));
-                console.log(result.filteredMatters);
+                console.log("result", result.filteredMatters);
+                if (result.filteredMatters.length < 1) {
+                    setShow(true);
+                };
             })
-            .catch(error => console.log('error', error));
+            .catch(error => {
+                console.log('error', error);
+                setShow(true);
+            });
     };
-
-
 
     useEffect(() => {
         if (keywords) {
@@ -51,7 +57,7 @@ export default function SearchResults() {
                 {searchResults?.map((result: frontMatter, index: number) => {
                     return <SearchResult key={index} index={index} result={result} />
                 })}
-                {searchResults?.length === 0 && <p>No results found :(</p>}
+                {show && <p>No results found :(</p>}
             </LmsContent>
         </>
     )
