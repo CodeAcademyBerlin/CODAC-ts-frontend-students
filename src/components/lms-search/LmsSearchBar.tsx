@@ -23,7 +23,12 @@ function LmsSearchBar() {
 
     return (
         <>
-            <Link href="" className={styles.tooltip}><span className={styles.tooltiptext}>The search is keyword-based. Choose specific keywords and press enter after every one.</span><Image src="/icons/tooltip.png" alt='tooltip' width={20} height={20} /></Link>
+            <Link href="" className={styles.tooltip}>
+                <span className={styles.tooltiptext}>
+                    The search is keyword-based. Choose specific keywords and press enter after every one.
+                </span>
+                <Image src="/icons/tooltip.png" alt='tooltip' width={20} height={20} />
+            </Link>
             <div>
                 <SearchInput setState={setKeywordArray} /><div className={styles.searchButton} onClick={goToResults}><Image src={"/icons/search.png"} alt='search' width={20} height={20} /></div>
                 {keywordArray.length > 0 && <Keywords keywordArray={keywordArray} setKeywordArray={setKeywordArray} />}
