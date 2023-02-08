@@ -9,16 +9,16 @@ interface SearchInputProps {
 
 export default function SearchInput({ setState }: SearchInputProps) {
     const [keyword, setKeyword] = useState<string>("");
-    let prova: string;
+    let word: string;
 
     const onChange = (e: any) => {
         setKeyword(e.target.value);
     };
     const keyDown = (e: any) => {
         if (e.key === "Enter" && keyword !== "") {
-            prova = keyword.toLocaleLowerCase().replace(' ', '-');
-            setState(current => [...current, prova]);
-            setKeyword("")
+            word = keyword.toLocaleLowerCase().replace(' ', '-');
+            setState(current => [...current, word]);
+            setKeyword("");
         };
     };
 

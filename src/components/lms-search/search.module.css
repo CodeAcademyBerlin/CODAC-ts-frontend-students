@@ -78,12 +78,14 @@
 }
 
 .tagsDiv{
-    height: 100px;
+    min-height: 100px;
+    height: fit-content;
+    min-width: 70px;
+    width: fit-content;
     padding: 10px;
     background-color: #26a69a;
     font-size: small;
     font-style: oblique;
-    width: fit-content;
     color: #F4F5FA;
     font-weight: bold;
     border-radius: 6px 15px;
@@ -95,4 +97,60 @@
     flex-direction: row;
     align-items: center;
     margin-bottom: 10px;
+}
+
+/* Tooltip */
+
+div:has(> .tooltip){
+    align-items: flex-start;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    background-color: #EEEEEE;
+    color: black;
+    width: 150px;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    margin-right: 5px;
+    z-index: 9999;
+    top: -5px;
+    right: 105%;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 8%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #EEEEEE;
+}
+
+.resultH{
+    margin-bottom: 20px;
+    font-size: larger;
+}
+
+.resultH + p{
+    font-weight: 1000;
+    font-size: small;
+    color: #26a69a;
+    margin-bottom: 5px;
 }

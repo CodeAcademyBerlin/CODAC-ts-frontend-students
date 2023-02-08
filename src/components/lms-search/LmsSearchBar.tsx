@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useSettings } from 'src/hooks/useSettings';
@@ -8,7 +10,7 @@ import styles from './search.module.css';
 import SearchInput from './SearchInput';
 
 function LmsSearchBar() {
-    const { keywordArray, setKeywordArray, setFilter } = useSettings();
+    const { keywordArray, setKeywordArray, filter, setFilter } = useSettings();
     const router = useRouter();
 
     const radioHandler = (e: any) => {
@@ -21,14 +23,15 @@ function LmsSearchBar() {
 
     return (
         <>
+            <Link href="" className={styles.tooltip}><span className={styles.tooltiptext}>The search is keyword-based. Choose specific keywords and press enter after every one.</span><Image src="/icons/tooltip.png" alt='tooltip' width={20} height={20} /></Link>
             <div>
                 <SearchInput setState={setKeywordArray} /><button className={styles.searchButton} onClick={goToResults}>Go</button>
                 {keywordArray.length > 0 && <Keywords keywordArray={keywordArray} setKeywordArray={setKeywordArray} />}
                 <div>
-                    <input type="radio" name="filter" id="general" value="general" onChange={radioHandler} defaultChecked />General
-                    <input type="radio" name="filter" id="web" value="web" onChange={radioHandler} />Web Dev
-                    <input type="radio" name="filter" id="data" value="data" onChange={radioHandler} />Data
-                    <input type="radio" name="filter" id="carrer" value="carrer" onChange={radioHandler} />Carrer
+                    <input type="radio" name="filter" id="general" value="general" onChange={radioHandler} checked={filter === "general" ? true : false} />General
+                    <input type="radio" name="filter" id="web" value="web" onChange={radioHandler} checked={filter === "web" ? true : false} />Web Dev
+                    <input type="radio" name="filter" id="data" value="data" onChange={radioHandler} checked={filter === "data" ? true : false} />Data
+                    <input type="radio" name="filter" id="carrer" value="carrer" onChange={radioHandler} checked={filter === "carrer" ? true : false} />Carrer
                 </div>
             </div>
         </>

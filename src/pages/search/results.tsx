@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { LmsContent } from 'src/components/lms-page/LmsContentContainer';
 import styles from 'src/components/lms-search/search.module.css';
@@ -53,8 +52,8 @@ export default function SearchResults() {
     return (
         <>
             <LmsContent>
-                <h1>Search Results</h1>
-                <p className=''>TAGS</p>
+                <h1 className={styles.resultH}>Search Results</h1>
+                <p>TAGS</p>
                 {searchResults?.map((result: frontMatter, index: number) => {
                     return <SearchResult key={index} index={index} result={result} />
                 })}
