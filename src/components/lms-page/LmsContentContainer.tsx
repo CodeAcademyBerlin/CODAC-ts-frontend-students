@@ -6,9 +6,6 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React, { useEffect } from 'react';
 
 import mdxComponents from '../../components/mdx';
-import styles from '../../styles/LmsContentContainer.module.css';
-import LmsSearchBar from '../lms-search/LmsSearchBar';
-import SearchResults from '../lms-search/SearchResults';
 
 export const LmsContent = styled('div')`
   max-width: 50%;
