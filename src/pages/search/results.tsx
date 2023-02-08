@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { LmsContent } from 'src/components/lms-page/LmsContentContainer';
 import styles from 'src/components/lms-search/search.module.css';
@@ -53,11 +54,11 @@ export default function SearchResults() {
         <>
             <LmsContent>
                 <h1 className={styles.resultH}>Search Results</h1>
-                <p>TAGS</p>
+                {!show && <p className={styles.resultP}>TAGS</p>}
                 {searchResults?.map((result: frontMatter, index: number) => {
                     return <SearchResult key={index} index={index} result={result} />
                 })}
-                {show && <p>No results found :(</p>}
+                {show && <div>No results    <Image src={"/icons/empty-box.png"} alt='empty' width={50} height={50} className={styles.resultImage} /></div>}
             </LmsContent>
         </>
     )
