@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import { AvatarGroup } from '@mui/material';
 import { makeStyles } from '@mui/material/styles';
-import clsx from 'clsx';
 import * as React from 'react';
 import KanbanCard from 'src/componentsDemo/kanban-board/KanbanCard';
 import KanbanFooter from 'src/componentsDemo/kanban-board/KanbanFooter';
@@ -20,11 +19,6 @@ import KanbanFooter from 'src/componentsDemo/kanban-board/KanbanFooter';
 // we do an interface to create the types of my array
 interface KanbanData {
   header: string;
-  // color: string;
-  // title: string;
-  // description: string;
-  // category: string;
-  // deadline?: Date | string;
 }
 // then we do an type to expecify that this is an array.
 type CardsType = KanbanData[];
@@ -33,27 +27,12 @@ type CardsType = KanbanData[];
 const init: CardsType = [
   {
     header: 'TODO',
-    // color: 'red',
-    // title: 'Develop Mobile App',
-    // description: 'Lore Ipsum',
-    // category: 'JavaScript',
-    // deadline: '2022-04-28T08:30:00',
   },
   {
     header: 'IN PROGESS',
-    // color: 'blue',
-    // title: 'Redesign Landing page',
-    // description: 'Lore Ipsum',
-    // category: 'React',
-    // deadline: '2022-04-28T08:30:00',
   },
   {
     header: 'COMPLETED',
-    // color: 'green',
-    // title: 'API Improvement',
-    // description: 'Lore Ipsum',
-    // category: 'Mern',
-    // deadline: '2022-04-28T08:30:00',
   },
 ];
 // then we can create a useState with the columnsType to make an array and display the data in the columns.
@@ -93,8 +72,8 @@ const Kanban = (title: CardsType) => {
       > */}
       {init?.map((kanban, index) => {
         return (
-          <Paper
-            elevation={3}
+          <Card
+            elevation={0}
             key={index}
             sx={{
               width: '380px',
@@ -117,16 +96,20 @@ const Kanban = (title: CardsType) => {
                 flexWrap: 'nowrap',
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderRadius: theme.shape.borderRadius,
+                borderRadiusBottom: theme.shape.borderRadius,
+                padding: '20px',
+                backgroundColor: theme.palette.primary.light,
               }}
             >
-              <Typography variant="h5">{kanban.header}</Typography>
+              <Typography variant="h5" color="white">
+                {kanban.header}
+              </Typography>
             </Box>
-            <Divider />
+            {/* <Divider /> */}
             <KanbanCard />
-            <Divider />
+            {/* <Divider /> */}
             <KanbanFooter />
-          </Paper>
+          </Card>
         );
       })}
       {/* </Box> */}
