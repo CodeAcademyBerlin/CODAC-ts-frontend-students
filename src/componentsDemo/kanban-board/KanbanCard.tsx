@@ -1,11 +1,20 @@
 import {
   Box,
+  Button,
   Card,
   CardContent,
+  Collapse,
+  Divider,
   Grid,
+  Modal,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
   Typography,
   useTheme,
 } from '@mui/material';
+import ChevronDown from 'mdi-material-ui/ChevronDown';
+import ChevronUp from 'mdi-material-ui/ChevronUp';
 import * as React from 'react';
 import KanbanFooter from 'src/componentsDemo/kanban-board/KanbanFooter';
 
@@ -27,7 +36,8 @@ const init: CardsType = [
     // header: 'TODO',
     color: 'red',
     title: 'Develop Mobile App',
-    description: 'Lore Ipsum',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     category: 'JavaScript',
     deadline: '2022-04-28T08:30:00',
   },
@@ -35,7 +45,8 @@ const init: CardsType = [
     // header: 'IN PROGESS',
     color: 'blue',
     title: 'Redesign Landing page',
-    description: 'Lore Ipsum',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     category: 'React',
     deadline: '2022-04-28T08:30:00',
   },
@@ -43,7 +54,8 @@ const init: CardsType = [
     // header: 'COMPLETED',
     color: 'green',
     title: 'API Improvement',
-    description: 'Lore Ipsum',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     category: 'Mern',
     deadline: '2022-04-28T08:30:00',
   },
@@ -51,114 +63,134 @@ const init: CardsType = [
 // then we can create a useState with the columnsType to make an array and display the data in the columns.
 // tutorial typescriptreact: 48:33
 
+const actions = [
+  // { icon: <FileCopyIcon />, name: 'Copy' },
+  { name: 'HTML/CSS ' },
+  { name: 'JavaScript' },
+  { name: 'React' },
+  { name: 'Mern' },
+];
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 600,
+  height: 500,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 14,
+  p: 4,
+};
+
 const KanbanCard = (title: CardsType) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const theme = useTheme();
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        margin: theme.spacing(2),
-        marginBottom: 20,
-        borderLeft: '5px solid red',
-      }}
-    >
-      <div
-      // className={ width: '100%', display: 'flex', flexDirection: 'column' } component>Board
-      >
-        <CardContent sx={{ flex: '1 0 auto', paddingBottom: theme.spacing(2) }}>
-          {init?.map((kanban, index) => {
-            return (
-              <>
-                <Typography
-                  sx={{ fontWeight: 600, fontSize: '1rem' }}
-                  variant="overline"
+    <div>
+      {init?.map((kanban, index) => {
+        return (
+          <>
+            <Card
+              sx={{
+                position: 'relative',
+                borderRadius: theme.shape.borderRadius,
+                paddingBottom: '2px',
+              }}
+            >
+              <CardContent
+                sx={{
+                  paddingBottom: '0px',
+                }}
+              >
+                <Box
+                  sx={{
+                    mb: 5,
+                    display: 'flex',
+                    flexWrap: 'nowrap',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
                 >
-                  {kanban.title}
-                </Typography>
-                <Grid item xs={12}>
-                  <Box component="small" m={1}>
-                    <Typography variant="body1">Description</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Typography variant="h6">{kanban.title}</Typography>
+                  </Box>
+
+                  <Button
+                    sx={{
+                      color: theme.palette.mode,
+                      position: 'absolute',
+                      bottom: 16,
+                      right: 16,
+                    }}
+                    variant="contained"
+                    onClick={handleOpen}
+                  >
+                    MORE
+                  </Button>
+                </Box>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Typography variant="h6">{kanban.title}</Typography>
+                    <Typography variant="body1">Task description</Typography>
                     <Typography variant="body2">
                       {kanban.description}
                     </Typography>
-                    <Typography variant="body1">Deadline</Typography>
-                    <Typography variant="body2">{kanban.deadline}</Typography>
                   </Box>
-                </Grid>
-              </>
-            );
-          })}
-        </CardContent>
-      </div>
-    </Card>
+                </Modal>
+                {/* <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flexWrap: 'wrap',
+                    justifyContent: 'flex-start',
+                    alignItems: 'start',
+                  }}
+                >
+                  {' '}
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      whiteSpace: 'nowrap',
+                      color: 'text.primary',
+                      fontSize: '0.8rem',
+                    }}
+                  >
+                    {' '}
+                    <span className="boldText">Category</span>{' '}
+                    {kanban.category.replace('_', ' ')}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      whiteSpace: 'nowrap',
+                      color: 'text.primary',
+                      fontSize: '0.8rem',
+                    }}
+                  >
+                    {' '}
+                    <span className="boldText">Deadline</span> {kanban.deadline}
+                  </Typography>
+                </Box> */}
+              </CardContent>
+            </Card>
+          </>
+        );
+      })}
+    </div>
   );
 };
 
 export default KanbanCard;
-
-// const KanbanCard = (title: CardsType) => {
-//   //   const [title, setTitle] = React.useState<CardsType | null>(null);
-//   const theme = useTheme();
-//   return (
-//     <Card
-//       sx={
-//         {
-//           // display: 'flex',
-//           // flexDirection: 'row',
-//           // position: 'relative',
-//           // borderRadius: theme.shape.borderRadius,
-//           // paddingBottom: '2px',
-//         }
-//       }
-//     >
-//       {init?.map((kanban, index) => {
-//         return (
-//           <Card
-//             sx={
-//               {
-//                 // display: 'flex',
-//                 // flexDirection: 'row',
-//                 // position: 'relative',
-//                 // borderRadius: theme.shape.borderRadius,
-//                 // paddingBottom: '2px',
-//               }
-//             }
-//             key={index}
-//           >
-//             <CardContent>
-//               {/* <Box
-//                 sx={{
-//                   display: 'flex',
-//                   flexDirection: 'column',
-//                 }}
-//               > */}
-//               <Typography
-//                 sx={{ fontWeight: 600, fontSize: '1rem' }}
-//                 variant="overline"
-//               >
-//                 {kanban.title}
-//               </Typography>
-//               <Typography variant="body1">Description</Typography>
-//               <Typography variant="body2">{kanban.description}</Typography>
-//               <Typography variant="body1">Deadline</Typography>
-//               <Typography variant="body2">{kanban.deadline}</Typography>
-//               {/* </Box> */}
-//             </CardContent>
-//           </Card>
-//         );
-//       })}
-
-//       {/* <Typography component="h5" variant="h5">
-//           {init?.map((title, index) => {
-//             return (
-//               <div key={index}>
-//                 <p>{title.header}</p>
-//               </div>
-//             );
-//           })}
-//         </Typography> */}
-//     </Card>
-//   );
-// };
-
-// export default KanbanCard;
