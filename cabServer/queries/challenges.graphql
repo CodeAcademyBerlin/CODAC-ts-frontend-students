@@ -1,8 +1,43 @@
 query getChallenges {
   codingChallenges {
     data {
+      id
       attributes {
         title
+      }
+    }
+  }
+}
+
+query getChallengesExtended {
+  codingChallenges {
+    data {
+      id
+      attributes {
+        title
+        challenge
+        difficulty
+        tags
+        comments {
+          message
+        }
+      }
+    }
+  }
+}
+
+query getChallengeById($id: ID) {
+  codingChallenge(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        challenge
+        difficulty
+        tags
+        comments {
+          message
+        }
       }
     }
   }
