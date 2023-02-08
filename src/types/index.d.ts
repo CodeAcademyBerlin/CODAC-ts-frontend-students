@@ -16,15 +16,7 @@ export interface Project {
   image: string;
 }
 
-export interface EnrollQuest {
-  name: string;
-  description: string;
-  github_repo: string;
-  github_username: string;
-  image?: string;
-}
-
-export interface SoftSkillQuest {
+export interface Quests {
   name: string;
   description: string;
   github_repo: string;

@@ -8,11 +8,11 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import LmsContentContainer from 'src/components/lms-page/LmsContentContainer';
-import { ENROLLING_PATH } from 'src/definitions/contentFilePaths';
+import { SOFTSKILLS_PATH } from 'src/definitions/contentFilePaths';
 import { getPageMdx, mdxFilesPaths } from 'src/lib/markdown';
 import { PageData } from 'src/pages/lms/lms';
 
-const Enrollings = ({ pageData }: { pageData: PageData }) => {
+const Softskills = ({ pageData }: { pageData: PageData }) => {
   console.log('pageData', pageData);
 
   return (
@@ -29,15 +29,15 @@ const Enrollings = ({ pageData }: { pageData: PageData }) => {
     </Box>
   );
 };
-export default Enrollings;
+export default Softskills;
 export const getStaticProps = async ({
   params,
 }: {
-  params: { enrolling: string };
+  params: { softskills: string };
 }) => {
   const pageData = await getPageMdx(
-    params.enrolling,
-    ENROLLING_PATH,
+    params.softskills,
+    SOFTSKILLS_PATH,
     '/assets/',
   );
 
@@ -57,9 +57,9 @@ export const getStaticProps = async ({
 // }
 
 export const getStaticPaths = async () => {
-  const paths = mdxFilesPaths(ENROLLING_PATH)
+  const paths = mdxFilesPaths(SOFTSKILLS_PATH)
     .map((path) => path.replace(/\.md?$/, ''))
-    .map((enrolling) => ({ params: { enrolling } }));
+    .map((softskills) => ({ params: { softskills } }));
   console.log('paths', paths);
   return {
     paths,

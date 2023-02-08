@@ -1,5 +1,5 @@
 ---
-name: ATTENDANCE
+name: Attendance
 description:
 github_username: CodeAcademyBerlin
 github_repo: CODAC-ts-frontend-students

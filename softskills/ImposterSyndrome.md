@@ -1,13 +1,11 @@
 ---
-name: Imposter syndrome
+name: Imposter Syndrome
 description:
 github_username: CodeAcademyBerlin
 github_repo: CODAC-ts-frontend-students
 ---
 
 # The Imposter Syndrome
-
-<hr>
 
 ### Introduction
 
@@ -30,13 +28,10 @@ Gain Strategies to Overcome Imposter Syndrome
 ### 👉 What is imposter syndrome?
 
 Those affected by imposter syndrome feel inadequate and undeserving of their accomplishments, despite evidence to the contrary. This phenomenon, also known as impostor phenomenon or fraud syndrome, can affect people of all genders and is estimated to affect around 70% of the population.
-<br>
+
 To find out more, watch the video below.
-<br>
-<br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZQUxL4Jm1Lo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<hr>
 
 ### 👉 How to know if you suffer from imposter syndrome?
 

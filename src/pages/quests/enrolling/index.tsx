@@ -2,18 +2,22 @@
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { GetStaticProps } from 'next/types';
-import QuestCard from 'src/components/Quests/questsCard';
+import EnrollingQuestCard from 'src/components/Quests/EnrollingQuestCard';
 import { ENROLLING_PATH } from 'src/definitions/contentFilePaths';
 import { getFrontmatters } from 'src/lib/markdown';
-import { Contributor, EnrollQuest } from 'src/types';
+import { Contributor, Quests } from 'src/types';
 
-const Enrollings = ({ enrolling }: { enrolling: EnrollQuest[] }) => {
+import styles from '../../../components/Quests/quests.module.css';
+
+const Enrollings = ({ enrolling }: { enrolling: Quests[] }) => {
   console.log('enrolling', enrolling);
   return (
     <>
-      {enrolling.map((enrollQuest, i) => {
-        return <QuestCard key={i} enrollQuest={enrollQuest} />;
-      })}
+      <div className={styles.wrapper}>
+        {enrolling.map((enrollQuest, i) => {
+          return <EnrollingQuestCard key={i} enrollQuest={enrollQuest} />;
+        })}
+      </div>
     </>
   );
 };

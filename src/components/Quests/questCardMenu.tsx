@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ReactEventHandler, useRef } from 'react';
+import { useRef } from 'react';
 
 import styles from './quests.module.css';
 
