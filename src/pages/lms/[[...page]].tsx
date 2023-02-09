@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
 import CommentsParent from 'src/components/lms-page/comments';
+import LmsSearchBar from 'src/components/lms-search/LmsSearchBar';
 import { getPaths } from 'src/lib/paths';
 
 import lmspages from '../../../public/assets/lmspages.json';

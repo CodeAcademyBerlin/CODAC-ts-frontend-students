@@ -61,7 +61,6 @@ export async function getFrontmatters(dir: string) {
     const { data } = matter(content);
     return data;
   });
-
   return frontmatters;
 }
 

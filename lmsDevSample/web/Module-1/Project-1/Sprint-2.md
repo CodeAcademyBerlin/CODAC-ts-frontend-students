@@ -6,6 +6,18 @@ metaDescription: 'Web Development course'
 access: web
 prev: 'web/Module-1/Project-1/Sprint-1'
 next: 'web/Module-1/Project-2'
+tags:
+  [
+    'flexbox',
+    'css-grid',
+    'froggy',
+    'froggy-game',
+    'git',
+    'github',
+    'module-1',
+    'project-1',
+    'sprint-2',
+  ]
 ---
 
 ## Epic 1: Flexbox
