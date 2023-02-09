@@ -1,0 +1,11 @@
+.test {
+  width: 100%;
+  color: blueviolet;
+  border-color: aquamarine;
+}
+
+.warning {
+  color: white;
+  background-color: yellow;
+  font-weight: bold;
+}

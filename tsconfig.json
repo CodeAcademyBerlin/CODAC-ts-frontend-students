@@ -1,10 +1,39 @@
+// {
+//   "compilerOptions": {
+//     "target": "ESNext",
+//     "lib": ["dom", "dom.iterable", "esnext"],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "strict": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "noEmit": true,
+//     "esModuleInterop": true,
+//     "module": "esnext",
+//     "moduleResolution": "node",
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "jsx": "preserve",
+//     "incremental": true,
+//     "baseUrl": ".",
+//     "types": ["jest", "node", "@types/testing-library__jest-dom"],
+//     "paths": {
+//       "@/components/*": ["components/*"],
+//       "@/pages/*": ["pages/*"],
+//       "apexcharts": ["./node_modules/apexcharts-clevision"],
+//       "apexcharts/*": ["./node_modules/apexcharts-clevision/*"]
+//     }
+//   },
+//   "include": ["src", "env.d.ts", "**/*.ts", "**/*.tsx", "next-env.d.ts"],
+//   "exclude": ["node_modules", "cypress", "cypress.config.ts"]
+// }
+
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -13,16 +42,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
     "baseUrl": ".",
-    "types": ["jest", "node", "@types/testing-library__jest-dom"],
-    "paths": {
-      "@/components/*": ["components/*"],
-      "@/pages/*": ["pages/*"],
-      "apexcharts": ["./node_modules/apexcharts-clevision"],
-      "apexcharts/*": ["./node_modules/apexcharts-clevision/*"]
-    }
+    "rootDir": "src"
   },
-  "include": ["src", "env.d.ts", "**/*.ts", "**/*.tsx", "next-env.d.ts"],
-  "exclude": ["node_modules", "cypress", "cypress.config.ts"]
+  "include": ["next-env.d.ts", "twin.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

@@ -20,6 +20,7 @@ import {
 } from '../components/landing-page/TronGridPlane';
 import BlankLayout from '../layouts/BlankLayout';
 import Footer from '../layouts/Footer';
+import Chat from './Chat';
 
 const blink = keyframes`
     0% {
@@ -52,7 +53,8 @@ const Home = () => {
 
   return (
     <>
-      <TronGridWrapper>
+      <Chat></Chat>
+      {/* <TronGridWrapper>
         <TronGrid />
         {smUp && <BerlinSkyline />}
       </TronGridWrapper>
@@ -99,7 +101,7 @@ const Home = () => {
           </BrandText>
         )}
       </Box>
-      <Footer />
+      <Footer /> */}
     </>
   );
 };
