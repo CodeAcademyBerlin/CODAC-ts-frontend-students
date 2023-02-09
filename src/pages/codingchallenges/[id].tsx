@@ -21,8 +21,6 @@ import {
 import React from 'react';
 import { initializeApollo } from 'src/lib/apolloClient';
 
-import ChallengeCard from '../../components/coding-challenges-page/ChallengeCard';
-
 type Props = {};
 
 console.log('challenge page');
@@ -36,7 +34,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       <div>
         <div>challenge</div>
-        <ChallengeCard challenge={challengeData.attributes} />
+        {/* <ChallengeCard challenge={challengeData.attributes} /> */}
       </div>
     </>
   );
