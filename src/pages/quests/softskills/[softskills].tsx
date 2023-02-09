@@ -7,17 +7,14 @@ import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
+import LmsContentContainer from 'src/components/lms-page/LmsContentContainer';
+import { SOFTSKILLS_PATH } from 'src/definitions/contentFilePaths';
+import { getPageMdx, mdxFilesPaths } from 'src/lib/markdown';
+import { PageData } from 'src/pages/lms/lms';
 
-import LmsContentContainer from '../../components/lms-page/LmsContentContainer';
-import mdxComponents from '../../components/mdx';
-import CustomLink from '../../components/mdx/CustomLink';
-import Layout from '../../components/mdx/Layout';
-import { PROJECTS_PATH } from '../../definitions/contentFilePaths';
-import { getPageMdx, mdxFilesPaths } from '../../lib/markdown';
-import { PageData } from '../lms/lms';
-
-const Projects = ({ pageData }: { pageData: PageData }) => {
+const Softskills = ({ pageData }: { pageData: PageData }) => {
   console.log('pageData', pageData);
+
   return (
     <Box
       sx={{
@@ -32,14 +29,18 @@ const Projects = ({ pageData }: { pageData: PageData }) => {
     </Box>
   );
 };
-export default Projects;
+export default Softskills;
 export const getStaticProps = async ({
   params,
 }: {
-  params: { project: string };
+  params: { softskills: string };
 }) => {
-  const pageData = await getPageMdx(params.project, PROJECTS_PATH, '/assets/');
-  // console.log('those are the props', { props: { pageData } });
+  const pageData = await getPageMdx(
+    params.softskills,
+    SOFTSKILLS_PATH,
+    '/assets/',
+  );
+
   return { props: { pageData } };
 };
 
@@ -56,9 +57,9 @@ export const getStaticProps = async ({
 // }
 
 export const getStaticPaths = async () => {
-  const paths = mdxFilesPaths(PROJECTS_PATH)
+  const paths = mdxFilesPaths(SOFTSKILLS_PATH)
     .map((path) => path.replace(/\.md?$/, ''))
-    .map((project) => ({ params: { project } }));
+    .map((softskills) => ({ params: { softskills } }));
   console.log('paths', paths);
   return {
     paths,

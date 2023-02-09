@@ -1,0 +1,26 @@
+>>>Some guidelines about the structure of an Article from the Soft Skills<<< 
+
+The TITLE of the Article - h1
+The SUBTITLES - h3
+The SUBTITLES of the SUBTITLES - h4 & h5
+
+Then the Article should be so structured:
+- Introduction
+- By the end of this quest, you will: / In this quest: (what the user should be able to do based on the article)
+- Content
+*after the content:
+-- a small quizz 
+-- Score : explaining each point  
+- Summary
+
+Emojis for: 
+
+- 🤓 By the end of this quest, you will: / In this quest:
+- 👀 Content
+- 👉 The SUBTITLES of the SUBTITLES - h4 & h5
+- ☝️ Summary
+- 💪Challenge
+
+Eof => comments and reviews maybe instead of comments what should be review or improved on this website (this page)
+
+
