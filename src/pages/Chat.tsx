@@ -14,7 +14,7 @@ import { io } from 'socket.io-client';
 
 import chat from './styles.module.css';
 
-// cleint side API manager. version issue.
+// client side API manager. version issue.
 // import className from 'classNamein.macro';
 
 interface IMsg {
@@ -127,7 +127,7 @@ const Chat: React.FC = () => {
           <Item3> */}
           <QuestionAnswerIcon></QuestionAnswerIcon>
           {/* </Item3> */}
-          <h4 className="mt-2 text-center">they'll never know who said it</h4>
+          <h4 className="mt-2 text-center">hello</h4>
         </div>
       </Stack>
       <div className="flex flex-col flex-1 bg-gray-200">
@@ -197,7 +197,7 @@ const Chat: React.FC = () => {
               <Item>
                 <div className={chat.test}>
                   <Button
-                    fullWidth="true"
+                    fullWidth={true}
                     color="error"
                     variant="contained"
                     className="bg-blue-500 rounded shadow text-sm text-white h-full px-2"
