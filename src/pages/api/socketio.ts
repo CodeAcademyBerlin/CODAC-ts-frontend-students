@@ -9,7 +9,6 @@ export const config = {
   },
 };
 
-// let URL = 'https://localhost:3000/';
 // singleton design pattern?
 const socketio = async (req: NextApiRequest, res: NextApiResponseServerIO) => {
   if (!res.socket.server.io) {

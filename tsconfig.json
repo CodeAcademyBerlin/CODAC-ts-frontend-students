@@ -26,11 +26,14 @@
 //   "include": ["src", "env.d.ts", "**/*.ts", "**/*.tsx", "next-env.d.ts"],
 //   "exclude": ["node_modules", "cypress", "cypress.config.ts"]
 // }
-
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -43,8 +46,16 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "rootDir": "src"
+    "rootDir": "src",
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "twin.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "twin.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
