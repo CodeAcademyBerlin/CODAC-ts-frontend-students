@@ -7,6 +7,7 @@
 // need to get static paths here again
 
 // and then get a list item from staticprops (but not run the funtion i think)
+import { Box, Button, Paper, TextField, Typography } from '@mui/material';
 import {
   GetChallengeByIdDocument,
   GetChallengeByIdQuery,
@@ -19,6 +20,7 @@ import {
   InferGetStaticPropsType,
 } from 'next/types';
 import React from 'react';
+import ChallengesLanding from 'src/components/coding-challenges-page/ChallengesLanding';
 import { initializeApollo } from 'src/lib/apolloClient';
 
 type Props = {};
@@ -32,10 +34,31 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
   console.log('challengeData', challengeData);
   return (
     <>
-      <div>
-        <div>challenge</div>
-        {/* <ChallengeCard challenge={challengeData.attributes} /> */}
-      </div>
+      <Box
+        sx={{
+          mt: 0,
+          p: 5,
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
+          bgcolor: 'white',
+        }}
+      >
+        <Box>
+          <Typography>CODAC Coding Challenges</Typography>
+        </Box>
+        <Box>
+          <Typography>{challengeData?.attributes?.title}</Typography>
+        </Box>
+        <Box>
+          <Typography>{challengeData?.attributes?.challenge}</Typography>
+        </Box>
+        <Box component="form">
+          <TextField></TextField>
+          <Button>Run test</Button>
+        </Box>
+      </Box>
     </>
   );
 };

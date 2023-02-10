@@ -1,21 +1,21 @@
-import * as Types from '../../global/__generated__/types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const GetChallengesDocument = gql`
-    query getChallenges {
-  codingChallenges {
-    data {
-      id
-      attributes {
-        title
+  query getChallenges {
+    codingChallenges {
+      data {
+        id
+        attributes {
+          title
+        }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetChallengesQuery__
@@ -32,35 +32,58 @@ export const GetChallengesDocument = gql`
  *   },
  * });
  */
-export function useGetChallengesQuery(baseOptions?: Apollo.QueryHookOptions<GetChallengesQuery, GetChallengesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetChallengesQuery, GetChallengesQueryVariables>(GetChallengesDocument, options);
-      }
-export function useGetChallengesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetChallengesQuery, GetChallengesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetChallengesQuery, GetChallengesQueryVariables>(GetChallengesDocument, options);
-        }
-export type GetChallengesQueryHookResult = ReturnType<typeof useGetChallengesQuery>;
-export type GetChallengesLazyQueryHookResult = ReturnType<typeof useGetChallengesLazyQuery>;
-export type GetChallengesQueryResult = Apollo.QueryResult<GetChallengesQuery, GetChallengesQueryVariables>;
+export function useGetChallengesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetChallengesQuery,
+    GetChallengesQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetChallengesQuery, GetChallengesQueryVariables>(
+    GetChallengesDocument,
+    options,
+  );
+}
+export function useGetChallengesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetChallengesQuery,
+    GetChallengesQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetChallengesQuery, GetChallengesQueryVariables>(
+    GetChallengesDocument,
+    options,
+  );
+}
+export type GetChallengesQueryHookResult = ReturnType<
+  typeof useGetChallengesQuery
+>;
+export type GetChallengesLazyQueryHookResult = ReturnType<
+  typeof useGetChallengesLazyQuery
+>;
+export type GetChallengesQueryResult = Apollo.QueryResult<
+  GetChallengesQuery,
+  GetChallengesQueryVariables
+>;
 export const GetChallengesExtendedDocument = gql`
-    query getChallengesExtended {
-  codingChallenges {
-    data {
-      id
-      attributes {
-        title
-        challenge
-        difficulty
-        tags
-        comments {
-          message
+  query getChallengesExtended {
+    codingChallenges {
+      data {
+        id
+        attributes {
+          title
+          challenge
+          difficulty
+          tags
+          comments {
+            message
+          }
         }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetChallengesExtendedQuery__
@@ -77,35 +100,58 @@ export const GetChallengesExtendedDocument = gql`
  *   },
  * });
  */
-export function useGetChallengesExtendedQuery(baseOptions?: Apollo.QueryHookOptions<GetChallengesExtendedQuery, GetChallengesExtendedQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetChallengesExtendedQuery, GetChallengesExtendedQueryVariables>(GetChallengesExtendedDocument, options);
-      }
-export function useGetChallengesExtendedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetChallengesExtendedQuery, GetChallengesExtendedQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetChallengesExtendedQuery, GetChallengesExtendedQueryVariables>(GetChallengesExtendedDocument, options);
-        }
-export type GetChallengesExtendedQueryHookResult = ReturnType<typeof useGetChallengesExtendedQuery>;
-export type GetChallengesExtendedLazyQueryHookResult = ReturnType<typeof useGetChallengesExtendedLazyQuery>;
-export type GetChallengesExtendedQueryResult = Apollo.QueryResult<GetChallengesExtendedQuery, GetChallengesExtendedQueryVariables>;
+export function useGetChallengesExtendedQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetChallengesExtendedQuery,
+    GetChallengesExtendedQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    GetChallengesExtendedQuery,
+    GetChallengesExtendedQueryVariables
+  >(GetChallengesExtendedDocument, options);
+}
+export function useGetChallengesExtendedLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetChallengesExtendedQuery,
+    GetChallengesExtendedQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    GetChallengesExtendedQuery,
+    GetChallengesExtendedQueryVariables
+  >(GetChallengesExtendedDocument, options);
+}
+export type GetChallengesExtendedQueryHookResult = ReturnType<
+  typeof useGetChallengesExtendedQuery
+>;
+export type GetChallengesExtendedLazyQueryHookResult = ReturnType<
+  typeof useGetChallengesExtendedLazyQuery
+>;
+export type GetChallengesExtendedQueryResult = Apollo.QueryResult<
+  GetChallengesExtendedQuery,
+  GetChallengesExtendedQueryVariables
+>;
 export const GetChallengeByIdDocument = gql`
-    query getChallengeById($id: ID) {
-  codingChallenge(id: $id) {
-    data {
-      id
-      attributes {
-        title
-        challenge
-        difficulty
-        tags
-        comments {
-          message
+  query getChallengeById($id: ID) {
+    codingChallenge(id: $id) {
+      data {
+        id
+        attributes {
+          title
+          challenge
+          difficulty
+          tags
+          comments {
+            message
+          }
         }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetChallengeByIdQuery__
@@ -123,30 +169,105 @@ export const GetChallengeByIdDocument = gql`
  *   },
  * });
  */
-export function useGetChallengeByIdQuery(baseOptions?: Apollo.QueryHookOptions<GetChallengeByIdQuery, GetChallengeByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetChallengeByIdQuery, GetChallengeByIdQueryVariables>(GetChallengeByIdDocument, options);
-      }
-export function useGetChallengeByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetChallengeByIdQuery, GetChallengeByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetChallengeByIdQuery, GetChallengeByIdQueryVariables>(GetChallengeByIdDocument, options);
-        }
-export type GetChallengeByIdQueryHookResult = ReturnType<typeof useGetChallengeByIdQuery>;
-export type GetChallengeByIdLazyQueryHookResult = ReturnType<typeof useGetChallengeByIdLazyQuery>;
-export type GetChallengeByIdQueryResult = Apollo.QueryResult<GetChallengeByIdQuery, GetChallengeByIdQueryVariables>;
-export type GetChallengesQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export function useGetChallengeByIdQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetChallengeByIdQuery,
+    GetChallengeByIdQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetChallengeByIdQuery, GetChallengeByIdQueryVariables>(
+    GetChallengeByIdDocument,
+    options,
+  );
+}
+export function useGetChallengeByIdLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetChallengeByIdQuery,
+    GetChallengeByIdQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    GetChallengeByIdQuery,
+    GetChallengeByIdQueryVariables
+  >(GetChallengeByIdDocument, options);
+}
+export type GetChallengeByIdQueryHookResult = ReturnType<
+  typeof useGetChallengeByIdQuery
+>;
+export type GetChallengeByIdLazyQueryHookResult = ReturnType<
+  typeof useGetChallengeByIdLazyQuery
+>;
+export type GetChallengeByIdQueryResult = Apollo.QueryResult<
+  GetChallengeByIdQuery,
+  GetChallengeByIdQueryVariables
+>;
+export type GetChallengesQueryVariables = Types.Exact<{ [key: string]: never }>;
 
+export type GetChallengesQuery = {
+  __typename?: 'Query';
+  codingChallenges?: {
+    __typename?: 'CodingChallengeEntityResponseCollection';
+    data: Array<{
+      __typename?: 'CodingChallengeEntity';
+      id?: string | null;
+      attributes?: {
+        __typename?: 'CodingChallenge';
+        title?: string | null;
+      } | null;
+    }>;
+  } | null;
+};
 
-export type GetChallengesQuery = { __typename?: 'Query', codingChallenges?: { __typename?: 'CodingChallengeEntityResponseCollection', data: Array<{ __typename?: 'CodingChallengeEntity', id?: string | null, attributes?: { __typename?: 'CodingChallenge', title?: string | null } | null }> } | null };
+export type GetChallengesExtendedQueryVariables = Types.Exact<{
+  [key: string]: never;
+}>;
 
-export type GetChallengesExtendedQueryVariables = Types.Exact<{ [key: string]: never; }>;
-
-
-export type GetChallengesExtendedQuery = { __typename?: 'Query', codingChallenges?: { __typename?: 'CodingChallengeEntityResponseCollection', data: Array<{ __typename?: 'CodingChallengeEntity', id?: string | null, attributes?: { __typename?: 'CodingChallenge', title?: string | null, challenge?: string | null, difficulty?: number | null, tags?: Types.Enum_Codingchallenge_Tags | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null } | null }> } | null };
+export type GetChallengesExtendedQuery = {
+  __typename?: 'Query';
+  codingChallenges?: {
+    __typename?: 'CodingChallengeEntityResponseCollection';
+    data: Array<{
+      __typename?: 'CodingChallengeEntity';
+      id?: string | null;
+      attributes?: {
+        __typename?: 'CodingChallenge';
+        title?: string | null;
+        challenge?: string | null;
+        difficulty?: number | null;
+        tags?: Types.Enum_Codingchallenge_Tags | null;
+        comments?: Array<{
+          __typename?: 'ComponentCommentsComments';
+          message?: string | null;
+        } | null> | null;
+      } | null;
+    }>;
+  } | null;
+};
 
 export type GetChallengeByIdQueryVariables = Types.Exact<{
   id?: Types.InputMaybe<Types.Scalars['ID']>;
 }>;
 
-
-export type GetChallengeByIdQuery = { __typename?: 'Query', codingChallenge?: { __typename?: 'CodingChallengeEntityResponse', data?: { __typename?: 'CodingChallengeEntity', id?: string | null, attributes?: { __typename?: 'CodingChallenge', title?: string | null, challenge?: string | null, difficulty?: number | null, tags?: Types.Enum_Codingchallenge_Tags | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null } | null } | null } | null };
+export type GetChallengeByIdQuery = {
+  __typename?: 'Query';
+  codingChallenge?: {
+    __typename?: 'CodingChallengeEntityResponse';
+    data?: {
+      __typename?: 'CodingChallengeEntity';
+      id?: string | null;
+      attributes?: {
+        __typename?: 'CodingChallenge';
+        title?: string | null;
+        challenge?: string | null;
+        difficulty?: number | null;
+        tags?: Types.Enum_Codingchallenge_Tags | null;
+        comments?: Array<{
+          __typename?: 'ComponentCommentsComments';
+          message?: string | null;
+        } | null> | null;
+      } | null;
+    } | null;
+  } | null;
+};
