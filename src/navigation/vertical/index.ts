@@ -51,7 +51,7 @@ const navigation: NavLink[] = [
     path: '/overflow',
   },
   {
-    title: 'TestKanban',
+    title: 'Kanban',
     path: '/kanban',
   },
 ];
