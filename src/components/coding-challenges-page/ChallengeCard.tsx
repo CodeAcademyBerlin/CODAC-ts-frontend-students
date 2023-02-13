@@ -16,15 +16,28 @@ type ChallengeProps = {
   challenge: CodingChallengeEntity;
   // title: string
 };
-// above you isolate what you recive below. So here recive the challange that will be the full CodingChallengeEntity
 
-const ChallengeCard = (props: ChallengeProps) => {
-  console.log('props.challenge', props?.challenge);
-  console.log('props', props);
+const ChallengeCard = ({ challenge }: ChallengeProps) => {
+  // console.log('props.challenge', props?.challenge);
+  console.log('challenge.id', challenge.id);
+  const { id } = challenge;
+  console.log('id', id);
+
+  console.log('challenge', challenge);
+  console.log('challenge.attributes', challenge.attributes);
+
+  const { attributes } = challenge;
+  console.log('attributes', attributes);
+
+  const title = challenge?.attributes?.title || 'no title';
+  console.log('title', title);
+
+  // option 1 leave and then when you render
+  // option 2 || when no title , "no title"
 
   return (
     <>
-      <div>
+      <div data-testid="example">
         <Card sx={{ position: 'relative' }}>
           <CardContent>
             <Box
@@ -41,16 +54,19 @@ const ChallengeCard = (props: ChallengeProps) => {
                 sx={{ mr: 2, mb: 1, display: 'flex', flexDirection: 'column' }}
               >
                 <Typography variant="h6">
-                  {props?.challenge?.attributes?.title}
+                  {challenge?.attributes?.title}
                 </Typography>
                 <Typography variant="caption">
-                  {props?.challenge?.attributes?.challenge}
+                  {challenge?.attributes?.challenge}
                 </Typography>
                 <Typography variant="caption">TBA contributor</Typography>
               </Box>
-              <StyledLink href={`/codingchallenges/${props?.challenge?.id}`}>
+              <StyledLink href={`/codingchallenges/${challenge?.id}`}>
                 <Button variant="contained">See challenge</Button>
               </StyledLink>
+              {/* <StyledLink href={`/codingchallenges/${props?.challenge?.id}`}>
+                <Button variant="contained">See challenge</Button>
+              </StyledLink> */}
             </Box>
           </CardContent>
         </Card>
