@@ -33,8 +33,8 @@ function LmsSearchBar() {
                 <SearchInput setState={setKeywordArray} /><div className={styles.searchButton} onClick={goToResults}><Image src={"/icons/search.png"} alt='search' width={20} height={20} /></div>
                 {keywordArray.length > 0 && <Keywords keywordArray={keywordArray} setKeywordArray={setKeywordArray} />}
                 <div>
-                    <input type="radio" name="filter" id="general" value="" onChange={radioHandler} checked={filter === "" ? true : false} />General
-                    <input type="radio" name="filter" id="web" value="web" onChange={radioHandler} checked={filter === "web" ? true : false} />Web Dev
+                    <input type="radio" name="filter" id="general" value="" onChange={radioHandler} checked={filter === "" ? true : false} />All
+                    <input type="radio" name="filter" id="web" value="web" onChange={radioHandler} checked={filter === "web" ? true : false} />Web
                     <input type="radio" name="filter" id="data" value="data" onChange={radioHandler} checked={filter === "data" ? true : false} />Data
                     <input type="radio" name="filter" id="carrer" value="career" onChange={radioHandler} checked={filter === "career" ? true : false} />Career
                 </div>
