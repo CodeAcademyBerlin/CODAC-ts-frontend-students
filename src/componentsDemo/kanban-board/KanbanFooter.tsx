@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import {
   Button,
   CardActionArea,
@@ -7,11 +8,12 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { Close } from 'mdi-material-ui';
+import { Card, Close } from 'mdi-material-ui';
 import * as React from 'react';
 
 const KanbanFooter = () => {
   const [showInput, setShowInput] = React.useState(false);
+  const theme = useTheme();
 
   const handleAddCard = () => {
     setShowInput(true);
@@ -24,9 +26,27 @@ const KanbanFooter = () => {
     return (
       <CardActionArea>
         <CardContent onClick={handleAddCard}>
-          <Typography variant="h6">Add card</Typography>
+          <Typography variant="h6">Add column</Typography>
         </CardContent>
       </CardActionArea>
+      /* <Card
+        elevation={0}
+        sx={{
+          width: '350px',
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: '100%',
+          overflowX: 'hidden',
+          overflowY: 'hidden',
+          margin: '4px',
+          borderRadius: theme.shape.borderRadius,
+          [theme.breakpoints.down('sm')]: {
+            width: '300px',
+          },
+        }}
+      >
+        <KanbanFooter />
+      </Card> */
     );
   } else {
     return (
