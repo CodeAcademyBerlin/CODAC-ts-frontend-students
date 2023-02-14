@@ -32,7 +32,6 @@ export default function SearchResults() {
             .then(response => response.json())
             .then(result => {
                 setSearchResults(result.filteredMatters.sort((a: frontMatter, b: frontMatter) => b.tags.length - a.tags.length));
-                console.log("result", result.filteredMatters);
                 if (result.filteredMatters.length < 1) {
                     setShow(true);
                 };
