@@ -5,11 +5,15 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  IconButton,
+  InputAdornment,
   Modal,
+  TextField,
   Typography,
   useTheme,
 } from '@mui/material';
 import { ComponentKanbanCard } from 'cabServer/global/__generated__/types';
+import { Close } from 'mdi-material-ui';
 import React from 'react';
 
 // type cardArray = ComponentKanbanCard[];
@@ -23,6 +27,7 @@ function KanbanCard({
 }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -32,7 +37,6 @@ function KanbanCard({
       sx={{
         position: 'relative',
         paddingBottom: '2px',
-        borderLeft: '5px solid red',
       }}
     >
       <CardActionArea>

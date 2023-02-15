@@ -3,11 +3,15 @@ import {
   Button,
   Card,
   Grid,
+  IconButton,
+  InputAdornment,
   Modal,
   Paper,
+  TextField,
   Typography,
   useTheme,
 } from '@mui/material';
+import { Close, WhiteBalanceAuto } from 'mdi-material-ui';
 import * as React from 'react';
 
 import { useGetKanbanBoardQuery } from '../../../cabServer/queries/__generated__/kanban';
@@ -22,6 +26,13 @@ const KanbanColumn = () => {
   console.log('dataColumns', column);
 
   const theme = useTheme();
+  const [input, setInput] = React.useState(false);
+  const handleAddCard = () => {
+    setInput(true);
+  };
+  const handleCloseCardInput = () => {
+    setInput(false);
+  };
 
   return (
     <Grid
@@ -65,11 +76,72 @@ const KanbanColumn = () => {
                 {column?.title}
               </Typography>
             </Box>
-
             {column?.cards?.map((card, index) => {
               console.log('cardss', column.cards);
               return <KanbanCard card={card} index={index} key={index} />;
             })}
+
+            {input ? (
+              <form>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexWrap: 'nowrap',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    // borderRadiusBottom: theme.shape.borderRadius,
+                    // paddingTop: '40px',
+                    backgroundColor: theme.palette.secondary,
+                  }}
+                >
+                  <TextField
+                    variant="outlined"
+                    sx={{
+                      width: '300px',
+                    }}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={handleCloseCardInput}>
+                            <Close />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  {/* <Typography variant="h5" color="white"></Typography> */}
+                </Box>
+
+                <Button variant="contained" sx={{ marginRight: 3.5 }}>
+                  Add
+                </Button>
+              </form>
+            ) : (
+              <>
+                <Card
+                  sx={{
+                    display: 'flex',
+                    flexWrap: 'nowrap',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    // borderRadiusBottom: theme.shape.borderRadius,
+                    padding: '20px',
+                    backgroundColor: theme.palette.secondary.main,
+                  }}
+                >
+                  <Button
+                    variant="text"
+                    sx={{
+                      color: 'white',
+                    }}
+                    // sx={{ marginRight: 3.5 }}
+                    onClick={handleAddCard}
+                  >
+                    ADD CARD
+                  </Button>
+                </Card>
+              </>
+            )}
           </Card>
         );
       })}
