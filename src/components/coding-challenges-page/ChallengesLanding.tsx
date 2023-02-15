@@ -18,8 +18,7 @@ const ChallengesLanding = (props: Props) => {
         <h1>CODAC Coding Challenges</h1>
 
         <p style={{ textAlign: 'center' }}>
-          {' '}
-          Welcome to Code Academy's own collection of Coding Challenges
+          Welcome to Code Academys own collection of Coding Challenges
         </p>
 
         <p style={{ textAlign: 'center' }}>

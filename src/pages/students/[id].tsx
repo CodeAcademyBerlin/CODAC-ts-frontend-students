@@ -39,7 +39,7 @@ const Students = (data: any) => {
               studentProfile?.user?.data?.attributes?.avatar?.data?.attributes
                 ?.url
             }
-            alt={studentProfile.user?.data?.attributes?.firstname}
+            // alt={studentProfile.user?.data?.attributes?.firstname}
             sizes="width: 100%, height: 100%"
           />
 

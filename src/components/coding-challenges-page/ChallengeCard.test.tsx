@@ -1,6 +1,5 @@
 import { getByText, render, screen } from '@testing-library/react';
 import { CodingChallengeEntity } from 'cabServer/global/__generated__/types';
-import TestRenderer from 'react-test-renderer';
 
 import ChallengeCard from '../../components/coding-challenges-page/ChallengeCard';
 

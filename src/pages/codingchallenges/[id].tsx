@@ -14,7 +14,9 @@ import {
   GetChallengesExtendedDocument,
   GetChallengesQuery,
 } from 'cabServer/queries/__generated__/challenges';
+import { useRouter } from 'next/router';
 import {
+  GetStaticPathsContext,
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType,
@@ -66,24 +68,43 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
 export default Challange;
 
 export const getStaticProps = async (ctx: GetStaticPropsContext) => {
-  const challengeId = ctx.params.id;
+  const challengeId = ctx?.params?.id;
   console.log('challengeId', challengeId);
 
-  const client = initializeApollo(null, null);
-  const { data, error } = await client.query<GetChallengeByIdQuery>({
-    query: GetChallengeByIdDocument,
-    variables: { id: challengeId },
-  });
-  console.log('data from getStaticProps', data);
-  console.log('error from getStaticProps', error);
+  try {
+    const client = initializeApollo(null, null);
+    const { data, error } = await client.query<GetChallengeByIdQuery>({
+      query: GetChallengeByIdDocument,
+      variables: { id: challengeId },
+      // fetchPolicy: 'network-only',
+    });
 
-  // knows the type if challengeData because its inferred by GetChallengeByIdQuery
-  const challengeData = data?.codingChallenge?.data;
+    console.log('data from getStaticProps', data);
 
-  return {
-    props: { challengeData },
-  };
+    const challengeData = data?.codingChallenge?.data;
+
+    if (challengeData) {
+      return {
+        props: {
+          challengeData,
+        },
+        revalidate: 10,
+      };
+    }
+    if (error || !challengeData) {
+      return {
+        notFound: true,
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    console.log('error from getStaticProps', error);
+    return {
+      notFound: true,
+    };
+  }
 };
+// knows the type if challengeData because its inferred by GetChallengeByIdQuery
 
 // ptahs need to always be anrray even if only one
 // challnge looking for [] file
@@ -94,15 +115,17 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 /// inside the query need the id
 // for icnremntal fucntion needs to get thet (needs to be generatd here)
 
-export const getStaticPaths = async (ctx) => {
+export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
   // fidn the id from the map noit cotnext
   // const challengeId = ctx.params;
   // console.log('challengeId in getStaticPaths', challengeId);
 
   // One of the tuhngs that comss with ctx is autorixation , so if we set the chalmnge type to be assesible oyl for logedf in users you would need the ctx as poaremter
-  const client = initializeApollo(null, ctx.req);
+
+  const client = initializeApollo(null, null);
   const { data, error } = await client.query<GetChallengesQuery>({
     query: GetChallengesExtendedDocument,
+    // fetchPolicy: 'network-only',
     // have the full list so dont need the variable
     // variables: { id: challengeId },
   });
@@ -122,7 +145,7 @@ export const getStaticPaths = async (ctx) => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 
   // using a map to reshape the array without changign tha data inside. Map of esponse to have the return with params and id

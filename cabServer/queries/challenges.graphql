@@ -10,7 +10,7 @@ query getChallenges {
 }
 
 query getChallengesExtended {
-  codingChallenges {
+  codingChallenges(pagination: { pageSize: 100 }) {
     data {
       id
       attributes {

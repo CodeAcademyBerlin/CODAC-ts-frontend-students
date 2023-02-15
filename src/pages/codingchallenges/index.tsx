@@ -4,7 +4,15 @@
 
 // Then on this isngle page you would have a separste fetch that fetches with id
 // fetches using the id that is found in the ciontext for serversideporps (like job postin g)
-import { Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Paper,
+  styled,
+  Typography,
+  useTheme,
+} from '@mui/material';
+import { Stack } from '@mui/system';
 import {
   CodingChallengeEntity,
   CodingChallengeEntityResponseCollection,
@@ -22,19 +30,17 @@ import {
 } from 'next/types';
 import React, { useEffect, useState } from 'react';
 import ChallengesLanding from 'src/components/coding-challenges-page/ChallengesLanding';
+import StyledLink from 'src/components/common/StyledLink';
 import { initializeApollo } from 'src/lib/apolloClient';
 
 import ChallengeCard from '../../components/coding-challenges-page/ChallengeCard';
 
-// data here in JS
-
-// interface Data {
-//   title: string;
-//   text: string;
-//   description: string;
-//   number: number;
-// }
-// type dataArray = Data[];
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const Codingchallenges = ({
   codingChallenges,
@@ -42,10 +48,10 @@ const Codingchallenges = ({
   // Set with <> for empty?
   const [challenges, setChallenges] = useState(codingChallenges);
 
-  console.log(
-    'codingChallenges.attributes.title',
-    codingChallenges?.attributes?.title,
-  );
+  // console.log(
+  //   'codingChallenges.attributes.title',
+  //   codingChallenges?.attributes?.title,
+  // );
 
   // To just render first time and when changes
   useEffect(() => {
@@ -54,22 +60,62 @@ const Codingchallenges = ({
 
   return (
     <>
-      <ChallengesLanding />
-      <div>
-        {codingChallenges.map((challenge: CodingChallengeEntity) => {
-          return (
-            <>
-              {/* <Link
-                key={challenge?.id}
-                href={{
-                  pathname: `/codingchallenges/${challenge?.id}`,
-                }}
-              ></Link> */}
-              <ChallengeCard key={challenge?.id} challenge={challenge} />
-            </>
-          );
-        })}
-      </div>
+      <Box
+        sx={{
+          bgcolor: 'yellow',
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'column',
+          alignItems: 'center',
+          '& > :not(style)': {
+            // m: 1,
+            width: '100%',
+            height: 'auto',
+          },
+        }}
+      >
+        <ChallengesLanding />
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '100%',
+          height: 'auto',
+        }}
+      >
+        <StyledLink href={`/codingchallenges/NewChallenge`}>
+          <Button
+            sx={{
+              m: 4,
+              // ml: 1,
+              // position: 'absolute',
+              // top: '0',
+              // right: '10px',
+            }}
+            type="submit"
+            variant="contained"
+          >
+            Add a coding challenge
+          </Button>
+        </StyledLink>
+      </Box>
+
+      <Box>
+        <Stack spacing={2}>
+          {codingChallenges.map((challenge: CodingChallengeEntity) => {
+            return (
+              <>
+                <Item>
+                  <ChallengeCard key={challenge?.id} challenge={challenge} />
+                </Item>
+              </>
+            );
+          })}
+        </Stack>
+      </Box>
     </>
   );
 };
@@ -274,3 +320,67 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 // //     </Grid>
 // //   ))}
 // // </Grid>
+
+// Old layout
+//   return (
+//     <>
+//       <Box
+//         sx={{
+//           bgcolor: 'yellow',
+//           display: 'flex',
+//           flexWrap: 'wrap',
+//           flexDirection: 'column',
+//           alignItems: 'center',
+//           '& > :not(style)': {
+//             m: 1,
+//             width: '100%',
+//             height: 'auto',
+//           },
+//         }}
+//       >
+//         <ChallengesLanding />
+//         <Box
+//           sx={{
+//             '& .MuiTextField-root': { m: 3, width: '100%' },
+//             width: '100%',
+//             display: 'flex',
+//             alignItems: 'center',
+//             justifyContent: 'center',
+//             position: 'relative',
+//             marginTop: '5px',
+//           }}
+//         >
+//           <StyledLink href={`/codingchallenges`}>
+//             <Button
+//               sx={{
+//                 mt: 2,
+//                 ml: 1,
+//                 position: 'absolute',
+//                 top: '0',
+//                 right: '10px',
+//               }}
+//               type="submit"
+//               variant="contained"
+//             >
+//               Ask a question
+//             </Button>
+//           </StyledLink>
+//         </Box>
+//         <Box>
+//           {codingChallenges.map((challenge: CodingChallengeEntity) => {
+//             return (
+//               <>
+//                 {/* <Link
+//                 key={challenge?.id}
+//                 href={{
+//                   pathname: `/codingchallenges/${challenge?.id}`,
+//                 }}
+//               ></Link> */}
+//                 <ChallengeCard key={challenge?.id} challenge={challenge} />
+//               </>
+//             );
+//           })}
+//         </Box>
+//       </Box>
+//     </>
+//   );

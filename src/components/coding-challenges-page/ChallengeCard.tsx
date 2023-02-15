@@ -41,7 +41,12 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
               }}
             >
               <Box
-                sx={{ mr: 2, mb: 1, display: 'flex', flexDirection: 'column' }}
+                sx={{
+                  mb: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  width: '50%',
+                }}
               >
                 <Typography variant="h6">{title}</Typography>
                 <Typography variant="caption">
@@ -51,9 +56,24 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
                   To be added: contributor
                 </Typography>
               </Box>
-              <StyledLink href={`/codingchallenges/${challenge?.id}`}>
-                <Button variant="contained">See challenge</Button>
-              </StyledLink>
+              <Box
+                sx={{
+                  mb: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  width: '50%',
+                }}
+              >
+                <StyledLink
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'end',
+                  }}
+                  href={`/codingchallenges/${challenge?.id}`}
+                >
+                  <Button variant="contained">See challenge</Button>
+                </StyledLink>
+              </Box>
             </Box>
           </CardContent>
         </Card>
