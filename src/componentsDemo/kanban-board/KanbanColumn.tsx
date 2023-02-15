@@ -14,6 +14,7 @@ import * as React from 'react';
 
 import { useGetKanbanByUserQuery } from '../../../cabServer/queries/__generated__/kanban';
 import KanbanCard from './KanbanCard';
+import KanbanFooter from './KanbanFooter';
 
 const KanbanColumn = () => {
   const { data, loading, error } = useGetKanbanByUserQuery({
@@ -23,14 +24,9 @@ const KanbanColumn = () => {
   console.log('dataColumns', column);
 
   const theme = useTheme();
-  const [inputCard, setInputCard] = React.useState(false);
+
   const [inputColumn, setInputColumn] = React.useState(false);
-  const handleAddCard = () => {
-    setInputCard(true);
-  };
-  const handleCloseCard = () => {
-    setInputCard(false);
-  };
+
   const handleAddColumn = () => {
     setInputColumn(true);
   };
@@ -80,8 +76,8 @@ const KanbanColumn = () => {
               // console.log('cards', column.cards);
               return <KanbanCard card={card} index={index} key={index} />;
             })}
-
-            {inputCard ? (
+            <KanbanFooter />
+            {/* {inputCard ? (
               <form>
                 <Box
                   sx={{
@@ -143,7 +139,7 @@ const KanbanColumn = () => {
                   </Button>
                 </Card>
               </>
-            )}
+            )} */}
           </Card>
         );
       })}

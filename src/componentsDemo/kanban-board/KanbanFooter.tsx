@@ -11,41 +11,19 @@ import { Card, Close } from 'mdi-material-ui';
 import * as React from 'react';
 
 const KanbanFooter = () => {
-  const [showInput, setShowInput] = React.useState(false);
+  const [inputCard, setInputCard] = React.useState(false);
   const theme = useTheme();
 
-  const handleAddColumn = () => {
-    setShowInput(true);
+  const handleAddCard = () => {
+    setInputCard(true);
   };
-  const handleCloseColumnInput = () => {
-    setShowInput(false);
+  const handleCloseCard = () => {
+    setInputCard(false);
   };
 
-  if (!showInput) {
-    return (
-      <Grid
-        container
-        sx={{
-          marginTop: '40px',
-        }}
-      >
-        <Button
-          variant="contained"
-          sx={{ marginRight: 3.5 }}
-          onClick={handleAddColumn}
-        >
-          ADD COLUMN
-        </Button>
-      </Grid>
-    );
-  } else {
-    return (
-      <Grid
-        container
-        sx={{
-          marginTop: '40px',
-        }}
-      >
+  return (
+    <>
+      {inputCard ? (
         <form>
           <Box
             sx={{
@@ -53,17 +31,19 @@ const KanbanFooter = () => {
               flexWrap: 'nowrap',
               alignItems: 'center',
               justifyContent: 'center',
+              backgroundColor: theme.palette.secondary,
             }}
           >
             <TextField
               variant="outlined"
               sx={{
-                width: '350px',
+                width: '300px',
+                marginTop: 3,
               }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={handleCloseColumnInput}>
+                    <IconButton onClick={handleCloseCard}>
                       <Close />
                     </IconButton>
                   </InputAdornment>
@@ -75,6 +55,7 @@ const KanbanFooter = () => {
           <Button
             variant="contained"
             sx={{
+              marginLeft: 6,
               marginBottom: 6,
               marginTop: 2,
             }}
@@ -82,9 +63,23 @@ const KanbanFooter = () => {
             Add
           </Button>
         </form>
-      </Grid>
-    );
-  }
+      ) : (
+        <>
+          <Button
+            variant="text"
+            sx={{
+              backgroundColor: theme.palette.secondary.main,
+              color: 'white',
+            }}
+            onClick={handleAddCard}
+            // startIcon={<AddIcon />}
+          >
+            ADD CARD
+          </Button>
+        </>
+      )}
+    </>
+  );
 };
 
 export default KanbanFooter;
