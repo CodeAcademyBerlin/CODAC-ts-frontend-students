@@ -2,13 +2,10 @@ import { useTheme } from '@emotion/react';
 import {
   Box,
   Button,
-  CardActionArea,
-  CardContent,
   Grid,
   IconButton,
   InputAdornment,
   TextField,
-  Typography,
 } from '@mui/material';
 import { Card, Close } from 'mdi-material-ui';
 import * as React from 'react';
@@ -20,7 +17,7 @@ const KanbanFooter = () => {
   const handleAddColumn = () => {
     setShowInput(true);
   };
-  const handleCloseInput = () => {
+  const handleCloseColumnInput = () => {
     setShowInput(false);
   };
 
@@ -37,7 +34,7 @@ const KanbanFooter = () => {
           sx={{ marginRight: 3.5 }}
           onClick={handleAddColumn}
         >
-          ADD NEW COLUMN
+          ADD COLUMN
         </Button>
       </Grid>
     );
@@ -56,30 +53,32 @@ const KanbanFooter = () => {
               flexWrap: 'nowrap',
               alignItems: 'center',
               justifyContent: 'center',
-              // borderRadiusBottom: theme.shape.borderRadius,
-              // paddingTop: '40px',
-              backgroundColor: theme.palette.secondary,
             }}
           >
             <TextField
               variant="outlined"
               sx={{
-                width: '300px',
+                width: '350px',
               }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={handleCloseInput}>
+                    <IconButton onClick={handleCloseColumnInput}>
                       <Close />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
             />
-            {/* <Typography variant="h5" color="white"></Typography> */}
           </Box>
 
-          <Button variant="contained" sx={{ marginRight: 3.5 }}>
+          <Button
+            variant="contained"
+            sx={{
+              marginBottom: 6,
+              marginTop: 2,
+            }}
+          >
             Add
           </Button>
         </form>

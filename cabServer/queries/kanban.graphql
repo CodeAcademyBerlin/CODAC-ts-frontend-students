@@ -22,3 +22,26 @@ query getKanbanBoard {
     }
   }
 }
+
+query getKanbanByUser {
+  usersPermissionsUser(id: 7) {
+    data {
+      attributes {
+        kanban {
+          columns {
+            title
+            order
+            done
+            cards {
+              task
+              description
+              deadline
+              category
+              done
+            }
+          }
+        }
+      }
+    }
+  }
+}
