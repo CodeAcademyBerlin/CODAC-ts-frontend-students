@@ -3,42 +3,32 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 
-export interface frontMatter {
+
+export interface indexField {
     path: string,
-    data: {
+    navTitle?: string,
+    title: string,
+    metaTitle: string,
+    metaDescription?: string,
+    access: string,
+    tags?: string[]
+}
+
+export interface filteredIndex {
+    field: {
+        path: string,
+        navTitle?: string,
         title: string,
         metaTitle: string,
-        metaDescription: string,
-        access: string
+        metaDescription?: string,
+        access: string,
     },
     tags: string[]
 }
 
-export function filterInputs(frontMatter: frontMatter, input: string[]) {
+export async function createIndexArray(dir: string) {
 
-    const filteredTags: string[] = [];
-
-    if (frontMatter.tags) {
-        for (let i = 0; i < input.length; i++) {
-            if (frontMatter.tags.includes(input[i])) {
-                filteredTags.push(input[i]);
-            };
-        };
-    };
-
-    if (filteredTags.length > 0) {
-        return {
-            path: frontMatter.path,
-            data: frontMatter.data,
-            tags: filteredTags
-        }
-    } else {
-        return null
-    };
-};
-
-export async function getAllFrontmatters(dir: string, subDirPath: string) {
-    const items: Array<frontMatter> = [];
+    const index: Array<indexField> = [];
 
     const getFilesRecursively = (relativeDir: string) => {
         const absoluteDir = path.join(dir, relativeDir);
@@ -53,20 +43,19 @@ export async function getAllFrontmatters(dir: string, subDirPath: string) {
                 const fullPath = path.join(dir, relativePath);
                 const content = fs.readFileSync(fullPath, 'utf8');
                 const { data } = matter(content);
-                items.push({
+                index.push({
                     path: dirArray.join('/'),
-                    data: {
-                        title: data.title,
-                        metaTitle: data.metaTitle,
-                        metaDescription: data.metaDescription,
-                        access: data.access
-                    },
+                    navTitle: data.navTitle,
+                    title: data.title,
+                    metaTitle: data.metaTitle,
+                    metaDescription: data.metaDescription,
+                    access: data.access,
                     tags: data.tags
                 });
             }
         });
     };
-    getFilesRecursively(subDirPath);
+    getFilesRecursively("");
 
-    return { items };
+    fs.writeFileSync('public/lms/assets/lmsindex.json', JSON.stringify(index));
 };
