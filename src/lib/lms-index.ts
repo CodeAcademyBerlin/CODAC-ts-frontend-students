@@ -45,5 +45,5 @@ export async function createIndexArray(dir: string) {
     };
     getFilesRecursively("");
 
-    fs.writeFileSync('public/lms/assets/lmsindex.json', JSON.stringify(index));
+    fs.writeFileSync('src/components/lms-search/lms-index.json', JSON.stringify(index));
 };
