@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
 import Link from 'next/link';
 import React from 'react';
-import { filteredIndex } from 'src/lib/lms-index';
+import { filteredIndexField } from 'src/lib/lms-search';
 
 import styles from './search.module.css';
 
 interface SearchResultProps {
     index: number,
-    result: filteredIndex
+    result: filteredIndexField
 }
 
 export default function SearchResult({ index, result }: SearchResultProps) {
