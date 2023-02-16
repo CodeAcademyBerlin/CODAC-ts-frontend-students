@@ -1,0 +1,9 @@
+mutation deleteLMSComment($lmsFeedbackId: ID!, $commentId: ID!) {
+  deleteLMSfeedbackComment(
+    lmsFeedbackId: $lmsFeedbackId
+    commentId: $commentId
+  ) {
+    success
+    message
+  }
+}

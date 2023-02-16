@@ -1,0 +1,6 @@
+mutation deleteLMSRating($lmsFeedbackId: ID!, $feedbackId: ID!) {
+  deleteLMSfeedback(lmsFeedbackId: $lmsFeedbackId, feedbackId: $feedbackId) {
+    success
+    message
+  }
+}

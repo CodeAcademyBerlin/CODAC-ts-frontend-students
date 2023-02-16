@@ -1,5 +1,6 @@
 // ** React Imports
 import {
+  Achievement,
   UsersPermissionsLoginPayload,
   UsersPermissionsMe,
 } from 'cabServer/global/__generated__/types';
@@ -38,6 +39,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     getUser();
   }, []);
 
+  useEffect(() => {
+    user && getAchievements();
+  }, [user]);
+
   const setSession = async (jwt: string) => {
     const options = {
       method: 'POST',
@@ -59,8 +64,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const res = await fetch('/api/user', options);
     const data = await res.json();
     const user: User = data.user;
+    console.log('user', user);
     if (user) {
       setUser(user);
+      console.log('user', user);
+    }
+  };
+
+  const getAchievements = async () => {
+    const options = {
+      body: JSON.stringify({ userid: user?.id }),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const res = await fetch('/api/unlockAchievements', options);
+    const data = await res.json();
+    console.log('data', data);
+    const achievements: Achievement = data.unlockAchievements;
+    if (achievements) {
+      // setAchievements(achievements);
+      console.log('achievements', achievements);
     }
   };
 

@@ -1,5 +1,3 @@
-// ** React Imports
-// ** MUI Imports
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -8,59 +6,36 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Typography from '@mui/material/Typography';
 import {
-  Achievement,
-  AchievementEntity,
-} from 'cabServer/global/__generated__/types';
-import { GetAchievementsDocument } from 'cabServer/queries/__generated__/achievements';
-// ** Next Imports
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
-import React from 'react';
+  GetAchievementsDocument,
+  GetAchievementsQuery,
+} from 'cabServer/queries/__generated__/achievements';
+import {
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+} from 'next/types';
+import React, { useMemo } from 'react';
 import { useState } from 'react';
 
 import AchievementTable from '../components/achievements-page/AchievementTable';
 import { initializeApollo } from '../lib/apolloClient';
 
-type Props = {};
-
-interface Data {
-  map(arg0: (achievementCourse: any, i: any) => JSX.Element): React.ReactNode;
-  data?: Object;
-  push: any;
-  includes: any;
-}
-
-type index = number;
-
-type allAchievements = Achievement[];
-
 const Achievements = ({
-  data,
+  achievements,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [result, setResult] = useState(data.achievements.data);
-  const [check, setCheck] = useState(true);
-  const allAchievements = data?.achievements?.data;
-  const uniqueFields: Data = [];
-  console.log('allAchievements', allAchievements);
+  const [filterValue, setFilter] = useState('All');
+  const allAchievements = achievements.data;
 
-  const handleClick = (e: React.MouseEvent<Element, MouseEvent>) => {
-    const target = e.target as HTMLButtonElement;
-    const value = target.value;
-    const result: Data = [];
-    allAchievements.map((achievementEntity: AchievementEntity, i: index) => {
-      if (achievementEntity.attributes?.course?.includes(value)) {
-        result.push(achievementEntity);
-      }
-    });
-    if (target.value === '') {
-      setCheck(!check);
-    } else {
-      setCheck(false);
-    }
-    setResult(result);
-    console.log('result', result);
-    return data;
-  };
-
+  const uniqueFields = useMemo(
+    () =>
+      allAchievements.reduce(
+        (unique: string[], item) =>
+          unique.includes(item.attributes?.course?.data?.attributes?.name!)
+            ? unique
+            : [...unique, item.attributes?.course?.data?.attributes?.name!],
+        ['All'],
+      ),
+    [allAchievements],
+  );
   return (
     <div>
       <Box>
@@ -75,55 +50,18 @@ const Achievements = ({
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
             >
-              {allAchievements.length >= 1 ? (
-                <div>
-                  {' '}
-                  <FormControlLabel
-                    onClick={(e) => {
-                      handleClick(e);
-                    }}
-                    value=""
-                    control={<Radio id="All" />}
-                    label="All"
-                    className="All"
-                    id="AllForm"
-                    checked={check}
-                  />
-                </div>
-              ) : (
-                <div></div>
-              )}
-
-              {allAchievements &&
-                allAchievements.map(
-                  (achievementEntity: AchievementEntity, i: index) => {
-                    if (
-                      !uniqueFields?.includes(
-                        achievementEntity.attributes?.course,
-                      )
-                    ) {
-                      uniqueFields.push(achievementEntity.attributes?.course);
-                    }
-                  },
-                )}
-
               {uniqueFields &&
-                uniqueFields.map((course, i) => {
+                uniqueFields.map((tag, i) => {
                   return (
                     <div key={i}>
                       <Grid item xs={12} sm={6} md={4}>
-                        {course && (
-                          <FormControlLabel
-                            onClick={(e) => {
-                              handleClick(e);
-                            }}
-                            value={course}
-                            control={<Radio id="All" />}
-                            label={course.replace('_', ' ')}
-                            className="All"
-                            id="AllForm"
-                          />
-                        )}
+                        <FormControlLabel
+                          onClick={(e) => setFilter(tag)}
+                          value={tag}
+                          control={<Radio id={tag} />}
+                          label={tag.replace('_', ' ')}
+                          id="AllForm"
+                        />
                       </Grid>
                     </div>
                   );
@@ -139,20 +77,16 @@ const Achievements = ({
           </Box>
         </div>
         <Box>
-          {/* {data &&
-                        result.map((achievementEntity: AchievementEntity, i: index) => (
-                            <Grid item xs={12} sm={6} md={4} key={i}>
-                                {achievementEntity.attributes && <AchievementTable allAchievements={allAchievements} />}
-                            </Grid>
-                        ))} */}
-          {allAchievements && <AchievementTable allAchievements={result} />}
+          {allAchievements && (
+            <AchievementTable
+              allAchievements={allAchievements.filter(
+                (achievement) =>
+                  achievement.attributes?.course?.data?.attributes?.name! ===
+                    filterValue || filterValue === 'All',
+              )}
+            />
+          )}
         </Box>
-        {/* {allAchievements &&
-                    allAchievements.map((achievementEntity: AchievementEntity, i: index) => (
-                        <Box key={i}>
-                            {achievementEntity.attributes && <AchievementTable achievement={achievementEntity.attributes} />}
-                        </Box>
-                    ))} */}
       </Box>
     </div>
   );
@@ -160,18 +94,25 @@ const Achievements = ({
 
 export default Achievements;
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   try {
     const client = initializeApollo(null, ctx.req);
-    const { data, error } = await client.query({
+    const { data, error } = await client.query<GetAchievementsQuery>({
       query: GetAchievementsDocument,
     });
-    return {
-      props: { data },
-    };
+    const { achievements } = data;
+    if (error || !achievements) {
+      return {
+        notFound: true,
+      };
+    } else
+      return {
+        props: { achievements },
+      };
   } catch (error) {
+    console.log('error', error);
     return {
-      props: { data: null },
+      notFound: true,
     };
   }
 };

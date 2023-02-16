@@ -15,3 +15,11 @@ export interface Project {
   github_username: string;
   image: string;
 }
+
+export interface Quests {
+  name: string;
+  description: string;
+  github_repo: string;
+  github_username: string;
+  image?: string;
+}

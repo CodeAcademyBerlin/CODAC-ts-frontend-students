@@ -1,6 +1,7 @@
 query getNews {
   newsPosts(sort: "updatedAt:desc") {
     data {
+      id
       attributes {
         title
         post
@@ -9,6 +10,23 @@ query getNews {
             id
             attributes {
               username
+              avatar {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    width
+                    height
+                    hash
+                    mime
+                    size
+                    previewUrl
+                    provider
+                    url
+                  }
+                }
+              }
             }
           }
         }
@@ -22,9 +40,11 @@ query getNews {
         }
         createdAt
         updatedAt
+        publishedAt
         tags
         image {
           data {
+            id
             attributes {
               url
             }

@@ -37,7 +37,7 @@ const ParticlesComp = ({ type }: { type: string }) => {
   }, []);
 
   const particlesLoaded = useCallback(async (container: any) => {
-    await console.log(container);
+    // await console.log(container);
   }, []);
 
   return (

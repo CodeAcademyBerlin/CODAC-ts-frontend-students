@@ -1,13 +1,10 @@
 overwrite: true
-schema: 'https://codac-364707.ey.r.appspot.com/graphql'
+schema: 'https://strapi-production-431a.up.railway.app/graphql'
 documents: 'cabServer/**/*.graphql'
 generates:
   cabServer/global/__generated__/types.ts:
     plugins:
       - 'typescript'
-    config:
-    avoidOptionals: true
-    maybeValue: 'T'
   cabServer/global/__generated__:
     preset: near-operation-file
     presetConfig:
@@ -22,7 +19,19 @@ generates:
       withHooks: true
       withHOC: false
       withComponent: false
-      hooks:
-        afterOneFileWrite:
-          - eslint --fix
-          - prettier --write
+  # cabServer/__generated__/page.tsx:
+  #   config:
+  #     reactApolloVersion: 3
+  #     withHooks: true
+  #     documentMode: external
+  #     importDocumentNodeExternallyFrom: ./operations
+  #   preset: import-types
+  #   presetConfig:
+  #     typesPath: ./graphql
+  #   plugins:
+  #     - graphql-codegen-apollo-next-ssr
+  # # Format files
+# hooks:
+#   afterAllFileWrite:
+#     - prettier --write
+#     - eslint --fix

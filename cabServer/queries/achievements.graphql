@@ -1,11 +1,21 @@
 query getAchievements {
-  achievements(sort: "id:asc", pagination:{pageSize:100}){
+  achievements(sort: "id:asc", pagination: { pageSize: 100 }) {
     data {
       id
       attributes {
         badge {
           data {
             attributes {
+              url
+              name
+              alternativeText
+              width
+              height
+              hash
+              mime
+              size
+              previewUrl
+              provider
               url
             }
           }
@@ -14,7 +24,55 @@ query getAchievements {
         description
         points
         type
-        course
+        course {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query studentAchievements($userId: ID) {
+  students(filters: { user: { id: { eq: $userId } } }) {
+    data {
+      id
+      attributes {
+        start_date
+        achievements {
+          id
+          unlocked
+          unlockedOn
+          achievement {
+            data {
+              id
+              attributes {
+                name
+                course_date
+                badge {
+                  data {
+                    attributes {
+                      url
+                      name
+                      alternativeText
+                      width
+                      height
+                      hash
+                      mime
+                      size
+                      previewUrl
+                      provider
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

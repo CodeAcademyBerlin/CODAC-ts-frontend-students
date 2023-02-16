@@ -1,0 +1,10 @@
+query progressBar($userId: ID) {
+  students(filters: { user: { id: { eq: $userId } } }) {
+    data {
+      attributes {
+        start_date
+        end_date
+      }
+    }
+  }
+}
