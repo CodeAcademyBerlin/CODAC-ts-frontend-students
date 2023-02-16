@@ -56,7 +56,7 @@ const Home = () => {
         <TronGrid />
         {smUp && <BerlinSkyline />}
       </TronGridWrapper>
-      <ParticlesComp type="snow" />
+      {/* <ParticlesComp type="snow" /> */}
       <Box
         sx={{
           mt: 50,

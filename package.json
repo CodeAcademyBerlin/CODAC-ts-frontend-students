@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "release": "commit-and-tag-version",
     "cypress": "cypress open",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "graphql-codegen --config codegen.ts",
     "vercel-install": "./clone-lms-content-prod.sh && yarn --ignore-scripts --production=false",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

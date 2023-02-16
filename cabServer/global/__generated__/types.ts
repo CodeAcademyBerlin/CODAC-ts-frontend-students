@@ -160,7 +160,6 @@ export type Chat = {
   createdAt?: Maybe<Scalars['DateTime']>;
   messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
   name?: Maybe<Scalars['String']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
@@ -204,7 +203,6 @@ export type ChatFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ChatFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ChatFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   users?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
@@ -212,7 +210,6 @@ export type ChatFiltersInput = {
 export type ChatInput = {
   messages?: InputMaybe<Array<InputMaybe<ComponentChatMessageInput>>>;
   name?: InputMaybe<Scalars['String']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
   users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
@@ -2626,7 +2623,6 @@ export type QueryChatArgs = {
 export type QueryChatsArgs = {
   filters?: InputMaybe<ChatFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
