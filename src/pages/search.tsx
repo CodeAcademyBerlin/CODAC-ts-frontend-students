@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
+import { Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { LmsContent } from 'src/components/lms-page/LmsContentContainer';
@@ -52,12 +53,12 @@ export default function SearchResults() {
     return (
         <>
             <LmsContent>
-                <h1 className={styles.resultH}>Search Results</h1>
+                <Typography variant="h5" className={styles.resultH}>Search Results</Typography>
                 {!show && <p className={styles.resultP}>TAGS</p>}
                 {searchResults?.map((result: filteredIndex, index: number) => {
                     return <SearchResult key={index} index={index} result={result} />
                 })}
-                {show && <div>No results    <Image src={"/icons/empty-box.png"} alt='empty' width={50} height={50} className={styles.resultImage} /></div>}
+                {show && <Image src={"/icons/empty-box.png"} alt='empty' title="No results!" width={50} height={50} className={styles.resultImage} />}
             </LmsContent>
         </>
     )
