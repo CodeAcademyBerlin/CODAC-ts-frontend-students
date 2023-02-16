@@ -38,7 +38,7 @@ const AppBarContent = () => {
         sx={{ mr: 2, display: 'flex', alignItems: 'center' }}
       >
         {router.asPath.includes('/lms/') && <LmsSearchBar />}
-        {router.asPath.includes('/search/') && <LmsSearchBar />}
+        {router.asPath.includes('/search') && <LmsSearchBar />}
         {/* Search bar
         <TextField
           size='small'
