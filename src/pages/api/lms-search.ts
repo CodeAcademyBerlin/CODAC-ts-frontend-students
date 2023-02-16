@@ -1,9 +1,12 @@
 /* eslint-disable prettier/prettier */
-import lms from 'public/lms/assets/lmsindex.json';
+import { readFileSync } from 'fs';
+import path from 'path';
 import { filteredIndex } from 'src/lib/lms-index';
 import { filterIndex } from 'src/lib/lms-search';
 
 export default async function searchInput(req: any, res: any) {
+  const file = path.join(process.cwd(), 'public', 'lms', 'assets', 'lmsindex.json')
+  const lms = JSON.parse(readFileSync(file, 'utf8'));
   const { input } = req.body;
   const inputArray = input.split(',');
   try {
