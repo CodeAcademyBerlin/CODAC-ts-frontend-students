@@ -5,11 +5,15 @@ import {
   MenuItem,
   Paper,
   Select,
+  SelectChangeEvent,
   Stack,
   TextField,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
+import { Enum_Codingchallenge_Tags } from 'cabServer/global/__generated__/types';
+import { useCreateCodingChallengeMutation } from 'cabServer/mutations/__generated__/addChallenge';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -22,11 +26,74 @@ const Item = styled(Paper)(({ theme }) => ({
 
 type Props = {};
 
+// type CourseTag = 'data' | 'web';
+// <string> to enforce type
+
 const NewChallenge = (props: Props) => {
-  const [title, setTitle] = useState('');
-  const [course, setCourse] = useState('');
-  const [difficulty, setDifficulty] = useState('');
-  const [challengeBody, setChallengeBody] = useState('');
+  const [tags, setTags] = useState<Enum_Codingchallenge_Tags | undefined>(
+    undefined,
+  );
+  // Enum_Codingchallenge_Tags.Data
+  const [difficulty, setDifficulty] = useState<number>(0);
+  const [title, setTitle] = useState<string>('');
+  const [challenge, setChallenge] = useState<string>('');
+
+  const router = useRouter();
+
+  const [createCodingChallengeMutation, { data, loading, error }] =
+    useCreateCodingChallengeMutation();
+
+  // using mui so need to import that library
+
+  const handleTag = (event: SelectChangeEvent<Enum_Codingchallenge_Tags>) => {
+    setTags(Enum_Codingchallenge_Tags.Data);
+    console.log('tags after setting it', tags);
+  };
+
+  // TS - check generics
+  // generics: you can type soemthig to tell it what it will return
+  // the return of the chnge vent is going to be a number
+
+  const handleDifficulty = (event: SelectChangeEvent<number>) => {
+    console.log(typeof event.target.value);
+    // inputs are always a string so need to convert it
+    setDifficulty(Number(event.target.value));
+  };
+
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
+    setTitle(event.target.value);
+  };
+
+  const handleChallenge = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
+    console.log(event.target.value);
+    setChallenge(event.target.value);
+  };
+
+  const handleSubmit = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.preventDefault();
+    // console.log('submitted');
+    try {
+      const { data } = await createCodingChallengeMutation({
+        variables: {
+          title: title,
+          challenge: challenge,
+          difficulty: difficulty,
+          tags: tags,
+        },
+      });
+      if (data) {
+        console.log(data);
+        // Creating the route
+        router.push(`/codingchallenges/${data?.createCodingChallenge?.data?.id}
+`);
+      }
+    } catch (error) {}
+  };
 
   return (
     <>
@@ -91,9 +158,9 @@ const NewChallenge = (props: Props) => {
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    // value={course}
+                    value={tags}
                     label="Course"
-                    // onChange={handleCourseChange}
+                    onChange={handleTag}
                   >
                     <MenuItem value={'Web'}>Web</MenuItem>
                     <MenuItem value={'Data'}>Data</MenuItem>
@@ -106,20 +173,20 @@ const NewChallenge = (props: Props) => {
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    // value={course}
+                    value={difficulty}
                     label="Course"
-                    // onChange={handleCourseChange}
+                    onChange={handleDifficulty}
                   >
-                    <MenuItem value={'HTML & CSS'}>1</MenuItem>
-                    <MenuItem value={'Javascript'}>2</MenuItem>
-                    <MenuItem value={'HTML & CSS'}>3</MenuItem>
-                    <MenuItem value={'Javascript'}>4</MenuItem>
-                    <MenuItem value={'HTML & CSS'}>5</MenuItem>
-                    <MenuItem value={'Javascript'}>6</MenuItem>
-                    <MenuItem value={'HTML & CSS'}>7</MenuItem>
-                    <MenuItem value={'Javascript'}>8</MenuItem>
-                    <MenuItem value={'HTML & CSS'}>9</MenuItem>
-                    <MenuItem value={'Javascript'}>10</MenuItem>
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={6}>6</MenuItem>
+                    <MenuItem value={7}>7</MenuItem>
+                    <MenuItem value={8}>8</MenuItem>
+                    <MenuItem value={9}>9</MenuItem>
+                    <MenuItem value={10}>10</MenuItem>
                   </Select>
                 </FormControl>
                 <Box
@@ -134,7 +201,7 @@ const NewChallenge = (props: Props) => {
                     id="filled-basic"
                     label="Title"
                     variant="filled"
-                    // onChange={handleTitleChange}
+                    onChange={handleTitleChange}
                   />
                 </Box>
                 <TextField
@@ -147,12 +214,12 @@ const NewChallenge = (props: Props) => {
                   type="text"
                   fullWidth
                   variant="filled"
-                  // value={description}
-                  // onChange={handleMessageChange}
+                  value={challenge}
+                  onChange={handleChallenge}
                 />
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <Button
-                    // onClick={handleSubmit}
+                    onClick={handleSubmit}
                     sx={{ mt: 3, ml: 1 }}
                     type="submit"
                     variant="contained"
