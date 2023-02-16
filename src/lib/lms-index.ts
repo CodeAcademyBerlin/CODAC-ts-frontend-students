@@ -2,6 +2,9 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
+import lms from 'public/lms/assets/lmsindex.json';
+
+import { filterIndex } from './lms-search';
 
 
 export interface indexField {
@@ -59,3 +62,15 @@ export async function createIndexArray(dir: string) {
 
     fs.writeFileSync('public/lms/assets/lmsindex.json', JSON.stringify(index));
 };
+
+export async function searchInput(input: string) {
+  const input2 = input.split(',');
+    const filteredIndex: Array<filteredIndex> = [];
+    for (let i = 0; i < lms.length; i++){
+      const inputs = filterIndex(lms[i], input2);
+      if (inputs) {
+        filteredIndex.push(inputs);
+      };
+    };
+    return filteredIndex
+}
