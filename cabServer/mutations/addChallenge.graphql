@@ -1,0 +1,19 @@
+mutation createCodingChallenge(
+  $title: String
+  $challenge: String
+  $difficulty: Int
+  $tags: ENUM_CODINGCHALLENGE_TAGS
+) {
+  createCodingChallenge(
+    data: {
+      title: $title
+      challenge: $challenge
+      difficulty: $difficulty
+      tags: $tags
+    }
+  ) {
+    data {
+      id
+    }
+  }
+}

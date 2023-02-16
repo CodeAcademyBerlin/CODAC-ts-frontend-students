@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,6 +23,11 @@ const Item = styled(Paper)(({ theme }) => ({
 type Props = {};
 
 const NewChallenge = (props: Props) => {
+  const [title, setTitle] = useState('');
+  const [course, setCourse] = useState('');
+  const [difficulty, setDifficulty] = useState('');
+  const [challengeBody, setChallengeBody] = useState('');
+
   return (
     <>
       <div>
