@@ -20,7 +20,7 @@ interface ServerToClientEvents {
 }
 
 interface ClientToServerEvents {
-  chat: () => void;
+  // chat: () => void;
 }
 type SocketIface = Socket<ServerToClientEvents, ClientToServerEvents>;
 
@@ -36,7 +36,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
   const [socket, setSocket] = useState<SocketIface | null>(null);
 
-  useEffect(() => {
+  const connectSocket = () => {
     if (!user || socket || typeof window === 'undefined') {
       return;
     } else {
@@ -53,6 +53,9 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       );
       setSocket(s);
     }
+  };
+  useEffect(() => {
+    connectSocket();
   }, [socket, user]);
 
   useEffect(() => {

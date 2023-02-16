@@ -1161,7 +1161,8 @@ export enum Enum_Achievement_Type {
   CourseDate = 'course_date',
   Date = 'date',
   Other = 'other',
-  Quest = 'quest'
+  Quest = 'quest',
+  Student = 'student'
 }
 
 export enum Enum_Codingchallenge_Tags {
