@@ -5,20 +5,14 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const AddCodacOverflowCommentDocument = gql`
-  mutation addCODACOverflowComment($codacOverflowId: ID!, $comment: String!) {
-    addCODACOverflowComment(
-      codacOverflowId: $codacOverflowId
-      comment: $comment
-    ) {
-      success
-      message
-    }
+    mutation addCODACOverflowComment($codacOverflowId: ID!, $comment: String!) {
+  addCODACOverflowComment(codacOverflowId: $codacOverflowId, comment: $comment) {
+    success
+    message
   }
-`;
-export type AddCodacOverflowCommentMutationFn = Apollo.MutationFunction<
-  AddCodacOverflowCommentMutation,
-  AddCodacOverflowCommentMutationVariables
->;
+}
+    `;
+export type AddCodacOverflowCommentMutationFn = Apollo.MutationFunction<AddCodacOverflowCommentMutation, AddCodacOverflowCommentMutationVariables>;
 
 /**
  * __useAddCodacOverflowCommentMutation__
@@ -38,37 +32,17 @@ export type AddCodacOverflowCommentMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useAddCodacOverflowCommentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    AddCodacOverflowCommentMutation,
-    AddCodacOverflowCommentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    AddCodacOverflowCommentMutation,
-    AddCodacOverflowCommentMutationVariables
-  >(AddCodacOverflowCommentDocument, options);
-}
-export type AddCodacOverflowCommentMutationHookResult = ReturnType<
-  typeof useAddCodacOverflowCommentMutation
->;
-export type AddCodacOverflowCommentMutationResult =
-  Apollo.MutationResult<AddCodacOverflowCommentMutation>;
-export type AddCodacOverflowCommentMutationOptions = Apollo.BaseMutationOptions<
-  AddCodacOverflowCommentMutation,
-  AddCodacOverflowCommentMutationVariables
->;
+export function useAddCodacOverflowCommentMutation(baseOptions?: Apollo.MutationHookOptions<AddCodacOverflowCommentMutation, AddCodacOverflowCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddCodacOverflowCommentMutation, AddCodacOverflowCommentMutationVariables>(AddCodacOverflowCommentDocument, options);
+      }
+export type AddCodacOverflowCommentMutationHookResult = ReturnType<typeof useAddCodacOverflowCommentMutation>;
+export type AddCodacOverflowCommentMutationResult = Apollo.MutationResult<AddCodacOverflowCommentMutation>;
+export type AddCodacOverflowCommentMutationOptions = Apollo.BaseMutationOptions<AddCodacOverflowCommentMutation, AddCodacOverflowCommentMutationVariables>;
 export type AddCodacOverflowCommentMutationVariables = Types.Exact<{
   codacOverflowId: Types.Scalars['ID'];
   comment: Types.Scalars['String'];
 }>;
 
-export type AddCodacOverflowCommentMutation = {
-  __typename?: 'Mutation';
-  addCODACOverflowComment?: {
-    __typename?: 'GenericServerResponse';
-    success?: boolean | null;
-    message?: string | null;
-  } | null;
-};
+
+export type AddCodacOverflowCommentMutation = { __typename?: 'Mutation', addCODACOverflowComment?: { __typename?: 'GenericServerResponse', success?: boolean | null, message?: string | null } | null };

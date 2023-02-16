@@ -5,17 +5,17 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const ProgressBarDocument = gql`
-  query progressBar($userId: ID) {
-    students(filters: { user: { id: { eq: $userId } } }) {
-      data {
-        attributes {
-          start_date
-          end_date
-        }
+    query progressBar($userId: ID) {
+  students(filters: {user: {id: {eq: $userId}}}) {
+    data {
+      attributes {
+        start_date
+        end_date
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useProgressBarQuery__
@@ -33,53 +33,20 @@ export const ProgressBarDocument = gql`
  *   },
  * });
  */
-export function useProgressBarQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ProgressBarQuery,
-    ProgressBarQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ProgressBarQuery, ProgressBarQueryVariables>(
-    ProgressBarDocument,
-    options,
-  );
-}
-export function useProgressBarLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ProgressBarQuery,
-    ProgressBarQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ProgressBarQuery, ProgressBarQueryVariables>(
-    ProgressBarDocument,
-    options,
-  );
-}
+export function useProgressBarQuery(baseOptions?: Apollo.QueryHookOptions<ProgressBarQuery, ProgressBarQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProgressBarQuery, ProgressBarQueryVariables>(ProgressBarDocument, options);
+      }
+export function useProgressBarLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProgressBarQuery, ProgressBarQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProgressBarQuery, ProgressBarQueryVariables>(ProgressBarDocument, options);
+        }
 export type ProgressBarQueryHookResult = ReturnType<typeof useProgressBarQuery>;
-export type ProgressBarLazyQueryHookResult = ReturnType<
-  typeof useProgressBarLazyQuery
->;
-export type ProgressBarQueryResult = Apollo.QueryResult<
-  ProgressBarQuery,
-  ProgressBarQueryVariables
->;
+export type ProgressBarLazyQueryHookResult = ReturnType<typeof useProgressBarLazyQuery>;
+export type ProgressBarQueryResult = Apollo.QueryResult<ProgressBarQuery, ProgressBarQueryVariables>;
 export type ProgressBarQueryVariables = Types.Exact<{
   userId?: Types.InputMaybe<Types.Scalars['ID']>;
 }>;
 
-export type ProgressBarQuery = {
-  __typename?: 'Query';
-  students?: {
-    __typename?: 'StudentEntityResponseCollection';
-    data: Array<{
-      __typename?: 'StudentEntity';
-      attributes?: {
-        __typename?: 'Student';
-        start_date?: any | null;
-        end_date?: any | null;
-      } | null;
-    }>;
-  } | null;
-};
+
+export type ProgressBarQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', start_date?: any | null, end_date?: any | null } | null }> } | null };

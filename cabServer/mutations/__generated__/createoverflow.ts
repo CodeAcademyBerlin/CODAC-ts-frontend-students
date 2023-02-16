@@ -5,36 +5,17 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const CreateCodacOverflowDocument = gql`
-  mutation createCodacOverflow(
-    $slug: String!
-    $title: String!
-    $description: String!
-    $date: Date!
-    $author: ID!
-    $course: String!
-    $publishedAt: DateTime!
+    mutation createCodacOverflow($slug: String!, $title: String!, $description: String!, $date: Date!, $author: ID!, $course: String!, $publishedAt: DateTime!) {
+  createCodacOverflow(
+    data: {slug: $slug, title: $title, description: $description, date: $date, author: $author, course: $course, publishedAt: $publishedAt}
   ) {
-    createCodacOverflow(
-      data: {
-        slug: $slug
-        title: $title
-        description: $description
-        date: $date
-        author: $author
-        course: $course
-        publishedAt: $publishedAt
-      }
-    ) {
-      data {
-        id
-      }
+    data {
+      id
     }
   }
-`;
-export type CreateCodacOverflowMutationFn = Apollo.MutationFunction<
-  CreateCodacOverflowMutation,
-  CreateCodacOverflowMutationVariables
->;
+}
+    `;
+export type CreateCodacOverflowMutationFn = Apollo.MutationFunction<CreateCodacOverflowMutation, CreateCodacOverflowMutationVariables>;
 
 /**
  * __useCreateCodacOverflowMutation__
@@ -59,27 +40,13 @@ export type CreateCodacOverflowMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreateCodacOverflowMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    CreateCodacOverflowMutation,
-    CreateCodacOverflowMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    CreateCodacOverflowMutation,
-    CreateCodacOverflowMutationVariables
-  >(CreateCodacOverflowDocument, options);
-}
-export type CreateCodacOverflowMutationHookResult = ReturnType<
-  typeof useCreateCodacOverflowMutation
->;
-export type CreateCodacOverflowMutationResult =
-  Apollo.MutationResult<CreateCodacOverflowMutation>;
-export type CreateCodacOverflowMutationOptions = Apollo.BaseMutationOptions<
-  CreateCodacOverflowMutation,
-  CreateCodacOverflowMutationVariables
->;
+export function useCreateCodacOverflowMutation(baseOptions?: Apollo.MutationHookOptions<CreateCodacOverflowMutation, CreateCodacOverflowMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCodacOverflowMutation, CreateCodacOverflowMutationVariables>(CreateCodacOverflowDocument, options);
+      }
+export type CreateCodacOverflowMutationHookResult = ReturnType<typeof useCreateCodacOverflowMutation>;
+export type CreateCodacOverflowMutationResult = Apollo.MutationResult<CreateCodacOverflowMutation>;
+export type CreateCodacOverflowMutationOptions = Apollo.BaseMutationOptions<CreateCodacOverflowMutation, CreateCodacOverflowMutationVariables>;
 export type CreateCodacOverflowMutationVariables = Types.Exact<{
   slug: Types.Scalars['String'];
   title: Types.Scalars['String'];
@@ -90,10 +57,5 @@ export type CreateCodacOverflowMutationVariables = Types.Exact<{
   publishedAt: Types.Scalars['DateTime'];
 }>;
 
-export type CreateCodacOverflowMutation = {
-  __typename?: 'Mutation';
-  createCodacOverflow?: {
-    __typename?: 'CodacOverflowEntityResponse';
-    data?: { __typename?: 'CodacOverflowEntity'; id?: string | null } | null;
-  } | null;
-};
+
+export type CreateCodacOverflowMutation = { __typename?: 'Mutation', createCodacOverflow?: { __typename?: 'CodacOverflowEntityResponse', data?: { __typename?: 'CodacOverflowEntity', id?: string | null } | null } | null };
