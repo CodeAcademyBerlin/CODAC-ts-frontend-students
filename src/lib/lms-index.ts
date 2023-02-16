@@ -2,7 +2,7 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
-import lms from 'public/lms/assets/lmsindex.json';
+import lms from 'src/lib/index.json';
 
 import { filterIndex } from './lms-search';
 
