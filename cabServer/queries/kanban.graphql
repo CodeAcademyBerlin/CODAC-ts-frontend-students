@@ -23,8 +23,8 @@ query getKanbanBoard {
   }
 }
 
-query getKanbanByUser {
-  usersPermissionsUser(id: 7) {
+query getKanbanByUser($id: ID) {
+  usersPermissionsUser(id: $id) {
     data {
       attributes {
         kanban {

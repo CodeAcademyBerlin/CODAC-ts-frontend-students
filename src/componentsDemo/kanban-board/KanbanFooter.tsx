@@ -2,12 +2,11 @@ import { useTheme } from '@emotion/react';
 import {
   Box,
   Button,
-  Grid,
   IconButton,
   InputAdornment,
   TextField,
 } from '@mui/material';
-import { Card, Close } from 'mdi-material-ui';
+import { Card, Close, Plus } from 'mdi-material-ui';
 import * as React from 'react';
 
 const KanbanFooter = () => {
@@ -35,18 +34,16 @@ const KanbanFooter = () => {
             }}
           >
             <TextField
-              variant="outlined"
+              variant="standard"
               sx={{
                 width: '300px',
                 marginTop: 3,
               }}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={handleCloseCard}>
-                      <Close />
-                    </IconButton>
-                  </InputAdornment>
+                  <IconButton onClick={handleCloseCard}>
+                    <Close />
+                  </IconButton>
                 ),
               }}
             />
@@ -72,8 +69,16 @@ const KanbanFooter = () => {
               color: 'white',
             }}
             onClick={handleAddCard}
-            // startIcon={<AddIcon />}
           >
+            {' '}
+            <IconButton>
+              <Plus
+                sx={{
+                  backgroundColor: theme.palette.secondary.main,
+                  color: 'white',
+                }}
+              />
+            </IconButton>
             ADD CARD
           </Button>
         </>
