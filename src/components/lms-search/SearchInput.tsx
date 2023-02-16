@@ -24,7 +24,7 @@ export default function SearchInput({ setState }: SearchInputProps) {
 
     return (
         <>
-            <input className={styles.inputSearch} type="text" value={keyword} onChange={onChange} onKeyDown={keyDown} />
+            <input className={styles.inputSearch} type="text" autoFocus value={keyword} onChange={onChange} onKeyDown={keyDown} />
         </>
     );
 }

@@ -51,7 +51,7 @@ export const SettingsContext = createContext<SettingsContextValue>({
   setFestive: () => null,
   keywordArray: [],
   setKeywordArray: () => null,
-  filter: 'general',
+  filter: '',
   setFilter: () => null,
 });
 
@@ -65,7 +65,7 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   const [festive, setFestive] = useState<boolean>(false);
   // SearchBar //
   const [keywordArray, setKeywordArray] = useState<Array<string>>([]);
-  const [filter, setFilter] = useState<string>('general');
+  const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
     setSettings(initialSettings());
