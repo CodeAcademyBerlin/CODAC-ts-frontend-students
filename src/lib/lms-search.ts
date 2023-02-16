@@ -1,6 +1,18 @@
 /* eslint-disable prettier/prettier */
+import lms from 'src/components/lms-search/lms-index.json';
 
 import { indexField } from './lms-index';
+export interface filteredIndexField {
+    field: {
+        path: string,
+        navTitle?: string,
+        title: string,
+        metaTitle: string,
+        metaDescription?: string,
+        access: string,
+    },
+    tags: string[]
+}
 
 export function filterIndex(field: indexField, input: string[]) {
 
@@ -23,3 +35,14 @@ export function filterIndex(field: indexField, input: string[]) {
         return null
     };
 };
+
+export async function searchInput(input: string[]) {
+    const filteredIndex: Array<filteredIndexField> = [];
+    for (let i = 0; i < lms.length; i++){
+      const inputs = filterIndex(lms[i], input);
+      if (inputs) {
+          filteredIndex.push(inputs);
+      };
+    };
+    return filteredIndex
+}
