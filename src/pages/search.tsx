@@ -7,12 +7,12 @@ import { LmsContent } from 'src/components/lms-page/LmsContentContainer';
 import styles from 'src/components/lms-search/search.module.css';
 import SearchResult from 'src/components/lms-search/SearchResult';
 import { useSettings } from 'src/hooks/useSettings';
-import { filteredIndex } from 'src/lib/lms-index';
+import { filteredIndexField } from 'src/lib/lms-search';
 
 export default function SearchResults() {
 
     const { keywordArray, filter } = useSettings();
-    const [searchResults, setSearchResults] = useState<Array<filteredIndex> | null>(null);
+    const [searchResults, setSearchResults] = useState<Array<filteredIndexField> | null>(null);
     const [show, setShow] = useState<boolean>(false);
     const keywords = keywordArray.toString();
 
@@ -32,7 +32,7 @@ export default function SearchResults() {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                setSearchResults(result.filteredIndex.sort((a: filteredIndex, b: filteredIndex) => b.tags.length - a.tags.length));
+                setSearchResults(result.filteredIndex.sort((a: filteredIndexField, b: filteredIndexField) => b.tags.length - a.tags.length));
                 if (result.filteredIndex.length < 1) {
                     setShow(true);
                 };
@@ -55,7 +55,7 @@ export default function SearchResults() {
             <LmsContent>
                 <Typography variant="h5" className={styles.resultH}>Search Results</Typography>
                 {!show && <p className={styles.resultP}>TAGS</p>}
-                {searchResults?.map((result: filteredIndex, index: number) => {
+                {searchResults?.map((result: filteredIndexField, index: number) => {
                     return <SearchResult key={index} index={index} result={result} />
                 })}
                 {show && <Image src={"/icons/empty-box.png"} alt='empty' title="No results!" width={50} height={50} className={styles.resultImage} />}
