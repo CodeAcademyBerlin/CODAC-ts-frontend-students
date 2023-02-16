@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "release": "commit-and-tag-version",
     "cypress": "cypress open",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "graphql-codegen --config codegen.ts",
     "vercel-install": "./clone-lms-content-prod.sh && yarn --ignore-scripts --production=false",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -63,6 +63,7 @@
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
     "sharp": "^0.31.3",
+    "socket.io-client": "^4.6.0",
     "tsparticles": "^2.6.0",
     "tsparticles-engine": "^2.6.0"
   },

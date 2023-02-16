@@ -5,17 +5,14 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const UnlockAchievementsDocument = gql`
-  mutation unlockAchievements($studentId: ID!, $achievementIds: [ID!]) {
-    unlockAchievements(studentId: $studentId, achievementIds: $achievementIds) {
-      success
-      message
-    }
+    mutation unlockAchievements($studentId: ID!, $achievementIds: [ID!]) {
+  unlockAchievements(studentId: $studentId, achievementIds: $achievementIds) {
+    success
+    message
   }
-`;
-export type UnlockAchievementsMutationFn = Apollo.MutationFunction<
-  UnlockAchievementsMutation,
-  UnlockAchievementsMutationVariables
->;
+}
+    `;
+export type UnlockAchievementsMutationFn = Apollo.MutationFunction<UnlockAchievementsMutation, UnlockAchievementsMutationVariables>;
 
 /**
  * __useUnlockAchievementsMutation__
@@ -35,39 +32,17 @@ export type UnlockAchievementsMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useUnlockAchievementsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    UnlockAchievementsMutation,
-    UnlockAchievementsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    UnlockAchievementsMutation,
-    UnlockAchievementsMutationVariables
-  >(UnlockAchievementsDocument, options);
-}
-export type UnlockAchievementsMutationHookResult = ReturnType<
-  typeof useUnlockAchievementsMutation
->;
-export type UnlockAchievementsMutationResult =
-  Apollo.MutationResult<UnlockAchievementsMutation>;
-export type UnlockAchievementsMutationOptions = Apollo.BaseMutationOptions<
-  UnlockAchievementsMutation,
-  UnlockAchievementsMutationVariables
->;
+export function useUnlockAchievementsMutation(baseOptions?: Apollo.MutationHookOptions<UnlockAchievementsMutation, UnlockAchievementsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UnlockAchievementsMutation, UnlockAchievementsMutationVariables>(UnlockAchievementsDocument, options);
+      }
+export type UnlockAchievementsMutationHookResult = ReturnType<typeof useUnlockAchievementsMutation>;
+export type UnlockAchievementsMutationResult = Apollo.MutationResult<UnlockAchievementsMutation>;
+export type UnlockAchievementsMutationOptions = Apollo.BaseMutationOptions<UnlockAchievementsMutation, UnlockAchievementsMutationVariables>;
 export type UnlockAchievementsMutationVariables = Types.Exact<{
   studentId: Types.Scalars['ID'];
-  achievementIds?: Types.InputMaybe<
-    Array<Types.Scalars['ID']> | Types.Scalars['ID']
-  >;
+  achievementIds?: Types.InputMaybe<Array<Types.Scalars['ID']> | Types.Scalars['ID']>;
 }>;
 
-export type UnlockAchievementsMutation = {
-  __typename?: 'Mutation';
-  unlockAchievements?: {
-    __typename?: 'GenericServerResponse';
-    success?: boolean | null;
-    message?: string | null;
-  } | null;
-};
+
+export type UnlockAchievementsMutation = { __typename?: 'Mutation', unlockAchievements?: { __typename?: 'GenericServerResponse', success?: boolean | null, message?: string | null } | null };

@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'https://codac-364707.ey.r.appspot.com/graphql'
+schema: 'https://strapi-production-431a.up.railway.app/graphql'
 documents: 'cabServer/**/*.graphql'
 generates:
   cabServer/global/__generated__/types.ts:
