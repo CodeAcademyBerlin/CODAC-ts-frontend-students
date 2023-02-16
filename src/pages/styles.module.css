@@ -9,3 +9,7 @@
   background-color: yellow;
   font-weight: bold;
 }
+
+.toast-position {
+  top: 8rem !important;
+}

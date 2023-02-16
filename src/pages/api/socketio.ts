@@ -9,7 +9,7 @@ export const config = {
   },
 };
 
-// singleton design pattern?
+// server connection
 const socketio = async (req: NextApiRequest, res: NextApiResponseServerIO) => {
   if (!res.socket.server.io) {
     console.log('New Socket.io server...');
