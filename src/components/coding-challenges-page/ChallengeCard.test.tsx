@@ -25,7 +25,6 @@ describe('Codingchallenge card content', () => {
     });
 
     expect(challengeCardElement).toBeInTheDocument();
-    // expect(challengeCardElement).toBeInTheDocument();
 
     const title = screen.getByText(challenge?.attributes?.title!);
     const challengeElement = screen.getByText(

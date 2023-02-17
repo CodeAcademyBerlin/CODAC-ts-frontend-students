@@ -100,9 +100,6 @@ const Codingchallenges = ({
   );
 };
 
-// put challknge within loop !
-// you don t have to name it props={challnge}, naming it challnege will have it send it as prop.challnge and you will recive it as prop.challenge in the challnge card
-
 export default Codingchallenges;
 
 // GetChallengesQuery is the full query object
@@ -111,20 +108,12 @@ export default Codingchallenges;
 // Comments - do client side rendering
 
 export const getStaticProps = async (ctx: GetStaticPropsContext) => {
-  console.log('context', ctx.params);
   try {
     const client = initializeApollo(null, null);
     const { data, error } = await client.query<GetChallengesQuery>({
       query: GetChallengesExtendedDocument,
       variables: { id: 1 },
     });
-
-    // console.log('data from server', data?.codingChallenges?.data);
-    // {
-    //   data?.codingChallenges?.data?.map((item) => {
-    //     console.log('item', item?.attributes?.comments);
-    //   });
-    // }
 
     const codingChallenges = data?.codingChallenges?.data;
 

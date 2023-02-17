@@ -21,7 +21,6 @@ const Challange = ({
   challengeData,
 }: // Get type from staticProps into component thru InferGetStaticPropsType
 InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log('challengeData', challengeData);
   return (
     <>
       <Box
@@ -140,7 +139,6 @@ export default Challange;
 
 export const getStaticProps = async (ctx: GetStaticPropsContext) => {
   const challengeId = ctx?.params?.id;
-  console.log('challengeId', challengeId);
 
   try {
     const client = initializeApollo(null, null);
@@ -187,9 +185,9 @@ export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
     // have the full list so dont need the variable variables: { id: challengeId },
   });
 
-  console.log('data.codingChallenges.data', data?.codingChallenges?.data);
+  // console.log('data.codingChallenges.data', data?.codingChallenges?.data);
   const challengesArray = data?.codingChallenges?.data;
-  console.log('challengesArray', challengesArray);
+  // console.log('challengesArray', challengesArray);
 
   const paths = challengesArray?.map((challenge) => ({
     params: { id: challenge?.id },
@@ -203,7 +201,4 @@ export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
   // using a map to reshape the array without changing tha data inside. Map of esponse to have the return with params and id
   // Paths need to get returned in the following way: paths: [{ params: { id: '1' } }, { params: { id: '1' } }],
   // getStaticPaths query checking all challenges and returning a path for each id
-  // Use contex.parmas to do query and send as props to component
-  // Do the query in the getStaticProps and return it instead of the query
-  // Server side you need to declare a new instance every time you query since you dont have a prociuder/provider like on the client side
 };

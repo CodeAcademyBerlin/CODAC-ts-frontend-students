@@ -12,7 +12,7 @@ import React from 'react';
 
 import StyledLink from '../common/StyledLink';
 
-// The type to describe the object I will receive in this component. Want to recive the full CodingChallengeEntity. In jobcardtest we use this to enforce data structure
+// The type to describe the object I will receive in this component. Want to recive the full CodingChallengeEntity.
 
 type ChallengeProps = {
   challenge: CodingChallengeEntity;

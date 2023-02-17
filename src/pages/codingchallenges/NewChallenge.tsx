@@ -26,18 +26,14 @@ const Item = styled(Paper)(({ theme }) => ({
 
 type Props = {};
 
-// type CourseTag = 'data' | 'web';
-// <string> to enforce type
-
 // Create Date
 const date = new Date();
-console.log('date', date);
 
 const NewChallenge = (props: Props) => {
   const [tags, setTags] = useState<Enum_Codingchallenge_Tags | undefined>(
     undefined,
   );
-  // Enum_Codingchallenge_Tags.Data
+
   const [difficulty, setDifficulty] = useState<number>();
   const [title, setTitle] = useState<string>('');
   const [challenge, setChallenge] = useState<string>('');
@@ -47,32 +43,23 @@ const NewChallenge = (props: Props) => {
   const [createCodingChallengeMutation, { data, loading, error }] =
     useCreateCodingChallengeMutation();
 
-  // using mui so need to import that library
-
+  // Using mui so need to import types from that library
   const handleTag = (event: SelectChangeEvent<Enum_Codingchallenge_Tags>) => {
     setTags(Enum_Codingchallenge_Tags.Data);
-    console.log('tags after setting it', tags);
   };
 
-  // TS - check generics
-  // generics: you can type soemthig to tell it what it will return
-  // the return of the chnge vent is going to be a number
-
   const handleDifficulty = (event: SelectChangeEvent<number>) => {
-    console.log(typeof event.target.value);
     // inputs are always a string so need to convert it
     setDifficulty(Number(event.target.value));
   };
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setTitle(event.target.value);
   };
 
   const handleChallenge = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
-    console.log(event.target.value);
     setChallenge(event.target.value);
   };
 
@@ -80,7 +67,6 @@ const NewChallenge = (props: Props) => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.preventDefault();
-    // console.log('submitted');
     try {
       const { data } = await createCodingChallengeMutation({
         variables: {
@@ -92,8 +78,6 @@ const NewChallenge = (props: Props) => {
         },
       });
       if (data) {
-        console.log(data);
-        // Creating the route
         router.push(`/codingchallenges/${data?.createCodingChallenge?.data?.id}
 `);
       }
