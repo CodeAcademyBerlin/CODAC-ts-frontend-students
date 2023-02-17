@@ -38,7 +38,7 @@ const NewChallenge = (props: Props) => {
     undefined,
   );
   // Enum_Codingchallenge_Tags.Data
-  const [difficulty, setDifficulty] = useState<number>(0);
+  const [difficulty, setDifficulty] = useState<number>();
   const [title, setTitle] = useState<string>('');
   const [challenge, setChallenge] = useState<string>('');
 
@@ -179,7 +179,7 @@ const NewChallenge = (props: Props) => {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={difficulty}
-                    label="Course"
+                    label="Difficulty"
                     onChange={handleDifficulty}
                   >
                     <MenuItem value={1}>1</MenuItem>
@@ -238,9 +238,6 @@ const NewChallenge = (props: Props) => {
               </div>
             </Paper>
           </Paper>
-          <p>Add the below and clear the input in the message text boxes:</p>
-          <p>message: challenge added, you can add another one or :</p>
-          <p>go back to the challenges menu</p>
         </Box>
       </div>
     </>

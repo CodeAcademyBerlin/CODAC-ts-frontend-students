@@ -1,4 +1,4 @@
-import { Paper } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 import React from 'react';
 
 type Props = {};
@@ -6,26 +6,22 @@ type Props = {};
 const ChallengesLanding = (props: Props) => {
   return (
     <>
-      <Paper
-        elevation={0}
-        style={{
+      <Box
+        sx={{
           display: 'flex',
           flexWrap: 'wrap',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <h1>CODAC Coding Challenges</h1>
+        <Typography>CODAC Coding Challenges</Typography>
 
-        <p style={{ textAlign: 'center' }}>
-          Welcome to Code Academys own collection of Coding Challenges
-        </p>
-
-        <p style={{ textAlign: 'center' }}>
-          This is a page where you can view and add coding challenges aswell as
-          getting hints into how to solve them
-        </p>
-      </Paper>
+        <Typography sx={{ textAlign: 'center', p: '4' }}>
+          Welcome to Code Academys own collection of Coding Challenges This is a
+          page where you can view and add coding challenges aswell as getting
+          hints into how to solve them
+        </Typography>
+      </Box>
     </>
   );
 };

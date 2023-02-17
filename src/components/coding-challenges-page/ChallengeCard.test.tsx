@@ -5,6 +5,10 @@ import ChallengeCard from '../../components/coding-challenges-page/ChallengeCard
 
 // Use CodingChallengeEntity to make sure we build the mock data in the correct format
 
+jest.mock('next/router', () => require('next-router-mock'));
+// This is needed for mocking 'next/link':
+jest.mock('next/dist/client/router', () => require('next-router-mock'));
+
 describe('Codingchallenge card content', () => {
   test('renders content', () => {
     const challenge: CodingChallengeEntity = {
@@ -16,9 +20,11 @@ describe('Codingchallenge card content', () => {
 
     render(<ChallengeCard challenge={challenge} />);
 
-    const challengeCardElement = screen.getByText('See challenge');
+    const challengeCardElement = screen.getByText(/see challenge/i, {
+      selector: 'button',
+    });
 
-    expect(challengeCardElement).toHaveTextContent('See challenge');
+    expect(challengeCardElement).toBeInTheDocument();
     // expect(challengeCardElement).toBeInTheDocument();
 
     const title = screen.getByText(challenge?.attributes?.title!);
