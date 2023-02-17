@@ -10,6 +10,7 @@ export const CreateCodingChallengeDocument = gql`
     $challenge: String
     $difficulty: Int
     $tags: ENUM_CODINGCHALLENGE_TAGS
+    $publishedAt: DateTime!
   ) {
     createCodingChallenge(
       data: {
@@ -17,6 +18,7 @@ export const CreateCodingChallengeDocument = gql`
         challenge: $challenge
         difficulty: $difficulty
         tags: $tags
+        publishedAt: $publishedAt
       }
     ) {
       data {
@@ -47,6 +49,7 @@ export type CreateCodingChallengeMutationFn = Apollo.MutationFunction<
  *      challenge: // value for 'challenge'
  *      difficulty: // value for 'difficulty'
  *      tags: // value for 'tags'
+ *      publishedAt: // value for 'publishedAt'
  *   },
  * });
  */
@@ -76,6 +79,7 @@ export type CreateCodingChallengeMutationVariables = Types.Exact<{
   challenge?: Types.InputMaybe<Types.Scalars['String']>;
   difficulty?: Types.InputMaybe<Types.Scalars['Int']>;
   tags?: Types.InputMaybe<Types.Enum_Codingchallenge_Tags>;
+  publishedAt: Types.Scalars['DateTime'];
 }>;
 
 export type CreateCodingChallengeMutation = {

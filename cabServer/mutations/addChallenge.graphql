@@ -3,6 +3,7 @@ mutation createCodingChallenge(
   $challenge: String
   $difficulty: Int
   $tags: ENUM_CODINGCHALLENGE_TAGS
+  $publishedAt: DateTime!
 ) {
   createCodingChallenge(
     data: {
@@ -10,6 +11,7 @@ mutation createCodingChallenge(
       challenge: $challenge
       difficulty: $difficulty
       tags: $tags
+      publishedAt: $publishedAt
     }
   ) {
     data {

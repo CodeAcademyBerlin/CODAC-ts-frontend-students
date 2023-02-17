@@ -29,6 +29,10 @@ type Props = {};
 // type CourseTag = 'data' | 'web';
 // <string> to enforce type
 
+// Create Date
+const date = new Date();
+console.log('date', date);
+
 const NewChallenge = (props: Props) => {
   const [tags, setTags] = useState<Enum_Codingchallenge_Tags | undefined>(
     undefined,
@@ -84,6 +88,7 @@ const NewChallenge = (props: Props) => {
           challenge: challenge,
           difficulty: difficulty,
           tags: tags,
+          publishedAt: date,
         },
       });
       if (data) {
@@ -220,7 +225,10 @@ const NewChallenge = (props: Props) => {
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <Button
                     onClick={handleSubmit}
-                    sx={{ mt: 3, ml: 1 }}
+                    sx={{
+                      mt: 3,
+                      ml: 1,
+                    }}
                     type="submit"
                     variant="contained"
                   >

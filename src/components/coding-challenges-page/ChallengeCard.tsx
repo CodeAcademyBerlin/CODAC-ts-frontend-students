@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  createTheme,
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
@@ -21,6 +22,7 @@ type ChallengeProps = {
 const ChallengeCard = ({ challenge }: ChallengeProps) => {
   const { id, attributes } = challenge;
   const title = challenge?.attributes?.title || 'no title';
+  const difficulty = challenge?.attributes?.difficulty || 'no difficulty';
 
   // Two ways of dealing with possiblity that title (ot other data that is not required being null): 1) handle in render 2) avoid destructuring and handle when creating variable with ||
 
@@ -55,6 +57,9 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
                 <Typography variant="caption">
                   To be added: contributor
                 </Typography>
+                <Typography variant="caption">
+                  difficulty: {difficulty}
+                </Typography>
               </Box>
               <Box
                 sx={{
@@ -71,7 +76,34 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
                   }}
                   href={`/codingchallenges/${challenge?.id}`}
                 >
-                  <Button variant="contained">See challenge</Button>
+                  {Number(difficulty) < 4 ? (
+                    <Button
+                      variant="contained"
+                      sx={{
+                        bgcolor: 'green',
+                      }}
+                    >
+                      See Challenge
+                    </Button>
+                  ) : Number(difficulty) > 4 && Number(difficulty) < 8 ? (
+                    <Button
+                      variant="contained"
+                      sx={{
+                        bgcolor: 'orange',
+                      }}
+                    >
+                      See Challenge
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      sx={{
+                        bgcolor: 'red',
+                      }}
+                    >
+                      See Challenge
+                    </Button>
+                  )}
                 </StyledLink>
               </Box>
             </Box>
