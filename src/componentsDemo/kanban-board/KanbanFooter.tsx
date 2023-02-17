@@ -62,25 +62,32 @@ const KanbanFooter = () => {
         </form>
       ) : (
         <>
-          <Button
-            variant="text"
+          <Box
             sx={{
+              display: 'flex',
+              flexWrap: 'nowrap',
+              justifyContent: 'center',
               backgroundColor: theme.palette.secondary.main,
-              color: 'white',
             }}
-            onClick={handleAddCard}
           >
-            {' '}
-            <IconButton>
-              <Plus
-                sx={{
-                  backgroundColor: theme.palette.secondary.main,
-                  color: 'white',
-                }}
-              />
-            </IconButton>
-            ADD CARD
-          </Button>
+            <Button
+              variant="text"
+              sx={{
+                color: 'white',
+              }}
+              onClick={handleAddCard}
+            >
+              {' '}
+              <IconButton>
+                <Plus
+                  sx={{
+                    color: 'white',
+                  }}
+                />
+              </IconButton>
+              ADD CARD
+            </Button>
+          </Box>
         </>
       )}
     </>

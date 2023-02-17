@@ -1,38 +1,15 @@
-query getKanbanBoard {
-  usersData {
-    data {
-      id
-      attributes {
-        kanban {
-          id
-          columns {
-            id
-            title
-            order
-            cards {
-              id
-              task
-              description
-              category
-              deadline
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 query getKanbanByUser($id: ID) {
   usersPermissionsUser(id: $id) {
     data {
       attributes {
         kanban {
           columns {
+            id
             title
             order
             done
             cards {
+              id
               task
               description
               deadline
