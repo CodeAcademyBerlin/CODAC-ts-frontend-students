@@ -14,14 +14,22 @@ export interface filteredIndexField {
     tags: string[]
 }
 
-export function filterIndex(field: indexField, input: string[]) {
+export function filterIndex(field: indexField, input: string[], filter: string) {
 
     const filteredTags: string[] = [];
 
     if (field.tags) {
-        for (let i = 0; i < input.length; i++) {
+        if (filter === "") {
+            for (let i = 0; i < input.length; i++) {
             if (field.tags.includes(input[i])) {
                 filteredTags.push(input[i]);
+            };
+        };
+        } else {
+            for (let i = 0; i < input.length; i++) {
+                if (field.tags.includes(input[i]) && field.access === filter) {
+                    filteredTags.push(input[i]);
+                };
             };
         };
     };
@@ -36,10 +44,10 @@ export function filterIndex(field: indexField, input: string[]) {
     };
 };
 
-export async function searchInput(input: string[]) {
+export async function searchInput(input: string[], filter: string) {
     const filteredIndex: Array<filteredIndexField> = [];
     for (let i = 0; i < lms.length; i++){
-      const inputs = filterIndex(lms[i], input);
+      const inputs = filterIndex(lms[i], input, filter);
       if (inputs) {
           filteredIndex.push(inputs);
       };

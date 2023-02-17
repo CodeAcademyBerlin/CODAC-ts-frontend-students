@@ -21,6 +21,7 @@ export default function SearchResults() {
         var myHeaders = new Headers();
         var urlencoded = new URLSearchParams();
         urlencoded.append("input", `${keywords}`);
+        urlencoded.append("filter", filter);
 
         var requestOptions = {
             method: 'POST',
@@ -31,7 +32,6 @@ export default function SearchResults() {
         fetch("/api/lms-search", requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setSearchResults(result.filteredIndex.sort((a: filteredIndexField, b: filteredIndexField) => b.tags.length - a.tags.length));
                 if (result.filteredIndex.length < 1) {
                     setShow(true);
