@@ -4,6 +4,8 @@ import Box, { BoxProps } from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import { useGetChatsQuery } from 'cabServer/queries/__generated__/chats';
+import { forEach } from 'lodash';
 import Image from 'next/image';
 // ** Next Import
 import Link from 'next/link';
@@ -11,6 +13,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import SocketIOClient from 'socket.io-client';
 import { io } from 'socket.io-client';
 import Chat from 'src/components/chat-page/Chat';
+import { useSocket } from 'src/hooks/useSocket';
 
 // ** Styled Components
 const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
@@ -26,22 +29,29 @@ const StyledLink = styled(Link)({
 });
 
 const ChatPage = () => {
-  const [socket, setSocket] = useState<any>(null);
+  const { socket, connectSocket } = useSocket();
+  const [test, setTest] = useState();
+  const { data, loading, error } = useGetChatsQuery({
+    variables: {},
+  });
 
-  useEffect((): any => {
-    if (!socket) {
-      const newSocket = SocketIOClient({
-        path: '/api/socketio',
-      });
-      setSocket(newSocket);
-
-      //? here we listed for 'connect', but this property doesn't exist on newSocket?
-      newSocket.on('connect', () => {
-        console.log('newSocket.id', newSocket.id);
-        console.log('newSocket', newSocket);
-      });
-    }
+  useEffect(() => {
+    connectSocket();
   }, []);
+  //! once connection. then chat rooms to choose. connection after choosing
+
+  // useEffect(() => {
+  //   if (socket) {
+  //     socket.on('chat:update', (chat: Chat) => {
+  //       console.log('chat', chat);
+  //       console.warn('data', data);
+  //       setTest(chat);
+  //     });
+  //   }
+  // }, [socket]);
+  // console.warn('data', data);
+  // console.warn('chat', test);
+
   return (
     <Box
       sx={{
@@ -53,7 +63,10 @@ const ChatPage = () => {
       }}
     >
       <Typography variant="h1">Chat</Typography>
-      {socket && <Chat socket={socket} roomId={'test'} />}
+      {socket && <Chat />}
+      {/* <Typography variant="h6">{data.chats.data}</Typography> */}
+
+      {/* {socket && <Chat socket={socket} roomId={'test'} />} */}
     </Box>
   );
 };
@@ -61,9 +74,8 @@ const ChatPage = () => {
 export default ChatPage;
 
 //! Q
-// - why does communication with out API folder look different for each file? with socketio.ts  it is 'path: '/api/socketio'' but with chat.ts we use fetch?
-// - i'm a bit confused how, for example, we can invoke the socketio function with
+// is users_permissions_user a term you used to refer to the author? or does this not exist yet?
 
-//! taje useeffect  from context.
-// graphql mutation to add message to chat
-//
+//! graphql mutations
+
+//prefix / graphql for playground

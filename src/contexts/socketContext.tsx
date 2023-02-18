@@ -1,4 +1,4 @@
-import { Chat, ChatEntity } from 'cabServer/global/__generated__/types';
+import { ChatEntity } from 'cabServer/global/__generated__/types';
 import {
   createContext,
   FC,
@@ -12,11 +12,30 @@ import { io, Socket } from 'socket.io-client';
 import { useAuth } from 'src/hooks/useAuth';
 import { getToken } from 'src/lib/apolloClient';
 
+export type Chat = {
+  __typename?: 'Chat';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+};
+
+export type ComponentChatMessage = {
+  __typename?: 'ComponentChatMessage';
+  author?: Maybe<UsersPermissionsUserEntityResponse>;
+  authorString: string;
+  body?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  timestamp?: Maybe<Scalars['DateTime']>;
+};
+
 interface ServerToClientEvents {
   noArg: () => void;
   basicEmit: (a: number, b: string, c: Buffer) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
   ['chat:update']: (chat: Chat) => void;
+  ['chat']: (chat: Chat) => void;
 }
 
 interface ClientToServerEvents {
@@ -26,9 +45,11 @@ type SocketIface = Socket<ServerToClientEvents, ClientToServerEvents>;
 
 export type SocketContextIface = {
   socket: SocketIface | null;
+  connectSocket: () => void;
 };
 const init = {
   socket: null,
+  connectSocket: () => console.log('error connecting socket'),
 };
 export const SocketContext = createContext<SocketContextIface>(init);
 
@@ -54,19 +75,13 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       setSocket(s);
     }
   };
-  useEffect(() => {
-    connectSocket();
-  }, [socket, user]);
+  // useEffect(() => {
+  //   connectSocket();
+  // }, [socket, user]);
 
-  useEffect(() => {
-    if (socket) {
-      socket.on('chat:update', (chat: Chat) => {
-        console.log(chat);
-      });
-    }
-  }, [socket]);
   const data = {
     socket,
+    connectSocket,
   };
   console.log('socket', socket);
   return (

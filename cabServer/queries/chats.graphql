@@ -1,0 +1,13 @@
+query getChats {
+  chats {
+    data {
+      attributes {
+        name
+        messages {
+          body
+          timestamp
+        }
+      }
+    }
+  }
+}

@@ -160,7 +160,6 @@ export type Chat = {
   createdAt?: Maybe<Scalars['DateTime']>;
   messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
   name?: Maybe<Scalars['String']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
@@ -204,7 +203,6 @@ export type ChatFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ChatFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ChatFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   users?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
@@ -212,7 +210,6 @@ export type ChatFiltersInput = {
 export type ChatInput = {
   messages?: InputMaybe<Array<InputMaybe<ComponentChatMessageInput>>>;
   name?: InputMaybe<Scalars['String']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
   users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
@@ -445,26 +442,26 @@ export type ComponentCardsBlogCard = {
 
 export type ComponentChatMessage = {
   __typename?: 'ComponentChatMessage';
+  author?: Maybe<UsersPermissionsUserEntityResponse>;
   body?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   timestamp?: Maybe<Scalars['DateTime']>;
-  users_permissions_user?: Maybe<UsersPermissionsUserEntityResponse>;
 };
 
 export type ComponentChatMessageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentChatMessageFiltersInput>>>;
+  author?: InputMaybe<UsersPermissionsUserFiltersInput>;
   body?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentChatMessageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentChatMessageFiltersInput>>>;
   timestamp?: InputMaybe<DateTimeFilterInput>;
-  users_permissions_user?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
 
 export type ComponentChatMessageInput = {
+  author?: InputMaybe<Scalars['ID']>;
   body?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   timestamp?: InputMaybe<Scalars['DateTime']>;
-  users_permissions_user?: InputMaybe<Scalars['ID']>;
 };
 
 export type ComponentCommentsComments = {
@@ -2626,7 +2623,6 @@ export type QueryChatArgs = {
 export type QueryChatsArgs = {
   filters?: InputMaybe<ChatFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
