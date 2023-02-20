@@ -35,21 +35,22 @@ const Kanban = () => {
     let complete = endColumn;
 
     // Source Logic
-    if (source.droppableId === `${source.droppableId}`) {
+    if (source.droppableId === `${destination.droppableId}`) {
       add = active[source.index];
       active.splice(source.index, 1);
+      complete.splice(destination.index, 0, add);
     } else {
       add = complete[source.index];
       complete.splice(source.index, 1);
+      active.splice(destination.index, 0, add); // splice() removes elements from the arry
     }
 
     // Destination Logic
-    if (destination.droppableId === `${destination.droppableId}`) {
-      active.splice(destination.index, 0, add);
-    } else {
-      complete.splice(destination.index, 0, add);
-    }
-
+    // if (destination.droppableId === `${destination.droppableId}`) {
+    //   complete.splice(destination.index, 0, add);
+    // } else {
+    //   active.splice(destination.index, 0, add);
+    // }
     setStartColumn(active);
     setEndColumn(complete);
   };

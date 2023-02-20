@@ -45,8 +45,9 @@ function KanbanColumn({
         return (
           <>
             <Droppable droppableId={column.id}>
-              {(provided) => (
+              {(provided, snapshot) => (
                 <Card
+                  // className={`${snapshot.isDraggingOver ? 'dragactive' : ''}`}
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   elevation={0}
