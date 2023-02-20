@@ -1,11 +1,5 @@
 import { useTheme } from '@emotion/react';
-import {
-  Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  TextField,
-} from '@mui/material';
+import { Box, Button, IconButton, TextField } from '@mui/material';
 import { Card, Close, Plus } from 'mdi-material-ui';
 import * as React from 'react';
 

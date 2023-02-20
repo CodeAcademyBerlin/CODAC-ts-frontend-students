@@ -1,14 +1,23 @@
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
-import {
-  FormatColumns,
-  MicrosoftXboxControllerBatteryCharging,
-} from 'mdi-material-ui';
+import { ComponentKanbanColumn } from 'cabServer/global/__generated__/types';
 import * as React from 'react';
 import KanbanColumn from 'src/componentsDemo/kanban-board/KanbanColumn';
 
+import { useGetKanbanByUserQuery } from '../../cabServer/queries/__generated__/kanban';
+
 const Kanban = () => {
-  const [card, setCard] = React.useState<string>('');
-  const [columns, setColumns] = React.useState<Array<Todo>>([]);
+  const { data, loading, error } = useGetKanbanByUserQuery({
+    variables: { id: 7 }, //make it for every user
+  });
+  const column = data?.usersPermissionsUser?.data?.attributes?.kanban?.columns;
+  console.log('dataColumn', column);
+
+  const [startColumn, setStartColumn] = React.useState<
+    Array<ComponentKanbanColumn>
+  >([]);
+  const [endColumn, setEndColumn] = React.useState<
+    Array<ComponentKanbanColumn>
+  >([]);
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
@@ -22,33 +31,32 @@ const Kanban = () => {
       return;
 
     let add;
-    let active = columns;
-    // let complete = CompletedTodos;
+    let active = startColumn;
+    let complete = endColumn;
+
     // Source Logic
-    // AVERIGUAR EL "TODOSLIST" ID COMO PONERLO COMO STRING LITERAL?
-    if (source.droppableId === 'TodosList') {
+    if (source.droppableId === `${source.droppableId}`) {
       add = active[source.index];
       active.splice(source.index, 1);
+    } else {
+      add = complete[source.index];
+      complete.splice(source.index, 1);
     }
-    // else {
-    //   add = complete[source.index];
-    //   complete.splice(source.index, 1);
-    // }
 
     // Destination Logic
-    // AVERIGUAR EL "TODOSLIST" ID COMO PONERLO COMO STRING LITERAL?
-    if (destination.droppableId === 'TodosList') {
+    if (destination.droppableId === `${destination.droppableId}`) {
       active.splice(destination.index, 0, add);
+    } else {
+      complete.splice(destination.index, 0, add);
     }
-    // else {
-    //   complete.splice(destination.index, 0, add);
-    // }
-    setColumns(active);
+
+    setStartColumn(active);
+    setEndColumn(complete);
   };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <KanbanColumn />
+      <KanbanColumn column={column} />
     </DragDropContext>
   );
 };

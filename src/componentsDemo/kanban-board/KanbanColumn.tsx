@@ -5,25 +5,24 @@ import {
   Card,
   Grid,
   IconButton,
-  InputAdornment,
   TextField,
   Typography,
   useTheme,
 } from '@mui/material';
+import { ComponentKanbanColumn } from 'cabServer/global/__generated__/types';
 import { Close, Plus } from 'mdi-material-ui';
 import * as React from 'react';
 
-import { useGetKanbanByUserQuery } from '../../../cabServer/queries/__generated__/kanban';
 import KanbanCard from './KanbanCard';
 import KanbanFooter from './KanbanFooter';
 
-const KanbanColumn = () => {
-  const { data, loading, error } = useGetKanbanByUserQuery({
-    variables: { id: 7 }, //make it for every user
-  });
-  const column = data?.usersPermissionsUser?.data?.attributes?.kanban?.columns;
-  console.log('dataColumns', column);
-
+function KanbanColumn({
+  column,
+  index,
+}: {
+  column: ComponentKanbanColumn | undefined;
+  index: number;
+}) {
   const theme = useTheme();
   const [inputColumn, setInputColumn] = React.useState(false);
 
@@ -187,6 +186,6 @@ const KanbanColumn = () => {
       )}
     </Grid>
   );
-};
+}
 
 export default KanbanColumn;

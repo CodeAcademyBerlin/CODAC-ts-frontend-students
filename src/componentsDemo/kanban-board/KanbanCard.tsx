@@ -1,14 +1,5 @@
 import { Draggable } from '@hello-pangea/dnd';
-import {
-  Box,
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  Modal,
-  Typography,
-  useTheme,
-} from '@mui/material';
+import { Box, Button, Card, Modal, Typography, useTheme } from '@mui/material';
 import { ComponentKanbanCard } from 'cabServer/global/__generated__/types';
 import React from 'react';
 
@@ -18,10 +9,9 @@ function KanbanCard({
   card,
   index,
 }: {
-  card: ComponentKanbanCard;
+  card: ComponentKanbanCard | undefined;
   index: number;
 }) {
-  // console.log('card', typeof card.id);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -29,13 +19,13 @@ function KanbanCard({
   const handleClose = () => setOpen(false);
 
   return (
-    <Draggable draggableId={card.id} index={index}>
+    <Draggable draggableId={card?.id} index={index}>
       {(provided) => (
         <Card
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          key={card.id}
+          key={card?.id}
           sx={{
             position: 'relative',
             paddingBottom: 10,
@@ -43,21 +33,21 @@ function KanbanCard({
         >
           <Box
             sx={{
-              mb: 4,
+              m: 4,
               display: 'flex',
               flexWrap: 'nowrap',
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
-            <Typography variant="h6">{card.task}</Typography>
+            <Typography variant="h6">{card?.task}</Typography>
           </Box>
 
           <Button
             sx={{
               backgroundColor: theme.palette.primary.light,
               position: 'absolute',
-              bottom: 26,
+              bottom: 42,
               right: 16,
             }}
             variant="contained"
@@ -93,9 +83,9 @@ function KanbanCard({
                 }}
                 variant="h5"
               >
-                {card.task}
+                {card?.task}
               </Typography>
-              <Typography variant="body2">{card.description}</Typography>
+              <Typography variant="body2">{card?.description}</Typography>
             </Box>
           </Modal>
         </Card>
