@@ -24,7 +24,7 @@ const Kanban = () => {
   );
 
   const onDragEnd = (result: DropResult) => {
-    const { source, destination, draggableId } = result;
+    const { source, destination } = result;
     console.log(result);
 
     if (!destination) {
@@ -41,7 +41,7 @@ const Kanban = () => {
     }
     let add;
     let start = [];
-    let finish = [];
+
     // console.log('start', start);
 
     for (let i = 0; i < columns?.length; i++) {
@@ -50,7 +50,7 @@ const Kanban = () => {
       }
     }
     console.log('start', start);
-
+    let finish = [];
     for (let i = 0; i < columns?.length; i++) {
       if (columns[i].id === destination.droppableId) {
         finish = columns[i].cards;
@@ -64,6 +64,8 @@ const Kanban = () => {
       console.log('add', add);
       start.splice(source.index, 1);
       finish.splice(destination.index, 0, add);
+      console.log('start', start);
+      console.log('finish', finish);
       // const startF = start.filter((e) => {
       //   return e.id !== add.id;
       // });
@@ -81,16 +83,16 @@ const Kanban = () => {
       start.splice(destination.index, 0, add); // splice() removes elements from the arry
     }
 
-    // if (destination.droppableId === `${destination.droppableId}`) {
-    //   finish.splice(destination.index, 0, add);
-    // } else {
-    //   start.splice(destination.index, 0, add);
-    // }
+    if (destination.droppableId === `${destination.droppableId}`) {
+      finish.splice(destination.index, 0, add);
+    } else {
+      start.splice(destination.index, 0, add);
+    }
   };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <KanbanColumn column={column} key={column.id} />
+      <KanbanColumn column={column} />
     </DragDropContext>
   );
 };

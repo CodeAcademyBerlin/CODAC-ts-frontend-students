@@ -50,6 +50,7 @@ function KanbanColumn({
                   // className={`${snapshot.isDraggingOver ? 'dragactive' : ''}`}
                   ref={provided.innerRef}
                   {...provided.droppableProps}
+                  key={column.id}
                   elevation={0}
                   sx={{
                     width: '350px',
