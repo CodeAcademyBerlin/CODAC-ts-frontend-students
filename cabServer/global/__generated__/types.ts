@@ -160,6 +160,7 @@ export type Chat = {
   createdAt?: Maybe<Scalars['DateTime']>;
   messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
   name?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
@@ -203,6 +204,7 @@ export type ChatFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ChatFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ChatFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   users?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
@@ -210,6 +212,7 @@ export type ChatFiltersInput = {
 export type ChatInput = {
   messages?: InputMaybe<Array<InputMaybe<ComponentChatMessageInput>>>;
   name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
   users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
@@ -1158,8 +1161,7 @@ export enum Enum_Achievement_Type {
   CourseDate = 'course_date',
   Date = 'date',
   Other = 'other',
-  Quest = 'quest',
-  Student = 'student'
+  Quest = 'quest'
 }
 
 export enum Enum_Codingchallenge_Tags {
@@ -1712,6 +1714,8 @@ export type Mutation = {
   addAchievement?: Maybe<GenericServerResponse>;
   /** Add comment on a codac overflow item */
   addCODACOverflowComment?: Maybe<GenericServerResponse>;
+  /** Add message on a codac overflow item */
+  addChatMessage?: Maybe<GenericServerResponse>;
   /** Add feedback on a lms item */
   addLMSfeedback?: Maybe<GenericServerResponse>;
   /** Add comment on a lms feedback item */
@@ -1748,6 +1752,8 @@ export type Mutation = {
   /** Add comment on a codac overflow item */
   deleteCODACOverflowComment?: Maybe<GenericServerResponse>;
   deleteChat?: Maybe<ChatEntityResponse>;
+  /** Add message on a codac overflow item */
+  deleteChatMessage?: Maybe<GenericServerResponse>;
   deleteCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
   deleteCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
   deleteCohort?: Maybe<CohortEntityResponse>;
@@ -1793,6 +1799,8 @@ export type Mutation = {
   /** Update comment on a codac overflow item */
   updateCODACOverflowComment?: Maybe<GenericServerResponse>;
   updateChat?: Maybe<ChatEntityResponse>;
+  /** Update message on a codac overflow item */
+  updateChatMessage?: Maybe<GenericServerResponse>;
   updateCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
   updateCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
   updateCohort?: Maybe<CohortEntityResponse>;
@@ -1837,6 +1845,12 @@ export type MutationAddAchievementArgs = {
 export type MutationAddCodacOverflowCommentArgs = {
   codacOverflowId: Scalars['ID'];
   comment: Scalars['String'];
+};
+
+
+export type MutationAddChatMessageArgs = {
+  body: Scalars['String'];
+  chatId: Scalars['ID'];
 };
 
 
@@ -1996,6 +2010,12 @@ export type MutationDeleteCodacOverflowCommentArgs = {
 
 export type MutationDeleteChatArgs = {
   id: Scalars['ID'];
+};
+
+
+export type MutationDeleteChatMessageArgs = {
+  chatId: Scalars['ID'];
+  messageId: Scalars['ID'];
 };
 
 
@@ -2181,6 +2201,13 @@ export type MutationUpdateCodacOverflowCommentArgs = {
 export type MutationUpdateChatArgs = {
   data: ChatInput;
   id: Scalars['ID'];
+};
+
+
+export type MutationUpdateChatMessageArgs = {
+  body: Scalars['String'];
+  chatId: Scalars['ID'];
+  messageId: Scalars['ID'];
 };
 
 
@@ -2623,6 +2650,7 @@ export type QueryChatArgs = {
 export type QueryChatsArgs = {
   filters?: InputMaybe<ChatFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 

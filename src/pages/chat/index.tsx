@@ -67,6 +67,13 @@ const ChatPage = () => {
 export default ChatPage;
 
 //! Q
+// todo: chat room options generated also for staff
+// todo: fetching chat history for a specific room
+// todo: listen for onFocus and onBlur events
+// todo: see how the listen events are configured
+//? is there any way i can get a single use of various nextjs USPs into this project? getStaticProps etc etc
+//? room join?
+//? get history. if we know the chat.length, then we can retrieve the last 10 messages, or just the last one
 // i need to get chats based on cohort name
 // it seems the nested user permissions/author relation is not working. it only accesses a count.
 // attempted getCohorts query. didn't work

@@ -39,6 +39,8 @@ interface IMsg {
   // rn: number;
 }
 
+// yarn codegen
+
 const ChatRoom: React.FC = () => {
   const { data, loading, error } = useGetChatsQuery({
     variables: {},
@@ -48,6 +50,7 @@ const ChatRoom: React.FC = () => {
   const [connected, setConnected] = useState<boolean>(false);
   const [typing, setTyping] = useState<boolean>(false);
   const [rooms, setRooms] = useState(null);
+  const [room, setRoom] = useState<string>('');
   const [chat, setChat] = useState<Chat | null>(null);
   const [chatHistory, setChatHistory] = useState<Chat[]>([]);
   const [msg, setMsg] = useState<string>('');
@@ -59,10 +62,6 @@ const ChatRoom: React.FC = () => {
       setConnected(true);
       socket.on('chat:update', (chatEvent: Chat) => {
         setChat(chatEvent);
-      });
-
-      socket.on('newMessage', (chatEvent: Chat) => {
-        console.log('chatEvent in useEffect:', chatEvent);
       });
     }
   }, [socket]);
@@ -112,7 +111,7 @@ const ChatRoom: React.FC = () => {
   // this function should be called when a room is clicked
   const joinRoom = (e, t) => {
     // we use t to get the room name. this is the room name that we want to join
-    socket.emit('chat:join', t);
+    console.log('join room', e, t);
   };
 
   return (
@@ -120,13 +119,15 @@ const ChatRoom: React.FC = () => {
       <div
         style={{
           backgroundColor: 'white',
-          width: '100%',
+          width: '85%',
           padding: '20px',
           borderRadius: '10px',
-          // position: 'fixed',
           zIndex: 1,
           justifyItems: 'center',
-          position: 'relative',
+          position: 'fixed',
+          left: '20vw',
+          top: '0vh',
+          // position: 'relative',
         }}
       >
         {rooms &&
@@ -135,12 +136,8 @@ const ChatRoom: React.FC = () => {
               sx={{ m: 1 }}
               key={i}
               variant="contained"
-              color="primary"
+              color={chat?.name && chat.name === room ? 'inherit' : 'primary'}
               onClick={(e) => joinRoom(e, room)}
-              // onClick={() => {
-              //   // socket.emit('chat:join', room);
-              //   // setChatHistory([...chatHistory, chat]);
-              // }}
             >
               {room}
             </Button>
@@ -155,7 +152,6 @@ const ChatRoom: React.FC = () => {
         </Button>
       </div>
 
-      {chat && <h1>cohort: {chat.name}</h1>}
       {chat &&
         chat.messages?.map((message, i) => (
           <>
@@ -168,24 +164,23 @@ const ChatRoom: React.FC = () => {
             position: 'relative',
             backgroundColor: 'white',
             // backgroundColor: ' #00897d',
-
             color: ' #00897d',
             // color: 'white',
-
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'right',
             borderRadius: '5px 5px 5px 5px',
             paddingRight: '10px',
-            // margin: '20px',
             width: '95%',
             height: '4vh',
             textAlign: 'right',
-            left: '1vw',
+            left: '0.vw',
             marginBottom: '2vh',
           }}
         >
-          <h6 style={{ position: 'absolute', top: '-18px' }}>typing...</h6>
+          <h6 style={{ position: 'absolute', top: '-18px', right: '30px' }}>
+            someone typing...
+          </h6>
         </div>
       )}
       <div
@@ -194,8 +189,9 @@ const ChatRoom: React.FC = () => {
           width: '95%',
           height: '110%',
           padding: '20px',
-          // paddingTop: '20px',
           borderRadius: '10px',
+          // position: 'fixed',
+          // bottom: '0vh',
         }}
       >
         <TextField
@@ -214,7 +210,14 @@ const ChatRoom: React.FC = () => {
             }
           }}
         />
-        {/* <Button
+      </div>
+    </div>
+  );
+};
+
+export default ChatRoom;
+{
+  /* <Button
           style={{ width: '80%' }}
           sx={{ m: 1 }}
           variant="contained"
@@ -222,10 +225,5 @@ const ChatRoom: React.FC = () => {
           onClick={sendMessage}
         >
           Send
-        </Button> */}
-      </div>
-    </div>
-  );
-};
-
-export default ChatRoom;
+        </Button> */
+}

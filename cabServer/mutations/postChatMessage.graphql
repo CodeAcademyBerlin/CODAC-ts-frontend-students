@@ -1,5 +1,5 @@
-mutation addComment($lmsFeedbackId: ID!, $comment: String!) {
-  postChatMessage(userId: $userId, roomId: $roomId, message: $message) {
+mutation addChatMessage($chatId: ID!, $body: String!) {
+  addChatMessage(chatId: $chatId, body: $body) {
     success
     message
   }

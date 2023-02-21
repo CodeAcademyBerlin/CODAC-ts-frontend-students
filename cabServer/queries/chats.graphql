@@ -1,6 +1,7 @@
 query getChats {
   chats {
     data {
+      id
       attributes {
         name
         messages {

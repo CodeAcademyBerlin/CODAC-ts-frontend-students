@@ -8,6 +8,7 @@ export const GetChatsDocument = gql`
     query getChats {
   chats {
     data {
+      id
       attributes {
         name
         messages {
@@ -49,4 +50,4 @@ export type GetChatsQueryResult = Apollo.QueryResult<GetChatsQuery, GetChatsQuer
 export type GetChatsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetChatsQuery = { __typename?: 'Query', chats?: { __typename?: 'ChatEntityResponseCollection', data: Array<{ __typename?: 'ChatEntity', attributes?: { __typename?: 'Chat', name?: string | null, messages?: Array<{ __typename?: 'ComponentChatMessage', body?: string | null, timestamp?: any | null } | null> | null } | null }> } | null };
+export type GetChatsQuery = { __typename?: 'Query', chats?: { __typename?: 'ChatEntityResponseCollection', data: Array<{ __typename?: 'ChatEntity', id?: string | null, attributes?: { __typename?: 'Chat', name?: string | null, messages?: Array<{ __typename?: 'ComponentChatMessage', body?: string | null, timestamp?: any | null } | null> | null } | null }> } | null };

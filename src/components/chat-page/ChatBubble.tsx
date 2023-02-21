@@ -7,10 +7,29 @@ import favicon from '../../../public/favicon.ico';
 export const ChatBubble = ({ message }) => {
   const { user } = useAuth();
   console.log('message', message);
+
   const formatDate = (timestamp) => {
-    let formattedDate = timestamp?.slice(0, 10);
+    let date = new Date(timestamp);
+    let today = new Date();
+    let yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+    let formattedDate = '';
+    if (date.getDate() === today.getDate()) {
+      formattedDate = 'Today';
+    } else if (date.getDate() === yesterday.getDate()) {
+      formattedDate = 'Yesterday';
+    } else {
+      formattedDate = `${date.getDate()}/${
+        date.getMonth() + 1
+      }/${date.getFullYear()}`;
+    }
+    formattedDate += ` @ ${date.getHours() < 10 ? '0' : ''}${date.getHours()}:${
+      date.getMinutes() < 10 ? '0' : ''
+    }${date.getMinutes()}`;
+
     return formattedDate;
   };
+
   return (
     <>
       {user.username === 'Eren' && (
@@ -36,12 +55,14 @@ export const ChatBubble = ({ message }) => {
             style={{
               position: 'absolute',
               left: '1.5vw',
-              bottom: '1px',
+              bottom: '-10px',
               color: 'white',
               fontSize: '10px',
             }}
           >
-            Eren {formatDate(message.timestamp)}
+            <b>Eren </b>
+
+            {formatDate(message.timestamp)}
           </p>
           <div
             style={{
@@ -49,12 +70,10 @@ export const ChatBubble = ({ message }) => {
               color: 'white',
               display: 'flex',
               borderRadius: '20px 20px 20px 5px',
-
               flexDirection: 'row',
               justifyContent: 'right',
               paddingRight: '10px',
               paddingLeft: '10px',
-
               textAlign: 'right',
             }}
           >
@@ -94,7 +113,6 @@ export const ChatBubble = ({ message }) => {
             justifyContent: 'left',
             border: '1px  #00897d',
             borderRadius: '20px 5px 20px 5px',
-
             paddingLeft: '10px',
             margin: '15px',
             width: '90%',
@@ -126,18 +144,17 @@ export const ChatBubble = ({ message }) => {
             style={{
               position: 'absolute',
               right: '1.5vw',
-              bottom: '1px',
+              bottom: '-10px',
               color: ' #00897d',
               fontSize: '10px',
             }}
           >
-            Eren {formatDate(message.timestamp)}
+            <b> Eren</b> {formatDate(message.timestamp)}
           </p>
           <div
             style={{
               backgroundColor: ' white',
               borderRadius: '20px 5px 20px 5px',
-
               color: ' #00897d',
               display: 'flex',
               flexDirection: 'row',
