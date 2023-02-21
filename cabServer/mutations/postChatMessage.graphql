@@ -1,0 +1,6 @@
+mutation addComment($lmsFeedbackId: ID!, $comment: String!) {
+  postChatMessage(userId: $userId, roomId: $roomId, message: $message) {
+    success
+    message
+  }
+}
