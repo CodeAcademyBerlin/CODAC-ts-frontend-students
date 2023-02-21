@@ -51,7 +51,6 @@ function KanbanColumn({
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   elevation={0}
-                  key={column.id}
                   sx={{
                     width: '350px',
                     display: 'flex',

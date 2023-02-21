@@ -1,6 +1,16 @@
 import { Draggable } from '@hello-pangea/dnd';
-import { Box, Button, Card, Modal, Typography, useTheme } from '@mui/material';
+import {
+  Box,
+  Button,
+  Card,
+  IconButton,
+  Modal,
+  TextField,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import { ComponentKanbanCard } from 'cabServer/global/__generated__/types';
+import { Close, Pencil } from 'mdi-material-ui';
 import React from 'react';
 
 // type cardArray = ComponentKanbanCard[];
@@ -12,11 +22,24 @@ function KanbanCard({
   card: ComponentKanbanCard | undefined;
   index: number;
 }) {
+  // console.log('cards', card);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [input, setInput] = React.useState(false);
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    setOpen(true);
+    setInput(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setInput(false);
+  };
+
+  const handleEdit = () => {
+    setInput(false);
+  };
 
   return (
     <Draggable draggableId={card?.id} index={index}>
@@ -73,19 +96,50 @@ function KanbanCard({
                 bgcolor: 'background.paper',
                 borderRadius: '20px',
                 borderRadiusBottom: theme.shape.borderRadius,
-                padding: '20px',
+                padding: '35px',
               }}
             >
-              <Typography
-                sx={{
-                  textTransform: 'uppercase',
-                  paddingBottom: '20px',
-                }}
-                variant="h5"
-              >
-                {card?.task}
-              </Typography>
-              <Typography variant="body2">{card?.description}</Typography>
+              {input ? (
+                <>
+                  <IconButton
+                    sx={{
+                      position: 'absolute',
+                      width: '700px',
+                      height: '25px',
+                    }}
+                  >
+                    <Pencil onClick={handleEdit} />
+                  </IconButton>
+
+                  <Typography
+                    sx={{
+                      textTransform: 'uppercase',
+                      paddingBottom: '20px',
+                    }}
+                    variant="h5"
+                  >
+                    {card?.task}
+                  </Typography>
+                  <Typography variant="body2">{card?.description}</Typography>
+                </>
+              ) : (
+                <form>
+                  <TextField
+                    variant="standard"
+                    sx={{
+                      width: '300px',
+                      marginTop: 3,
+                    }}
+                    InputProps={{
+                      endAdornment: (
+                        <IconButton>
+                          <Close />
+                        </IconButton>
+                      ),
+                    }}
+                  />
+                </form>
+              )}
             </Box>
           </Modal>
         </Card>
