@@ -30,6 +30,10 @@ const navigation: NavLink[] = [
     path: '/quests',
   },
   {
+    title: 'Coding Challenges',
+    path: '/codingchallenges',
+  },
+  {
     title: 'News',
     path: '/news',
   },
