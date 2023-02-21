@@ -68,6 +68,7 @@ const Codingchallenges = ({
       >
         <StyledLink href={`/codingchallenges/NewChallenge`}>
           <Button
+            data-cy="button-test"
             sx={{
               m: 4,
               // ml: 1,

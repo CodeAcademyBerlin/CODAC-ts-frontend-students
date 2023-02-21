@@ -143,13 +143,19 @@ const NewChallenge = (props: Props) => {
                 }}
               >
                 <FormControl fullWidth variant="filled">
-                  <InputLabel id="demo-simple-select-label">Course</InputLabel>
+                  <InputLabel
+                    data-cy="input-test"
+                    id="demo-simple-select-label"
+                  >
+                    Course
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={tags}
                     label="Course"
                     onChange={handleTag}
+                    data-cy="course-input"
                   >
                     <MenuItem value={'Web'}>Web</MenuItem>
                     <MenuItem value={'Data'}>Data</MenuItem>
@@ -165,6 +171,7 @@ const NewChallenge = (props: Props) => {
                     value={difficulty}
                     label="Difficulty"
                     onChange={handleDifficulty}
+                    data-cy="difficulty-input"
                   >
                     <MenuItem value={1}>1</MenuItem>
                     <MenuItem value={2}>2</MenuItem>
@@ -191,6 +198,7 @@ const NewChallenge = (props: Props) => {
                     label="Title"
                     variant="filled"
                     onChange={handleTitleChange}
+                    data-cy="title-input"
                   />
                 </Box>
                 <TextField
@@ -205,6 +213,7 @@ const NewChallenge = (props: Props) => {
                   variant="filled"
                   value={challenge}
                   onChange={handleChallenge}
+                  data-cy="challenge-input"
                 />
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <Button
@@ -215,6 +224,7 @@ const NewChallenge = (props: Props) => {
                     }}
                     type="submit"
                     variant="contained"
+                    data-cy="submit-button"
                   >
                     Add
                   </Button>
