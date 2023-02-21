@@ -11,7 +11,7 @@ export default function ProgressBarSuspense() {
       userId: user?.id,
     },
   });
-  const student = data?.students?.data[0].attributes;
+  const student = data?.students?.data[0]?.attributes;
   return (
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}>

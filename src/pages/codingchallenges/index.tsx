@@ -116,7 +116,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
     });
 
     const codingChallenges = data?.codingChallenges?.data;
-
+    console.log('codingChallenges', codingChallenges);
     if (codingChallenges) {
       return {
         props: { codingChallenges },
