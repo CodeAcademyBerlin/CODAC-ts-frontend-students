@@ -5,7 +5,8 @@ loadEnvConfig(process.cwd());
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: `${process.env.NEXT_PUBLIC_CAB_SERVER_API_URL_PROD}/graphql`,
+  schema: 'https://strapi-production-431a.up.railway.app/graphql',
+  // schema: `${process.env.NEXT_PUBLIC_CAB_SERVER_API_URL_PROD}/graphql`,
   documents: 'cabServer/**/*.graphql',
   generates: {
     'cabServer/global/__generated__/types.ts': {
