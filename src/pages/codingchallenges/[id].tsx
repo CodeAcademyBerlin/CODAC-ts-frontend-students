@@ -1,17 +1,22 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import {
+  useDeleteCodingChallengeMutation,
+  useUpdateCodingChallengeMutation,
+} from 'cabServer/mutations/__generated__/addChallenge';
+import {
   GetChallengeByIdDocument,
   GetChallengeByIdQuery,
   GetChallengesExtendedDocument,
   GetChallengesQuery,
 } from 'cabServer/queries/__generated__/challenges';
+import { useRouter } from 'next/router';
 import {
   GetStaticPathsContext,
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next/types';
-import React from 'react';
+import React, { useState } from 'react';
 import StyledLink from 'src/components/common/StyledLink';
 import { initializeApollo } from 'src/lib/apolloClient';
 
@@ -21,6 +26,91 @@ const Challange = ({
   challengeData,
 }: // Get type from staticProps into component thru InferGetStaticPropsType
 InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [challengeBody, setChallengeBody] = useState(
+    challengeData?.attributes?.challenge,
+  );
+  const [isChallengeFocused, setIsChallengeFocused] = useState(false);
+
+  const [idToDelete, setIdToDelete] = useState(challengeData?.id);
+
+  const router = useRouter();
+
+  // Note page stored as json so can quikly load the static part and will add the client side on top
+
+  // next routers use params (another name)
+
+  // data is object with property chsllnge
+
+  const [
+    updateCodingChallengeMutation,
+    { data: dataUpdate, loading: loadingUpdate, error: errorUpdate },
+  ] = useUpdateCodingChallengeMutation({
+    variables: {
+      id: challengeData?.id,
+      challenge: challengeBody,
+    },
+  });
+  // console.log('error', error);
+  // console.log('challengeBody', challengeBody);
+  // console.log('data', data);
+
+  const handleUpdate = () => {
+    console.log('handle update challengeBody', challengeBody);
+    setIsChallengeFocused(false);
+    updateCodingChallengeMutation();
+  };
+
+  const [
+    deleteCodingChallengeMutation,
+    { data: dataDelete, loading: loadingDelete, error: errorDelete },
+  ] = useDeleteCodingChallengeMutation({
+    variables: {
+      id: idToDelete,
+    },
+  });
+
+  //Option 1
+
+  // const handleDelete = (
+  //   event: React.MouseEvent<HTMLButtonElement, MouseEvent | null>,
+  // ) => {
+  //   const target = event.target as HTMLButtonElement;
+  //   console.log(target.value);
+  // };
+
+  //Option 2
+
+  // type HTMLElementEvent<T extends HTMLElement> = Event & { target: T };
+
+  // const handleDelete = (event: HTMLElementEvent<HTMLButtonElement>) => {
+  // // const idToDelete = Number(event.target.value);
+  // // console.log(idToDelete);
+  // // console.log(Number(event.target.value));
+  // setIdToDelete(event.target.value);
+  // console.log('idToDelete', idToDelete);
+  // if (idToDelete) {
+
+  const handleDelete = () => {
+    // const idToDelete = Number(event.target.value);
+    // console.log(idToDelete);
+    // console.log(Number(event.target.value));
+    // setIdToDelete(event.target.value);
+    // console.log('idToDelete', idToDelete);
+    if (idToDelete) {
+      try {
+        deleteCodingChallengeMutation();
+        // build module
+        window.alert('Deletion successful, redirecting you to the main page');
+        console.log('deleted');
+        router.push('/codingchallenges');
+      } catch (error) {
+        console.log('error', error);
+      }
+    } else {
+      window.alert('Deletion failed');
+    }
+  };
+
   return (
     <>
       <Box
@@ -60,20 +150,47 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
       >
         <Box>
-          <Typography>{challengeData?.attributes?.challenge}</Typography>
+          {!isChallengeFocused ? (
+            <Typography
+              onClick={() => {
+                setIsChallengeFocused(true);
+              }}
+            >
+              {challengeBody}
+            </Typography>
+          ) : (
+            <TextField
+              value={challengeBody}
+              onChange={(event) => setChallengeBody(event.target.value)}
+              onBlur={handleUpdate}
+            />
+          )}
         </Box>
       </Box>
       <Box>
-        <StyledLink href={`/codingchallenges`}>
-          <Button
-            sx={{
-              m: 4,
-            }}
-            variant="contained"
-          >
-            Back to challenges
-          </Button>
-        </StyledLink>
+        {/* <StyledLink href={`/codingchallenges`}> */}
+        <Button
+          href={`/codingchallenges`}
+          sx={{
+            m: 4,
+          }}
+          variant="contained"
+        >
+          Back to challenges
+        </Button>
+        <Button
+          onClick={handleDelete}
+          // onChange={(event) => setIdToDelete(event.target.value)}
+          value={idToDelete}
+          // value={challengeData?.id}
+          sx={{
+            m: 4,
+          }}
+          variant="contained"
+        >
+          Delete
+        </Button>
+        {/* </StyledLink> */}
       </Box>
       <Box
         sx={{
@@ -202,3 +319,5 @@ export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
   // Paths need to get returned in the following way: paths: [{ params: { id: '1' } }, { params: { id: '1' } }],
   // getStaticPaths query checking all challenges and returning a path for each id
 };
+
+// <TextField>{challengeData?.attributes?.challenge}</TextField>

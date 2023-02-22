@@ -19,3 +19,19 @@ mutation createCodingChallenge(
     }
   }
 }
+
+mutation updateCodingChallenge($id: ID!, $challenge: String) {
+  updateCodingChallenge(data: { challenge: $challenge }, id: $id) {
+    data {
+      id
+    }
+  }
+}
+
+mutation deleteCodingChallenge($id: ID!) {
+  deleteCodingChallenge(id: $id) {
+    data {
+      id
+    }
+  }
+}
