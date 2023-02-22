@@ -1,9 +1,32 @@
+# mutation createCodingChallenge(
+#   $title: String
+#   $challenge: String
+#   $difficulty: Int
+#   $tags: ENUM_CODINGCHALLENGE_TAGS
+#   $publishedAt: DateTime!
+# ) {
+#   createCodingChallenge(
+#     data: {
+#       title: $title
+#       challenge: $challenge
+#       difficulty: $difficulty
+#       tags: $tags
+#       publishedAt: $publishedAt
+#     }
+#   ) {
+#     data {
+#       id
+#     }
+#   }
+# }
+
 mutation createCodingChallenge(
   $title: String
   $challenge: String
   $difficulty: Int
   $tags: ENUM_CODINGCHALLENGE_TAGS
   $publishedAt: DateTime!
+  $author: ID!
 ) {
   createCodingChallenge(
     data: {
@@ -12,6 +35,7 @@ mutation createCodingChallenge(
       difficulty: $difficulty
       tags: $tags
       publishedAt: $publishedAt
+      author: $author
     }
   ) {
     data {

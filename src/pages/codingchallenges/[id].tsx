@@ -20,6 +20,9 @@ import React, { useState } from 'react';
 import StyledLink from 'src/components/common/StyledLink';
 import { initializeApollo } from 'src/lib/apolloClient';
 
+// added for user
+import { useAuth } from '../../hooks/useAuth';
+
 type Props = {};
 
 const Challange = ({
@@ -34,6 +37,11 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
   const [idToDelete, setIdToDelete] = useState(challengeData?.id);
 
   const router = useRouter();
+
+  // added for user
+
+  const { user } = useAuth();
+  console.log('user', user);
 
   // Note page stored as json so can quikly load the static part and will add the client side on top
 
@@ -111,6 +119,12 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
     }
   };
 
+  // added for user/authorid
+  console.log(
+    'challengeData?.attributes?.author?.data?.id',
+    challengeData?.attributes?.author?.data?.id,
+  );
+
   return (
     <>
       <Box
@@ -149,23 +163,30 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
           borderRadius: 1,
         }}
       >
-        <Box>
-          {!isChallengeFocused ? (
-            <Typography
-              onClick={() => {
-                setIsChallengeFocused(true);
-              }}
-            >
-              {challengeBody}
-            </Typography>
-          ) : (
-            <TextField
-              value={challengeBody}
-              onChange={(event) => setChallengeBody(event.target.value)}
-              onBlur={handleUpdate}
-            />
-          )}
-        </Box>
+        {/* added for user/authorid */}
+        {user && user?.id === challengeData?.attributes?.author?.data?.id ? (
+          <Box>
+            {!isChallengeFocused ? (
+              <Typography
+                onClick={() => {
+                  setIsChallengeFocused(true);
+                }}
+              >
+                {challengeBody}
+              </Typography>
+            ) : (
+              <TextField
+                value={challengeBody}
+                onChange={(event) => setChallengeBody(event.target.value)}
+                onBlur={handleUpdate}
+              />
+            )}
+          </Box>
+        ) : (
+          <Box>
+            <Typography>{challengeBody}</Typography>
+          </Box>
+        )}
       </Box>
       <Box>
         {/* <StyledLink href={`/codingchallenges`}> */}

@@ -16,6 +16,9 @@ import { useCreateCodingChallengeMutation } from 'cabServer/mutations/__generate
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
+// added for user
+import { useAuth } from '../../hooks/useAuth';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -39,6 +42,11 @@ const NewChallenge = (props: Props) => {
   const [challenge, setChallenge] = useState<string>('');
 
   const router = useRouter();
+
+  // added for user
+
+  const { user } = useAuth();
+  console.log('user', user);
 
   const [createCodingChallengeMutation, { data, loading, error }] =
     useCreateCodingChallengeMutation();
@@ -75,6 +83,8 @@ const NewChallenge = (props: Props) => {
           difficulty: difficulty,
           tags: tags,
           publishedAt: date,
+          // added for user
+          author: user?.id || '',
         },
       });
       if (data) {

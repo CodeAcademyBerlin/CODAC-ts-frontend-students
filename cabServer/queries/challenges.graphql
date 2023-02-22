@@ -26,6 +26,23 @@ query getChallengesExtended {
   }
 }
 
+# query getChallengeById($id: ID) {
+#   codingChallenge(id: $id) {
+#     data {
+#       id
+#       attributes {
+#         title
+#         challenge
+#         difficulty
+#         tags
+#         comments {
+#           message
+#         }
+#       }
+#     }
+#   }
+# }
+
 query getChallengeById($id: ID) {
   codingChallenge(id: $id) {
     data {
@@ -37,6 +54,11 @@ query getChallengeById($id: ID) {
         tags
         comments {
           message
+        }
+        author {
+          data {
+            id
+          }
         }
       }
     }
