@@ -1,6 +1,5 @@
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { ComponentKanbanColumn } from 'cabServer/global/__generated__/types';
-import { indexOf } from 'lodash';
 import * as React from 'react';
 import KanbanColumn from 'src/componentsDemo/kanban-board/KanbanColumn';
 
@@ -8,64 +7,68 @@ import { useGetKanbanByUserQuery } from '../../cabServer/queries/__generated__/k
 
 const Kanban = () => {
   const { data, loading, error } = useGetKanbanByUserQuery({
-    variables: { id: `${'7'}` }, //make it for every user
+    variables: { id: '7' }, //make it for every user
   });
-  const column = data?.usersPermissionsUser?.data?.attributes?.kanban?.columns;
-  console.log('dataColumn', column);
+  console.log('data>>>', data);
+  const kabanBoard = data?.usersPermissionsUser?.data?.attributes?.kanban;
+  console.log('dataColumn', kabanBoard);
 
-  // const [startColumn, setStartColumn] = React.useState<
-  //   Array<ComponentKanbanColumn>
-  // >([]);
-  // const [endColumn, setEndColumn] = React.useState<
-  //   Array<ComponentKanbanColumn>
-  // >([]);
   const [columns, setColumns] = React.useState(
-    data?.usersPermissionsUser?.data?.attributes?.kanban?.columns,
+    data?.usersPermissionsUser?.data?.attributes?.kanban,
   );
+  console.log('columns', columns);
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
     console.log(result);
 
+    // If you drop the card outside of a column
     if (!destination) {
-      console.log('if no destination');
       return;
     }
 
+    // If you drop the card on the same index of the same column
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
-      console.log('if same destination');
       return;
     }
-    let add;
-    let start = [];
 
-    // console.log('start', start);
+    // If you drop the card on the same column but different index, else: you drop the card on a differet column and different index
+    let move;
+    let start = [];
+    console.log('startBeforeArray', start);
 
     for (let i = 0; i < columns?.length; i++) {
       if (columns[i].id === source.droppableId) {
         start = columns[i].cards;
       }
     }
-    console.log('start', start);
+    console.log('startAfterArray', start);
+
     let finish = [];
+    console.log('finishBeforeArray', finish);
     for (let i = 0; i < columns?.length; i++) {
       if (columns[i].id === destination.droppableId) {
         finish = columns[i].cards;
       }
     }
-    console.log('finish', finish);
+    console.log('finishAfterArray', finish);
 
     if (source.droppableId === `${destination.droppableId}`) {
       console.log('if different destination');
-      add = start[source.index];
-      console.log('add', add);
-      start.splice(source.index, 1);
-      finish.splice(destination.index, 0, add);
-      console.log('start', start);
-      console.log('finish', finish);
+      move = start[source.index];
+      console.log('move', move);
+
+      let test1 = [...start];
+      test1.splice(source.index, 1);
+      start = [...test1];
+      let test2 = [...finish];
+      test2.splice(destination.index, 0, move);
+      finish = [...test2];
+      console.log('startAfterMove', start);
+      console.log('finishAfterMove', finish);
       // const startF = start.filter((e) => {
       //   return e.id !== add.id;
       // });
@@ -78,21 +81,16 @@ const Kanban = () => {
       // ];
       // console.log('finishF', finishF);
     } else {
-      add = finish[source.index];
+      move = finish[source.index];
       finish.splice(source.index, 1);
-      start.splice(destination.index, 0, add); // splice() removes elements from the arry
+      start.splice(destination.index, 0, move);
     }
-
-    if (destination.droppableId === `${destination.droppableId}`) {
-      finish.splice(destination.index, 0, add);
-    } else {
-      start.splice(destination.index, 0, add);
-    }
+    //
   };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <KanbanColumn column={column} />
+      <KanbanColumn kabanBoard={kabanBoard} />
     </DragDropContext>
   );
 };

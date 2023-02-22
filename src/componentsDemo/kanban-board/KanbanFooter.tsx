@@ -1,6 +1,5 @@
-import { useTheme } from '@emotion/react';
-import { Box, Button, IconButton, TextField } from '@mui/material';
-import { Card, Close, Plus } from 'mdi-material-ui';
+import { Box, Button, IconButton, TextField, useTheme } from '@mui/material';
+import { Close, Plus } from 'mdi-material-ui';
 import * as React from 'react';
 
 const KanbanFooter = () => {
@@ -24,7 +23,7 @@ const KanbanFooter = () => {
               flexWrap: 'nowrap',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: theme.palette.secondary,
+              backgroundColor: theme.palette.secondary.main,
             }}
           >
             <TextField

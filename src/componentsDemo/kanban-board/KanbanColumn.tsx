@@ -9,22 +9,27 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { ComponentKanbanColumn } from 'cabServer/global/__generated__/types';
+import {
+  ComponentKanbanBoard,
+  ComponentKanbanCard,
+  ComponentKanbanColumn,
+} from 'cabServer/global/__generated__/types';
 import { Close, Plus } from 'mdi-material-ui';
 import * as React from 'react';
 
 import KanbanCard from './KanbanCard';
 import KanbanFooter from './KanbanFooter';
 
-function KanbanColumn({
-  column,
-  index,
-}: {
-  column: ComponentKanbanColumn | undefined;
-  index: number;
-}) {
+type KanbanProps = {
+  kabanBoard: ComponentKanbanBoard;
+};
+
+function KanbanColumn({ kabanBoard }: KanbanProps) {
+  console.log('kabanBoard', kabanBoard);
   const theme = useTheme();
   const [inputColumn, setInputColumn] = React.useState(false);
+  const kabanColumns = kabanBoard.columns;
+  console.log('kabanColumns', kabanColumns);
 
   const handleAddColumn = () => {
     setInputColumn(true);
@@ -41,7 +46,7 @@ function KanbanColumn({
       justifyContent="flex-start"
       alignItems="flex-start"
     >
-      {column?.map((column, index) => {
+      {kabanColumns?.map((column: ComponentKanbanColumn) => {
         return (
           <>
             <Droppable droppableId={column.id}>
@@ -73,14 +78,17 @@ function KanbanColumn({
                     }}
                   >
                     <Typography variant="h5" color="white">
-                      {column?.title}
+                      {column.title}
                     </Typography>
                   </Box>
 
-                  {column?.cards?.map((card, index) => {
-                    // console.log('cards', column.cards);
-                    return <KanbanCard card={card} index={index} key={index} />;
-                  })}
+                  {column.cards?.map(
+                    (card: ComponentKanbanCard, index: number) => {
+                      return (
+                        <KanbanCard card={card} index={index} key={index} />
+                      );
+                    },
+                  )}
                   {provided.placeholder}
                   <KanbanFooter />
                 </Card>

@@ -13,16 +13,13 @@ import { ComponentKanbanCard } from 'cabServer/global/__generated__/types';
 import { Close, Pencil } from 'mdi-material-ui';
 import React from 'react';
 
-// type cardArray = ComponentKanbanCard[];
-
 function KanbanCard({
   card,
   index,
 }: {
-  card: ComponentKanbanCard | undefined;
+  card: ComponentKanbanCard;
   index: number;
 }) {
-  // console.log('cards', card);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [input, setInput] = React.useState(false);
@@ -42,7 +39,7 @@ function KanbanCard({
   };
 
   return (
-    <Draggable draggableId={card?.id} index={index}>
+    <Draggable draggableId={card.id.toString()} index={index}>
       {(provided) => (
         <Card
           ref={provided.innerRef}
