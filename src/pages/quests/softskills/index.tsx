@@ -2,6 +2,7 @@
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { GetStaticProps } from 'next/types';
+import NextBreadcrumbs from 'src/components/breadcrumb/NextBreadcrumbs';
 import SkillsQuestCard from 'src/components/Quests/SkillsQuestCard';
 import { SOFTSKILLS_PATH } from 'src/definitions/contentFilePaths';
 import { getFrontmatters } from 'src/lib/markdown';
@@ -11,6 +12,7 @@ const Softskills = ({ softskills }: { softskills: Quests[] }) => {
   console.log('softskills', softskills);
   return (
     <>
+      <NextBreadcrumbs />
       {softskills.map((softskillsQuest, i) => {
         return <SkillsQuestCard key={i} softskillsQuest={softskillsQuest} />;
       })}

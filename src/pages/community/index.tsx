@@ -134,7 +134,7 @@ function Community({
                 <MentorsContent key={mentor.id}>
                   <Link
                     className="noDeco"
-                    href={'community/mentors/' + mentor.id}
+                    href={'/mentors/' + mentor.id}
                     key={mentor.id}
                   >
                     <Image
@@ -244,7 +244,7 @@ function Community({
                             <Link
                               className="noDeco"
                               href={
-                                'community/students/' +
+                                '/students/' +
                                 student?.attributes?.user?.data?.id
                               }
                               key={student?.attributes?.user?.data?.id}
@@ -291,9 +291,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const client = initializeApollo(null, ctx.req);
     const cohorts = await client.query({ query: GetCohortsDocument });
-    console.log('cohorts :>> ', cohorts);
     const mentors = await client.query({ query: MentorsDocument });
-    console.log('mentors :>> ', mentors);
     return {
       props: {
         cohorts: cohorts.data.cohorts.data,
@@ -301,7 +299,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
   } catch (err) {
-    console.log('error: ', err);
+    console.log('error: ', JSON.stringify(err));
     return {
       props: {
         error: JSON.stringify(err),

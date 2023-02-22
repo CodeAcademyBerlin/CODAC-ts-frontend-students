@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
+import NextBreadcrumbs from 'src/components/breadcrumb/NextBreadcrumbs';
 import LmsContentContainer from 'src/components/lms-page/LmsContentContainer';
 import { SOFTSKILLS_PATH } from 'src/definitions/contentFilePaths';
 import { getPageMdx, mdxFilesPaths } from 'src/lib/markdown';
@@ -16,17 +17,20 @@ const Softskills = ({ pageData }: { pageData: PageData }) => {
   console.log('pageData', pageData);
 
   return (
-    <Box
-      sx={{
-        mt: 0,
-        p: 5,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <LmsContentContainer content={pageData.contentHtml} />
-    </Box>
+    <>
+      <NextBreadcrumbs />
+      <Box
+        sx={{
+          mt: 0,
+          p: 5,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <LmsContentContainer content={pageData.contentHtml} />
+      </Box>
+    </>
   );
 };
 export default Softskills;
