@@ -46,7 +46,6 @@ const Codingchallenges = ({
     <>
       <Box
         sx={{
-          bgcolor: 'white',
           display: 'flex',
           flexWrap: 'wrap',
           flexDirection: 'column',
@@ -54,12 +53,13 @@ const Codingchallenges = ({
           '& > :not(style)': {
             width: '100%',
             height: 'auto',
+            mb: 10,
           },
         }}
       >
         <ChallengesLanding />
       </Box>
-      <Box
+      {/* <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -68,8 +68,8 @@ const Codingchallenges = ({
           width: '100%',
           height: 'auto',
         }}
-      >
-        <StyledLink href={`/codingchallenges/NewChallenge`}>
+      > */}
+      {/* <StyledLink href={`/codingchallenges/NewChallenge`}>
           <Button
             data-cy="button-test"
             sx={{
@@ -84,8 +84,8 @@ const Codingchallenges = ({
           >
             Add a coding challenge
           </Button>
-        </StyledLink>
-      </Box>
+        </StyledLink> */}
+      {/* </Box> */}
 
       <Box>
         <Stack spacing={2}>

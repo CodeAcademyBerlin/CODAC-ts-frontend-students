@@ -24,7 +24,14 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
   const title = challenge?.attributes?.title || 'no title';
   const difficulty = challenge?.attributes?.difficulty || 'no difficulty';
 
+  const username = challenge?.attributes?.author?.data?.attributes?.username;
+
   // Two ways of dealing with possiblity that title (ot other data that is not required being null): 1) handle in render 2) avoid destructuring and handle when creating variable with ||
+
+  // console.log(
+  //   'challenge?.attributes?.author?.data?.attributes?.username',
+  //   challenge?.attributes?.author?.data?.attributes?.username,
+  // );
 
   return (
     <>
@@ -51,14 +58,12 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
                 }}
               >
                 <Typography variant="h6">{title}</Typography>
+                <Typography variant="body2">{attributes?.challenge}</Typography>
                 <Typography variant="caption">
-                  {attributes?.challenge}
+                  Contributor: {username}
                 </Typography>
                 <Typography variant="caption">
-                  To be added: contributor
-                </Typography>
-                <Typography variant="caption">
-                  difficulty: {difficulty}
+                  Level of Difficulty: {difficulty}
                 </Typography>
               </Box>
               <Box

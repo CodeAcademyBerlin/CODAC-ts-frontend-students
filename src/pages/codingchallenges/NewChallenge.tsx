@@ -8,6 +8,7 @@ import {
   SelectChangeEvent,
   Stack,
   TextField,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
@@ -123,9 +124,7 @@ const NewChallenge = (props: Props) => {
                 marginLeft: '20%',
               }}
             >
-              <Item>
-                <h3 style={{ color: '#26a69a' }}>Add your challenge</h3>
-              </Item>
+              <Typography variant="h5">Add your challenge</Typography>
             </Stack>
             <Box
               component="span"
@@ -173,7 +172,7 @@ const NewChallenge = (props: Props) => {
                 </FormControl>
                 <FormControl fullWidth variant="filled">
                   <InputLabel id="demo-simple-select-label">
-                    difficulty level
+                    Level of Difficulty
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -217,7 +216,7 @@ const NewChallenge = (props: Props) => {
                   rows={6}
                   margin="dense"
                   id="open_feedback"
-                  label="Your question ..."
+                  label="Your challenge ..."
                   type="text"
                   fullWidth
                   variant="filled"
@@ -236,7 +235,7 @@ const NewChallenge = (props: Props) => {
                     variant="contained"
                     data-cy="submit-button"
                   >
-                    Add
+                    Add Challenge
                   </Button>
                 </Box>
               </div>

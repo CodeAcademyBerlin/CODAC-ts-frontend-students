@@ -79,6 +79,14 @@ export const GetChallengesExtendedDocument = gql`
           comments {
             message
           }
+          author {
+            data {
+              id
+              attributes {
+                username
+              }
+            }
+          }
         }
       }
     }
@@ -150,6 +158,9 @@ export const GetChallengeByIdDocument = gql`
           author {
             data {
               id
+              attributes {
+                username
+              }
             }
           }
         }
@@ -246,6 +257,17 @@ export type GetChallengesExtendedQuery = {
           __typename?: 'ComponentCommentsComments';
           message?: string | null;
         } | null> | null;
+        author?: {
+          __typename?: 'UsersPermissionsUserEntityResponse';
+          data?: {
+            __typename?: 'UsersPermissionsUserEntity';
+            id?: string | null;
+            attributes?: {
+              __typename?: 'UsersPermissionsUser';
+              username: string;
+            } | null;
+          } | null;
+        } | null;
       } | null;
     }>;
   } | null;
@@ -277,6 +299,10 @@ export type GetChallengeByIdQuery = {
           data?: {
             __typename?: 'UsersPermissionsUserEntity';
             id?: string | null;
+            attributes?: {
+              __typename?: 'UsersPermissionsUser';
+              username: string;
+            } | null;
           } | null;
         } | null;
       } | null;

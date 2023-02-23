@@ -21,6 +21,14 @@ query getChallengesExtended {
         comments {
           message
         }
+        author {
+          data {
+            id
+            attributes {
+              username
+            }
+          }
+        }
       }
     }
   }
@@ -58,6 +66,9 @@ query getChallengeById($id: ID) {
         author {
           data {
             id
+            attributes {
+              username
+            }
           }
         }
       }

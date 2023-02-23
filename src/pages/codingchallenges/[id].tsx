@@ -23,6 +23,9 @@ import { initializeApollo } from 'src/lib/apolloClient';
 // added for user
 import { useAuth } from '../../hooks/useAuth';
 
+// to reformat coding challenge
+// import matter = require('gray-matter');
+
 type Props = {};
 
 const Challange = ({
@@ -124,6 +127,14 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
     'challengeData?.attributes?.author?.data?.id',
     challengeData?.attributes?.author?.data?.id,
   );
+  // added for user/authorid for contributor
+  console.log(
+    'challengeData?.attributes?.author?.data?.id',
+    challengeData?.attributes?.author?.data?.attributes?.username,
+  );
+
+  const disabled =
+    !user || (user && user?.id !== challengeData?.attributes?.author?.data?.id);
 
   return (
     <>
@@ -142,6 +153,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
       >
         <Typography
+          variant="body1"
           sx={{
             fontWeight: 'bold',
           }}
@@ -184,11 +196,16 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
           </Box>
         ) : (
           <Box>
-            <Typography>{challengeBody}</Typography>
+            <Typography variant="body2">{challengeBody}</Typography>
           </Box>
         )}
       </Box>
-      <Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         {/* <StyledLink href={`/codingchallenges`}> */}
         <Button
           href={`/codingchallenges`}
@@ -200,16 +217,15 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
           Back to challenges
         </Button>
         <Button
+          disabled={disabled}
           onClick={handleDelete}
-          // onChange={(event) => setIdToDelete(event.target.value)}
-          // value={idToDelete}
-          // value={challengeData?.id}
           sx={{
             m: 4,
           }}
           variant="contained"
+          color="warning"
         >
-          Delete
+          Delete Challenge
         </Button>
         {/* </StyledLink> */}
       </Box>
@@ -228,11 +244,12 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
       >
         <Typography
+          variant="body1"
           sx={{
             fontWeight: 'bold',
           }}
         >
-          Test writing your own solution
+          Test writing your own solution (To be implemented by... you?)
         </Typography>
       </Box>
       <Box
@@ -267,7 +284,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
         variant="contained"
       >
-        Run test
+        Test your answer
       </Button>
     </>
   );
