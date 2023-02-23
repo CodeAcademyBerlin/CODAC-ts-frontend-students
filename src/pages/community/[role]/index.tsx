@@ -4,21 +4,18 @@ import {
   MentorEntity,
   StudentEntity,
 } from 'cabServer/global/__generated__/types';
-import { filterMentorByUserIdDocument } from 'cabServer/queries/__generated__/mentorById';
 import { MentorsDocument } from 'cabServer/queries/__generated__/mentors';
-import { FilterStudentByUserIdDocument } from 'cabServer/queries/__generated__/students';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
+import { AllStudentsDocument } from 'cabServer/queries/__generated__/students';
+import { GetServerSideProps } from 'next/types';
 import NextBreadcrumbs from 'src/components/breadcrumb/NextBreadcrumbs';
 import { initializeApollo } from 'src/lib/apolloClient';
 
-// export default Mentorprofile;
-
 const Students = ({ data }: { data: MentorEntity[] | StudentEntity[] }) => {
-  console.log('data :>> ', data);
+  console.log('data :>> ', data[0].__typename);
   console.log('typeof data :>> ', typeof data);
   const theme = useTheme();
-  if (data.__typename === 'StudentEntity') {
-    const studentProfile = data && data?.attributes;
+  if (data[0].__typename === 'StudentEntity') {
+    const studentProfile = data && data[0]?.attributes;
     console.log('studentProfile', studentProfile);
     return (
       <Container
@@ -114,7 +111,7 @@ const Students = ({ data }: { data: MentorEntity[] | StudentEntity[] }) => {
       </Container>
     );
   } else {
-    const mentorProfile = data && data?.attributes;
+    const mentorProfile = data && data[0]?.attributes;
     console.log('mentorProfile :>> ', mentorProfile);
     return (
       <Container
@@ -252,7 +249,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       const client = initializeApollo(null, ctx.req);
       console.log('ctxparams', ctx.params);
       const { data } = await client.query({
-        query: getAllStudentsDocument,
+        query: AllStudentsDocument,
       });
       const students = data.students.data;
       return {

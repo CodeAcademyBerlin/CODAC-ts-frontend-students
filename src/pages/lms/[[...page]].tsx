@@ -2,7 +2,6 @@ import { Breadcrumbs, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
-import NextBreadcrumbs from 'src/components/breadcrumb/NextBreadcrumbs';
 import CommentsParent from 'src/components/lms-page/comments';
 import LmsSearchBar from 'src/components/lms-search/LmsSearchBar';
 import { createIndexArray } from 'src/lib/lms-index';
@@ -22,7 +21,6 @@ import { PageData } from './lms';
 const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
   return pageData ? (
     <>
-      <NextBreadcrumbs />
       <Head>
         <title>{pageData.title}</title>
       </Head>
