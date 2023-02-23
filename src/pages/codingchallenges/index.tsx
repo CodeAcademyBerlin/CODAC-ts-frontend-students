@@ -32,6 +32,9 @@ const Codingchallenges = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   // Notes:
   // Set with <> for empty?
+
+  // REMOVE STATE here maybe?
+
   const [challenges, setChallenges] = useState(codingChallenges);
 
   // Render first time and when changes

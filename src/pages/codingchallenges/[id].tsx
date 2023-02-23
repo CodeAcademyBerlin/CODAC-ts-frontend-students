@@ -54,7 +54,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
     { data: dataUpdate, loading: loadingUpdate, error: errorUpdate },
   ] = useUpdateCodingChallengeMutation({
     variables: {
-      id: challengeData?.id,
+      id: challengeData?.id || '',
       challenge: challengeBody,
     },
   });
@@ -73,7 +73,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
     { data: dataDelete, loading: loadingDelete, error: errorDelete },
   ] = useDeleteCodingChallengeMutation({
     variables: {
-      id: idToDelete,
+      id: idToDelete || '',
     },
   });
 
@@ -164,7 +164,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
       >
         {/* added for user/authorid */}
-        {user && user?.id === challengeData?.attributes?.author?.data?.id ? (
+        {user && user?.id == challengeData?.attributes?.author?.data?.id ? (
           <Box>
             {!isChallengeFocused ? (
               <Typography
@@ -202,7 +202,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         <Button
           onClick={handleDelete}
           // onChange={(event) => setIdToDelete(event.target.value)}
-          value={idToDelete}
+          // value={idToDelete}
           // value={challengeData?.id}
           sx={{
             m: 4,

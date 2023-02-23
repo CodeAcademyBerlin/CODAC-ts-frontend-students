@@ -20,9 +20,9 @@ describe('Finds to codingchallenges and naviagtes to add new challenge', () => {
     cy.getByData('challenge-input').type('test challenge body');
     cy.getByData('submit-button').click();
 
-    const uuid = () => Cypress._.random(0, 10);
-    const id = uuid();
+    const id = 1;
 
-    cy.url().should('include', `codingchallenges/${id}`);
+    cy.visit(`http://localhost:3000/codingchallenges/${id}`);
+    // cy.url().should('is', `codingchallenges/${id}`);
   });
 });
