@@ -25,10 +25,10 @@ type KanbanProps = {
 };
 
 function KanbanColumn({ kabanBoard }: KanbanProps) {
-  console.log('kabanBoard', kabanBoard);
   const theme = useTheme();
   const [inputColumn, setInputColumn] = React.useState(false);
-  const kabanColumns = kabanBoard.columns;
+  const kabanColumns: ComponentKanbanColumn[] =
+    kabanBoard?.columns as ComponentKanbanColumn[];
   console.log('kabanColumns', kabanColumns);
 
   const handleAddColumn = () => {
@@ -49,13 +49,13 @@ function KanbanColumn({ kabanBoard }: KanbanProps) {
       {kabanColumns?.map((column: ComponentKanbanColumn) => {
         return (
           <>
-            <Droppable droppableId={column.id}>
+            <Droppable droppableId={column.id.toString()}>
               {(provided, snapshot) => (
                 <Card
                   // className={`${snapshot.isDraggingOver ? 'dragactive' : ''}`}
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  key={column.id}
+                  key={column?.id}
                   elevation={0}
                   sx={{
                     width: '350px',
@@ -78,17 +78,13 @@ function KanbanColumn({ kabanBoard }: KanbanProps) {
                     }}
                   >
                     <Typography variant="h5" color="white">
-                      {column.title}
+                      {column?.title}
                     </Typography>
                   </Box>
 
-                  {column.cards?.map(
-                    (card: ComponentKanbanCard, index: number) => {
-                      return (
-                        <KanbanCard card={card} index={index} key={index} />
-                      );
-                    },
-                  )}
+                  {column?.cards?.map((card, index) => {
+                    return <KanbanCard card={card} index={index} key={index} />;
+                  })}
                   {provided.placeholder}
                   <KanbanFooter />
                 </Card>
