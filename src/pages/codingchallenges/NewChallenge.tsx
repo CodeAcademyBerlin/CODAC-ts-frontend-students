@@ -44,10 +44,8 @@ const NewChallenge = (props: Props) => {
 
   const router = useRouter();
 
-  // added for user
-
+  // Added to acccess user
   const { user } = useAuth();
-  console.log('user', user);
 
   const [createCodingChallengeMutation, { data, loading, error }] =
     useCreateCodingChallengeMutation();
@@ -58,7 +56,6 @@ const NewChallenge = (props: Props) => {
   };
 
   const handleDifficulty = (event: SelectChangeEvent<number>) => {
-    // inputs are always a string so need to convert it
     setDifficulty(Number(event.target.value));
   };
 
@@ -84,7 +81,6 @@ const NewChallenge = (props: Props) => {
           difficulty: difficulty,
           tags: tags,
           publishedAt: date,
-          // added for user
           author: user?.id || '',
         },
       });

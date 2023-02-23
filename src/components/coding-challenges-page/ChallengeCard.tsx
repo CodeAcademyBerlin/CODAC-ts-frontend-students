@@ -12,12 +12,12 @@ import React from 'react';
 
 import StyledLink from '../common/StyledLink';
 
-// The type to describe the object I will receive in this component. Want to recive the full CodingChallengeEntity.
+// Type to describe the object I will receive in this component. Want to recive the full CodingChallengeEntity.
 
 type ChallengeProps = {
   challenge: CodingChallengeEntity;
 };
-// If you have several props its better to creare a type otherwise alt way would be to include like so: const ChallengeCard = ({ challenge }: { challenge: CodingChallengeEntity })
+// Alt way to type would be to include like so: const ChallengeCard = ({ challenge }: { challenge: CodingChallengeEntity })
 
 const ChallengeCard = ({ challenge }: ChallengeProps) => {
   const { id, attributes } = challenge;
@@ -27,11 +27,6 @@ const ChallengeCard = ({ challenge }: ChallengeProps) => {
   const username = challenge?.attributes?.author?.data?.attributes?.username;
 
   // Two ways of dealing with possiblity that title (ot other data that is not required being null): 1) handle in render 2) avoid destructuring and handle when creating variable with ||
-
-  // console.log(
-  //   'challenge?.attributes?.author?.data?.attributes?.username',
-  //   challenge?.attributes?.author?.data?.attributes?.username,
-  // );
 
   return (
     <>

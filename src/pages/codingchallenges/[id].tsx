@@ -20,37 +20,24 @@ import React, { useState } from 'react';
 import StyledLink from 'src/components/common/StyledLink';
 import { initializeApollo } from 'src/lib/apolloClient';
 
-// added for user
+// Added to acccess user
 import { useAuth } from '../../hooks/useAuth';
 
-// to reformat coding challenge
-// import matter = require('gray-matter');
-
+// Get type from staticProps into component thru InferGetStaticPropsType
 type Props = {};
 
 const Challange = ({
   challengeData,
-}: // Get type from staticProps into component thru InferGetStaticPropsType
-InferGetStaticPropsType<typeof getStaticProps>) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [challengeBody, setChallengeBody] = useState(
     challengeData?.attributes?.challenge,
   );
   const [isChallengeFocused, setIsChallengeFocused] = useState(false);
-
   const [idToDelete, setIdToDelete] = useState(challengeData?.id);
-
   const router = useRouter();
 
-  // added for user
-
+  // Added to acccess user
   const { user } = useAuth();
-  console.log('user', user);
-
-  // Note page stored as json so can quikly load the static part and will add the client side on top
-
-  // next routers use params (another name)
-
-  // data is object with property chsllnge
 
   const [
     updateCodingChallengeMutation,
@@ -61,9 +48,6 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
       challenge: challengeBody,
     },
   });
-  // console.log('error', error);
-  // console.log('challengeBody', challengeBody);
-  // console.log('data', data);
 
   const handleUpdate = () => {
     console.log('handle update challengeBody', challengeBody);
@@ -80,37 +64,10 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
     },
   });
 
-  //Option 1
-
-  // const handleDelete = (
-  //   event: React.MouseEvent<HTMLButtonElement, MouseEvent | null>,
-  // ) => {
-  //   const target = event.target as HTMLButtonElement;
-  //   console.log(target.value);
-  // };
-
-  //Option 2
-
-  // type HTMLElementEvent<T extends HTMLElement> = Event & { target: T };
-
-  // const handleDelete = (event: HTMLElementEvent<HTMLButtonElement>) => {
-  // // const idToDelete = Number(event.target.value);
-  // // console.log(idToDelete);
-  // // console.log(Number(event.target.value));
-  // setIdToDelete(event.target.value);
-  // console.log('idToDelete', idToDelete);
-  // if (idToDelete) {
-
   const handleDelete = () => {
-    // const idToDelete = Number(event.target.value);
-    // console.log(idToDelete);
-    // console.log(Number(event.target.value));
-    // setIdToDelete(event.target.value);
-    // console.log('idToDelete', idToDelete);
     if (idToDelete) {
       try {
         deleteCodingChallengeMutation();
-        // build module
         window.alert('Deletion successful, redirecting you to the main page');
         console.log('deleted');
         router.push('/codingchallenges');
@@ -122,17 +79,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
     }
   };
 
-  // added for user/authorid
-  console.log(
-    'challengeData?.attributes?.author?.data?.id',
-    challengeData?.attributes?.author?.data?.id,
-  );
-  // added for user/authorid for contributor
-  console.log(
-    'challengeData?.attributes?.author?.data?.id',
-    challengeData?.attributes?.author?.data?.attributes?.username,
-  );
-
+  // Added to disable delete button if !user or user && user.id !== author.id
   const disabled =
     !user || (user && user?.id !== challengeData?.attributes?.author?.data?.id);
 
@@ -175,7 +122,6 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
           borderRadius: 1,
         }}
       >
-        {/* added for user/authorid */}
         {user && user?.id == challengeData?.attributes?.author?.data?.id ? (
           <Box>
             {!isChallengeFocused ? (
@@ -357,5 +303,3 @@ export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
   // Paths need to get returned in the following way: paths: [{ params: { id: '1' } }, { params: { id: '1' } }],
   // getStaticPaths query checking all challenges and returning a path for each id
 };
-
-// <TextField>{challengeData?.attributes?.challenge}</TextField>

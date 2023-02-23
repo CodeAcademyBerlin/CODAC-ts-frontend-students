@@ -30,17 +30,10 @@ const Item = styled(Paper)(({ theme }) => ({
 const Codingchallenges = ({
   codingChallenges,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  // Notes:
-  // Set with <> for empty?
-
-  // REMOVE STATE here maybe?
-
-  const [challenges, setChallenges] = useState(codingChallenges);
-
-  // Render first time and when changes
-  useEffect(() => {
-    setChallenges(codingChallenges);
-  }, []);
+  // const [challenges, setChallenges] = useState(codingChallenges);
+  // useEffect(() => {
+  //   setChallenges(codingChallenges);
+  // }, []);
 
   return (
     <>
@@ -59,34 +52,6 @@ const Codingchallenges = ({
       >
         <ChallengesLanding />
       </Box>
-      {/* <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: '100%',
-          height: 'auto',
-        }}
-      > */}
-      {/* <StyledLink href={`/codingchallenges/NewChallenge`}>
-          <Button
-            data-cy="button-test"
-            sx={{
-              m: 4,
-              // ml: 1,
-              // position: 'absolute',
-              // top: '0',
-              // right: '10px',
-            }}
-            type="submit"
-            variant="contained"
-          >
-            Add a coding challenge
-          </Button>
-        </StyledLink> */}
-      {/* </Box> */}
-
       <Box>
         <Stack spacing={2}>
           {codingChallenges.map((challenge: CodingChallengeEntity) => {
@@ -107,9 +72,8 @@ const Codingchallenges = ({
 export default Codingchallenges;
 
 // GetChallengesQuery is the full query object
-// getStaticProps runs at buildtime so no context so need to initalize with null
-// Cannot have autorization on challanges since static build, but we can create token based server side autoetication
-// Comments - do client side rendering
+// getStaticProps runs at build time so no context so need to initalize with null
+// Cannot have autorization on challanges since static build, but we can create token based server side auth
 
 export const getStaticProps = async (ctx: GetStaticPropsContext) => {
   try {
