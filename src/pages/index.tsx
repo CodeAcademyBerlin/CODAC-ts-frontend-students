@@ -99,7 +99,7 @@ const Home = () => {
           </BrandText>
         )}
       </Box>
-      <Footer /> */}
+      <Footer />
     </>
   );
 };
