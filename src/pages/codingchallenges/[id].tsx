@@ -11,6 +11,7 @@ import {
 } from 'cabServer/queries/__generated__/challenges';
 import { useRouter } from 'next/router';
 import {
+  GetServerSideProps,
   GetStaticPathsContext,
   GetStaticProps,
   GetStaticPropsContext,
@@ -26,9 +27,8 @@ import { useAuth } from '../../hooks/useAuth';
 // Get type from staticProps into component thru InferGetStaticPropsType
 type Props = {};
 
-const Challenge = ({
-  challengeData,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+
+const Challange = ({ challengeData }: any) => {
   const [challengeBody, setChallengeBody] = useState(
     challengeData?.attributes?.challenge,
   );
@@ -238,7 +238,8 @@ const Challenge = ({
 
 export default Challenge;
 
-export const getStaticProps = async (ctx: GetStaticPropsContext) => {
+// export const getStaticProps = async (ctx: GetStaticPropsContext) => {
+export const getServerSideProps = async (ctx: { params: { id: any } }) => {
   const challengeId = ctx?.params?.id;
 
   try {
@@ -254,7 +255,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
         props: {
           challengeData,
         },
-        revalidate: 10,
+        // revalidate: 10,
       };
     }
     if (error || !challengeData) {
@@ -275,31 +276,32 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 // Paths allways needs to be an [] even with if contins one element since chllenge is looking for [] type
 // paths first, list things, get the ids, then getStaticProps, and then additional data fetching for that one
 
-export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
-  // Notes
-  // CTX also contains authorization, so if we add user and change type to be accessible only to logged in users we could get the parameter in the ctx res
+// export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
+//   // Notes
+//   // CTX also contains authorization, so if we add user and change type to be accessible only to logged in users we could get the parameter in the ctx res
 
-  const client = initializeApollo(null, null);
-  const { data, error } = await client.query<GetChallengesQuery>({
-    query: GetChallengesExtendedDocument,
-    // Notes:
-    // have the full list so dont need the variable variables: { id: challengeId },
-  });
+//   const client = initializeApollo(null, null);
+//   const { data, error } = await client.query<GetChallengesQuery>({
+//     query: GetChallengesExtendedDocument,
+//     // Notes:
+//     // have the full list so dont need the variable variables: { id: challengeId },
+//   });
 
-  // console.log('data.codingChallenges.data', data?.codingChallenges?.data);
-  const challengesArray = data?.codingChallenges?.data;
-  // console.log('challengesArray', challengesArray);
+//   // console.log('data.codingChallenges.data', data?.codingChallenges?.data);
+//   const challengesArray = data?.codingChallenges?.data;
+//   // console.log('challengesArray', challengesArray);
 
-  const paths = challengesArray?.map((challenge) => ({
-    params: { id: challenge?.id },
-  }));
-
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-  // Notes:
-  // using a map to reshape the array without changing tha data inside. Map of esponse to have the return with params and id
-  // Paths need to get returned in the following way: paths: [{ params: { id: '1' } }, { params: { id: '1' } }],
-  // getStaticPaths query checking all challenges and returning a path for each id
-};
+//   const paths = challengesArray?.map((challenge) => ({
+//     params: { id: challenge?.id },
+//   }));
+//   console.log('paths', paths);
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//     // fallback: 'blocking',
+//   };
+//   // Notes:
+//   // using a map to reshape the array without changing tha data inside. Map of esponse to have the return with params and id
+//   // Paths need to get returned in the following way: paths: [{ params: { id: '1' } }, { params: { id: '1' } }],
+//   // getStaticPaths query checking all challenges and returning a path for each id
+// };
