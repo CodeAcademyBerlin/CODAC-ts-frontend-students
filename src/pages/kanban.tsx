@@ -2,12 +2,14 @@ import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { ComponentKanbanBoard } from 'cabServer/global/__generated__/types';
 import * as React from 'react';
 import KanbanColumn from 'src/componentsDemo/kanban-board/KanbanColumn';
+import { useAuth } from 'src/hooks/useAuth';
 
 import { useGetKanbanByUserQuery } from '../../cabServer/queries/__generated__/kanban';
 
 const Kanban = () => {
+  const { user } = useAuth();
   const { data, loading, error } = useGetKanbanByUserQuery({
-    variables: { id: '7' }, //make it for every user
+    variables: { id: user?.id }, //make it for every user
   });
   console.log('data', data);
   const kabanBoard: ComponentKanbanBoard = data?.usersPermissionsUser?.data

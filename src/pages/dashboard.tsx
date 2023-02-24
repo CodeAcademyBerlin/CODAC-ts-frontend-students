@@ -113,15 +113,15 @@ const Dashboard = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   console.log(data);
   const theme = useTheme();
-  const myStudent: Student = data && data.students.data[0].attributes;
-  const achievements: AchievementEntity[] =
-    data && data?.students?.data[0].attributes.achievements.data;
-  console.log('achievements', achievements);
-  if (myStudent)
-    return (
-      <ApexChartWrapper>
-        <Grid container spacing={6}>
-          <Grid item xs={12}>
+  // const myStudent: Student = data && data.students.data[0].attributes;
+  // const achievements: AchievementEntity[] =
+  //   data && data?.students?.data[0].attributes.achievements.data;
+  // console.log('achievements', achievements);
+  // if (myStudent)
+  return (
+    <ApexChartWrapper>
+      <Grid container spacing={6}>
+        {/* <Grid item xs={12}>
             {myStudent.main_course?.data?.attributes?.name && (
               <Typography
                 sx={{
@@ -140,26 +140,26 @@ const Dashboard = ({
                 </span>
               </Typography>
             )}
-          </Grid>
-          <Grid item xs={12}>
-            <ProgressBar student={myStudent} />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            {myStudent?.cohort?.data?.attributes && (
-              <CohortCard cohort={myStudent.cohort.data.attributes} />
-            )}
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <OpenAiImage />
-            {achievements && (
-              <AchievementsComponent achievements={achievements} />
-            )}
-          </Grid>
-
-          {/* {user.role.name === "Student" && <ProgressBar />} */}
+          </Grid> */}
+        {/* <Grid item xs={12}>
+          <ProgressBar student={myStudent} />
         </Grid>
-      </ApexChartWrapper>
-    );
+        <Grid item xs={12} md={6} lg={4}>
+          {myStudent?.cohort?.data?.attributes && (
+            <CohortCard cohort={myStudent.cohort.data.attributes} />
+          )}
+        </Grid>
+        <Grid item xs={12} md={6} lg={4}>
+          <OpenAiImage />
+          {achievements && (
+            <AchievementsComponent achievements={achievements} />
+          )}
+        </Grid> */}
+
+        {/* {user.role.name === "Student" && <ProgressBar />} */}
+      </Grid>
+    </ApexChartWrapper>
+  );
 };
 
 export default Dashboard;
