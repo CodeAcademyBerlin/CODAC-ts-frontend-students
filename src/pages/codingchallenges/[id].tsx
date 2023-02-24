@@ -1,26 +1,88 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import {
+  useDeleteCodingChallengeMutation,
+  useUpdateCodingChallengeMutation,
+} from 'cabServer/mutations/__generated__/addChallenge';
+import {
   GetChallengeByIdDocument,
   GetChallengeByIdQuery,
   GetChallengesExtendedDocument,
   GetChallengesQuery,
 } from 'cabServer/queries/__generated__/challenges';
+import { useRouter } from 'next/router';
 import {
   GetStaticPathsContext,
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next/types';
-import React from 'react';
+import React, { useState } from 'react';
 import StyledLink from 'src/components/common/StyledLink';
 import { initializeApollo } from 'src/lib/apolloClient';
 
+// Added to acccess user
+import { useAuth } from '../../hooks/useAuth';
+
+// Get type from staticProps into component thru InferGetStaticPropsType
 type Props = {};
 
 const Challange = ({
   challengeData,
-}: // Get type from staticProps into component thru InferGetStaticPropsType
-InferGetStaticPropsType<typeof getStaticProps>) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [challengeBody, setChallengeBody] = useState(
+    challengeData?.attributes?.challenge,
+  );
+  const [isChallengeFocused, setIsChallengeFocused] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(challengeData?.id);
+  const router = useRouter();
+
+  // Added to acccess user
+  const { user } = useAuth();
+
+  const [
+    updateCodingChallengeMutation,
+    { data: dataUpdate, loading: loadingUpdate, error: errorUpdate },
+  ] = useUpdateCodingChallengeMutation({
+    variables: {
+      id: challengeData?.id || '',
+      challenge: challengeBody,
+    },
+  });
+
+  const handleUpdate = () => {
+    console.log('handle update challengeBody', challengeBody);
+    setIsChallengeFocused(false);
+    updateCodingChallengeMutation();
+  };
+
+  const [
+    deleteCodingChallengeMutation,
+    { data: dataDelete, loading: loadingDelete, error: errorDelete },
+  ] = useDeleteCodingChallengeMutation({
+    variables: {
+      id: idToDelete || '',
+    },
+  });
+
+  const handleDelete = () => {
+    if (idToDelete) {
+      try {
+        deleteCodingChallengeMutation();
+        window.alert('Deletion successful, redirecting you to the main page');
+        console.log('deleted');
+        router.push('/codingchallenges');
+      } catch (error) {
+        console.log('error', error);
+      }
+    } else {
+      window.alert('Deletion failed');
+    }
+  };
+
+  // Added to disable delete button if !user or user && user.id !== author.id
+  const disabled =
+    !user || (user && user?.id !== challengeData?.attributes?.author?.data?.id);
+
   return (
     <>
       <Box
@@ -38,6 +100,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
       >
         <Typography
+          variant="body1"
           sx={{
             fontWeight: 'bold',
           }}
@@ -59,21 +122,58 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
           borderRadius: 1,
         }}
       >
-        <Box>
-          <Typography>{challengeData?.attributes?.challenge}</Typography>
-        </Box>
+        {user && user?.id == challengeData?.attributes?.author?.data?.id ? (
+          <Box>
+            {!isChallengeFocused ? (
+              <Typography
+                onClick={() => {
+                  setIsChallengeFocused(true);
+                }}
+              >
+                {challengeBody}
+              </Typography>
+            ) : (
+              <TextField
+                value={challengeBody}
+                onChange={(event) => setChallengeBody(event.target.value)}
+                onBlur={handleUpdate}
+              />
+            )}
+          </Box>
+        ) : (
+          <Box>
+            <Typography variant="body2">{challengeBody}</Typography>
+          </Box>
+        )}
       </Box>
-      <Box>
-        <StyledLink href={`/codingchallenges`}>
-          <Button
-            sx={{
-              m: 4,
-            }}
-            variant="contained"
-          >
-            Back to challenges
-          </Button>
-        </StyledLink>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        {/* <StyledLink href={`/codingchallenges`}> */}
+        <Button
+          href={`/codingchallenges`}
+          sx={{
+            m: 4,
+          }}
+          variant="contained"
+        >
+          Back to challenges
+        </Button>
+        <Button
+          disabled={disabled}
+          onClick={handleDelete}
+          sx={{
+            m: 4,
+          }}
+          variant="contained"
+          color="warning"
+        >
+          Delete Challenge
+        </Button>
+        {/* </StyledLink> */}
       </Box>
       <Box
         sx={{
@@ -90,11 +190,12 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
       >
         <Typography
+          variant="body1"
           sx={{
             fontWeight: 'bold',
           }}
         >
-          Test writing your own solution
+          Test writing your own solution (To be implemented by... you?)
         </Typography>
       </Box>
       <Box
@@ -129,7 +230,7 @@ InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
         variant="contained"
       >
-        Run test
+        Test your answer
       </Button>
     </>
   );

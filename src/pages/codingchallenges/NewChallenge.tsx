@@ -8,6 +8,7 @@ import {
   SelectChangeEvent,
   Stack,
   TextField,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
@@ -15,6 +16,9 @@ import { Enum_Codingchallenge_Tags } from 'cabServer/global/__generated__/types'
 import { useCreateCodingChallengeMutation } from 'cabServer/mutations/__generated__/addChallenge';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+
+// added for user
+import { useAuth } from '../../hooks/useAuth';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -40,6 +44,9 @@ const NewChallenge = (props: Props) => {
 
   const router = useRouter();
 
+  // Added to acccess user
+  const { user } = useAuth();
+
   const [createCodingChallengeMutation, { data, loading, error }] =
     useCreateCodingChallengeMutation();
 
@@ -49,7 +56,6 @@ const NewChallenge = (props: Props) => {
   };
 
   const handleDifficulty = (event: SelectChangeEvent<number>) => {
-    // inputs are always a string so need to convert it
     setDifficulty(Number(event.target.value));
   };
 
@@ -75,6 +81,7 @@ const NewChallenge = (props: Props) => {
           difficulty: difficulty,
           tags: tags,
           publishedAt: date,
+          author: user?.id || '',
         },
       });
       if (data) {
@@ -113,9 +120,7 @@ const NewChallenge = (props: Props) => {
                 marginLeft: '20%',
               }}
             >
-              <Item>
-                <h3 style={{ color: '#26a69a' }}>Add your challenge</h3>
-              </Item>
+              <Typography variant="h5">Add your challenge</Typography>
             </Stack>
             <Box
               component="span"
@@ -143,13 +148,19 @@ const NewChallenge = (props: Props) => {
                 }}
               >
                 <FormControl fullWidth variant="filled">
-                  <InputLabel id="demo-simple-select-label">Course</InputLabel>
+                  <InputLabel
+                    data-cy="input-test"
+                    id="demo-simple-select-label"
+                  >
+                    Course
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={tags}
                     label="Course"
                     onChange={handleTag}
+                    data-cy="course-input"
                   >
                     <MenuItem value={'Web'}>Web</MenuItem>
                     <MenuItem value={'Data'}>Data</MenuItem>
@@ -157,7 +168,7 @@ const NewChallenge = (props: Props) => {
                 </FormControl>
                 <FormControl fullWidth variant="filled">
                   <InputLabel id="demo-simple-select-label">
-                    difficulty level
+                    Level of Difficulty
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -165,6 +176,7 @@ const NewChallenge = (props: Props) => {
                     value={difficulty}
                     label="Difficulty"
                     onChange={handleDifficulty}
+                    data-cy="difficulty-input"
                   >
                     <MenuItem value={1}>1</MenuItem>
                     <MenuItem value={2}>2</MenuItem>
@@ -191,6 +203,7 @@ const NewChallenge = (props: Props) => {
                     label="Title"
                     variant="filled"
                     onChange={handleTitleChange}
+                    data-cy="title-input"
                   />
                 </Box>
                 <TextField
@@ -199,12 +212,13 @@ const NewChallenge = (props: Props) => {
                   rows={6}
                   margin="dense"
                   id="open_feedback"
-                  label="Your question ..."
+                  label="Your challenge ..."
                   type="text"
                   fullWidth
                   variant="filled"
                   value={challenge}
                   onChange={handleChallenge}
+                  data-cy="challenge-input"
                 />
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <Button
@@ -215,8 +229,9 @@ const NewChallenge = (props: Props) => {
                     }}
                     type="submit"
                     variant="contained"
+                    data-cy="submit-button"
                   >
-                    Add
+                    Add Challenge
                   </Button>
                 </Box>
               </div>

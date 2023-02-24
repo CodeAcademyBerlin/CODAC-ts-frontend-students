@@ -56,6 +56,14 @@ export const GetChallengesExtendedDocument = gql`
         comments {
           message
         }
+        author {
+          data {
+            id
+            attributes {
+              username
+            }
+          }
+        }
       }
     }
   }
@@ -101,6 +109,14 @@ export const GetChallengeByIdDocument = gql`
         comments {
           message
         }
+        author {
+          data {
+            id
+            attributes {
+              username
+            }
+          }
+        }
       }
     }
   }
@@ -142,11 +158,11 @@ export type GetChallengesQuery = { __typename?: 'Query', codingChallenges?: { __
 export type GetChallengesExtendedQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetChallengesExtendedQuery = { __typename?: 'Query', codingChallenges?: { __typename?: 'CodingChallengeEntityResponseCollection', data: Array<{ __typename?: 'CodingChallengeEntity', id?: string | null, attributes?: { __typename?: 'CodingChallenge', title?: string | null, challenge?: string | null, difficulty?: number | null, tags?: Types.Enum_Codingchallenge_Tags | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null } | null }> } | null };
+export type GetChallengesExtendedQuery = { __typename?: 'Query', codingChallenges?: { __typename?: 'CodingChallengeEntityResponseCollection', data: Array<{ __typename?: 'CodingChallengeEntity', id?: string | null, attributes?: { __typename?: 'CodingChallenge', title?: string | null, challenge?: string | null, difficulty?: number | null, tags?: Types.Enum_Codingchallenge_Tags | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null } | null } | null } | null }> } | null };
 
 export type GetChallengeByIdQueryVariables = Types.Exact<{
   id?: Types.InputMaybe<Types.Scalars['ID']>;
 }>;
 
 
-export type GetChallengeByIdQuery = { __typename?: 'Query', codingChallenge?: { __typename?: 'CodingChallengeEntityResponse', data?: { __typename?: 'CodingChallengeEntity', id?: string | null, attributes?: { __typename?: 'CodingChallenge', title?: string | null, challenge?: string | null, difficulty?: number | null, tags?: Types.Enum_Codingchallenge_Tags | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null } | null } | null } | null };
+export type GetChallengeByIdQuery = { __typename?: 'Query', codingChallenge?: { __typename?: 'CodingChallengeEntityResponse', data?: { __typename?: 'CodingChallengeEntity', id?: string | null, attributes?: { __typename?: 'CodingChallenge', title?: string | null, challenge?: string | null, difficulty?: number | null, tags?: Types.Enum_Codingchallenge_Tags | null, comments?: Array<{ __typename?: 'ComponentCommentsComments', message?: string | null } | null> | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null } | null } | null } | null } | null } | null };
