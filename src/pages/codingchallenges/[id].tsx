@@ -254,7 +254,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
         props: {
           challengeData,
         },
-        revalidate: 10,
+        // revalidate: 10,
       };
     }
     if (error || !challengeData) {
@@ -296,7 +296,7 @@ export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
   console.log('paths', paths);
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
     // fallback: 'blocking',
   };
   // Notes:
