@@ -39,7 +39,7 @@ export const getStaticProps = async ({
   params: { project: string };
 }) => {
   const pageData = await getPageMdx(params.project, PROJECTS_PATH, '/assets/');
-
+  // console.log('those are the props', { props: { pageData } });
   return { props: { pageData } };
 };
 

@@ -16,11 +16,13 @@ export interface filteredIndexField {
 
 export function filterIndex(field: indexField, input: string[], filter: string) {
 
+
     const filteredTags: string[] = [];
 
     if (field.tags) {
         if (filter === "") {
             for (let i = 0; i < input.length; i++) {
+
             if (field.tags.includes(input[i])) {
                 filteredTags.push(input[i]);
             };

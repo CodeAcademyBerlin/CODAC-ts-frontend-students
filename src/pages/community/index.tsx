@@ -8,15 +8,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import React from 'react';
+import NextBreadcrumbs from 'src/components/breadcrumb/NextBreadcrumbs';
 
 import {
   CohortEntity,
   MentorEntity,
-} from '../../cabServer/global/__generated__/types';
-import { GetCohortsDocument } from '../../cabServer/queries/__generated__/cohorts';
-import { MentorsDocument } from '../../cabServer/queries/__generated__/mentors';
-import logo from '../../public/assets/logo.png';
-import { initializeApollo } from '../lib/apolloClient';
+} from '../../../cabServer/global/__generated__/types';
+import { GetCohortsDocument } from '../../../cabServer/queries/__generated__/cohorts';
+import { MentorsDocument } from '../../../cabServer/queries/__generated__/mentors';
+import logo from '../../../public/assets/logo.png';
+import { initializeApollo } from '../../lib/apolloClient';
 
 export const MentorsContainer = styled('div')`
   display: flex;
@@ -119,6 +120,7 @@ function Community({
 
   return (
     <>
+      <NextBreadcrumbs />
       {/* <BrandText variant='h3' sx={{ fontSize: 80 }}>Codacommunity</BrandText> */}
       <h1>CodaCommunity</h1>
       {error && <p>Something went wrong...</p>}
@@ -297,10 +299,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
   } catch (err) {
-    console.log('error: ', err);
+    console.log('error: ', JSON.stringify(err));
     return {
       props: {
-        error: err,
+        error: JSON.stringify(err),
       },
     };
   }

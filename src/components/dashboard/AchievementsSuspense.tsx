@@ -12,7 +12,7 @@ export default function AchievementsSuspense() {
       userId: user?.id,
     },
   });
-  const student = data?.students?.data[0].attributes;
+  const student = data?.students?.data[0]?.attributes;
   const achievements = (student && student?.achievements) || null;
 
   return (
