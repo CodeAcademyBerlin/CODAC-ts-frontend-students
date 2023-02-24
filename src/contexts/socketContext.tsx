@@ -1,4 +1,4 @@
-import { ChatEntity } from 'cabServer/global/__generated__/types';
+import { Chat, ChatEntity } from 'cabServer/global/__generated__/types';
 import {
   createContext,
   FC,

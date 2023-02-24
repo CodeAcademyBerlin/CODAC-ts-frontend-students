@@ -1,15 +1,16 @@
+import { ComponentChatMessage } from 'cabServer/global/__generated__/types';
 import Image from 'next/image';
 import React from 'react';
 import { useAuth } from 'src/hooks/useAuth';
 
 import favicon from '../../../public/favicon.ico';
 
-export const ChatBubble = ({ message }) => {
+export const ChatBubble = ({ message }: { message: any }) => {
   const { user } = useAuth();
   const author =
-    message.author.data?.attributes?.username || message.author.username;
+    message?.author?.data?.attributes?.username || message?.author?.username;
 
-  const formatDate = (timestamp) => {
+  const formatDate = (timestamp: string) => {
     let date = new Date(timestamp);
     let today = new Date();
     let yesterday = new Date();
@@ -33,7 +34,7 @@ export const ChatBubble = ({ message }) => {
 
   return (
     <>
-      {user.username !== author ? (
+      {user?.username !== author ? (
         <div
           style={{
             position: 'relative',

@@ -38,22 +38,6 @@ const ChatRooms: React.FC = () => {
     }
   }, [socket]);
 
-  useEffect(() => {
-    let roomsObj = {};
-    if (data && user.role?.name === 'Student') {
-      data.chats.data.forEach((room) => {
-        const roomId = room.id;
-        const roomName = room.attributes.name;
-        roomsObj[roomId] = roomName;
-      });
-      setRooms(roomsObj);
-    }
-  }, [data, user]);
-
-  const joinRoom = (e, t) => {
-    setRoom(t);
-  };
-
   return (
     <div>
       {connected && room !== '' && <ChatRoom roomId={room}></ChatRoom>}
@@ -71,16 +55,16 @@ const ChatRooms: React.FC = () => {
           bottom: '0vh',
         }}
       >
-        {Object.entries(rooms).map(([roomId, roomName]) => (
+        {data?.chats?.data.map((room) => (
           <Button
             sx={{ m: 1 }}
+            component="span"
             variant="contained"
-            color={room === roomId ? 'inherit' : 'primary'}
-            onClick={(e) => joinRoom(e, roomId)}
-            key={roomId}
-            value={roomId}
+            color={room.attributes?.name === room ? 'inherit' : 'primary'}
+            onClick={() => setRoom(room?.attributes?.name || '')}
+            key={room.id}
           >
-            {roomName}
+            {room.attributes?.name}
           </Button>
         ))}
       </div>

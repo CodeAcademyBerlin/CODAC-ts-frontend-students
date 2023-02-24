@@ -99,11 +99,11 @@ const AchievementTable = ({
                     <StyledTableCell align="center">
                       {achievementEntity.attributes.points || ''}
                     </StyledTableCell>
-                    {achievementEntity.attributes.type === 'student' ? (
+                    {/* {achievementEntity.attributes.type === 'student' ? (
                       <StyledTableCell align="center">🏅</StyledTableCell>
                     ) : (
                       <StyledTableCell align="center">💫</StyledTableCell>
-                    )}
+                    )} */}
                     {/* <StyledTableCell align='center'>{achievementEntity.attributes.course || ""}</StyledTableCell> */}
                   </StyledTableRow>
                 </TableBody>

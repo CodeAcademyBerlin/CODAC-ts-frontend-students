@@ -2,6 +2,7 @@ import { TextField } from '@mui/material';
 import {
   Chat,
   ComponentChatMessage,
+  Maybe,
 } from 'cabServer/global/__generated__/types';
 import { useAddChatMessageMutation } from 'cabServer/mutations/__generated__/postChatMessage';
 import { useGetChatQuery } from 'cabServer/queries/__generated__/chats';
@@ -19,7 +20,9 @@ interface IMsg {
 }
 
 const ChatRoom: React.FC<Props> = ({ roomId }) => {
-  const [chatHistory, setChatHistory] = useState<ComponentChatMessage[]>([]);
+  const [chatHistory, setChatHistory] = useState<Maybe<ComponentChatMessage>[]>(
+    [],
+  );
   const { data, loading, error, refetch } = useGetChatQuery({
     variables: {
       id: roomId,
@@ -34,8 +37,8 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
   useEffect(() => {
     if (socket) {
       socket.on('chat:update', (chatEvent: Chat) => {
-        let history = chatEvent.messages;
-        setChatHistory(history);
+        let history = chatEvent?.messages;
+        history?.length && setChatHistory(history);
       });
     }
   }, [socket]);
@@ -43,9 +46,9 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
   useEffect(() => {
     refetch();
     if (data) {
-      let history = data.chat.data.attributes.messages;
+      let history = data?.chat?.data?.attributes?.messages;
       console.log('history roomId', history);
-      setChatHistory(history);
+      history?.length && setChatHistory(history);
       console.log('updatedHistory roomId', chatHistory);
     }
   }, [roomId, data]);
@@ -76,7 +79,7 @@ const ChatRoom: React.FC<Props> = ({ roomId }) => {
         {chatHistory &&
           chatHistory?.map((message, i) => (
             <>
-              <ChatBubble key={message.id} message={message}></ChatBubble>
+              <ChatBubble key={message?.id} message={message}></ChatBubble>
             </>
           ))}
 
