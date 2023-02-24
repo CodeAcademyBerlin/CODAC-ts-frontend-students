@@ -75,3 +75,81 @@ query filterStudentByUserId($userId: ID) {
     }
   }
 }
+
+query allStudents {
+  students {
+    data {
+      attributes {
+        achievements {
+          unlocked
+          unlockedOn
+          achievement {
+            data {
+              attributes {
+                name
+                course_date
+                points
+                badge {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        github
+        linkedin
+        start_date
+        end_date
+        cohort {
+          data {
+            attributes {
+              name
+              start_date
+              students {
+                data {
+                  attributes {
+                    main_course {
+                      data {
+                        attributes {
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        main_course {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

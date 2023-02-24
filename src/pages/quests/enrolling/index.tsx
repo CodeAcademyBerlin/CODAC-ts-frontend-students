@@ -2,6 +2,7 @@
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { GetStaticProps } from 'next/types';
+import NextBreadcrumbs from 'src/components/breadcrumb/NextBreadcrumbs';
 import EnrollingQuestCard from 'src/components/Quests/EnrollingQuestCard';
 import { ENROLLING_PATH } from 'src/definitions/contentFilePaths';
 import { getFrontmatters } from 'src/lib/markdown';
@@ -13,6 +14,7 @@ const Enrollings = ({ enrolling }: { enrolling: Quests[] }) => {
   console.log('enrolling', enrolling);
   return (
     <>
+      <NextBreadcrumbs />
       <div className={styles.wrapper}>
         {enrolling.map((enrollQuest, i) => {
           return <EnrollingQuestCard key={i} enrollQuest={enrollQuest} />;

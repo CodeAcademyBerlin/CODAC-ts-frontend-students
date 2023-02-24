@@ -1,36 +1,36 @@
-query getNewsPost {
-  newsPosts {
-    data {
-      attributes {
-        post
-        post
-        author {
-          data {
-            attributes {
-              email
-              student {
-                data {
-                  attributes {
-                    user {
-                      data {
-                        attributes {
-                          avatar {
-                            data {
-                              attributes {
-                                url
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
+# query getNewsPost {
+#   newsPosts {
+#     data {
+#       attributes {
+#         post
+#         post
+#         author {
+#           data {
+#             attributes {
+#               email
+#               student {
+#                 data {
+#                   attributes {
+#                     user {
+#                       data {
+#                         attributes {
+#                           avatar {
+#                             data {
+#                               attributes {
+#                                 url
+#                               }
+#                             }
+#                           }
+#                         }
+#                       }
+#                     }
+#                   }
+#                 }
+#               }
+#             }
+#           }
+#         }
+#       }
+#     }
+#   }
+# }

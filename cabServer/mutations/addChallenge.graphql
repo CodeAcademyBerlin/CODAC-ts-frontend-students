@@ -1,0 +1,61 @@
+# mutation createCodingChallenge(
+#   $title: String
+#   $challenge: String
+#   $difficulty: Int
+#   $tags: ENUM_CODINGCHALLENGE_TAGS
+#   $publishedAt: DateTime!
+# ) {
+#   createCodingChallenge(
+#     data: {
+#       title: $title
+#       challenge: $challenge
+#       difficulty: $difficulty
+#       tags: $tags
+#       publishedAt: $publishedAt
+#     }
+#   ) {
+#     data {
+#       id
+#     }
+#   }
+# }
+
+mutation createCodingChallenge(
+  $title: String
+  $challenge: String
+  $difficulty: Int
+  $tags: ENUM_CODINGCHALLENGE_TAGS
+  $publishedAt: DateTime!
+  $author: ID!
+) {
+  createCodingChallenge(
+    data: {
+      title: $title
+      challenge: $challenge
+      difficulty: $difficulty
+      tags: $tags
+      publishedAt: $publishedAt
+      author: $author
+    }
+  ) {
+    data {
+      id
+    }
+  }
+}
+
+mutation updateCodingChallenge($id: ID!, $challenge: String) {
+  updateCodingChallenge(data: { challenge: $challenge }, id: $id) {
+    data {
+      id
+    }
+  }
+}
+
+mutation deleteCodingChallenge($id: ID!) {
+  deleteCodingChallenge(id: $id) {
+    data {
+      id
+    }
+  }
+}
