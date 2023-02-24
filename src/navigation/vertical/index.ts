@@ -33,27 +33,27 @@ const navigation: NavLink[] = [
     title: 'Coding Challenges',
     path: '/codingchallenges',
   },
-  {
-    title: 'News',
-    path: '/news',
-  },
-  {
-    title: 'Jobs',
-    icon: BriefcaseOutline,
-    path: '/jobs',
-  },
-  {
-    title: 'VS Battles',
-    path: '/battles',
-  },
-  {
-    title: 'Projects',
-    path: '/projects',
-  },
-  {
-    title: 'Achievements',
-    path: '/achievements',
-  },
+  // {
+  //   title: 'News',
+  //   path: '/news',
+  // },
+  // {
+  //   title: 'Jobs',
+  //   icon: BriefcaseOutline,
+  //   path: '/jobs',
+  // },
+  // {
+  //   title: 'VS Battles',
+  //   path: '/battles',
+  // },
+  // {
+  //   title: 'Projects',
+  //   path: '/projects',
+  // },
+  // {
+  //   title: 'Achievements',
+  //   path: '/achievements',
+  // },
   {
     title: 'Overflow',
     path: '/overflow',
@@ -61,6 +61,14 @@ const navigation: NavLink[] = [
   {
     title: 'Kanban',
     path: '/kanban',
+  },
+  {
+    title: 'Chat',
+    path: '/chat',
+  },
+  {
+    title: '???',
+    path: '/congrats',
   },
 ];
 

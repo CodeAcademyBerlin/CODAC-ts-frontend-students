@@ -134,7 +134,7 @@ function Community({
                 <MentorsContent key={mentor.id}>
                   <Link
                     className="noDeco"
-                    href={'/mentors/' + mentor.id}
+                    href={'/community/mentors/' + mentor.id}
                     key={mentor.id}
                   >
                     <Image
@@ -244,7 +244,7 @@ function Community({
                             <Link
                               className="noDeco"
                               href={
-                                '/students/' +
+                                '/community/students/' +
                                 student?.attributes?.user?.data?.id
                               }
                               key={student?.attributes?.user?.data?.id}

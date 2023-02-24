@@ -91,6 +91,7 @@ function NavContent() {
       </Link>
       <br />
       <OuterList>
+        {lmsTree && <CollapsibleLi child={lmsTree} />}
         {navigation.map((navItem) => (
           <NavLiItem key={navItem.title}>
             <Link
@@ -103,8 +104,6 @@ function NavContent() {
             </Link>
           </NavLiItem>
         ))}
-
-        {lmsTree && <CollapsibleLi child={lmsTree} />}
       </OuterList>
     </div>
   );

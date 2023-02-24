@@ -52,7 +52,7 @@ const Home = () => {
 
   return (
     <>
-      {/* <TronGridWrapper>
+      <TronGridWrapper>
         <TronGrid />
         {smUp && <BerlinSkyline />}
       </TronGridWrapper>
