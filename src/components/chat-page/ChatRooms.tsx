@@ -61,7 +61,7 @@ const ChatRooms: React.FC = () => {
             component="span"
             variant="contained"
             color={room.attributes?.name === room ? 'inherit' : 'primary'}
-            onClick={() => setRoom(room?.attributes?.name || '')}
+            onClick={() => setRoom(room?.id)}
             key={room.id}
           >
             {room.attributes?.name}

@@ -54,10 +54,10 @@ const navigation: NavLink[] = [
   //   title: 'Achievements',
   //   path: '/achievements',
   // },
-  {
-    title: 'Overflow',
-    path: '/overflow',
-  },
+  // {
+  //   title: 'Overflow',
+  //   path: '/overflow',
+  // },
   {
     title: 'Kanban',
     path: '/kanban',
