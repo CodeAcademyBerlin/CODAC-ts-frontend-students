@@ -1423,7 +1423,6 @@ export type GenericMorph =
   | Mentor
   | NewsPost
   | Page
-  | PasswordlessToken
   | Project
   | Spike
   | Student
@@ -1816,7 +1815,6 @@ export type Mutation = {
   createNewsPost?: Maybe<NewsPostEntityResponse>;
   createPage?: Maybe<PageEntityResponse>;
   createPageLocalization?: Maybe<PageEntityResponse>;
-  createPasswordlessToken?: Maybe<PasswordlessTokenEntityResponse>;
   createProject?: Maybe<ProjectEntityResponse>;
   createSpike?: Maybe<SpikeEntityResponse>;
   createStudent?: Maybe<StudentEntityResponse>;
@@ -1847,7 +1845,6 @@ export type Mutation = {
   deleteMentor?: Maybe<MentorEntityResponse>;
   deleteNewsPost?: Maybe<NewsPostEntityResponse>;
   deletePage?: Maybe<PageEntityResponse>;
-  deletePasswordlessToken?: Maybe<PasswordlessTokenEntityResponse>;
   deleteProject?: Maybe<ProjectEntityResponse>;
   deleteSpike?: Maybe<SpikeEntityResponse>;
   deleteStudent?: Maybe<StudentEntityResponse>;
@@ -1894,7 +1891,6 @@ export type Mutation = {
   updateMentor?: Maybe<MentorEntityResponse>;
   updateNewsPost?: Maybe<NewsPostEntityResponse>;
   updatePage?: Maybe<PageEntityResponse>;
-  updatePasswordlessToken?: Maybe<PasswordlessTokenEntityResponse>;
   updateProject?: Maybe<ProjectEntityResponse>;
   updateSpike?: Maybe<SpikeEntityResponse>;
   updateStudent?: Maybe<StudentEntityResponse>;
@@ -2003,10 +1999,6 @@ export type MutationCreatePageLocalizationArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type MutationCreatePasswordlessTokenArgs = {
-  data: PasswordlessTokenInput;
-};
-
 export type MutationCreateProjectArgs = {
   data: ProjectInput;
 };
@@ -2109,10 +2101,6 @@ export type MutationDeleteNewsPostArgs = {
 export type MutationDeletePageArgs = {
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
-
-export type MutationDeletePasswordlessTokenArgs = {
-  id: Scalars['ID'];
 };
 
 export type MutationDeleteProjectArgs = {
@@ -2283,11 +2271,6 @@ export type MutationUpdatePageArgs = {
   data: PageInput;
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
-
-export type MutationUpdatePasswordlessTokenArgs = {
-  data: PasswordlessTokenInput;
-  id: Scalars['ID'];
 };
 
 export type MutationUpdateProjectArgs = {
@@ -2491,53 +2474,6 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>;
 };
 
-export type PasswordlessToken = {
-  __typename?: 'PasswordlessToken';
-  createdAt?: Maybe<Scalars['DateTime']>;
-  is_active?: Maybe<Scalars['Boolean']>;
-  login_date?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type PasswordlessTokenEntity = {
-  __typename?: 'PasswordlessTokenEntity';
-  attributes?: Maybe<PasswordlessToken>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type PasswordlessTokenEntityResponse = {
-  __typename?: 'PasswordlessTokenEntityResponse';
-  data?: Maybe<PasswordlessTokenEntity>;
-};
-
-export type PasswordlessTokenEntityResponseCollection = {
-  __typename?: 'PasswordlessTokenEntityResponseCollection';
-  data: Array<PasswordlessTokenEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type PasswordlessTokenFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<PasswordlessTokenFiltersInput>>>;
-  body?: InputMaybe<StringFilterInput>;
-  context?: InputMaybe<JsonFilterInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  email?: InputMaybe<StringFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  is_active?: InputMaybe<BooleanFilterInput>;
-  login_date?: InputMaybe<DateTimeFilterInput>;
-  not?: InputMaybe<PasswordlessTokenFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<PasswordlessTokenFiltersInput>>>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type PasswordlessTokenInput = {
-  body?: InputMaybe<Scalars['String']>;
-  context?: InputMaybe<Scalars['JSON']>;
-  email?: InputMaybe<Scalars['String']>;
-  is_active?: InputMaybe<Scalars['Boolean']>;
-  login_date?: InputMaybe<Scalars['DateTime']>;
-};
-
 export type Project = {
   __typename?: 'Project';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -2635,8 +2571,6 @@ export type Query = {
   newsPosts?: Maybe<NewsPostEntityResponseCollection>;
   page?: Maybe<PageEntityResponse>;
   pages?: Maybe<PageEntityResponseCollection>;
-  passwordlessToken?: Maybe<PasswordlessTokenEntityResponse>;
-  passwordlessTokens?: Maybe<PasswordlessTokenEntityResponseCollection>;
   project?: Maybe<ProjectEntityResponse>;
   projects?: Maybe<ProjectEntityResponseCollection>;
   spike?: Maybe<SpikeEntityResponse>;
@@ -2810,16 +2744,6 @@ export type QueryPagesArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type QueryPasswordlessTokenArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-export type QueryPasswordlessTokensArgs = {
-  filters?: InputMaybe<PasswordlessTokenFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -3430,11 +3354,9 @@ export type UsersPermissionsUser = {
   firstname?: Maybe<Scalars['String']>;
   kanban?: Maybe<ComponentKanbanBoard>;
   lastname?: Maybe<Scalars['String']>;
-  mentor?: Maybe<MentorEntityResponse>;
   notifications?: Maybe<Array<Maybe<ComponentNotificationNotifications>>>;
   provider?: Maybe<Scalars['String']>;
   role?: Maybe<UsersPermissionsRoleEntityResponse>;
-  student?: Maybe<StudentEntityResponse>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   username: Scalars['String'];
 };
@@ -3473,7 +3395,6 @@ export type UsersPermissionsUserFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   kanban?: InputMaybe<ComponentKanbanBoardFiltersInput>;
   lastname?: InputMaybe<StringFilterInput>;
-  mentor?: InputMaybe<MentorFiltersInput>;
   not?: InputMaybe<UsersPermissionsUserFiltersInput>;
   notifications?: InputMaybe<ComponentNotificationNotificationsFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
@@ -3481,7 +3402,6 @@ export type UsersPermissionsUserFiltersInput = {
   provider?: InputMaybe<StringFilterInput>;
   resetPasswordToken?: InputMaybe<StringFilterInput>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
-  student?: InputMaybe<StudentFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   username?: InputMaybe<StringFilterInput>;
 };
@@ -3495,7 +3415,6 @@ export type UsersPermissionsUserInput = {
   firstname?: InputMaybe<Scalars['String']>;
   kanban?: InputMaybe<ComponentKanbanBoardInput>;
   lastname?: InputMaybe<Scalars['String']>;
-  mentor?: InputMaybe<Scalars['ID']>;
   notifications?: InputMaybe<
     Array<InputMaybe<ComponentNotificationNotificationsInput>>
   >;
@@ -3503,7 +3422,6 @@ export type UsersPermissionsUserInput = {
   provider?: InputMaybe<Scalars['String']>;
   resetPasswordToken?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Scalars['ID']>;
-  student?: InputMaybe<Scalars['ID']>;
   username?: InputMaybe<Scalars['String']>;
 };
 
