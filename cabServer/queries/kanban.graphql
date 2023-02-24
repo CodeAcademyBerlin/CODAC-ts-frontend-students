@@ -1,0 +1,24 @@
+query getKanbanByUser($id: ID) {
+  usersPermissionsUser(id: $id) {
+    data {
+      attributes {
+        kanban {
+          columns {
+            id
+            title
+            order
+            done
+            cards {
+              id
+              task
+              description
+              deadline
+              category
+              done
+            }
+          }
+        }
+      }
+    }
+  }
+}
