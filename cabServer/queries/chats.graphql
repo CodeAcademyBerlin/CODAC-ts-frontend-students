@@ -1,0 +1,45 @@
+query getChats {
+  chats {
+    data {
+      id
+      attributes {
+        name
+        messages {
+          body
+          timestamp
+          author {
+            data {
+              attributes {
+                username
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query getChat($id: ID!) {
+  chat(id: $id) {
+    data {
+      id
+      attributes {
+        name
+        messages {
+          id
+          body
+          timestamp
+          author {
+            data {
+              attributes {
+                username
+                email
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

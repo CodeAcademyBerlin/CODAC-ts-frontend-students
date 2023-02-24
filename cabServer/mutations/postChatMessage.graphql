@@ -1,0 +1,6 @@
+mutation addChatMessage($chatId: ID!, $body: String!) {
+  addChatMessage(chatId: $chatId, body: $body) {
+    success
+    message
+  }
+}

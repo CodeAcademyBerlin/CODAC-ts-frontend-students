@@ -1,0 +1,15 @@
+.test {
+  width: 100%;
+  color: blueviolet;
+  border-color: aquamarine;
+}
+
+.warning {
+  color: white;
+  background-color: yellow;
+  font-weight: bold;
+}
+
+.toast-position {
+  top: 8rem !important;
+}

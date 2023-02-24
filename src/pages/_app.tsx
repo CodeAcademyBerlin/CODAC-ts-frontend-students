@@ -12,6 +12,7 @@ import { CssBaseline } from '@mui/material';
 import { VT323 } from '@next/font/google';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
+// import { AppProps } from 'next/dist/next-server/lib/router/router';
 // ** Next Imports
 import Head from 'next/head';
 import Router from 'next/router';

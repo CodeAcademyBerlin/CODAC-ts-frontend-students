@@ -52,7 +52,7 @@ const Home = () => {
 
   return (
     <>
-      <TronGridWrapper>
+      {/* <TronGridWrapper>
         <TronGrid />
         {smUp && <BerlinSkyline />}
       </TronGridWrapper>
@@ -99,7 +99,7 @@ const Home = () => {
           </BrandText>
         )}
       </Box>
-      <Footer />
+      <Footer /> */}
     </>
   );
 };
