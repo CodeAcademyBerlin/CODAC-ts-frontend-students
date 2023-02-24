@@ -39,7 +39,7 @@ export async function getPageMdx(
   const mdxSource = await serialize(contentHtml, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
-      development: false,
+      // development: false,
       //   remarkPlugins: [],
       // rehypePlugins: [[imageSize, { dir: "public" }]],
       // },
@@ -61,7 +61,6 @@ export async function getFrontmatters(dir: string) {
     const { data } = matter(content);
     return data;
   });
-
   return frontmatters;
 }
 

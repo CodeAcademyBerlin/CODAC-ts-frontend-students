@@ -1,0 +1,183 @@
+/* Search Bar */
+
+.inputSearch{
+    height: 30px;
+    width: 300px;
+    border-radius: 10px 2px 2px 2px;
+    border-color: #26a69a;
+}
+
+.searchButton{
+    border-radius: 2px 10px 10px 2px;
+    border-color: #26a69a;
+    border: 2px solid #26a69a;
+    height: 31px;
+    width: 40px;
+    margin-left: -3px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+}
+
+.searchButton > img{
+    position: relative;
+    top: 4px;
+    left: 9px;
+}
+
+.keywordsDiv{
+    width: 299px;
+    height: auto;
+    border: 2px solid #26a69a;
+    border-radius: 2px 2px 5px 5px;
+    padding: 2px;
+    margin-top: -6px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.keywordDiv{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: auto;
+    height: 30px;
+    padding: 2px;
+    margin: 6px 2px 2px 2px;
+    position: relative;
+}
+
+.keyword{
+    margin: 0px 15px 0px 0px;
+}
+
+.xbutton{
+    font-size: xx-small;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 2px;
+    right: 0;
+    float: right;
+    cursor: pointer;
+}
+
+/* Result page */
+
+.resultDiv {
+    min-height: 100px;
+    height: 100%;
+    width: 700px;
+    margin-left: 10px;
+    border: 2px solid #26a69a;
+    background-color: #26a69a;
+    border-radius: 15px 6px;
+    padding-left: 10px;
+    line-height: 15px;
+}
+.resultDiv > h1{
+    font-size: large;
+    color: #F4F5FA;
+}
+.resultDiv > h3{
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: medium;
+    color: #F4F5FA;
+}
+.resultDiv > p{
+    margin-left: 40px;
+    font-size: small;
+    color: #F4F5FA;
+}
+
+.tagsDiv{
+    min-height: 100px;
+    height: 100%;
+    min-width: 70px;
+    width: fit-content;
+    padding: 10px;
+    background-color: #26a69a;
+    font-size: small;
+    font-style: oblique;
+    color: #F4F5FA;
+    font-weight: bold;
+    border-radius: 6px 15px;
+    text-align: center;
+}
+
+.flexDiv{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    height: fit-content;
+}
+
+.resultH {
+    margin-bottom: 20px;
+    font-size: larger;
+    color: black;
+}
+
+.resultH+img {
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: oblique;
+    color: black;
+    position: relative;
+    top: 50px;
+}
+
+.resultP {
+    font-weight: 1000;
+    font-size: small;
+    color: #26a69a;
+    margin-bottom: 5px;
+}
+
+/* Tooltip */
+
+div:has(> .tooltip){
+    align-items: flex-start;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    background-color: #EEEEEE;
+    color: black;
+    width: 150px;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    margin-right: 5px;
+    z-index: 9999;
+    top: -5px;
+    right: 105%;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 8%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #EEEEEE;
+}

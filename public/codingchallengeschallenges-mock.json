@@ -1,0 +1,19 @@
+{
+  "individual_challenges": [
+    {
+      "title": "Codingchallenge1",
+      "text": "This will be usefull",
+      "description": "longer description here"
+    },
+    {
+      "title": "Codingchallenge2",
+      "text": "This will be usefull",
+      "description": "longer description here"
+    },
+    {
+      "title": "Codingchallenge3",
+      "text": "This will be usefull",
+      "description": "longer description here"
+    }
+  ]
+}

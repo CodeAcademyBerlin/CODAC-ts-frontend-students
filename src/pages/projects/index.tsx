@@ -27,7 +27,7 @@ const Projects = ({ projects }: { projects: Project[] }) => {
 
 export default Projects;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetServerSideProps = async () => {
   const projects = await getFrontmatters(PROJECTS_PATH);
   // console.log('projects', projects)
   // const projects = [
@@ -43,3 +43,19 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: { projects },
   };
 };
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const projects = await getFrontmatters(PROJECTS_PATH);
+//   // console.log('projects', projects)
+//   // const projects = [
+//   //   {
+//   //     name: 'CODAC',
+//   //     description: 'Coda Academy Berlin Community Platform',
+//   //     github_username: 'CodeAcademyBerlin',
+//   //     github_repo: 'CODAC-ts-frontend-students',
+//   //     image: '/assets/screenshot.png'
+//   //   }
+//   // ]
+//   return {
+//     props: { projects },
+//   };
+// };

@@ -6,13 +6,13 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React, { useEffect } from 'react';
 
 import mdxComponents from '../../components/mdx';
-import styles from '../../styles/LmsContentContainer.module.css';
 
 export const LmsContent = styled('div')`
-  max-width: 100%;
+  max-width: 50%;
   word-wrap: break-word;
   display: flex;
   flex-direction: column;
+  font-size: 18px;
 
   ${'code'} {
     background: ${({ theme }) => theme.palette.background.paper};
@@ -37,19 +37,17 @@ export const LmsContent = styled('div')`
     position: absolute;
     background-color: transparent;
     color: ${({ theme }) => theme.palette.text.primary};
-    right: 4em;
-    margin-top: -0.5em;
-    margin-right: -0.5em;
+    right: 20%;
     padding: 0.5em;
-    opacity: 0.3;
+    opacity: 0.2;
     border: solid 1px ${({ theme }) => theme.palette.divider};
     border-radius: 8px;
-    transition: 0.2s;
+    transition: 0.4s;
   }
 
   .copyButton:active {
-    opacity: 1;
-    transition: 0.2s;
+    opacity: 3;
+    transition: 0.4s;
     background-color: ${({ theme }) => theme.palette.primary.light};
   }
 
@@ -81,6 +79,19 @@ function LmsContentContainer({
   next?: string;
   prev?: string;
 }) {
+  function addCopyButtons() {
+    const codeTags = document.getElementsByTagName('code');
+    for (let i = 0; i < codeTags.length; i++) {
+      const copyButton = document.createElement('button');
+      copyButton.classList.add('copyButton');
+      copyButton.innerHTML = 'Copy';
+      copyButton.setAttribute('title', 'Copy snippet');
+      copyButton.addEventListener('click', () =>
+        copyToClipboard(codeTags[i].lastChild?.textContent),
+      );
+      codeTags[i].insertBefore(copyButton, codeTags[i].childNodes[0]);
+    }
+  }
   useEffect(() => {
     function addCopyButtons() {
       const codeTags = document.getElementsByTagName('code');

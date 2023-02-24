@@ -1,0 +1,6 @@
+mutation unlockAchievements($studentId: ID!, $achievementIds: [ID!]) {
+  unlockAchievements(studentId: $studentId, achievementIds: $achievementIds) {
+    success
+    message
+  }
+}

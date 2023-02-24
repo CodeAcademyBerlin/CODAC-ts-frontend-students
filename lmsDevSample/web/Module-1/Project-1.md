@@ -6,6 +6,7 @@ metaDescription: 'Web Development course'
 access: web
 prev: 'web/Module-1'
 next: 'web/Module-1/Project-1/Sprint-1'
+tags: ['css', 'html', 'project-1', 'module-1', 'sprint-1', 'sprint-2']
 ---
 
 Welcome to Project 1 which focuses on learning two of the most important languages used to create modern websites: HTML and CSS.

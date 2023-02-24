@@ -4,6 +4,18 @@ title: 'Resources'
 metaTitle: 'Welcome to the Web Development course'
 metaDescription: 'Web Development course'
 access: web
+tags: [
+    'problem-solving',
+    'flowchart',
+    'dom',
+    'api',
+    'postman',
+    'bootstrap'
+    'ajax',
+    'query',
+    'module-1',
+    'project-2'
+]
 ---
 
 ## Problem Solving

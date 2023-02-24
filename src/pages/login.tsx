@@ -1,5 +1,6 @@
 // ** React Imports
 // ** MUI Components
+import { Container } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MuiCard, { CardProps } from '@mui/material/Card';
@@ -119,7 +120,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Box className="content-center">
+    <Container maxWidth="sm">
       <Card sx={{ zIndex: 1 }}>
         <CardContent
           sx={{ padding: (theme) => `${theme.spacing(12, 9, 7)} !important` }}
@@ -165,7 +166,7 @@ const LoginPage = () => {
                 }
               />
             </FormControl>
-            <Box
+            {/* <Box
               sx={{
                 mb: 4,
                 display: 'flex',
@@ -184,9 +185,10 @@ const LoginPage = () => {
               <LinkStyled passHref href="/" onClick={(e) => e.preventDefault()}>
                 Forgot Password?
               </LinkStyled>
-            </Box>
+            </Box> */}
             <Box
               sx={{
+                mt: 4,
                 display: 'flex',
                 alignItems: 'center',
                 flexWrap: 'wrap',
@@ -233,7 +235,7 @@ const LoginPage = () => {
           </form>
         </CardContent>
       </Card>
-    </Box>
+    </Container>
   );
 };
 

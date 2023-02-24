@@ -1,12 +1,15 @@
 query mentors {
   mentors {
     data {
+      id
       attributes {
         user {
           data {
+            id
             attributes {
               firstname
               lastname
+              email
               avatar {
                 data {
                   attributes {
@@ -17,6 +20,43 @@ query mentors {
             }
           }
         }
+
+        courses {
+          data {
+            attributes {
+              name
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query filterMentorByUserId($userId: ID) {
+  mentors(filters: { user: { id: { eq: $userId } } }) {
+    data {
+      id
+      attributes {
+        user {
+          data {
+            id
+            attributes {
+              firstname
+              lastname
+              email
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+
         courses {
           data {
             attributes {

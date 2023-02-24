@@ -12,38 +12,70 @@ import {
 import Collapse from '@mui/material/Collapse';
 import Icon, { IconProps } from '@mui/material/Icon';
 import { styled } from '@mui/material/styles';
-import { AchievementEntity } from 'cabServer/global/__generated__/types';
+import {
+  Achievement,
+  AchievementEntity,
+  AchievementEntityResponse,
+  ComponentAchievementAchievement,
+  Maybe,
+} from 'cabServer/global/__generated__/types';
 import ChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
 import DotsHorizontalCircleOutline from 'mdi-material-ui/DotsHorizontalCircleOutline';
-import React from 'react';
-
-type Props = {};
+import React, { useEffect, useState } from 'react';
 
 const AchievementsComponent = ({
   achievements,
 }: {
-  achievements: AchievementEntity[];
+  achievements: Maybe<ComponentAchievementAchievement>[];
 }) => {
-  console.log('achievements', achievements);
   const theme = useTheme();
   const [collapse, setCollapse] = React.useState<boolean>(true);
+  const [unlockedAchievements, setUnlockedAchievements] = useState<
+    Maybe<ComponentAchievementAchievement>[]
+  >([]);
+  const [lockedAchievements, setLockedAchievements] = useState<
+    Maybe<ComponentAchievementAchievement>[]
+  >([]);
+  const [points, setPoints] = useState<number>(0);
+
+  useEffect(() => {
+    const unlockedAchievementsArray =
+      achievements?.filter((achievement) => Boolean(achievement?.unlocked)) ||
+      [];
+    unlockedAchievementsArray &&
+      setUnlockedAchievements(unlockedAchievementsArray),
+      console.log('unlockedAchievements', unlockedAchievements);
+
+    const lockedAchievementsArray =
+      achievements?.filter((achievement) => Boolean(!achievement?.unlocked)) ||
+      [];
+    lockedAchievementsArray && setLockedAchievements(lockedAchievementsArray),
+      console.log('lockedAchievements', lockedAchievements);
+
+    const sumPoints = () => {
+      const result: number = unlockedAchievementsArray.reduce((a, b) => {
+        const points = b?.achievement?.data?.attributes?.points || 0;
+        return a + points;
+      }, 0);
+
+      setPoints(result);
+    };
+    sumPoints();
+  }, []);
 
   const handleClick = () => {
     setCollapse((current) => !current);
   };
 
-  function WrappedIcon(props: IconProps) {
-    return <Icon {...props} />;
-  }
-  WrappedIcon.muiName = 'Icon';
+  console.log('achievements', achievements);
 
   return (
-    <Box mt={4}>
+    <Box mt={4} flexWrap="wrap">
       <Card
         sx={{
           maxWidth: '18rem',
           borderRadius: 3,
-          borderStyle: 'solid',
+          borderStyle: 'none',
           borderWidth: 2,
           borderColor: theme.palette.background.default,
           pt: 1,
@@ -69,7 +101,7 @@ const AchievementsComponent = ({
             >
               <Typography
                 sx={{
-                  fontStyle: theme.typography.subtitle2,
+                  fontStyle: theme.typography.subtitle1,
                   fontVariant: 'all-small-caps',
                 }}
               >
@@ -84,52 +116,97 @@ const AchievementsComponent = ({
           </Box>
           <CardMedia
             sx={{
-              ml: '10px',
               borderRadius: 0,
-              borderStyle: 'none',
-              borderWidth: 2,
+              borderStyle: 'solid none',
+              borderWidth: 1.5,
               display: 'flex',
+              alignItems: 'center',
               flexWrap: 'wrap',
-              height: 1,
-              width: 'auto',
+              height: 'auto',
+              width: 1,
+              padding: 1,
             }}
           >
             {collapse ? (
               <AvatarGroup max={5}>
-                {achievements &&
-                  achievements.map(
-                    (achievementEntity: AchievementEntity, i: number) => (
+                {unlockedAchievements?.length &&
+                  unlockedAchievements.map(
+                    (
+                      achievementEntity: ComponentAchievementAchievement | null,
+                    ) => (
                       <Avatar
-                        key={achievementEntity.id}
+                        key={achievementEntity?.id}
                         alt="AchievementBadge"
                         src={
-                          achievementEntity.attributes?.badge?.data?.attributes
-                            ?.url || ''
+                          achievementEntity?.achievement?.data?.attributes
+                            ?.badge?.data?.attributes?.url || ''
                         }
                       ></Avatar>
                     ),
                   )}
               </AvatarGroup>
             ) : (
-              <AvatarGroup max={20}>
-                {achievements &&
-                  achievements.map(
-                    (achievementEntity: AchievementEntity, i: number) => (
-                      // <WrappedIcon>
+              <AvatarGroup
+                max={20}
+                sx={{
+                  flexWrap: 'wrap',
+                  padding: 1,
+                  justifyContent: 'center',
+                  ml: 2,
+                }}
+              >
+                {unlockedAchievements &&
+                  unlockedAchievements.map(
+                    (
+                      achievementEntity: ComponentAchievementAchievement | null,
+                    ) => (
                       <Avatar
-                        key={achievementEntity.id}
+                        key={achievementEntity?.id}
                         alt="AchievementBadge"
                         src={
-                          achievementEntity.attributes?.badge?.data?.attributes
-                            ?.url || ''
+                          achievementEntity?.achievement?.data?.attributes
+                            ?.badge?.data?.attributes?.url || ''
                         }
                       ></Avatar>
                     ),
-                    // </WrappedIcon>
                   )}
               </AvatarGroup>
             )}
           </CardMedia>
+          <Box px={3} py={2} width="100%">
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-around"
+              spacing={2}
+            ></Stack>
+            <Typography
+              sx={{
+                fontStyle: theme.typography.subtitle1,
+                fontVariant: 'all-small-caps',
+              }}
+            >
+              💰 Points: <b>{points}</b>
+            </Typography>
+            <Typography
+              sx={{
+                fontStyle: theme.typography.subtitle1,
+                fontVariant: 'all-small-caps',
+              }}
+            >
+              🔑 Unlocked Achievements:{' '}
+              <b>{unlockedAchievements && unlockedAchievements.length}</b>
+            </Typography>
+            <Typography
+              sx={{
+                fontStyle: theme.typography.subtitle1,
+                fontVariant: 'all-small-caps',
+              }}
+            >
+              🔒 Achievements to unlock:{' '}
+              <b>{lockedAchievements && lockedAchievements.length}</b>
+            </Typography>
+          </Box>
         </Box>
       </Card>
     </Box>

@@ -1,0 +1,944 @@
+[
+  {
+    "path": "career/Step-1/Chapter-1",
+    "navTitle": "Choose your destiny",
+    "title": "Choose your destiny",
+    "metaTitle": "Career Service",
+    "metaDescription": "Career Service content",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-1/Chapter-2",
+    "navTitle": "Goal setting",
+    "title": "Goal setting",
+    "metaTitle": "Career Service",
+    "metaDescription": "Job search",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-1/Chapter-3",
+    "navTitle": "Job search",
+    "title": "Job search",
+    "metaTitle": "Career Service",
+    "metaDescription": "Salaries & taxes",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-1/Chapter-4",
+    "navTitle": "Working in Germany",
+    "title": "Working in Germany",
+    "metaTitle": "Career Service",
+    "metaDescription": "Working in Germany",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-1",
+    "navTitle": "Step 1",
+    "title": "Step 1 - Understand",
+    "metaTitle": "Career Service",
+    "metaDescription": "Career Service content",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-2/Task-1",
+    "title": "Task 1 - Resume / CV ",
+    "metaTitle": "Career Service",
+    "metaDescription": "Resume / CV ",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-2/Task-2",
+    "title": "Task 2: Write your Tech CV",
+    "metaTitle": "Career Service",
+    "metaDescription": "Write your Tech CV",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-2/Task-3",
+    "title": "Task3: Cover letter",
+    "metaTitle": "Career Service",
+    "metaDescription": "Cover Letter",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-2",
+    "navTitle": "Step 2",
+    "title": "Step 2 - Observe",
+    "metaTitle": "Career Service",
+    "metaDescription": "Career Service content",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-3/Task-1",
+    "title": "Task 1 - Mastering LinkedIn",
+    "metaTitle": "Career Service",
+    "metaDescription": "Mastering LinkedIn",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-3/Task-2",
+    "title": "Task 2 - Write down your pitch",
+    "metaTitle": "Career Service",
+    "metaDescription": "Write down your pitch",
+    "access": "all"
+  },
+  {
+    "path": "career/Step-3",
+    "navTitle": "Step 3",
+    "title": "Step 3 - IDEATE",
+    "metaTitle": "Career Service",
+    "metaDescription": "Career Service IDEATE",
+    "access": "all"
+  },
+  {
+    "path": "career",
+    "navTitle": "Career Services",
+    "title": "Welcome to the Career Services",
+    "metaTitle": "Career Services",
+    "metaDescription": "Career Services",
+    "access": "all"
+  },
+  {
+    "path": "data/Machine-Learning-Fundamentals",
+    "navTitle": "Machine Learning Fundamentals",
+    "title": "Machine Learning Fundamentals",
+    "metaTitle": "Machine Learning Fundamentals",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-1/Resources",
+    "navTitle": "Resources",
+    "title": "Resources",
+    "metaTitle": "Welcome to the Data Science Course",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-1/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Sprint 1",
+    "metaTitle": "Welcome to Sprint 1",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-1/Sprint-2",
+    "navTitle": "Sprint 2",
+    "title": "Sprint 2",
+    "metaTitle": "Welcome to Sprint 2",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-1/Sprint-3",
+    "navTitle": "Sprint 3",
+    "title": "Sprint 3",
+    "metaTitle": "Welcome to Sprint 3",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-1/Sprint-4",
+    "navTitle": "Sprint 4",
+    "title": "Sprint 4",
+    "metaTitle": "Welcome to Sprint 4",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-1",
+    "navTitle": "Project 1",
+    "title": "Data Analysis: Python and Statistics",
+    "metaTitle": "Welcome to the Project 1 of the Data Analysis course",
+    "metaDescription": "Data Analysis course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-2/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Sprint 1",
+    "metaTitle": "Welcome to Sprint 1",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-2/Sprint-2",
+    "navTitle": "Sprint 2",
+    "title": "Sprint 2",
+    "metaTitle": "Welcome to Sprint 2",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-2/Sprint-3",
+    "navTitle": "Sprint 3",
+    "title": "Getting your data ready",
+    "metaTitle": "Welcome to Sprint 3",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-2/Sprint-4",
+    "navTitle": "Sprint 4",
+    "title": "Machine Learning models",
+    "metaTitle": "Welcome to Sprint 4",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-2/Sprint-5",
+    "navTitle": "Sprint 5",
+    "title": "Final presentation",
+    "metaTitle": "Welcome to Sprint 5",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-2",
+    "navTitle": "Project 2",
+    "title": "BlueBerry Winery",
+    "metaTitle": "Welcome to the Project 2 of the Data Analysis course",
+    "metaDescription": "Data Analysis course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-3/Resources",
+    "navTitle": "Resources",
+    "title": "Resources",
+    "metaTitle": "Welcome to the Data Science Course",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-3/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Sprint 1",
+    "metaTitle": "Welcome to Sprint 1",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-3/Sprint-2",
+    "navTitle": "Sprint 2",
+    "title": "Sprint 2",
+    "metaTitle": "Welcome to Sprint 2",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-3/Sprint-3",
+    "navTitle": "Sprint 3",
+    "title": "ML Regression",
+    "metaTitle": "Welcome to Sprint 3",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-3",
+    "navTitle": "Project 3",
+    "title": "Capital Bike Share",
+    "metaTitle": "Welcome to the Project 3 of the Data Analysis course",
+    "metaDescription": "Data Analysis course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-4/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Introduction to SQL",
+    "metaTitle": "Welcome to Sprint 1",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1/Project-4",
+    "navTitle": "Project 4",
+    "title": "SQL",
+    "metaTitle": "Welcome to the Project 4 of the Data Analysis course",
+    "metaDescription": "Data Analysis course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-1",
+    "navTitle": "Module 1",
+    "title": "Data Analysis",
+    "metaTitle": "Welcome to the Module 1 of Data Science course",
+    "metaDescription": "Data Science course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-2/Project-5/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Intermediate SQL",
+    "metaTitle": "Welcome to Sprint 1",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-2/Project-5/Sprint-2",
+    "navTitle": "Sprint 2",
+    "title": "e-Commerce EDA",
+    "metaTitle": "Welcome to Sprint 2",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-2/Project-5/Sprint-3",
+    "navTitle": "Sprint 3",
+    "title": "ML Clustering with K-means",
+    "metaTitle": "Welcome to Sprint 3",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-2/Project-5",
+    "navTitle": "Project 5",
+    "title": "BI Analysis",
+    "metaTitle": "Project 5: VS Group",
+    "metaDescription": "BI Analyst course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-2",
+    "navTitle": "Module 2",
+    "title": "Business Intelligence Analyst",
+    "metaTitle": "Welcome to the Module 2 of Data Science course",
+    "metaDescription": "Data Science course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-3/Project-6/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Data Pipelines",
+    "metaTitle": "Welcome to Sprint 1",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-3/Project-6",
+    "navTitle": "Project 6",
+    "title": "Data Pipeline",
+    "metaTitle": "Project 5: Data Pipeline",
+    "metaDescription": "Data Engineer course",
+    "access": "data"
+  },
+  {
+    "path": "data/Module-3",
+    "navTitle": "Module 3",
+    "title": "Data Science / Data Engineer",
+    "metaTitle": "Welcome to the Module 3 of Data Science course",
+    "metaDescription": "Data Science course",
+    "access": "data"
+  },
+  {
+    "path": "data/Tableau",
+    "navTitle": "Tableau",
+    "title": "Tableau: Data Visualisation",
+    "metaTitle": "Tableau",
+    "metaDescription": "Data Science Course",
+    "access": "data"
+  },
+  {
+    "path": "data",
+    "navTitle": "Data Science",
+    "title": "Data Science",
+    "metaTitle": "Data Science",
+    "metaDescription": "Welcome to the Data Science Program",
+    "access": "data"
+  },
+  {
+    "path": "guidelines",
+    "navTitle": "Guidelines on writing content in md files",
+    "title": "Guidelines on writing content in md files",
+    "metaTitle": "Guidelines",
+    "access": "admin"
+  },
+  {
+    "path": "web/Module-1/Free-APIs",
+    "navTitle": "Free APIs",
+    "title": "Free APIs list",
+    "metaTitle": "Free APIs list",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "api",
+      "free-api",
+      "free-apis"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-1/Resources",
+    "navTitle": "Resources",
+    "title": "Resources",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-1",
+      "resources",
+      "visual-studio-code",
+      "vsco",
+      "code-editor",
+      "figma",
+      "css",
+      "html",
+      "trello",
+      "js",
+      "git",
+      "github"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-1/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Sprint 1",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-1",
+      "sprint-1",
+      "html",
+      "css",
+      "live-server",
+      "html-snippet",
+      "snippet",
+      "prettier",
+      "beautify",
+      "format",
+      "formatting-toggle"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-1/Sprint-2",
+    "navTitle": "Sprint 2",
+    "title": "Sprint 2",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-1",
+      "sprint-2",
+      "flexbox",
+      "froggy-game",
+      "froggy",
+      "css",
+      "css-grid",
+      "grid",
+      "game",
+      "games",
+      "grid-garden",
+      "garden-game"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-1",
+    "navTitle": "Project 1",
+    "title": "HTML & CSS",
+    "metaTitle": "Create your first website with HTML & CSS",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web/Module-1/Project-2/Resources",
+    "navTitle": "Resources",
+    "title": "Resources",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-2",
+      "resources",
+      "problem-solving",
+      "flowchart",
+      "javascript-dom",
+      "dom",
+      "js-dom",
+      "api",
+      "postman",
+      "bootstrap",
+      "js-event",
+      "event",
+      "javascript-event",
+      "ajax",
+      "media",
+      "query",
+      "media-query"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-2/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Sprint 1",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-2",
+      "sprint-1",
+      "js",
+      "javascript",
+      "javascript-basics",
+      "basics",
+      "exercise"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-2/Sprint-2",
+    "navTitle": "Sprint 2",
+    "title": "Sprint 2",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-2",
+      "sprint-2",
+      "endpoint",
+      "api",
+      "response",
+      "ajax",
+      "bootstrap",
+      "event",
+      "dom-manipulation",
+      "manipulation"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-2/Sprint-3",
+    "navTitle": "Sprint 3",
+    "title": "Sprint 3",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-2",
+      "sprint-3",
+      "checkbox",
+      "filter",
+      "event-listener",
+      "listener",
+      "input"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-2/Sprint-4",
+    "navTitle": "Sprint 4",
+    "title": "Sprint 4",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-2",
+      "sprint-4",
+      "responsiveness",
+      "responsive",
+      "media-query",
+      "presentation"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-2",
+    "navTitle": "Project 2",
+    "title": "JavaScript",
+    "metaTitle": "JavaScript",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web/Module-1/Project-3/Resources",
+    "navTitle": "Resources",
+    "title": "Resources",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-3",
+      "resources",
+      "single-page-application",
+      "spa",
+      "node",
+      "node.js",
+      "js-framework",
+      "javascript-framework",
+      "framework",
+      "vue",
+      "react",
+      "rick-and-morty"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-3/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Sprint 1",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-3",
+      "sprint-1",
+      "spa",
+      "node.js",
+      "node",
+      "vue",
+      "react",
+      "material-ui",
+      "vuetify",
+      "bootstrap"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-3/Sprint-2",
+    "navTitle": "Sprint 2",
+    "title": "Sprint 2",
+    "metaTitle": "JAM Stack Project",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-2",
+      "sprint-2",
+      "react",
+      "kick-off",
+      "node.js",
+      "node",
+      "router",
+      "hook",
+      "react-dom",
+      "dom"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-3/Sprint-3",
+    "navTitle": "Sprint 3",
+    "title": "Sprint 3",
+    "metaTitle": "JAM Stack Project",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-2",
+      "sprint-3",
+      "redux",
+      "context"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-3/Sprint-4",
+    "navTitle": "Sprint 4",
+    "title": "Sprint 4",
+    "metaTitle": "JAM Stack Project",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-1",
+      "project-2",
+      "sprint-4",
+      "registration",
+      "login",
+      "log-in",
+      "form",
+      "firebase",
+      "firestore",
+      "cloud",
+      "google",
+      "authentication",
+      "google-authentication",
+      "chat"
+    ]
+  },
+  {
+    "path": "web/Module-1/Project-3",
+    "navTitle": "Project 3",
+    "title": "JavaScript Framework",
+    "metaTitle": "JavaScript",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web/Module-1",
+    "navTitle": "Module 1",
+    "title": "Front-End Development",
+    "metaTitle": "Web Development",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web/Module-2/Project-1/MERN-deployment",
+    "navTitle": "MERN deployment",
+    "title": "MERN deployment",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-2",
+      "project-1",
+      "mern",
+      "deployment"
+    ]
+  },
+  {
+    "path": "web/Module-2/Project-1/Sprint-1",
+    "navTitle": "Sprint 1",
+    "title": "Sprint 1",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-2",
+      "project-1",
+      "sprint-1",
+      "mern",
+      "react",
+      "node.js"
+    ]
+  },
+  {
+    "path": "web/Module-2/Project-1/Sprint-2",
+    "navTitle": "Sprint 2",
+    "title": "Sprint 2",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-2",
+      "project-1",
+      "sprint-2",
+      "context",
+      "sql",
+      "nosql",
+      "collection",
+      "route",
+      "populate",
+      "registration",
+      "validation",
+      "post",
+      "login",
+      "passport",
+      "jwt",
+      "logout"
+    ]
+  },
+  {
+    "path": "web/Module-2/Project-1/Sprint-3",
+    "navTitle": "Sprint 3",
+    "title": "Sprint 3",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-2",
+      "project-1",
+      "sprint-3"
+    ]
+  },
+  {
+    "path": "web/Module-2/Project-1/Sprint-4",
+    "navTitle": "Sprint 4",
+    "title": "Sprint 4",
+    "metaTitle": "Welcome to the Web Development course",
+    "metaDescription": "Web Development course",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-2",
+      "project-1",
+      "sprint-4",
+      "comments",
+      "like",
+      "update",
+      "google",
+      "google-auth"
+    ]
+  },
+  {
+    "path": "web/Module-2/Project-1",
+    "navTitle": "Project 1",
+    "title": "MERN Stack",
+    "metaTitle": "MERN",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web/Module-2",
+    "navTitle": "Module 2",
+    "title": "Full-Stack Development",
+    "metaTitle": "Web Development",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web/Module-3/GraphQL/Client",
+    "navTitle": "GraphQl Client",
+    "title": "GraphQl Client",
+    "metaTitle": "GraphQl Client",
+    "metaDescription": "GraphQl Client",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-3",
+      "graphql",
+      "apollo"
+    ]
+  },
+  {
+    "path": "web/Module-3/GraphQL",
+    "navTitle": "GraphQL Basics",
+    "title": "GraphQL Basics",
+    "metaTitle": "GraphQL Basics",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web/Module-3/TypeScript/Basics",
+    "navTitle": "TypeScript Basics",
+    "title": "TypeScript Basics",
+    "metaTitle": "TypeScript Basics",
+    "metaDescription": "TypeScript Basics",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-3",
+      "typescript"
+    ]
+  },
+  {
+    "path": "web/Module-3/TypeScript/React",
+    "navTitle": "TypeScript React",
+    "title": "TypeScript with React",
+    "metaTitle": "TypeScript with React",
+    "metaDescription": "TypeScript with React",
+    "access": "web",
+    "tags": [
+      "webdev",
+      "web-dev",
+      "web-development",
+      "web",
+      "module-3",
+      "typescript",
+      "typescript-react",
+      "react",
+      "ts-react"
+    ]
+  },
+  {
+    "path": "web/Module-3/TypeScript",
+    "navTitle": "TypeScript",
+    "title": "TypeScript",
+    "metaTitle": "Web Development",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web/Module-3",
+    "navTitle": "Module 3",
+    "title": "Full-Stack Specialization",
+    "metaTitle": "Web Development",
+    "metaDescription": "Web Development course",
+    "access": "web"
+  },
+  {
+    "path": "web",
+    "navTitle": "Web Development",
+    "title": "Welcome to the Web Development Program",
+    "metaTitle": "Web Development",
+    "access": "web"
+  },
+  {
+    "path": "welcome",
+    "navTitle": "",
+    "title": "Hello World!",
+    "metaTitle": "Hello World!",
+    "access": "public"
+  }
+]

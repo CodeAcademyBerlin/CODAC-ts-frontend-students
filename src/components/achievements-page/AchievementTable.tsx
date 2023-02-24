@@ -15,8 +15,6 @@ import TableRow, { TableRowProps } from '@mui/material/TableRow';
 import { AchievementEntity } from 'cabServer/global/__generated__/types';
 import React from 'react';
 
-type Props = {};
-
 const StyledTableCell = styled(TableCell)<TableCellProps>(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     color: theme.palette.common.white,
@@ -61,8 +59,6 @@ const AchievementTable = ({
 }: {
   allAchievements: AchievementEntity[];
 }) => {
-  console.log('allAchievements', allAchievements);
-
   return (
     allAchievements && (
       <TableContainer component={Paper}>
@@ -103,11 +99,11 @@ const AchievementTable = ({
                     <StyledTableCell align="center">
                       {achievementEntity.attributes.points || ''}
                     </StyledTableCell>
-                    {achievementEntity.attributes.type === 'student' ? (
+                    {/* {achievementEntity.attributes.type === 'student' ? (
                       <StyledTableCell align="center">🏅</StyledTableCell>
                     ) : (
                       <StyledTableCell align="center">💫</StyledTableCell>
-                    )}
+                    )} */}
                     {/* <StyledTableCell align='center'>{achievementEntity.attributes.course || ""}</StyledTableCell> */}
                   </StyledTableRow>
                 </TableBody>

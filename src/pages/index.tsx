@@ -56,7 +56,7 @@ const Home = () => {
         <TronGrid />
         {smUp && <BerlinSkyline />}
       </TronGridWrapper>
-      <ParticlesComp type="snow" />
+      {/* <ParticlesComp type="snow" /> */}
       <Box
         sx={{
           mt: 50,
@@ -107,3 +107,9 @@ const Home = () => {
 Home.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>;
 
 export default Home;
+
+export async function getStaticProps() {
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}

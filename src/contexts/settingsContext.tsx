@@ -20,6 +20,10 @@ export type SettingsContextValue = {
   toggleTheme: (themeName: ThemeName) => void;
   festive: boolean;
   setFestive: (festive: boolean) => void;
+  keywordArray: Array<string>;
+  setKeywordArray: any;
+  filter: string;
+  setFilter: any;
 };
 
 export const initialSettings = (): Settings => {
@@ -45,6 +49,10 @@ export const SettingsContext = createContext<SettingsContextValue>({
   settings: initialSettings(),
   festive: false,
   setFestive: () => null,
+  keywordArray: [],
+  setKeywordArray: () => null,
+  filter: '',
+  setFilter: () => null,
 });
 
 export const SettingsProvider = ({ children }: { children: ReactNode }) => {
@@ -55,6 +63,9 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
     contentWidth: 'boxed',
   });
   const [festive, setFestive] = useState<boolean>(false);
+  // SearchBar //
+  const [keywordArray, setKeywordArray] = useState<Array<string>>([]);
+  const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
     setSettings(initialSettings());
@@ -70,7 +81,17 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <SettingsContext.Provider
-      value={{ settings, saveSettings, toggleTheme, festive, setFestive }}
+      value={{
+        settings,
+        saveSettings,
+        toggleTheme,
+        festive,
+        setFestive,
+        keywordArray,
+        setKeywordArray,
+        filter,
+        setFilter,
+      }}
     >
       {children}
     </SettingsContext.Provider>

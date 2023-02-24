@@ -5,35 +5,51 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const VoteVsBattleDocument = gql`
-  mutation voteVsBattle($vsBattleId: ID!, $option: Int!) {
-    voteVsBattle(id: $vsBattleId, option: $option) {
-      title
-      description
-      archived
-      option_1_voters {
-        data {
-          id
-          attributes {
-            email
-            username
+    mutation voteVsBattle($vsBattleId: ID!, $option: Int!) {
+  voteVsBattle(id: $vsBattleId, option: $option) {
+    title
+    description
+    archived
+    option_1_voters {
+      data {
+        id
+        attributes {
+          email
+          username
+          firstname
+          lastname
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
           }
         }
       }
-      option_2_voters {
-        data {
-          id
-          attributes {
-            email
+    }
+    option_2_voters {
+      data {
+        id
+        attributes {
+          email
+          username
+          firstname
+          lastname
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
           }
         }
       }
     }
   }
-`;
-export type VoteVsBattleMutationFn = Apollo.MutationFunction<
-  VoteVsBattleMutation,
-  VoteVsBattleMutationVariables
->;
+}
+    `;
+export type VoteVsBattleMutationFn = Apollo.MutationFunction<VoteVsBattleMutation, VoteVsBattleMutationVariables>;
 
 /**
  * __useVoteVsBattleMutation__
@@ -53,61 +69,17 @@ export type VoteVsBattleMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useVoteVsBattleMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    VoteVsBattleMutation,
-    VoteVsBattleMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    VoteVsBattleMutation,
-    VoteVsBattleMutationVariables
-  >(VoteVsBattleDocument, options);
-}
-export type VoteVsBattleMutationHookResult = ReturnType<
-  typeof useVoteVsBattleMutation
->;
-export type VoteVsBattleMutationResult =
-  Apollo.MutationResult<VoteVsBattleMutation>;
-export type VoteVsBattleMutationOptions = Apollo.BaseMutationOptions<
-  VoteVsBattleMutation,
-  VoteVsBattleMutationVariables
->;
+export function useVoteVsBattleMutation(baseOptions?: Apollo.MutationHookOptions<VoteVsBattleMutation, VoteVsBattleMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<VoteVsBattleMutation, VoteVsBattleMutationVariables>(VoteVsBattleDocument, options);
+      }
+export type VoteVsBattleMutationHookResult = ReturnType<typeof useVoteVsBattleMutation>;
+export type VoteVsBattleMutationResult = Apollo.MutationResult<VoteVsBattleMutation>;
+export type VoteVsBattleMutationOptions = Apollo.BaseMutationOptions<VoteVsBattleMutation, VoteVsBattleMutationVariables>;
 export type VoteVsBattleMutationVariables = Types.Exact<{
   vsBattleId: Types.Scalars['ID'];
   option: Types.Scalars['Int'];
 }>;
 
-export type VoteVsBattleMutation = {
-  __typename?: 'Mutation';
-  voteVsBattle?: {
-    __typename?: 'VsBattle';
-    title?: string | null;
-    description?: string | null;
-    archived: boolean;
-    option_1_voters?: {
-      __typename?: 'UsersPermissionsUserRelationResponseCollection';
-      data: Array<{
-        __typename?: 'UsersPermissionsUserEntity';
-        id?: string | null;
-        attributes?: {
-          __typename?: 'UsersPermissionsUser';
-          email: string;
-          username: string;
-        } | null;
-      }>;
-    } | null;
-    option_2_voters?: {
-      __typename?: 'UsersPermissionsUserRelationResponseCollection';
-      data: Array<{
-        __typename?: 'UsersPermissionsUserEntity';
-        id?: string | null;
-        attributes?: {
-          __typename?: 'UsersPermissionsUser';
-          email: string;
-        } | null;
-      }>;
-    } | null;
-  } | null;
-};
+
+export type VoteVsBattleMutation = { __typename?: 'Mutation', voteVsBattle?: { __typename?: 'VsBattle', title?: string | null, description?: string | null, archived: boolean, option_1_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', email: string, username: string, firstname?: string | null, lastname?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null, option_2_voters?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', email: string, username: string, firstname?: string | null, lastname?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null } | null };
