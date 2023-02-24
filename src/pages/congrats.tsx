@@ -22,11 +22,11 @@ function Congrats() {
       justifyContent="center"
     >
       <Grid item xs={12} sx={{ paddingBottom: 4 }}>
-        <BrandText variant="h2">Congratulation Orange Pumas!</BrandText>
+        <BrandText variant="h2">Congratulation Mint-Green Octopuses!</BrandText>
       </Grid>
       <Grid item xs={12} sx={{ paddingBottom: 4 }}>
         <Image
-          src="/assets/pumas.png"
+          src="/assets/octopuses.png"
           width={500}
           height={500}
           alt="Narwhals"
