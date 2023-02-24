@@ -1714,8 +1714,10 @@ export type Mutation = {
   addAchievement?: Maybe<GenericServerResponse>;
   /** Add comment on a codac overflow item */
   addCODACOverflowComment?: Maybe<GenericServerResponse>;
-  /** Add message on a codac overflow item */
+  /** Add message on a chat item */
   addChatMessage?: Maybe<GenericServerResponse>;
+  /** Add comment on a coding challenge item */
+  addCodingChallengeComment?: Maybe<GenericServerResponse>;
   /** Add feedback on a lms item */
   addLMSfeedback?: Maybe<GenericServerResponse>;
   /** Add comment on a lms feedback item */
@@ -1752,10 +1754,12 @@ export type Mutation = {
   /** Add comment on a codac overflow item */
   deleteCODACOverflowComment?: Maybe<GenericServerResponse>;
   deleteChat?: Maybe<ChatEntityResponse>;
-  /** Add message on a codac overflow item */
+  /** Add message on a chat item */
   deleteChatMessage?: Maybe<GenericServerResponse>;
   deleteCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
   deleteCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
+  /** Add comment on a coding challenge item */
+  deleteCodingChallengeComment?: Maybe<GenericServerResponse>;
   deleteCohort?: Maybe<CohortEntityResponse>;
   deleteCourse?: Maybe<CourseEntityResponse>;
   deleteEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
@@ -1799,10 +1803,12 @@ export type Mutation = {
   /** Update comment on a codac overflow item */
   updateCODACOverflowComment?: Maybe<GenericServerResponse>;
   updateChat?: Maybe<ChatEntityResponse>;
-  /** Update message on a codac overflow item */
+  /** Update message on a chat item */
   updateChatMessage?: Maybe<GenericServerResponse>;
   updateCodacOverflow?: Maybe<CodacOverflowEntityResponse>;
   updateCodingChallenge?: Maybe<CodingChallengeEntityResponse>;
+  /** Update comment on a coding challenge item */
+  updateCodingChallengeComment?: Maybe<GenericServerResponse>;
   updateCohort?: Maybe<CohortEntityResponse>;
   updateCourse?: Maybe<CourseEntityResponse>;
   updateEmailDesignerEmailTemplate?: Maybe<EmailDesignerEmailTemplateEntityResponse>;
@@ -1851,6 +1857,12 @@ export type MutationAddCodacOverflowCommentArgs = {
 export type MutationAddChatMessageArgs = {
   body: Scalars['String'];
   chatId: Scalars['ID'];
+};
+
+
+export type MutationAddCodingChallengeCommentArgs = {
+  codingChallengeId: Scalars['ID'];
+  comment: Scalars['String'];
 };
 
 
@@ -2026,6 +2038,12 @@ export type MutationDeleteCodacOverflowArgs = {
 
 export type MutationDeleteCodingChallengeArgs = {
   id: Scalars['ID'];
+};
+
+
+export type MutationDeleteCodingChallengeCommentArgs = {
+  codingChallengeId: Scalars['ID'];
+  commentId: Scalars['ID'];
 };
 
 
@@ -2220,6 +2238,13 @@ export type MutationUpdateCodacOverflowArgs = {
 export type MutationUpdateCodingChallengeArgs = {
   data: CodingChallengeInput;
   id: Scalars['ID'];
+};
+
+
+export type MutationUpdateCodingChallengeCommentArgs = {
+  codingChallengeId: Scalars['ID'];
+  comment: Scalars['String'];
+  commentId: Scalars['ID'];
 };
 
 

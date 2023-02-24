@@ -12,23 +12,22 @@ import { io, Socket } from 'socket.io-client';
 import { useAuth } from 'src/hooks/useAuth';
 import { getToken } from 'src/lib/apolloClient';
 
-export type Chat = {
-  __typename?: 'Chat';
-  createdAt?: Maybe<Scalars['DateTime']>;
-  messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
-  name?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
-};
+// export type Chat = {
+//   __typename?: 'Chat';
+//   createdAt?: Maybe<Scalars['DateTime']>;
+//   messages?: Maybe<Array<Maybe<ComponentChatMessage>>>;
+//   name?: Maybe<Scalars['String']>;
+//   updatedAt?: Maybe<Scalars['DateTime']>;
+//   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+// };
 
-export type ComponentChatMessage = {
-  __typename?: 'ComponentChatMessage';
-  author?: Maybe<UsersPermissionsUserEntityResponse>;
-  authorString: string;
-  body?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  timestamp?: Maybe<Scalars['DateTime']>;
-};
+// export type ComponentChatMessage = {
+//   __typename?: 'ComponentChatMessage';
+//   author?: Maybe<UsersPermissionsUserEntityResponse>;
+//   body?: Maybe<Scalars['String']>;
+//   id: Scalars['ID'];
+//   timestamp?: Maybe<Scalars['DateTime']>;
+// };
 
 interface ServerToClientEvents {
   noArg: () => void;

@@ -6,7 +6,8 @@ import favicon from '../../../public/favicon.ico';
 
 export const ChatBubble = ({ message }) => {
   const { user } = useAuth();
-  console.log('message', message);
+  const author =
+    message.author.data?.attributes?.username || message.author.username;
 
   const formatDate = (timestamp) => {
     let date = new Date(timestamp);
@@ -32,7 +33,7 @@ export const ChatBubble = ({ message }) => {
 
   return (
     <>
-      {user.username === 'Eren' && (
+      {user.username !== author ? (
         <div
           style={{
             position: 'relative',
@@ -60,8 +61,7 @@ export const ChatBubble = ({ message }) => {
               fontSize: '10px',
             }}
           >
-            <b>Eren </b>
-
+            <b>{author} </b>
             {formatDate(message.timestamp)}
           </p>
           <div
@@ -79,7 +79,6 @@ export const ChatBubble = ({ message }) => {
           >
             <p>{message.body}</p>
           </div>
-
           <div
             style={{
               backgroundColor: ' #ffffff',
@@ -89,7 +88,6 @@ export const ChatBubble = ({ message }) => {
               height: '30px',
               padding: '7px',
               borderRadius: '50%',
-              // backgroundColor: ' #00897d',
             }}
           >
             <Image
@@ -101,8 +99,7 @@ export const ChatBubble = ({ message }) => {
             ></Image>
           </div>
         </div>
-      )}
-      {user.username === 'Eren' && (
+      ) : (
         <div
           style={{
             position: 'relative',
@@ -137,7 +134,7 @@ export const ChatBubble = ({ message }) => {
               width={15}
               height={15}
               src={favicon}
-              alt="Picture of the author"
+              alt="CODAC logo"
             ></Image>
           </div>
           <p
@@ -149,7 +146,8 @@ export const ChatBubble = ({ message }) => {
               fontSize: '10px',
             }}
           >
-            <b> Eren</b> {formatDate(message.timestamp)}
+            <b>{author} </b>
+            {formatDate(message.timestamp)}
           </p>
           <div
             style={{
