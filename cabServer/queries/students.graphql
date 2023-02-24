@@ -71,8 +71,6 @@ query filterStudentByUserId($userId: ID) {
             }
           }
         }
-<<<<<<< HEAD
-=======
       }
     }
   }
@@ -151,7 +149,6 @@ query allStudents {
             }
           }
         }
->>>>>>> main
       }
     }
   }

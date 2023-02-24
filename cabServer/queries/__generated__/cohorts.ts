@@ -23,10 +23,7 @@ export const GetCohortsDocument = gql`
         }
         students {
           data {
-<<<<<<< HEAD
-=======
             id
->>>>>>> main
             attributes {
               start_date
               end_date
@@ -39,14 +36,10 @@ export const GetCohortsDocument = gql`
               }
               user {
                 data {
-<<<<<<< HEAD
-                  attributes {
-=======
                   id
                   attributes {
                     firstname
                     lastname
->>>>>>> main
                     avatar {
                       data {
                         attributes {
@@ -95,12 +88,6 @@ export function useGetCohortsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type GetCohortsQueryHookResult = ReturnType<typeof useGetCohortsQuery>;
 export type GetCohortsLazyQueryHookResult = ReturnType<typeof useGetCohortsLazyQuery>;
 export type GetCohortsQueryResult = Apollo.QueryResult<GetCohortsQuery, GetCohortsQueryVariables>;
-<<<<<<< HEAD
-export type GetCohortsQueryVariables = Types.Exact<{ [key: string]: never; }>;
-
-
-export type GetCohortsQuery = { __typename?: 'Query', cohorts?: { __typename?: 'CohortEntityResponseCollection', data: Array<{ __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null, start_date?: any | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, caption?: string | null, previewUrl?: string | null } | null } | null } | null, students?: { __typename?: 'StudentRelationResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', start_date?: any | null, end_date?: any | null, main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, name: string, caption?: string | null } | null } | null } | null } | null } | null } | null } | null }> } | null } | null }> } | null };
-=======
 export const StudentCohortDocument = gql`
     query studentCohort($userId: ID) {
   students(filters: {user: {id: {eq: $userId}}}) {
@@ -172,4 +159,3 @@ export type StudentCohortQueryVariables = Types.Exact<{
 
 
 export type StudentCohortQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', id?: string | null, attributes?: { __typename?: 'Student', cohort?: { __typename?: 'CohortEntityResponse', data?: { __typename?: 'CohortEntity', attributes?: { __typename?: 'Cohort', name?: string | null, start_date?: any | null, students?: { __typename?: 'StudentRelationResponseCollection', data: Array<{ __typename?: 'StudentEntity', attributes?: { __typename?: 'Student', main_course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null } | null }> } | null } | null } | null } | null } | null }> } | null };
->>>>>>> main

@@ -34,8 +34,8 @@ const config: CodegenConfig = {
       },
     },
   },
-  hooks: {
-    afterOneFileWrite: ['eslint --fix', 'prettier --write'],
-  },
+  // hooks: {
+  //   afterOneFileWrite: ['eslint --fix', 'prettier --write'],
+  // },
 };
 export default config;

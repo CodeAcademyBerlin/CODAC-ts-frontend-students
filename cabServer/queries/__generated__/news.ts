@@ -8,10 +8,7 @@ export const GetNewsDocument = gql`
     query getNews {
   newsPosts(sort: "updatedAt:desc") {
     data {
-<<<<<<< HEAD
-=======
       id
->>>>>>> main
       attributes {
         title
         post
@@ -20,8 +17,6 @@ export const GetNewsDocument = gql`
             id
             attributes {
               username
-<<<<<<< HEAD
-=======
               avatar {
                 data {
                   id
@@ -39,7 +34,6 @@ export const GetNewsDocument = gql`
                   }
                 }
               }
->>>>>>> main
             }
           }
         }
@@ -53,17 +47,11 @@ export const GetNewsDocument = gql`
         }
         createdAt
         updatedAt
-<<<<<<< HEAD
-        tags
-        image {
-          data {
-=======
         publishedAt
         tags
         image {
           data {
             id
->>>>>>> main
             attributes {
               url
             }
@@ -104,8 +92,4 @@ export type GetNewsQueryResult = Apollo.QueryResult<GetNewsQuery, GetNewsQueryVa
 export type GetNewsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-<<<<<<< HEAD
-export type GetNewsQuery = { __typename?: 'Query', newsPosts?: { __typename?: 'NewsPostEntityResponseCollection', data: Array<{ __typename?: 'NewsPostEntity', attributes?: { __typename?: 'NewsPost', title?: string | null, post?: string | null, createdAt?: any | null, updatedAt?: any | null, tags?: Types.Enum_Newspost_Tags | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null } | null } | null, likes?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null }> } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
-=======
 export type GetNewsQuery = { __typename?: 'Query', newsPosts?: { __typename?: 'NewsPostEntityResponseCollection', data: Array<{ __typename?: 'NewsPostEntity', id?: string | null, attributes?: { __typename?: 'NewsPost', title?: string | null, post?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, tags?: Types.Enum_Newspost_Tags | null, author?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string, url: string } | null } | null } | null } | null } | null } | null, likes?: { __typename?: 'UsersPermissionsUserRelationResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string } | null }> } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
->>>>>>> main

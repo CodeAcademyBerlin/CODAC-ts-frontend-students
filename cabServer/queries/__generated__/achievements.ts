@@ -31,8 +31,6 @@ export const GetAchievementsDocument = gql`
         description
         points
         type
-<<<<<<< HEAD
-=======
         course {
           data {
             attributes {
@@ -40,7 +38,6 @@ export const GetAchievementsDocument = gql`
             }
           }
         }
->>>>>>> main
       }
     }
   }
@@ -147,9 +144,6 @@ export type StudentAchievementsQueryResult = Apollo.QueryResult<StudentAchieveme
 export type GetAchievementsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-<<<<<<< HEAD
-export type GetAchievementsQuery = { __typename?: 'Query', achievements?: { __typename?: 'AchievementEntityResponseCollection', data: Array<{ __typename?: 'AchievementEntity', id?: string | null, attributes?: { __typename?: 'Achievement', name?: string | null, description?: string | null, points?: number | null, type?: Types.Enum_Achievement_Type | null, badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null }> } | null };
-=======
 export type GetAchievementsQuery = { __typename?: 'Query', achievements?: { __typename?: 'AchievementEntityResponseCollection', data: Array<{ __typename?: 'AchievementEntity', id?: string | null, attributes?: { __typename?: 'Achievement', name?: string | null, description?: string | null, points?: number | null, type?: Types.Enum_Achievement_Type | null, badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string } | null } | null } | null, course?: { __typename?: 'CourseEntityResponse', data?: { __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null } | null } | null } | null } | null }> } | null };
 
 export type StudentAchievementsQueryVariables = Types.Exact<{
@@ -158,4 +152,3 @@ export type StudentAchievementsQueryVariables = Types.Exact<{
 
 
 export type StudentAchievementsQuery = { __typename?: 'Query', students?: { __typename?: 'StudentEntityResponseCollection', data: Array<{ __typename?: 'StudentEntity', id?: string | null, attributes?: { __typename?: 'Student', start_date?: any | null, achievements?: Array<{ __typename?: 'ComponentAchievementAchievement', id: string, unlocked?: boolean | null, unlockedOn?: any | null, achievement?: { __typename?: 'AchievementEntityResponse', data?: { __typename?: 'AchievementEntity', id?: string | null, attributes?: { __typename?: 'Achievement', name?: string | null, course_date?: number | null, badge?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, width?: number | null, height?: number | null, hash: string, mime: string, size: number, previewUrl?: string | null, provider: string } | null } | null } | null } | null } | null } | null } | null> | null } | null }> } | null };
->>>>>>> main
