@@ -26,7 +26,7 @@ import { useAuth } from '../../hooks/useAuth';
 // Get type from staticProps into component thru InferGetStaticPropsType
 type Props = {};
 
-const Challange = ({
+const Challenge = ({
   challengeData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [challengeBody, setChallengeBody] = useState(
@@ -236,7 +236,7 @@ const Challange = ({
   );
 };
 
-export default Challange;
+export default Challenge;
 
 export const getStaticProps = async (ctx: GetStaticPropsContext) => {
   const challengeId = ctx?.params?.id;
