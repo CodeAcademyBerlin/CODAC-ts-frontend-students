@@ -296,7 +296,8 @@ export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
   console.log('paths', paths);
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
+    // fallback: 'blocking',
   };
   // Notes:
   // using a map to reshape the array without changing tha data inside. Map of esponse to have the return with params and id
