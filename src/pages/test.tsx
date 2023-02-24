@@ -6,7 +6,7 @@ import { Socket } from 'dgram';
 import * as React from 'react';
 import SocketIOClient from 'socket.io-client';
 import { io } from 'socket.io-client';
-import Chat from 'src/components/chat-page/Chat';
+import Chat from 'src/components/chat-page/ChatRooms';
 
 import socketio from './api/socketio';
 
