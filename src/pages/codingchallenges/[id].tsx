@@ -293,7 +293,7 @@ export const getStaticPaths = async (ctx: GetStaticPathsContext) => {
   const paths = challengesArray?.map((challenge) => ({
     params: { id: challenge?.id },
   }));
-
+  console.log('paths', paths);
   return {
     paths,
     fallback: 'blocking',
