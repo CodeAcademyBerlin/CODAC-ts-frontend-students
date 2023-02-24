@@ -1,38 +1,21 @@
+import * as Types from '../../global/__generated__/types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../global/__generated__/types';
 const defaultOptions = {} as const;
 
 export const CreateCodingChallengeDocument = gql`
-  mutation createCodingChallenge(
-    $title: String
-    $challenge: String
-    $difficulty: Int
-    $tags: ENUM_CODINGCHALLENGE_TAGS
-    $publishedAt: DateTime!
-    $author: ID!
+    mutation createCodingChallenge($title: String, $challenge: String, $difficulty: Int, $tags: ENUM_CODINGCHALLENGE_TAGS, $publishedAt: DateTime!, $author: ID!) {
+  createCodingChallenge(
+    data: {title: $title, challenge: $challenge, difficulty: $difficulty, tags: $tags, publishedAt: $publishedAt, author: $author}
   ) {
-    createCodingChallenge(
-      data: {
-        title: $title
-        challenge: $challenge
-        difficulty: $difficulty
-        tags: $tags
-        publishedAt: $publishedAt
-        author: $author
-      }
-    ) {
-      data {
-        id
-      }
+    data {
+      id
     }
   }
-`;
-export type CreateCodingChallengeMutationFn = Apollo.MutationFunction<
-  CreateCodingChallengeMutation,
-  CreateCodingChallengeMutationVariables
->;
+}
+    `;
+export type CreateCodingChallengeMutationFn = Apollo.MutationFunction<CreateCodingChallengeMutation, CreateCodingChallengeMutationVariables>;
 
 /**
  * __useCreateCodingChallengeMutation__
@@ -56,40 +39,23 @@ export type CreateCodingChallengeMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreateCodingChallengeMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    CreateCodingChallengeMutation,
-    CreateCodingChallengeMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    CreateCodingChallengeMutation,
-    CreateCodingChallengeMutationVariables
-  >(CreateCodingChallengeDocument, options);
-}
-export type CreateCodingChallengeMutationHookResult = ReturnType<
-  typeof useCreateCodingChallengeMutation
->;
-export type CreateCodingChallengeMutationResult =
-  Apollo.MutationResult<CreateCodingChallengeMutation>;
-export type CreateCodingChallengeMutationOptions = Apollo.BaseMutationOptions<
-  CreateCodingChallengeMutation,
-  CreateCodingChallengeMutationVariables
->;
-export const UpdateCodingChallengeDocument = gql`
-  mutation updateCodingChallenge($id: ID!, $challenge: String) {
-    updateCodingChallenge(data: { challenge: $challenge }, id: $id) {
-      data {
-        id
+export function useCreateCodingChallengeMutation(baseOptions?: Apollo.MutationHookOptions<CreateCodingChallengeMutation, CreateCodingChallengeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCodingChallengeMutation, CreateCodingChallengeMutationVariables>(CreateCodingChallengeDocument, options);
       }
+export type CreateCodingChallengeMutationHookResult = ReturnType<typeof useCreateCodingChallengeMutation>;
+export type CreateCodingChallengeMutationResult = Apollo.MutationResult<CreateCodingChallengeMutation>;
+export type CreateCodingChallengeMutationOptions = Apollo.BaseMutationOptions<CreateCodingChallengeMutation, CreateCodingChallengeMutationVariables>;
+export const UpdateCodingChallengeDocument = gql`
+    mutation updateCodingChallenge($id: ID!, $challenge: String) {
+  updateCodingChallenge(data: {challenge: $challenge}, id: $id) {
+    data {
+      id
     }
   }
-`;
-export type UpdateCodingChallengeMutationFn = Apollo.MutationFunction<
-  UpdateCodingChallengeMutation,
-  UpdateCodingChallengeMutationVariables
->;
+}
+    `;
+export type UpdateCodingChallengeMutationFn = Apollo.MutationFunction<UpdateCodingChallengeMutation, UpdateCodingChallengeMutationVariables>;
 
 /**
  * __useUpdateCodingChallengeMutation__
@@ -109,40 +75,23 @@ export type UpdateCodingChallengeMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useUpdateCodingChallengeMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    UpdateCodingChallengeMutation,
-    UpdateCodingChallengeMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    UpdateCodingChallengeMutation,
-    UpdateCodingChallengeMutationVariables
-  >(UpdateCodingChallengeDocument, options);
-}
-export type UpdateCodingChallengeMutationHookResult = ReturnType<
-  typeof useUpdateCodingChallengeMutation
->;
-export type UpdateCodingChallengeMutationResult =
-  Apollo.MutationResult<UpdateCodingChallengeMutation>;
-export type UpdateCodingChallengeMutationOptions = Apollo.BaseMutationOptions<
-  UpdateCodingChallengeMutation,
-  UpdateCodingChallengeMutationVariables
->;
-export const DeleteCodingChallengeDocument = gql`
-  mutation deleteCodingChallenge($id: ID!) {
-    deleteCodingChallenge(id: $id) {
-      data {
-        id
+export function useUpdateCodingChallengeMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCodingChallengeMutation, UpdateCodingChallengeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateCodingChallengeMutation, UpdateCodingChallengeMutationVariables>(UpdateCodingChallengeDocument, options);
       }
+export type UpdateCodingChallengeMutationHookResult = ReturnType<typeof useUpdateCodingChallengeMutation>;
+export type UpdateCodingChallengeMutationResult = Apollo.MutationResult<UpdateCodingChallengeMutation>;
+export type UpdateCodingChallengeMutationOptions = Apollo.BaseMutationOptions<UpdateCodingChallengeMutation, UpdateCodingChallengeMutationVariables>;
+export const DeleteCodingChallengeDocument = gql`
+    mutation deleteCodingChallenge($id: ID!) {
+  deleteCodingChallenge(id: $id) {
+    data {
+      id
     }
   }
-`;
-export type DeleteCodingChallengeMutationFn = Apollo.MutationFunction<
-  DeleteCodingChallengeMutation,
-  DeleteCodingChallengeMutationVariables
->;
+}
+    `;
+export type DeleteCodingChallengeMutationFn = Apollo.MutationFunction<DeleteCodingChallengeMutation, DeleteCodingChallengeMutationVariables>;
 
 /**
  * __useDeleteCodingChallengeMutation__
@@ -161,27 +110,13 @@ export type DeleteCodingChallengeMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useDeleteCodingChallengeMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    DeleteCodingChallengeMutation,
-    DeleteCodingChallengeMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    DeleteCodingChallengeMutation,
-    DeleteCodingChallengeMutationVariables
-  >(DeleteCodingChallengeDocument, options);
-}
-export type DeleteCodingChallengeMutationHookResult = ReturnType<
-  typeof useDeleteCodingChallengeMutation
->;
-export type DeleteCodingChallengeMutationResult =
-  Apollo.MutationResult<DeleteCodingChallengeMutation>;
-export type DeleteCodingChallengeMutationOptions = Apollo.BaseMutationOptions<
-  DeleteCodingChallengeMutation,
-  DeleteCodingChallengeMutationVariables
->;
+export function useDeleteCodingChallengeMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCodingChallengeMutation, DeleteCodingChallengeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteCodingChallengeMutation, DeleteCodingChallengeMutationVariables>(DeleteCodingChallengeDocument, options);
+      }
+export type DeleteCodingChallengeMutationHookResult = ReturnType<typeof useDeleteCodingChallengeMutation>;
+export type DeleteCodingChallengeMutationResult = Apollo.MutationResult<DeleteCodingChallengeMutation>;
+export type DeleteCodingChallengeMutationOptions = Apollo.BaseMutationOptions<DeleteCodingChallengeMutation, DeleteCodingChallengeMutationVariables>;
 export type CreateCodingChallengeMutationVariables = Types.Exact<{
   title?: Types.InputMaybe<Types.Scalars['String']>;
   challenge?: Types.InputMaybe<Types.Scalars['String']>;
@@ -191,35 +126,20 @@ export type CreateCodingChallengeMutationVariables = Types.Exact<{
   author: Types.Scalars['ID'];
 }>;
 
-export type CreateCodingChallengeMutation = {
-  __typename?: 'Mutation';
-  createCodingChallenge?: {
-    __typename?: 'CodingChallengeEntityResponse';
-    data?: { __typename?: 'CodingChallengeEntity'; id?: string | null } | null;
-  } | null;
-};
+
+export type CreateCodingChallengeMutation = { __typename?: 'Mutation', createCodingChallenge?: { __typename?: 'CodingChallengeEntityResponse', data?: { __typename?: 'CodingChallengeEntity', id?: string | null } | null } | null };
 
 export type UpdateCodingChallengeMutationVariables = Types.Exact<{
   id: Types.Scalars['ID'];
   challenge?: Types.InputMaybe<Types.Scalars['String']>;
 }>;
 
-export type UpdateCodingChallengeMutation = {
-  __typename?: 'Mutation';
-  updateCodingChallenge?: {
-    __typename?: 'CodingChallengeEntityResponse';
-    data?: { __typename?: 'CodingChallengeEntity'; id?: string | null } | null;
-  } | null;
-};
+
+export type UpdateCodingChallengeMutation = { __typename?: 'Mutation', updateCodingChallenge?: { __typename?: 'CodingChallengeEntityResponse', data?: { __typename?: 'CodingChallengeEntity', id?: string | null } | null } | null };
 
 export type DeleteCodingChallengeMutationVariables = Types.Exact<{
   id: Types.Scalars['ID'];
 }>;
 
-export type DeleteCodingChallengeMutation = {
-  __typename?: 'Mutation';
-  deleteCodingChallenge?: {
-    __typename?: 'CodingChallengeEntityResponse';
-    data?: { __typename?: 'CodingChallengeEntity'; id?: string | null } | null;
-  } | null;
-};
+
+export type DeleteCodingChallengeMutation = { __typename?: 'Mutation', deleteCodingChallenge?: { __typename?: 'CodingChallengeEntityResponse', data?: { __typename?: 'CodingChallengeEntity', id?: string | null } | null } | null };
