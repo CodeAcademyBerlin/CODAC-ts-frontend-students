@@ -176,7 +176,7 @@ const Students = ({ data }: { data: MentorEntity | StudentEntity }) => {
               justifyContent: 'space-evenly',
             }}
           >
-            <Box sx={{}}>
+            {/* <Box sx={{}}>
               <Typography
                 sx={{
                   fontFamily: theme.typography.fontFamily,
@@ -192,7 +192,7 @@ const Students = ({ data }: { data: MentorEntity | StudentEntity }) => {
                 About course:
                 {mentorProfile?.courses?.data[0]?.attributes?.description}
               </p>
-            </Box>
+            </Box> */}
             <Box
               sx={{
                 height: '24%',

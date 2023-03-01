@@ -1,0 +1,49 @@
+query getPage($slug: String) {
+  pages(filters: { slug: { eq: $slug } }) {
+    data {
+      id
+      attributes {
+        locale
+        slug
+        shortName
+        contentSections {
+          ... on ComponentSectionsHeader {
+            __typename
+            id
+            title
+            subtitle
+          }
+          ... on ComponentSectionsRichText {
+            __typename
+            id
+            content
+          }
+        }
+      }
+    }
+  }
+}
+query getPages {
+  pages {
+    data {
+      id
+      attributes {
+        locale
+        slug
+        contentSections {
+          ... on ComponentSectionsHeader {
+            __typename
+            id
+            title
+            subtitle
+          }
+          ... on ComponentSectionsRichText {
+            __typename
+            id
+            content
+          }
+        }
+      }
+    }
+  }
+}

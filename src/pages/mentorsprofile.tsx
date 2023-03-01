@@ -94,7 +94,7 @@ const Mentorprofile = ({
             margin: '0',
           }}
         >
-          <Box
+          {/* <Box
             sx={{
               height: '24%',
             }}
@@ -107,7 +107,7 @@ const Mentorprofile = ({
               About course:
               {mentorProfile.courses?.data[0].attributes?.description}
             </p>
-          </Box>
+          </Box> */}
           <Box
             sx={{
               height: '24%',

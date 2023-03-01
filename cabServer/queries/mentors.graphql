@@ -20,15 +20,6 @@ query mentors {
             }
           }
         }
-
-        courses {
-          data {
-            attributes {
-              name
-              description
-            }
-          }
-        }
       }
     }
   }
@@ -53,15 +44,6 @@ query filterMentorByUserId($userId: ID) {
                   }
                 }
               }
-            }
-          }
-        }
-
-        courses {
-          data {
-            attributes {
-              name
-              description
             }
           }
         }

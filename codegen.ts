@@ -5,7 +5,7 @@ import { loadEnvConfig } from '@next/env';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: `https://strapi-production-431a.up.railway.app/graphql`,
+  schema: `https://codac-administration.up.railway.app/graphql`,
   // schema: `https://codac-364707.ey.r.appspot.com/graphql`,
   documents: 'cabServer/**/*.graphql',
   generates: {

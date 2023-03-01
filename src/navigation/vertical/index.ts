@@ -66,10 +66,10 @@ const navigation: NavLink[] = [
     title: 'Chat',
     path: '/chat',
   },
-  {
-    title: '???',
-    path: '/congrats',
-  },
+  // {
+  //   title: '???',
+  //   path: '/congrats',
+  // },
 ];
 
 export default navigation;

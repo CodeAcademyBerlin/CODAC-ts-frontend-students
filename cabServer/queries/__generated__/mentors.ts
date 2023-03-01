@@ -27,14 +27,6 @@ export const MentorsDocument = gql`
             }
           }
         }
-        courses {
-          data {
-            attributes {
-              name
-              description
-            }
-          }
-        }
       }
     }
   }
@@ -90,14 +82,6 @@ export const FilterMentorByUserIdDocument = gql`
             }
           }
         }
-        courses {
-          data {
-            attributes {
-              name
-              description
-            }
-          }
-        }
       }
     }
   }
@@ -134,11 +118,11 @@ export type FilterMentorByUserIdQueryResult = Apollo.QueryResult<FilterMentorByU
 export type MentorsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type MentorsQuery = { __typename?: 'Query', mentors?: { __typename?: 'MentorEntityResponseCollection', data: Array<{ __typename?: 'MentorEntity', id?: string | null, attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null, courses?: { __typename?: 'CourseRelationResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null, description?: string | null } | null }> } | null } | null }> } | null };
+export type MentorsQuery = { __typename?: 'Query', mentors?: { __typename?: 'MentorEntityResponseCollection', data: Array<{ __typename?: 'MentorEntity', id?: string | null, attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null }> } | null };
 
 export type FilterMentorByUserIdQueryVariables = Types.Exact<{
   userId?: Types.InputMaybe<Types.Scalars['ID']>;
 }>;
 
 
-export type FilterMentorByUserIdQuery = { __typename?: 'Query', mentors?: { __typename?: 'MentorEntityResponseCollection', data: Array<{ __typename?: 'MentorEntity', id?: string | null, attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null, courses?: { __typename?: 'CourseRelationResponseCollection', data: Array<{ __typename?: 'CourseEntity', attributes?: { __typename?: 'Course', name?: string | null, description?: string | null } | null }> } | null } | null }> } | null };
+export type FilterMentorByUserIdQuery = { __typename?: 'Query', mentors?: { __typename?: 'MentorEntityResponseCollection', data: Array<{ __typename?: 'MentorEntity', id?: string | null, attributes?: { __typename?: 'Mentor', user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, email: string, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } | null } | null } | null } | null } | null }> } | null };
