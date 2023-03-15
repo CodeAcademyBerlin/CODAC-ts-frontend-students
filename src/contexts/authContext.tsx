@@ -39,9 +39,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     getUser();
   }, []);
 
-  useEffect(() => {
-    user && getAchievements();
-  }, [user]);
+  // useEffect(() => {
+  //   user && getAchievements();
+  // }, [user]);
 
   const setSession = async (jwt: string) => {
     const options = {
