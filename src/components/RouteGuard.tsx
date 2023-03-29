@@ -8,7 +8,6 @@ function RouteGuard({ children }: { children: any }) {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
   const { user } = useAuth();
-  console.log('user', user);
   useEffect(() => {
     // on initial load - run auth check
     authCheck(router.asPath);
@@ -52,9 +51,6 @@ function RouteGuard({ children }: { children: any }) {
       // });
     } else {
       setAuthorized(true);
-      if (path === '/login') {
-        router.push('/lms/welcome');
-      }
     }
   }
 

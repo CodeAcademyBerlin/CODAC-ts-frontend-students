@@ -134,14 +134,14 @@ const UserDropdown = () => {
             </Box>
           </Box>
           <Divider sx={{ mt: 0, mb: 1 }} />
-          <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
+          {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
             <LinkStyled href="/profile">
               <Box sx={styles}>
                 <AccountOutline sx={{ marginRight: 2 }} />
                 Profile
               </Box>
             </LinkStyled>
-          </MenuItem>
+          </MenuItem> */}
           {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
             <Box sx={styles}>
               <MessageOutline sx={{ marginRight: 2 }} />

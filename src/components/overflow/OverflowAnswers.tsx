@@ -40,7 +40,6 @@ const OverflowAnswers = ({ result }: CommentsProps) => {
   /* console.log('result', result); */
   const { user } = useAuth();
   const router = useRouter();
-  /* console.log('user on ShowAnswers', user); */
 
   console.log('newComment is updating >>>>>>', newComment);
 

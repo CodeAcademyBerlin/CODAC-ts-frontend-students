@@ -36,6 +36,7 @@ import {
   useContext,
   useState,
 } from 'react';
+import { useAuth } from 'src/hooks/useAuth';
 
 import { useLoginMutation } from '../../cabServer/mutations/__generated__/user';
 import { BrandText } from '../components/common/BrandStyle';
@@ -88,9 +89,14 @@ const LoginPage = () => {
     },
   });
 
+  const router = useRouter();
+  const { user } = useAuth();
+  if (user) {
+    router.push('/lms/welcome');
+  }
+
   const { onLoginSucces } = useContext(AuthContext);
   // ** Hook
-  const router = useRouter();
 
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {

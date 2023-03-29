@@ -37,7 +37,6 @@ const NewQuestion = (props: Props) => {
   //imports
   const router = useRouter();
   const { user } = useAuth();
-  console.log('user', user);
 
   const currentDate = new Date();
   let year = currentDate.getFullYear();
