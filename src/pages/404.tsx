@@ -52,7 +52,7 @@ const Error404 = () => {
           </Typography>
         </BoxWrapper>
 
-        <StyledLink passHref href="/">
+        <StyledLink passHref href="/dashboard">
           <Button component="div" variant="contained" sx={{ px: 5.5 }}>
             Back to Home
           </Button>

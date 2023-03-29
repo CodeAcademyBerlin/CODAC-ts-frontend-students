@@ -6,12 +6,13 @@ import {
 import { getPaths } from 'src/lib/paths';
 
 import lmslinks from '../../../public/assets/lmslinks.json';
+import lmslinksdata from '../../../public/assets/lmslinksdata.json';
 
 const lmsLinks: NextApiHandler = async (req, res) => {
   try {
     // const { tree } = getPaths(LMS_CONTENT_PATH);
 
-    res.json(lmslinks);
+    res.json(lmslinksdata);
   } catch (err) {
     console.log('error: ', err);
   }

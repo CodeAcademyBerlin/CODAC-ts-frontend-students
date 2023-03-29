@@ -82,7 +82,6 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
     socket,
     connectSocket,
   };
-  console.log('socket', socket);
   return (
     <SocketContext.Provider value={data}>{children}</SocketContext.Provider>
   );

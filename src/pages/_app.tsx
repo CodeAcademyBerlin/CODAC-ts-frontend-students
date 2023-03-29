@@ -20,6 +20,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
+import { RouteGuard } from 'src/components/RouteGuard';
 
 import favicon from '../../public/favicon.ico';
 import { AuthProvider } from '../contexts/authContext';
@@ -112,7 +113,9 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
                   {({ settings }) => {
                     return (
                       <ThemeComponent settings={settings}>
-                        {getLayout(<Component {...pageProps} />, loading)}
+                        <RouteGuard>
+                          {getLayout(<Component {...pageProps} />, loading)}
+                        </RouteGuard>
                       </ThemeComponent>
                     );
                   }}

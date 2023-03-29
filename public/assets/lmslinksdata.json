@@ -1,0 +1,203 @@
+[
+  {
+    "path": "data",
+    "page": ["data"],
+    "title": "Data",
+    "children": [
+      {
+        "path": "data/Module-1",
+        "page": ["data", "Module-1"],
+        "title": "Module 1",
+        "children": [
+          {
+            "path": "data/Module-1/Project-1",
+            "page": ["data", "Module-1", "Project-1"],
+            "title": "Project 1",
+            "children": [
+              {
+                "path": "data/Module-1/Project-1/Resources",
+                "page": ["data", "Module-1", "Project-1", "Resources"],
+                "title": "Resources",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-1/Sprint-1",
+                "page": ["data", "Module-1", "Project-1", "Sprint-1"],
+                "title": "Sprint 1",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-1/Sprint-2",
+                "page": ["data", "Module-1", "Project-1", "Sprint-2"],
+                "title": "Sprint 2",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-1/Sprint-3",
+                "page": ["data", "Module-1", "Project-1", "Sprint-3"],
+                "title": "Sprint 3",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-1/Sprint-4",
+                "page": ["data", "Module-1", "Project-1", "Sprint-4"],
+                "title": "Sprint 4",
+                "children": []
+              }
+            ]
+          },
+          {
+            "path": "data/Module-1/Project-2",
+            "page": ["data", "Module-1", "Project-2"],
+            "title": "Project 2",
+            "children": [
+              {
+                "path": "data/Module-1/Project-2/Machine-Learning-Fundamentals",
+                "page": [
+                  "data",
+                  "Module-1",
+                  "Project-2",
+                  "Machine-Learning-Fundamentals"
+                ],
+                "title": "Machine Learning Fundamentals",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-2/Sprint-1",
+                "page": ["data", "Module-1", "Project-2", "Sprint-1"],
+                "title": "Sprint 1",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-2/Sprint-2",
+                "page": ["data", "Module-1", "Project-2", "Sprint-2"],
+                "title": "Sprint 2",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-2/Sprint-3",
+                "page": ["data", "Module-1", "Project-2", "Sprint-3"],
+                "title": "Sprint 3",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-2/Sprint-4",
+                "page": ["data", "Module-1", "Project-2", "Sprint-4"],
+                "title": "Sprint 4",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-2/Sprint-5",
+                "page": ["data", "Module-1", "Project-2", "Sprint-5"],
+                "title": "Sprint 5",
+                "children": []
+              }
+            ]
+          },
+          {
+            "path": "data/Module-1/Project-3",
+            "page": ["data", "Module-1", "Project-3"],
+            "title": "Project 3",
+            "children": [
+              {
+                "path": "data/Module-1/Project-3/Resources",
+                "page": ["data", "Module-1", "Project-3", "Resources"],
+                "title": "Resources",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-3/Sprint-1",
+                "page": ["data", "Module-1", "Project-3", "Sprint-1"],
+                "title": "Sprint 1",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-3/Sprint-2",
+                "page": ["data", "Module-1", "Project-3", "Sprint-2"],
+                "title": "Sprint 2",
+                "children": []
+              },
+              {
+                "path": "data/Module-1/Project-3/Sprint-3",
+                "page": ["data", "Module-1", "Project-3", "Sprint-3"],
+                "title": "Sprint 3",
+                "children": []
+              }
+            ]
+          },
+          {
+            "path": "data/Module-1/Project-4",
+            "page": ["data", "Module-1", "Project-4"],
+            "title": "Project 4",
+            "children": [
+              {
+                "path": "data/Module-1/Project-4/Sprint-1",
+                "page": ["data", "Module-1", "Project-4", "Sprint-1"],
+                "title": "Sprint 1",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "data/Module-2",
+        "page": ["data", "Module-2"],
+        "title": "Module 2",
+        "children": [
+          {
+            "path": "data/Module-2/Project-5",
+            "page": ["data", "Module-2", "Project-5"],
+            "title": "Project 5",
+            "children": [
+              {
+                "path": "data/Module-2/Project-5/Sprint-1",
+                "page": ["data", "Module-2", "Project-5", "Sprint-1"],
+                "title": "Sprint 1",
+                "children": []
+              },
+              {
+                "path": "data/Module-2/Project-5/Sprint-2",
+                "page": ["data", "Module-2", "Project-5", "Sprint-2"],
+                "title": "Sprint 2",
+                "children": []
+              },
+              {
+                "path": "data/Module-2/Project-5/Sprint-3",
+                "page": ["data", "Module-2", "Project-5", "Sprint-3"],
+                "title": "Sprint 3",
+                "children": []
+              },
+              {
+                "path": "data/Module-2/Project-5/Sprint-4",
+                "page": ["data", "Module-2", "Project-5", "Sprint-4"],
+                "title": "Sprint 4",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "data/Module-3",
+        "page": ["data", "Module-3"],
+        "title": "Module 3",
+        "children": [
+          {
+            "path": "data/Module-3/Project-7",
+            "page": ["data", "Module-3", "Project-7"],
+            "title": "Project 7",
+            "children": [
+              {
+                "path": "data/Module-3/Project-7/Sprint-1",
+                "page": ["data", "Module-3", "Project-7", "Sprint-1"],
+                "title": "Sprint 1",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

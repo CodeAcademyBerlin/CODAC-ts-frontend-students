@@ -48,26 +48,6 @@ query filterStudentByUserId($userId: ID) {
             attributes {
               name
               start_date
-              students {
-                data {
-                  attributes {
-                    main_course {
-                      data {
-                        attributes {
-                          name
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        main_course {
-          data {
-            attributes {
-              name
             }
           }
         }
@@ -126,26 +106,6 @@ query allStudents {
             attributes {
               name
               start_date
-              students {
-                data {
-                  attributes {
-                    main_course {
-                      data {
-                        attributes {
-                          name
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        main_course {
-          data {
-            attributes {
-              name
             }
           }
         }

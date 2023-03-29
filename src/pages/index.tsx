@@ -85,7 +85,11 @@ const Home = () => {
         </Typography>
 
         {!start ? (
-          <LinkStyled onClick={() => setStart(true)} passHref href="/dashboard">
+          <LinkStyled
+            onClick={() => setStart(true)}
+            passHref
+            href="/lms/welcome"
+          >
             <BrandTextWrapper sx={{ padding: 5 }} variant="h3">
               Start
             </BrandTextWrapper>

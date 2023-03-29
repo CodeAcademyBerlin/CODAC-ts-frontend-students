@@ -2,8 +2,10 @@ import { Breadcrumbs, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import CommentsParent from 'src/components/lms-page/comments';
 import LmsSearchBar from 'src/components/lms-search/LmsSearchBar';
+import { useAuth } from 'src/hooks/useAuth';
 import { createIndexArray } from 'src/lib/lms-index';
 import { getPaths } from 'src/lib/paths';
 
@@ -18,7 +20,7 @@ import {
 import { getPage, getPageMdx } from '../../lib/markdown';
 import { PageData } from './lms';
 
-const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
+const LMS = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
   return pageData ? (
     <>
       <Head>
@@ -39,7 +41,7 @@ const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
         </Breadcrumbs> */}
       <Box
         sx={{
-          p: 5,
+          // p: 5,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -52,10 +54,10 @@ const lms = ({ pageData, slug }: { pageData: PageData; slug: string }) => {
             next={pageData.next}
             prev={pageData.prev}
           />
-          <Divider style={{ width: '75%' }} />
+          {/*  <Divider style={{ width: '75%' }} />
           <ContentRating slug={slug} message={''} />
           <Divider style={{ width: '75%' }} />
-          <CommentsParent slug={slug} />
+          <CommentsParent slug={slug} /> */}
         </>
       </Box>
     </>
@@ -103,14 +105,16 @@ export async function getStaticProps({
 export async function getStaticPaths() {
   //maps 'content' folder and creates a route for every .md file
   // const { paths } = lmspages;
-  // const filter = paths.filter(path => ["welcome", "web"].includes(path.params.page[0]))
   const { paths } = getPaths(LMS_CONTENT_PATH);
   createIndexArray(LMS_CONTENT_PATH);
+  const filter = paths.filter((path) =>
+    ['welcome', 'data'].includes(path.params.page[0]),
+  );
 
   return {
-    paths,
+    paths: filter,
     fallback: false,
   };
 }
 
-export default lms;
+export default LMS;

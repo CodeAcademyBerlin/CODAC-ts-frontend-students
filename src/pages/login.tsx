@@ -112,7 +112,6 @@ const LoginPage = () => {
         const { login } = data;
         console.log('login', login);
         onLoginSucces(login, values.rememberMe);
-        router.push('/dashboard');
       }
     } catch (e) {
       setValues({ ...values, error: 'e.message' });

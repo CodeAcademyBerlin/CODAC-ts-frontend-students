@@ -142,19 +142,19 @@ const UserDropdown = () => {
               </Box>
             </LinkStyled>
           </MenuItem>
-          <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
+          {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
             <Box sx={styles}>
               <MessageOutline sx={{ marginRight: 2 }} />
               Chat
             </Box>
-          </MenuItem>
+          </MenuItem> */}
           <Divider />
-          <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
+          {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
             <Box sx={styles}>
               <CogOutline sx={{ marginRight: 2 }} />
               Settings
             </Box>
-          </MenuItem>
+          </MenuItem> */}
           {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
           <Box sx={styles}>
             <HelpCircleOutline sx={{ marginRight: 2 }} />

@@ -16,23 +16,23 @@ import { NavLink, VerticalNavItemsType } from '../../layouts/types';
 // ** Type import
 
 const navigation: NavLink[] = [
-  {
-    title: 'Dashboard',
-    icon: HomeOutline,
-    path: '/dashboard',
-  },
-  {
-    title: 'Community',
-    path: '/community',
-  },
-  {
-    title: 'Quests',
-    path: '/quests',
-  },
-  {
-    title: 'Coding Challenges',
-    path: '/codingchallenges',
-  },
+  // {
+  //   title: 'Dashboard',
+  //   icon: HomeOutline,
+  //   path: '/dashboard',
+  // },
+  // {
+  //   title: 'Community',
+  //   path: '/community',
+  // },
+  // {
+  //   title: 'Quests',
+  //   path: '/quests',
+  // },
+  // {
+  //   title: 'Coding Challenges',
+  //   path: '/codingchallenges',
+  // },
   // {
   //   title: 'News',
   //   path: '/news',
@@ -58,14 +58,14 @@ const navigation: NavLink[] = [
   //   title: 'Overflow',
   //   path: '/overflow',
   // },
-  {
-    title: 'Kanban',
-    path: '/kanban',
-  },
-  {
-    title: 'Chat',
-    path: '/chat',
-  },
+  // {
+  //   title: 'Kanban',
+  //   path: '/kanban',
+  // },
+  // {
+  //   title: 'Chat',
+  //   path: '/chat',
+  // },
   // {
   //   title: '???',
   //   path: '/congrats',

@@ -37,9 +37,9 @@ const AppBarContent = () => {
         className="actions-left"
         sx={{ mr: 2, display: 'flex', alignItems: 'center' }}
       >
-        {router.asPath.includes('/lms/') && <LmsSearchBar />}
+        {/* {router.asPath.includes('/lms/') && <LmsSearchBar />}
         {router.asPath.includes('/search') && <LmsSearchBar />}
-        {/* Search bar
+        Search bar
         <TextField
           size='small'
           sx={{ '& .MuiOutlinedInput-root': { borderRadius: 4 } }}

@@ -85,7 +85,7 @@ const Students = ({ data }: { data: MentorEntity[] | StudentEntity[] }) => {
               </Typography>
               <p>Cohort: {studentProfile?.cohort?.data?.attributes?.name}</p>
               <p>
-                Course: {studentProfile?.main_course?.data?.attributes?.name}
+                {/* Course: {studentProfile?.main_course?.data?.attributes?.name} */}
               </p>
               <p>Start date: {studentProfile?.start_date}</p>
               <p>End date: {studentProfile?.end_date}</p>

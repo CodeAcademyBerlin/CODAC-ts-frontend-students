@@ -7,22 +7,22 @@ import { VerticalNavItemsType } from '../../layouts/types';
 
 const lmsNavigation = (): VerticalNavItemsType => {
   return [
-    {
-      title: 'Web',
-      icon: Web,
-      path: 'web',
-    },
+    // {
+    //   title: 'Web',
+    //   icon: Web,
+    //   path: 'web',
+    // },
 
     {
       title: 'Data',
       icon: DatabaseEye,
       path: 'data',
     },
-    {
-      title: 'Careers',
-      icon: Briefcase,
-      path: 'career',
-    },
+    // {
+    //   title: 'Careers',
+    //   icon: Briefcase,
+    //   path: 'career',
+    // },
   ];
 };
 

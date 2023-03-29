@@ -8,7 +8,7 @@ import React, { useEffect } from 'react';
 import mdxComponents from '../../components/mdx';
 
 export const LmsContent = styled('div')`
-  max-width: 50%;
+  /* max-width: 50%; */
   word-wrap: break-word;
   display: flex;
   flex-direction: column;

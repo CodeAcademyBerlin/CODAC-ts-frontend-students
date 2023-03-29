@@ -196,7 +196,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
                         {student.attributes?.user?.data?.attributes?.firstname}{' '}
                         {student.attributes?.user?.data?.attributes?.lastname}
                       </ListItemText>
-                      {student.attributes?.main_course?.data?.attributes
+                      {/* {student.attributes?.main_course?.data?.attributes
                         ?.name && (
                         <ListItemIcon>
                           {student.attributes?.main_course?.data?.attributes
@@ -235,7 +235,7 @@ const CohortCard = ({ cohort }: { cohort: Cohort }) => {
                             )
                           }
                         </ListItemIcon>
-                      )}
+                      )} */}
                     </ListItem>
                     <Divider />
                   </React.Fragment>
