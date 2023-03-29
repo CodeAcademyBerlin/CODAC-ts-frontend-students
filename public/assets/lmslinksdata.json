@@ -184,13 +184,13 @@
         "title": "Module 3",
         "children": [
           {
-            "path": "data/Module-3/Project-7",
-            "page": ["data", "Module-3", "Project-7"],
-            "title": "Project 7",
+            "path": "data/Module-3/Project-6",
+            "page": ["data", "Module-3", "Project-6"],
+            "title": "Project 6",
             "children": [
               {
-                "path": "data/Module-3/Project-7/Sprint-1",
-                "page": ["data", "Module-3", "Project-7", "Sprint-1"],
+                "path": "data/Module-3/Project-6/Sprint-1",
+                "page": ["data", "Module-3", "Project-6", "Sprint-1"],
                 "title": "Sprint 1",
                 "children": []
               }

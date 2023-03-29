@@ -113,9 +113,12 @@ const CodacApp: NextPageWithLayout<AppPropsWithLayout> = ({
                   {({ settings }) => {
                     return (
                       <ThemeComponent settings={settings}>
-                        <RouteGuard>
-                          {getLayout(<Component {...pageProps} />, loading)}
-                        </RouteGuard>
+                        {getLayout(
+                          <RouteGuard>
+                            <Component {...pageProps} />{' '}
+                          </RouteGuard>,
+                          loading,
+                        )}
                       </ThemeComponent>
                     );
                   }}

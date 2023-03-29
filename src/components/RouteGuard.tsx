@@ -14,19 +14,19 @@ function RouteGuard({ children }: { children: any }) {
 
     // on route change start - hide page content by setting authorized to false
     const hideContent = () => setAuthorized(false);
-    router.events.on('routeChangeStart', hideContent);
+    // router.events.on('routeChangeStart', hideContent);
 
     // on route change complete - run auth check
     router.events.on('routeChangeComplete', authCheck);
 
     // unsubscribe from events in useEffect return function
     return () => {
-      router.events.off('routeChangeStart', hideContent);
+      // router.events.off('routeChangeStart', hideContent);
       router.events.off('routeChangeComplete', authCheck);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, []);
 
   function authCheck(url: string) {
     // redirect to login page if accessing a private page and not logged in
@@ -54,5 +54,5 @@ function RouteGuard({ children }: { children: any }) {
     }
   }
 
-  return authorized && children;
+  return children;
 }
